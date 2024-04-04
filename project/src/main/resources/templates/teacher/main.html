@@ -7,7 +7,6 @@
               <div class="wrap__content">
                 
                 <div class="wrap__above">
-
                   <!-- main page 프로필 화면 클릭시 회원정보수정 페이지 이동-->
                   <div href="" class="wrap__above__profile">
                     <div class="profile__wrapper">
@@ -17,7 +16,7 @@
                         <img src="/img/default.png" alt="기본이미지">
                         
                         <div class="profile__header__below">
-                          <span>홍길동님</span>
+                          <span>[[${session.vo.user_name + '님'}]]</span>
                           <span id="profile__role">교육자</span>
                         </div>
 
@@ -26,7 +25,7 @@
 
                         <div class="profile__body__item">
                           <span id="item">아이디</span>
-                          <span>userID</span>
+                          <span>[[${session.vo.user_id}]]</span>
                         </div>
 
                         <div class="profile__body__item">
@@ -36,12 +35,12 @@
 
                         <div class="profile__body__item">
                           <span id="item">E-mail</span>
-                          <span>userEmail</span>
+                          <span>[[${session.vo.user_email}]]</span>
                         </div>
 
                         <div class="profile__body__item">
                           <span id="item">연락처</span>
-                          <span>userPhone</span>
+                          <span>[[${session.vo.user_phone}]]</span>
                         </div>
 
                       </div>

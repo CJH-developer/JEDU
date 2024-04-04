@@ -53,3 +53,68 @@ function sample4_execDaumPostcode() {
       }
   }).open();
 }
+
+	
+	// id 중복 체크하기
+  	var checkCount = 0;
+      $(document).ready(function() {
+    	  
+      	  // 폼을 넘길 때, 일단 막아버림
+    	  $(".join__content").submit(function(event) {
+    		  // id 체크를 하지 않았을 경우, id체크 진행하라고 focus시킴
+        	  if(checkCount <= 0) {
+        		  event.preventDefault();
+                  $(".join__item__button").click(function() {
+                      $('#user_id').focus();
+                      $("#id_check_result").html("id 체크를 진행해주세요");
+                  });
+        	  } else {
+        		  $(".join__content").submit();
+        	  }
+        	   
+    	  }); 
+    	  
+    	  
+      	// id check하기
+        $("#id_check").click(function() {
+
+        	var userId = $("#user_id").val();
+        
+          $.ajax({
+              url: "/data/" + userId,
+              type: "get",
+              success: function(data) {
+            	  
+            	// 중복데이터가 있을 경우, 혹은 아이디 검증을 하지 않은 경우
+                if(data >= 1) {
+                  // 버튼 비활성화(눌러도 동작 X)
+                  $('#user_id').focus();
+                  $("#id_check_result").html("중복된 id가 존재합니다. 다른 id를 입력해주세요");
+                  $('.join__item__button button').prop('disabled', true);
+                } else {
+                  $("#id_check_result").html("현재 id로 가입 가능합니다.")
+                  checkCount++;
+                  // 버튼 활성화
+                  $('.join__item__button button').prop('disabled', false);
+                }
+              },
+              error: function(status, error) {
+                $("#id_check_result").html("아이디를 입력해주세요.")
+              }
+          });
+        	
+        });
+      	
+      	
+      	// 이메일, sns체크 중 하나만 선택하게
+        $('input[name="user_sns_check"]').click(function() {
+            $('input[name="user_email_check"]').prop('checked', false);
+        });
+
+        $('input[name="user_email_check"]').click(function() {
+            $('input[name="user_sns_check"]').prop('checked', false);
+        });
+      	
+      	
+    });
+      

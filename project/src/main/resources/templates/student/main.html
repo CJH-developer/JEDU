@@ -5,7 +5,8 @@
 <div class="wrap">
 <script src="/js/frame/student.js" defer></script>
      <div class="wrap__content">
-       
+       [[${#authentication.principal.user_role}]]
+       <div th:if="${#authentication.principal.user_role == 'ROLE_STU'}"></div>
        <div class="wrap__above">
 
          <!-- main page 프로필 화면 클릭시 회원정보수정 페이지 이동-->

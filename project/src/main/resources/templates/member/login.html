@@ -12,16 +12,16 @@
 
         <div class="login__title"><span>바둑스쿨 회원</span></div>
         <!-- 로그인 Form 방식 / post 방식 {Controller 주소 입력}-->        
-        <form action="" method="post" class="loginForm">
+        <form action="loginForm" method="post" class="loginForm">
 
           <div class="login__item">
             <span>아이디</span>
-            <input type="text" value="">
+            <input type="text" name="user_id">
           </div>
 
           <div class="login__item">
             <span>비밀번호</span>
-            <input type="text" value="">
+            <input type="text" name="user_pw">
           </div>
 
           <button type="submit">로그인</button>

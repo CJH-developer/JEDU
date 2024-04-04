@@ -10,7 +10,7 @@ public class UserController {
 
 	@GetMapping("/main")
 	public String main() {
-		
+		System.out.println("user/main페이지");
 		return "user/main";
 	}
 }

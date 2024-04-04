@@ -5,7 +5,6 @@
 <div class="wrap">
 <script src="/js/frame/fileUpload.js" defer></script>
   <div class="modify__wrap">
-    
     <!-- 회원정보 입력 후 controller 이동 -->
     <form action="" method="post" class="modify__left">
 
@@ -37,25 +36,24 @@
         <!-- 회원 정보 수정 -->
         <div class="modify__body__right">
           <div class="modify__bodyRight__content">
-
             <div class="modify__bodyRight__item">
               <span>이름</span>
-              <input type="text" name="changeName" value="session.name" id="inputField1">
+              <input type="text" name="changeName" th:value="${session.vo.user_name}" id="inputField1">
             </div>
 
             <div class="modify__bodyRight__item">
               <span>아이디</span>
-              <input type="text" name="changeId" value="session.ID" id="inputField2">
+              <input type="text" name="changeId" th:value="${session.vo.user_id}" id="inputField2">
             </div>
 
             <div class="modify__bodyRight__item">
               <span>이메일</span>
-              <input type="email" name="changeEmail" value="session.Email" id="inputField3">
+              <input type="email" name="changeEmail" th:value="${session.vo.user_email}" id="inputField3">
             </div>
 
             <div class="modify__bodyRight__item">
               <span>연락처</span>
-              <input type="text" name="changePhone" value="session.Phone" id="inputField4">
+              <input type="text" name="changePhone" th:value="${session.vo.user_phone}" id="inputField4">
             </div>
 
             <div class="modify__bodyRight__Join">
@@ -68,7 +66,7 @@
                 <input type="text" id="sample4_roadAddress" placeholder="도로명주소" value="session.도로명주소">
                 <input type="text" id="sample4_jibunAddress" placeholder="지번주소" value="session.지번주소">
                 <span id="guide" style="color:#999;display:none"></span>
-                <input type="text" id="sample4_detailAddress" placeholder="상세주소" value="session.상세주소">
+                <input type="text" id="sample4_detailAddress" placeholder="상세주소" th:value="${session.vo.user_address}">
               </div>
             </div>
 

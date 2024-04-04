@@ -1,0 +1,29 @@
+package com.geomin.project.command;
+
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+public class UserVO {
+		
+		public String user_id;
+		public String user_pw;
+		public String user_name;
+		public String user_level;
+		public String user_role;
+		public String user_email;
+		public String user_phone;
+		public String user_birth;
+		public String user_address;
+		public String user_gender;
+		public String user_sns_check;
+		public String user_email_check;
+		
+	
+}
+
+	
+
