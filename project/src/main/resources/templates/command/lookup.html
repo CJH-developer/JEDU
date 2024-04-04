@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<th:block th:replace="~{./baseLayout/base_f :: setContent( ~{ :: .wrap} ) }">
+
+<div class="wrap">
+  <div class="wrap__content">
+
+    <div class="lookup__header">
+      <!-- 조회 타이틀 -->
+      <div class="lookup__header__title"><span>게임컨텐츠 조회</span></div>
+
+      <!-- 조회 검색 -->
+      <div class="lookup__header__search">
+        <input type="text" id="lookup__search" placeholder="검색할 단어를 입력하세요.">
+        <button>검색</button>
+      </div>
+
+      <!-- 우측 정렬 -->
+      <div class="lookup__header__detail">
+
+        <!-- 버튼 정렬 -->
+        <div class="lookup__detail__left">
+          <button><img src="/img/pc.png" alt="pc_icon"> 초급</button>
+          <button><img src="/img/pc.png" alt="pc_icon"> 중급</button>
+          <button><img src="/img/pc.png" alt="pc_icon"> 고급</button>
+          <button><img src="/img/pc.png" alt="pc_icon"> 프로</button>
+          <button><img src="/img/freeMoney.png" alt="pc_icon"> 무료</button>
+          <button><img src="/img/money2.png" alt="pc_icon"> 유료</button>
+          <div class="purchase__btn">
+            <button id="purchase" class="hidden">결제</button>
+            <button id="add__basket" class="hidden">장비구니 추가</button>
+          </div>
+        </div>
+
+        <!-- select 정렬 -->
+        <div class="lookup__detail__right">
+          <img src="/img/sort.png" alt="">
+          <select name="" id="">
+            <option value=""> 정렬</option>
+            <option value="">가나다순</option>
+            <option value="">제목순</option>
+            <option value="">등록일순</option>
+          </select>
+        </div>
+
+      </div>
+
+    </div>
+
+
+    <div class="lookup__body">
+
+      <div class="lookup__table">
+
+        <div class="table__thead">
+          <div class="thead__check">선택</div>
+          <div class="thead__image">컨텐츠</div>
+          <div class="thead__title">컨텐츠제목</div>
+          <div class="thead__subscribe">가격/구독</div>
+          <div class="thead__introduce">상품소개</div>
+          <div class="thead__pay">결제</div>
+        </div>
+        <div class="table__tbody">
+          <!-- 반복하는 곳 -->
+          <div class="tbody__item">
+            <!-- 선택 -->
+            <div class="tbody__check">
+              <input type="checkbox" id="tbody__checkBox__id" class="tbody__checkBox" value="4">
+            </div>
+
+            <!-- 컨텐츠 사진 -->
+            <div class="tbody__image">
+              <img src="/img/01_game_main.png" alt="">
+            </div>
+
+            <!-- 컨텐츠 제목 -->
+            <div class="tbody__title">컨텐츠제목</div>
+
+            <!-- 컨텐츠 가격 -->
+            <div class="tbody__subscribe">
+              <div class="tbody__subscribe__above">
+                <div class="subscribe__above__price"><div class="price__title">기본가 : </div> <span>15000원</span></div>
+                <div class="subscribe__above__count"><div class="price__title">가격(1인) : </div> <span>월 3000원 </span></div>
+              </div>
+              <div class="tbody__subscribe__below">
+                <div class="item__date">기간 </div>
+                <span>2024년 10월 12일 ~ 2024년 12월 15일</span>
+              </div>
+            </div>
+
+            <!-- 컨텐츠 소개 -->
+            <div class="tbody__introduce">상품소개</div>
+
+            <!-- 컨텐츠 결제/장바구니 -->
+            <div class="tbody__pay">
+              <button id="content__purchase">결제</button>
+              <button id="content__basket">장바구니</button>
+            </div>
+          </div>
+
+          <!-- 반복하는 곳 -->
+          <div class="tbody__item">
+            <!-- 선택 -->
+            <div class="tbody__check">
+              <input type="checkbox" id="tbody__checkBox__id" class="tbody__checkBox" value="1">
+            </div>
+
+            <!-- 컨텐츠 사진 -->
+            <div class="tbody__image">
+              <img src="/img/01_game_main.png" alt="">
+            </div>
+
+            <!-- 컨텐츠 제목 -->
+            <div class="tbody__title">컨텐츠제목</div>
+
+            <!-- 컨텐츠 가격 -->
+            <div class="tbody__subscribe">
+              <div class="tbody__subscribe__above">
+                <div class="subscribe__above__price"><div class="price__title">기본가 : </div> <span>15000원</span></div>
+                <div class="subscribe__above__count"><div class="price__title">가격(1인) : </div> <span>월 3000원 </span></div>
+              </div>
+              <div class="tbody__subscribe__below">
+                <div class="item__date">기간 </div>
+                <span>2024년 10월 12일 ~ 2024년 12월 15일</span>
+              </div>
+            </div>
+
+            <!-- 컨텐츠 소개 -->
+            <div class="tbody__introduce">상품소개</div>
+
+            <!-- 컨텐츠 결제/장바구니 -->
+            <div class="tbody__pay">
+              <button id="content__purchase">결제</button>
+              <button id="content__basket">장바구니</button>
+            </div>
+          </div>
+
+
+          <!-- 반복하는 곳 -->
+          <div class="tbody__item">
+            <!-- 선택 -->
+            <div class="tbody__check">
+              <input type="checkbox" id="tbody__checkBox__id" class="tbody__checkBox" value="2">
+            </div>
+
+            <!-- 컨텐츠 사진 -->
+            <div class="tbody__image">
+              <img src="/img/01_game_main.png" alt="">
+            </div>
+
+            <!-- 컨텐츠 제목 -->
+            <div class="tbody__title">컨텐츠제목</div>
+
+            <!-- 컨텐츠 가격 -->
+            <div class="tbody__subscribe">
+              <div class="tbody__subscribe__above">
+                <div class="subscribe__above__price"><div class="price__title">기본가 : </div> <span>15000원</span></div>
+                <div class="subscribe__above__count"><div class="price__title">가격(1인) : </div> <span>월 3000원 </span></div>
+              </div>
+              <div class="tbody__subscribe__below">
+                <div class="item__date">기간 </div>
+                <span>2024년 10월 12일 ~ 2024년 12월 15일</span>
+              </div>
+            </div>
+
+            <!-- 컨텐츠 소개 -->
+            <div class="tbody__introduce">상품소개</div>
+            <!-- 컨텐츠 결제/장바구니 -->
+            <div class="tbody__pay">
+              <button id="content__purchase">결제</button>
+              <button id="content__basket">장바구니</button>
+            </div>
+
+          </div>
+
+
+          <!-- 반복하는 곳 -->
+          <div class="tbody__item">
+            <!-- 선택 -->
+            <div class="tbody__check">
+              <input type="checkbox" id="tbody__checkBox__id" class="tbody__checkBox" value="3">
+            </div>
+
+            <!-- 컨텐츠 사진 -->
+            <div class="tbody__image">
+              <img src="/img/01_game_main.png" alt="">
+            </div>
+
+            <!-- 컨텐츠 제목 -->
+            <div class="tbody__title">컨텐츠제목</div>
+
+            <!-- 컨텐츠 가격 -->
+            <div class="tbody__subscribe">
+              <div class="tbody__subscribe__above">
+                <div class="subscribe__above__price"><div class="price__title">기본가 : </div> <span>15000원</span></div>
+                <div class="subscribe__above__count"><div class="price__title">가격(1인) : </div> <span>월 3000원 </span></div>
+              </div>
+              <div class="tbody__subscribe__below">
+                <div class="item__date">기간 </div>
+                <span>2024년 10월 12일 ~ 2024년 12월 15일</span>
+              </div>
+            </div>
+
+            <!-- 컨텐츠 소개 -->
+            <div class="tbody__introduce">상품소개</div>
+
+            <!-- 컨텐츠 결제/장바구니 -->
+            <div class="tbody__pay">
+              <button id="content__purchase">결 제</button>
+              <button id="content__basket">장바구니</button>
+            </div>
+
+          </div>
+
+        </div>
+
+        <div class="table__page">
+          <div class="table__page__list">
+            <button class="page__button page__active">1</button>
+            <button class="page__button">2</button>
+            <button class="page__button">3</button>
+            <button class="page__button">4</button>
+            <button class="page__button">5</button>
+            <button class="page__button">6</button>
+            <button class="page__button">7</button>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+</div>
+
+</th:block>
+</html>
