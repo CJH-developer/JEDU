@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<th:block th:replace="~{./baseLayout/base_f :: setContent( ~{ :: .wrap} ) }">
+
+<div class="wrap">
+<link rel="stylesheet" href="/css/frame/learnGroupRegist.css">
+<script src="/js/frame/learnGroupRegist.js" defer></script>
+  <div class="wrap__content">
+    <form action="" method="get" class="regist__wrap">
+
+      <div class="learnGroup__left">
+
+        <div class="lG-left-header">
+          <span>학습 그룹 등록</span>
+          <div class="lG-left-btn">
+            <button>등록</button>
+            <button>취소</button>
+          </div>
+        </div>
+
+
+        <div class="lG-left-body">
+
+          <div class="lg_above">
+            <div class="lg__thead">
+              <div class="lg__thead__one">변경</div>
+              <div class="lg__thead__two">컨텐츠</div>
+              <div class="lg__thead__three">제목</div>
+              <div class="lg__thead__four">구독기간</div>
+              <div class="lg__thead__five">제한인원</div>
+              <div class="lg__thead__six">재생시간</div>
+            </div>
+            <div class="lg__tbody">
+              <div class="lg__tbody__one"><button>변경</button></div>
+              <div class="lg__tbody__two"><img src="/img/02_game_main.png" alt=""></div>
+              <div class="lg__tbody__three">컨텐츠 제목</div>
+              <div class="lg__tbody__four">2024.02.10-2024.05.10</div>
+              <div class="lg__tbody__five">30명</div>
+              <div class="lg__tbody__six">240 m / m</div>
+            </div>
+          </div>
+          
+          <div class="lg__below">
+            <div class="lg__below__wrap">
+
+              <div class="lg__below__item">
+                <span>교육자명</span>
+                <input type="text" th:value="${session.vo.user_name}" disabled>
+              </div>
+
+              <div class="lg__below__item">
+                <span>학습그룹명</span>
+                <input type="text" id="learn__group__title">
+              </div>
+
+              <div class="lg__below__item">
+                <span>제한 인원</span>
+                <input type="text" id="learn__group__limit">
+              </div>
+
+              <div class="lg__below__item">
+                <span>학습 레벨</span>
+                <input type="text" id="learn__group__level">
+              </div>
+
+              <div class="lg__below__item">
+                <span>목표 레벨</span>
+                <input type="text">
+              </div>
+
+              <div class="lg__below__date">
+                <span>학습 기간</span>
+                <input type="date" id="lg-startDate"> ~
+                <input type="date" id="lg-endDate">
+                <div id="lg__month"></div>
+              </div>
+
+              <div class="lg__below__text">
+                <span>비고</span>
+                <textarea name="" id="" cols="30" rows="6"></textarea>
+              </div> 
+
+            </div>
+          </div>
+
+        </div>
+
+
+      </div>
+
+
+
+
+
+      <div class="learnGroup__right">
+
+        <div class="lg__right__pre">
+          <div id="pre__title"></div>
+          <div id="pre__body">
+            <div id="pre__body__head">
+              <div id="pre__head__limit"></div>
+              <div id="pre__head__level"></div>
+              <div id="pre__head__date"></div>
+            </div>
+            <div id="pre__body__body">
+              <img src="/img/KBA_mascot_black2.png" alt="">
+            </div>
+          </div>
+          <div class="prefooter"></div>
+        </div>
+
+      </div>
+
+    </form>
+  </div>
+</div>
+  
+</th:block>
+</html>

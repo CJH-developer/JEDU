@@ -1,18 +1,27 @@
 package com.geomin.project.controller;
 
+
 import org.springframework.stereotype.Controller;
+
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestBody;
+
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+
+
+
+
 
 @Controller
 @RequestMapping("/command")
 public class CommandController {
 
+
+	
 	// 회원 정보 수정
 	@GetMapping("/modify")
 	public String modify() {
+		
+		
 		return "command/modify";
 	}
 	
@@ -28,6 +37,7 @@ public class CommandController {
 	public String lookup() {
 		return "command/lookup";
 	}
+	
 	
 	
 }

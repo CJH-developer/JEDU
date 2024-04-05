@@ -35,6 +35,7 @@
 <link rel="stylesheet" href="/css/frame/board.css">
 <link rel="stylesheet" href="/css/frame/lookup.css">
 
+
 <!-- MAIN JS -->
 <script src="/js/frame/lookup.js" defer></script>
 <script src="/js/frame/baseLayout.js" defer></script>
@@ -108,14 +109,14 @@
 			              <button type="button" class="section__sub__menu" value="GAME"><img src="/img/mouse_icon.png" alt="마우스아이콘"> GAME</button>
 			              <div class="sub__menu__list">
 			              	<!-- 내부 페이지는 전체 페이지 게임할 수 있도록 -->
-			                <a href="" class="small__menu" data-title="렛츠고바둑스쿨" >렛츠고바둑스쿨</a>
+			                <a href="/student/game" class="small__menu" data-title="렛츠고바둑스쿨" >렛츠고바둑스쿨</a>
 			              </div>
 			
 			            </div>
 		            </div>
 		
 		            <!-- 선생님 권한 불러올 메뉴 -->
-<<<<<<< HEAD
+
 		            <div th:if="${#authentication.principal.user_role == 'ROLE_TEA'}" sec:authorized="isAuthenticated()">
 			            <div class="section__left__menu__teacher">
 			
@@ -127,22 +128,23 @@
 			
 			              <button type="button" class="section__sub__menu" value="GAME"><img src="/img/mouse_icon.png" alt="마우스아이콘"> GAME</button>
 			              <div class="sub__menu__list">
-			                <a href="/command/gameList" class="small__menu" data-title="게임컨텐츠조회" >게임컨텐츠조회</a>
-			                <a href="" class="small__menu" data-title="구매이력" >구매이력</a>
+			                <a href="/command/lookup" class="small__menu" data-title="게임컨텐츠조회" >게임컨텐츠조회</a>
+			                <a href="/teacher/myproduct" class="small__menu" data-title="구매이력" >구매이력</a>
 			              </div>
 			
 			              <button type="button" class="section__sub__menu" value="학습그룹"><img src="/img/pen.png" alt="화살표">학습그룹</button>
 			              <div class="sub__menu__list">
-			                <a href="" class="small__menu" data-title="학습 그룹 조회">학습 그룹 조회</a>
-			                <a href="" class="small__menu" data-title="학습 그룹 등록">학습 그룹 등록</a>
+			                <a href="/teacher/learnGroupLook" class="small__menu" data-title="학습 그룹 조회">학습 그룹 조회</a>
+			                <a href="/teacher/learnGroupRegist" class="small__menu" data-title="학습 그룹 등록">학습 그룹 등록</a>
 			                <a href="" class="small__menu" data-title="수강생 현황">수강생 현황</a>
 			              </div>
 			
 			              
 			              <button type="button" class="section__sub__menu" value="HOMEWORK"><img src="/img/vegas.png" alt="화살표">HOMEWORK</button>
 			              <div class="sub__menu__list">
-			                <a href="" class="small__menu" data-title="숙제조회">숙제조회</a>
-			                <a href="" class="small__menu" data-title="숙제만들기">숙제만들기</a>
+			                <a href="/teacher/homeWorkRegist" class="small__menu" data-title="숙제등록">숙제등록</a>
+			                <a href="/teacher/homeWorkTransfer" class="small__menu" data-title="숙제전송">숙제전송</a>
+			                <a href="/teacher/homeWorkScore" class="small__menu" data-title="숙제제출조회">숙제제출조회</a>
 			              </div>
 			              
 			            </div>
@@ -167,7 +169,7 @@
 			
 			              <button type="button" class="section__sub__menu" value="학습/GAME 관리"><img src="/img/mouse_icon.png" alt="마우스아이콘">학습/GAME 관리</button>
 			              <div class="sub__menu__list">
-			                <a href="" class="small__menu" data-title="게임컨텐츠조회" >게임 컨텐츠 조회</a>
+			                <a href="/command/gameList" class="small__menu" data-title="게임컨텐츠조회" >게임 컨텐츠 조회</a>
 			                <a href="/admin/gameRegist" class="small__menu" data-title="게임컨텐츠등록" >게임 컨텐츠등록</a>
 			                <a href="" class="small__menu" data-title="학습컨텐츠조회" >학습 컨텐츠 조회</a>
 			                <a href="/admin/learnRegist" class="small__menu" data-title="학습컨텐츠등록" >학습 컨텐츠등록</a>

@@ -20,14 +20,14 @@
 .history__wrapper{ width: 95%; height: 95%; display: flex; flex-direction: column; align-items: center; justify-content: center; border-radius: 25px; border: 1px solid rgb(214, 214, 214);}
 .history__wrapper span{font-weight: bold; font-size: 18px; margin-bottom: 10px;}
 
-.wrap__left__calendar{position:relative; width: 40%; height: 100%; display: flex; align-items: center; justify-content: center;}
+.wrap__left__calendar{ width: 40%; height: 100%; display: flex; align-items: center; justify-content: center;}
 .calendar__wrapper{width: 95%; height: 90%; border-radius: 25px;}
 .dateHead div {background: #5659e2;color: #fff;text-align: center;border-radius: 5px; }
 .grid {display: grid;grid-template-columns: repeat(7, 1fr);grid-gap: 5px;}
 .grid div {padding: .4rem;font-size: .9rem;cursor: pointer;}
 .dateBoard div {color: #222;font-weight: bold; height: 43px;padding: .6rem .8rem;border-radius: 5px;border: 1px solid #eee;}
 .noColor {background: #eee;}
-.header {display: flex;justify-content: space-between; padding: 0.5rem 1rem; top:-20px; right:170px; position:absolute;}
+.header {display: flex;justify-content: space-between; padding: 0.5rem 1rem; }
 .dateTitle {font-size: 18px; font-weight: bold; margin-top: 1px;}
 
 /* 좌우 버튼 */

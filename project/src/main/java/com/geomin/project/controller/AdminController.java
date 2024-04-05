@@ -44,4 +44,6 @@ public class AdminController {
 		return "admin/qnaRegist";
 	}
 	
+	
+	
 }

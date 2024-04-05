@@ -41,9 +41,6 @@ public class MyUserDetailsService implements UserDetailsService{
 		if(vo != null) {
 			System.out.println(  new MyUserDetails(vo) + " ++  " + vo.getUser_id() );
 			MyUserDetails details = new MyUserDetails(vo);
-			System.out.println("password:" + details.getPassword());
-			System.out.println("아이디:" + details.getUsername());
-			System.out.println("role: " + details.getUser_role());
 			
 			// 세션 저장(from 지원)
 			HttpSession session = request.getSession();
