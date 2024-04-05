@@ -3,34 +3,23 @@
 <th:block th:replace="~{./baseLayout/base_f :: setContent( ~{ :: .wrap} ) }">
 
 <div class="wrap">
-<script src="/js/frame/lookup.js" defer></script>
   <div class="wrap__content">
 
     <div class="lookup__header">
       <!-- 조회 타이틀 -->
-      <div class="lookup__header__title"><span>게임컨텐츠 조회</span></div>
-
-      <!-- 조회 검색 -->
-      <div class="lookup__header__search">
-        <input type="text" id="lookup__search" placeholder="검색할 단어를 입력하세요.">
-        <button>검색</button>
-      </div>
+      <div class="lookup__header__title"><span>내 구독상품 조회</span></div>
 
       <!-- 우측 정렬 -->
-      <div class="lookup__header__detail">
+      <div class="myProduct__header__detail">
 
         <!-- 버튼 정렬 -->
         <div class="lookup__detail__left">
-          <button><img src="/img/pc.png" alt="pc_icon"> 초급</button>
-          <button><img src="/img/pc.png" alt="pc_icon"> 중급</button>
-          <button><img src="/img/pc.png" alt="pc_icon"> 고급</button>
-          <button><img src="/img/pc.png" alt="pc_icon"> 프로</button>
-          <button><img src="/img/freeMoney.png" alt="pc_icon"> 무료</button>
-          <button><img src="/img/money2.png" alt="pc_icon"> 유료</button>
-          <div class="purchase__btn">
-            <button id="purchase" class="hidden">결제</button>
-            <button id="add__basket" class="hidden">장비구니 추가</button>
+          <div class="myProduct__title"><img src="/img/calandar.png" alt="">구매 기간</div>
+          <div class="myProduct__date">
+            <input type="month" data-placeholder="날짜 선택"> ~
+            <input type="month"  data-placeholder="날짜 선택">
           </div>
+          <button id="myProduct__date__btn">조회</button>
         </div>
 
         <!-- select 정렬 -->
@@ -54,19 +43,19 @@
       <div class="lookup__table">
 
         <div class="table__thead">
-          <div class="thead__check">선택</div>
+          <div class="thead__check">번호</div>
           <div class="thead__image">컨텐츠</div>
           <div class="thead__title">컨텐츠제목</div>
           <div class="thead__subscribe">가격/구독</div>
-          <div class="thead__introduce">상품소개</div>
-          <div class="thead__pay">결제</div>
+          <div class="thead__introduce">구매일자</div>
+          <div class="thead__pay">학습그룹 등록내역</div>
         </div>
         <div class="table__tbody">
           <!-- 반복하는 곳 -->
           <div class="tbody__item">
             <!-- 선택 -->
             <div class="tbody__check">
-              <input type="checkbox" id="tbody__checkBox__id" class="tbody__checkBox" value="4">
+              <span>1</span>
             </div>
 
             <!-- 컨텐츠 사진 -->
@@ -89,13 +78,12 @@
               </div>
             </div>
 
-            <!-- 컨텐츠 소개 -->
-            <div class="tbody__introduce">상품소개</div>
+            <!-- 컨텐츠 구매일자 -->
+            <div class="tbody__introduce">2023.10.14</div>
 
-            <!-- 컨텐츠 결제/장바구니 -->
+            <!-- 컨텐츠 학습 그룹 등록 내역 -->
             <div class="tbody__pay">
-              <button id="content__purchase">결제</button>
-              <button id="content__basket">장바구니</button>
+              <span>강남학원 초급반</span>
             </div>
           </div>
 
@@ -103,7 +91,7 @@
           <div class="tbody__item">
             <!-- 선택 -->
             <div class="tbody__check">
-              <input type="checkbox" id="tbody__checkBox__id" class="tbody__checkBox" value="1">
+              <span>2</span>
             </div>
 
             <!-- 컨텐츠 사진 -->
@@ -126,13 +114,12 @@
               </div>
             </div>
 
-            <!-- 컨텐츠 소개 -->
-            <div class="tbody__introduce">상품소개</div>
+            <!-- 컨텐츠 구매일자 -->
+            <div class="tbody__introduce">2023.10.14</div>
 
-            <!-- 컨텐츠 결제/장바구니 -->
+            <!-- 컨텐츠 학습 그룹 등록 내역 -->
             <div class="tbody__pay">
-              <button id="content__purchase">결제</button>
-              <button id="content__basket">장바구니</button>
+              <span>강남학원 초급반</span>
             </div>
           </div>
 
@@ -141,7 +128,7 @@
           <div class="tbody__item">
             <!-- 선택 -->
             <div class="tbody__check">
-              <input type="checkbox" id="tbody__checkBox__id" class="tbody__checkBox" value="2">
+              <span>3</span>
             </div>
 
             <!-- 컨텐츠 사진 -->
@@ -164,12 +151,12 @@
               </div>
             </div>
 
-            <!-- 컨텐츠 소개 -->
-            <div class="tbody__introduce">상품소개</div>
-            <!-- 컨텐츠 결제/장바구니 -->
+            <!-- 컨텐츠 구매일자 -->
+            <div class="tbody__introduce">2023.10.14</div>
+
+            <!-- 컨텐츠 학습 그룹 등록 내역 -->
             <div class="tbody__pay">
-              <button id="content__purchase">결제</button>
-              <button id="content__basket">장바구니</button>
+              <span>강남학원 초급반</span>
             </div>
 
           </div>
@@ -179,7 +166,7 @@
           <div class="tbody__item">
             <!-- 선택 -->
             <div class="tbody__check">
-              <input type="checkbox" id="tbody__checkBox__id" class="tbody__checkBox" value="3">
+              <span>4</span>
             </div>
 
             <!-- 컨텐츠 사진 -->
@@ -202,13 +189,12 @@
               </div>
             </div>
 
-            <!-- 컨텐츠 소개 -->
-            <div class="tbody__introduce">상품소개</div>
+            <!-- 컨텐츠 구매일자 -->
+            <div class="tbody__introduce">2023.10.14</div>
 
-            <!-- 컨텐츠 결제/장바구니 -->
+            <!-- 컨텐츠 학습 그룹 등록 내역 -->
             <div class="tbody__pay">
-              <button id="content__purchase">결 제</button>
-              <button id="content__basket">장바구니</button>
+              <span>강남학원 초급반</span>
             </div>
 
           </div>

@@ -1,44 +1,4 @@
 
-var inputField1 = document.getElementById('inputField1');
-var inputField2 = document.getElementById('inputField2');
-var inputField3 = document.getElementById('inputField3');
-var inputField4 = document.getElementById('inputField4');
-
-// 입력 필드에 대해 포커스를 받았을 때 이벤트 리스너 추가
-inputField1.addEventListener('focus', function() {
-        inputField1.value = '';
-});
-inputField2.addEventListener('focus', function() {
-        inputField2.value = '';
-});
-inputField3.addEventListener('focus', function() {
-        inputField3.value = '';
-});
-inputField4.addEventListener('focus', function() {
-    inputField4.value = '';
-});
-
-// 입력 필드에 대해 포커스를 잃었을 때 이벤트 리스너 추가
-inputField1.addEventListener('blur', function() {
-  if (inputField1.value === '') {
-      inputField1.value = 'session.name';
-  }
-});
-inputField2.addEventListener('blur', function() {
-  if (inputField2.value === '') {
-      inputField2.value = 'session.id';
-  }
-});
-inputField3.addEventListener('blur', function() {
-  if (inputField3.value === '') {
-      inputField3.value = 'session.email';
-  }
-});
-inputField3.addEventListener('blur', function() {
-  if (inputField4.value === '') {
-    inputField4.value = 'session.phone';
-  }
-});
 
 // 파일 입력 필드와 이미지 미리보기를 위한 요소 가져오기
 var modify__fileInput = document.getElementById('modify__fileInput');

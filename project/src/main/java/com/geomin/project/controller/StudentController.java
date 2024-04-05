@@ -13,4 +13,9 @@ public class StudentController {
 		
 		return "student/main";
 	}
+	
+	@GetMapping("/game")
+	public String game() {
+		return "student/game";
+	}
 }
