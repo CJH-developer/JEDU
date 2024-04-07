@@ -31,11 +31,12 @@ public class SecurityConfig {
 
 		http.csrf().disable();
 		
-//		http.authorizeRequests( (a) -> a.antMatchers("/user/login", "/css/**", "/img/**",  "/js/**").permitAll()
-//										.anyRequest().authenticated());
-//				.antMatchers("/user/**").hasAnyRole("USER","ADMIN","TESTER")
-//				.antMatchers("/admin/**").hasRole("ADMIN")
-//				.anyRequest().permitAll());
+		http.authorizeRequests( (a) -> a.antMatchers("/main/**").permitAll()
+										.antMatchers("/command/**").hasAnyRole("ADMIN", "TEA", "GEN", "STU")
+										.antMatchers("/student/**").hasAnyRole("STU")
+										.antMatchers("/teacher/**").hasAnyRole("TEA")
+										.antMatchers("/admin/**").hasRole("ADMIN")
+										.anyRequest().permitAll());
 		
 		http
 		.formLogin()
