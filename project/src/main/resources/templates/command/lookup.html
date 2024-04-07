@@ -2,6 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <th:block th:replace="~{./baseLayout/base_f :: setContent( ~{ :: .wrap} ) }">
 
+
 <div class="wrap">
 <script src="/js/frame/lookup.js" defer></script>
   <div class="wrap__content">
@@ -135,7 +136,35 @@
               <button id="content__basket">장바구니</button>
             </div>
           </div>
+          
+          <!-- 장바구니 추가시 모달창 팝업 -->
+		  <div id="addCartModal" class="modal">
+			  <div class="modal-content">
+			    <span class="close">x</span>
+			    <p>상품이 장바구니에 추가되었습니다.</p>
+			  </div>
+		  </div>
+		  
+		  <script>
+		    var cartModal = document.getElementById("addCartModal");
+		    var addCart = document.getElementById("content__basket");
+		    var span = document.getElementsByClassName("close")[0];
 
+		    addCart.onclick = function() {
+		    	cartModal.style.display = "block";
+		    }
+
+		    span.onclick = function() {
+		    	cartModal.style.display = "none";
+		    }
+
+		    window.onclick = function(event) {
+		      if (event.target == cartModal) {
+		    	 cartModal.style.display = "none";
+		      }
+		    };
+		    
+		  </script>
 
           <!-- 반복하는 곳 -->
           <div class="tbody__item">

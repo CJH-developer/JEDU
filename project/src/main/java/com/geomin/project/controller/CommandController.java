@@ -38,6 +38,10 @@ public class CommandController {
 		return "command/lookup";
 	}
 	
+	@GetMapping("/cart")
+	public String cart() {
+		return "command/cart";
+	}
 	
 	
 }
