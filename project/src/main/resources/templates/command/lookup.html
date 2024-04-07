@@ -133,7 +133,7 @@
             <!-- 컨텐츠 결제/장바구니 -->
             <div class="tbody__pay">
               <button id="content__purchase">결제</button>
-              <button id="content__basket">장바구니</button>
+              <a href="/command/cart" id="content__basket">장바구니</a>
             </div>
           </div>
           
@@ -146,12 +146,28 @@
 		  </div>
 		  
 		  <script>
-		    var cartModal = document.getElementById("addCartModal");
-		    var addCart = document.getElementById("content__basket");
-		    var span = document.getElementsByClassName("close")[0];
-
+		    const cartModal = document.getElementById("addCartModal");
+		    const addCart = document.getElementById("content__basket");
+		    const span = document.getElementsByClassName("close")[0];
+			
+		    
 		    addCart.onclick = function() {
-		    	cartModal.style.display = "block";
+		    	
+		    	const price = $('.subscribe__above__price').text();
+		    	$.ajax({
+		    		url:'/command/cart',
+		    		type:'POST',
+		    		data: {
+		    			price: price
+		    		},
+		    		success: function(response){
+		    			cartModal.style.display = "block";
+		    		},
+		    		error: function(response){
+		    			console.log("실패");
+		    		}
+		    	})
+		    	
 		    }
 
 		    span.onclick = function() {
