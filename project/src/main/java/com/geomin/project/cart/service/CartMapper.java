@@ -1,5 +1,7 @@
 package com.geomin.project.cart.service;
 
+import java.util.ArrayList;
+
 import org.apache.ibatis.annotations.Mapper;
 
 import com.geomin.project.command.CartVO;
@@ -11,6 +13,6 @@ public interface CartMapper {
 	public int addtoCart(CartVO vo);
 	
 	//장바구니 조회
-	
+	public ArrayList<CartVO> getListCart();
 	
 }
