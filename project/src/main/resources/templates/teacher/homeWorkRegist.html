@@ -7,7 +7,7 @@
 <script src="/js/frame/homeWorkRegist.js" defer></script>
 
   <div class="wrap__content">
-    <form action="homeWorkRegistForm" method="post" class="regist__wrap">
+    <form action="" method="get" class="regist__wrap">
 
       <!-- 컨텐츠 등록 -->
       <div class="homework__regist__left">
@@ -20,21 +20,19 @@
           </div>
         </div>
         <div class="homework__regist__left__below">
-        
-        <input type="hidden" th:value="${session.vo.user_no}" id="user_no" name="user_no">
 
           
 
           <!-- 제목 입력 -->
           <div class="homework__regist__below__item">
             <span>숙제명</span>
-            <input type="text" id="homework__learn__title" name="homework_name" placeholder="제목을 입력하세요.">
+            <input type="text" id="homework__learn__title" placeholder="제목을 입력하세요.">
           </div>
 
           <!-- 제목 입력 -->
           <div class="homework__regist__below__item">
             <span>내용</span>
-            <input type="text" id="homework__learn__content" name="homework_content" placeholder="내용을 입력하세요.">
+            <input type="text" id="homework__learn__content" placeholder="내용을 입력하세요.">
           </div>
           
 
@@ -44,7 +42,7 @@
             <select name="item__select" id="homework__type__select">
               <option value="none">레벨을 선택해주세요.</option>
               <th:block th:each="level : ${#numbers.sequence(1, 30)}">
-                  <option th:value="${level}" th:text="${level} + '레벨'" th:name="${level}"></option>
+                  <option th:value="${level}" th:text="${level} + '레벨'"></option>
               </th:block>
           </select>
           </div>
@@ -52,19 +50,22 @@
           <!-- 구분 선택 -->
           <div class="homework__regist__below__item">
             <span>학습 그룹 선택</span>
-            <select name="sg_no" id="homework__group__select">
+            <select name="item__select" id="homework__group__select">
               <option value="none">학습 그룹을 선택해주세요.</option>
+              <option value="학습 그룹1">학습 그룹1</option>
+              <option value="학습 그룹2">학습 그룹2</option>
+              <option value="학습 그룹3">학습 그룹3</option>
+              <option value="학습 그룹4">학습 그룹4</option>
             </select>
-            <button type="button" id="myGroup">내 학습그룹 불러오기</button>
           </div>
 
           <!-- 자료 파일 주소 -->
           <div class="regist__item__date">
             <span>숙제 마감일</span>
-            <input type="date" id="homework__startDate" name="homework_regdate"> - 
-            <input type="date" id="homework__endDate" name="homework_duedate">
+            <input type="date" id="homework__startDate"> - 
+            <input type="date" id="homework__endDate">
             <div id="homework__Day"></div>
-          </div>
+          </div>  
 
           <div class="homework__board">
             <div class="homework__board__check">

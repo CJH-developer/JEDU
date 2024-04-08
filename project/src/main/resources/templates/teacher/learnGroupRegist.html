@@ -6,9 +6,7 @@
 <link rel="stylesheet" href="/css/frame/learnGroupRegist.css">
 <script src="/js/frame/learnGroupRegist.js" defer></script>
   <div class="wrap__content">
-    <form action="learnGroupRegistForm" method="post" class="regist__wrap">
-    <!-- hidden으로 user_no 값 보내줄 예정 -->
-    <input type="hidden" name="user_no" th:value="${session.vo.user_no}">
+    <form action="" method="get" class="regist__wrap">
 
       <div class="learnGroup__left">
 
@@ -44,6 +42,7 @@
           
           <div class="lg__below">
             <div class="lg__below__wrap">
+
               <div class="lg__below__item">
                 <span>교육자명</span>
                 <input type="text" th:value="${session.vo.user_name}" disabled>
@@ -51,17 +50,17 @@
 
               <div class="lg__below__item">
                 <span>학습그룹명</span>
-                <input type="text" id="learn__group__title" name="sg_name">
+                <input type="text" id="learn__group__title">
               </div>
 
               <div class="lg__below__item">
                 <span>제한 인원</span>
-                <input type="text" id="learn__group__limit" name="sg_grouplimit">
+                <input type="text" id="learn__group__limit">
               </div>
 
               <div class="lg__below__item">
                 <span>학습 레벨</span>
-                <input type="text" id="learn__group__level" name="sg_level">
+                <input type="text" id="learn__group__level">
               </div>
 
               <div class="lg__below__item">
@@ -71,14 +70,14 @@
 
               <div class="lg__below__date">
                 <span>학습 기간</span>
-                <input type="date" id="lg-startDate" name="sg_regdate"> ~
-                <input type="date" id="lg-endDate" name="sg_enddate">
+                <input type="date" id="lg-startDate"> ~
+                <input type="date" id="lg-endDate">
                 <div id="lg__month"></div>
               </div>
 
               <div class="lg__below__text">
                 <span>비고</span>
-                <textarea name="sg_plus" id="" cols="30" rows="6"></textarea>
+                <textarea name="" id="" cols="30" rows="6"></textarea>
               </div> 
 
             </div>

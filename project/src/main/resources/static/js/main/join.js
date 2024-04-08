@@ -81,7 +81,7 @@ function sample4_execDaumPostcode() {
         	var userId = $("#user_id").val();
         
           $.ajax({
-              url: "/check/" + userId,
+              url: "/data/" + userId,
               type: "get",
               success: function(data) {
             	  

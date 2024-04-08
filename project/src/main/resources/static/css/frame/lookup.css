@@ -50,7 +50,7 @@
 .tbody__subscribe{width: 20%; height: 100%; display: flex; flex-direction: column; align-items: center; justify-content: center; color: black; font-size: 12px; border-right: 1px solid rgb(214, 214, 214);}
 .tbody__introduce{width: 24%; height: 100%; display: flex; align-items: center; justify-content: center; color: black; font-size: 12px; border-right: 1px solid rgb(214, 214, 214);}
 .tbody__pay{width: 10%; height: 100%; display: flex; align-items: center; justify-content: center;}
-.tbody__pay button{width: 55px; height: 25px; margin: 0px 5px; font-size: 12px; border: 1px solid rgb(184, 182, 182); font-weight: bold;}
+.tbody__pay button{width: 60px; height: 25px; margin: 0px 5px; font-size: 12px; border: 1px solid rgb(184, 182, 182); font-weight: bold;}
 #content__purchase{background-color: rgb(233, 161, 6);}
 #content__purchase:hover{background-color: rgb(240, 174, 52);}
 #content__basket{background-color: rgb(15, 172, 15);}
@@ -114,71 +114,3 @@
 
 #content__group__cnt{color: red; font-weight: bold; margin-right: 5px;}
 .tbody__sub__date{width: 24%; height: 100%; display: flex; align-items: center; justify-content: center; color: rgb(8, 8, 8); font-size: 16px;border-right: 1px solid rgb(205, 208, 212);}
-
-
-
-
-
-/* 장바구니 모달창 */
-.modal {
-  display: none;
-  position: fixed; 
-  z-index: 1; 
-  left: 0;
-  top: 0;
-  width: 100%; 
-  height: 100%; 
-  overflow: auto; 
-  background-color: rgb(0,0,0);
-  background-color: rgba(0,0,0,0.4);
-}
-
-/* 모달안 내용 */
-.modal-content {
-  background-color: #fefefe;
-  margin: 10% auto; 
-  padding: 20px;
-  border: 1px solid #888;
-  width: 30%;
-  height: 10%;
-  line-height: 50px;
-  display: flex;
-}
-
-#toCart {
-	margin-left:100px
-}
-
-/* 모달 닫기 기능 */
-.close {
-  color: #aaa;
-  float: right;
-  font-size: 28px;
-  font-weight: bold;
-}
-
-.close:hover,
-.close:focus {
-  color: black;
-  text-decoration: none;
-  cursor: pointer;
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

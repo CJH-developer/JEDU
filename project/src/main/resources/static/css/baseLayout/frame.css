@@ -14,13 +14,13 @@ span, a, p, button, h1,h2,h3,h4,h5{font-family: "Gowun Dodum", sans-serif; font-
 .frame__left__header{width: 100%; height: 10%;  display: flex; align-items: center; padding-left: 10px;}
 .frame__left__header img{width: 65%;}
 
-.frame__left__body{width: 100%; height: 60%;  display: flex; flex-direction: column; border-bottom: 1px solid rgb(231, 231, 231);}
+.frame__left__body{width: 100%; height: 60%;  overflow: auto; display: flex; flex-direction: column; border-bottom: 1px solid rgb(231, 231, 231);}
 
 /* slide menu */
 
 
-.section__left__menu__default__user{width: 100%; height: 100%; display: block;}
-.section__left__menu__student{width: 100%; height: 100%; display: block;}
+.section__left__menu__default__user{width: 100%; height: 100%; display: block; overflow-y: auto;}
+.section__left__menu__student{width: 100%; height: 100%; display: block; overflow: auto;}
 .section__left__menu__teacher{width: 100%; height: 100%; display: block;}
 .section__left__menu__admin{width: 100%; height: 100%; display: block; overflow: auto; }
 
@@ -97,8 +97,8 @@ span, a, p, button, h1,h2,h3,h4,h5{font-family: "Gowun Dodum", sans-serif; font-
 }
 
 .frame__header__right{width: 45%; height: 100%; display: flex; align-items: center; justify-content: flex-end; padding-right: 30px;}
-.frame__header__right a{text-align: center; line-height: 40px; color: white; width: 100px; height: 40px; border-radius: 10px; outline: none; border: none; background-color: rgb(34, 83, 216);}
-.frame__header__right a:hover{background :linear-gradient(36.41deg, #3252a8 7.04%, #537ce9 100%); }
+.frame__header__right button{color: white; width: 100px; height: 40px; border-radius: 10px; outline: none; border: none; background-color: rgb(34, 83, 216);}
+.frame__header__right button:hover{background :linear-gradient(36.41deg, #3252a8 7.04%, #537ce9 100%); }
 
 .frame__header__name{cursor: pointer; display: flex; align-items: center; justify-content: center; padding-right: 30px;}
 .frame__header__name img{margin-right: 5px;}

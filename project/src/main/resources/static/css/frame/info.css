@@ -1,3 +1,5 @@
+@import url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css");
+
 /* 프로필 화면 */
 .wrap__above{width: 100%; height: 50%; display: flex; align-items: center; border-bottom: 1px solid rgb(221, 221, 221);}
 
@@ -35,9 +37,7 @@
 .prevDay {transform: rotate(-135deg); margin-right:25px; margin-top:9px;}
 .nextDay {transform: rotate(45deg); margin-left:25px; margin-top:9px;}
 
-/* ---- */
-@import url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css");
-* {margin: 0;padding: 0;list-style: none;box-sizing: border-box;  font-family: Pretendard;}
+
 .rap {max-width: 100%;padding: 0 1.4rem; margin-bottom: 2.5rem;}
 .dateHead {margin: .4rem 0;}
 
@@ -47,12 +47,12 @@
 /* 메인 페이지 하단 */
 .wrap__below{width: 100%; height: 50%; display: flex; align-items: center; justify-content: space-between;}
 
-.wrap__below__notice{width: 33%; height: 95%;}
-.below__notice__content{width: 95%; height: 100%; background-color: rgb(247, 247, 247); }
+.wrap__below__notice{width: 33%; height: 95%; display: flex; align-items: center;}
+.below__notice__content{width: 95%; height: 100%; display: flex; flex-direction: column; justify-content: flex-start; background-color: rgb(247, 247, 247);}
 
-h3{font-size: 25px;color: rgb(255, 255, 255);text-transform: uppercase;font-weight: 300;text-align: center;padding: 10px 0px;background :linear-gradient(36.41deg, #95a9e2 7.04%, #3663df 100%);border-top-left-radius: 25px; border-top-right-radius: 25px;}
-table{width:100%;table-layout: fixed;}
-.tbl-header{background-color: rgba(75, 110, 228, 0.3);}
+.notice__Bb__title{width: 100%; height: 30px; background-color: #3663df; font-size: 25px;color: rgb(255, 255, 255);text-transform: uppercase;font-weight: 300;text-align: center;padding: 10px 0px;border-top-left-radius: 25px; border-top-right-radius: 25px;}
+table{width:100%; table-layout: fixed;}
+.tbl-header{ background-color: rgba(75, 110, 228, 0.3);}
 .tbl-content{height:70%;overflow-x:auto;margin-top: 0px;border: 1px solid rgba(255,255,255,0.3);}
 th{padding: 20px 15px;text-align: left;font-weight: 500;font-size: 12px;color: black;text-transform: uppercase;}
 td{padding: 15px;text-align: left;vertical-align:middle;font-weight: 300;font-size: 12px;color: black;border-bottom: solid 1px rgba(104, 104, 104, 0.1);}
