@@ -6,12 +6,16 @@
   
   
 	<!-- 장바구니 추가  -->
-	
+	<insert id="addtoCart">
+		
+	</insert>
 	
 	
 	<!-- 장바구니 조회 -->
   
-  
+  	<select id="getListCart" resultType="com.geomin.project.command.CartVO">
+  		select * from CART where 
+  	</select>
   
   
   
