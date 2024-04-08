@@ -140,8 +140,9 @@
           <!-- 장바구니 추가시 모달창 팝업 -->
 		  <div id="addCartModal" class="modal">
 			  <div class="modal-content">
-			    <span class="close">x</span>
 			    <p>상품이 장바구니에 추가되었습니다.</p>
+			    <button id="toCart">장바구니로 이동하기</button>
+			    <span class="close">x</span>
 			  </div>
 		  </div>
 		  
@@ -149,21 +150,26 @@
 		    const cartModal = document.getElementById("addCartModal");
 		    const addCart = document.getElementById("content__basket");
 		    const span = document.getElementsByClassName("close")[0];
+		    const toCart = document.getElementById("toCart");
 			
 		    
 		    addCart.onclick = function() {
 		    	
+		    	//성공후, success:function(response)으로 옮겨주기
+		    	cartModal.style.display = "block";
+		    	
 		    	const price = $('.subscribe__above__price').text();
+		    	
 		    	$.ajax({
 		    		url:'/command/cart',
 		    		type:'POST',
 		    		data: {
 		    			price: price
 		    		},
-		    		success: function(response){
-		    			cartModal.style.display = "block";
+		    		success: function(data){
+		    			
 		    		},
-		    		error: function(response){
+		    		error: function(error){
 		    			console.log("실패");
 		    		}
 		    	})
@@ -177,6 +183,8 @@
 		    window.onclick = function(event) {
 		      if (event.target == cartModal) {
 		    	 cartModal.style.display = "none";
+		      }else if (event.target == toCart){
+		    	  window.location.href="/command/cart"
 		      }
 		    };
 		    

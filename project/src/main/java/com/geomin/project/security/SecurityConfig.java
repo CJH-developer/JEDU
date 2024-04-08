@@ -31,6 +31,7 @@ public class SecurityConfig {
 
 		http.csrf().disable();
 		
+		//권한별 페이지 진입
 		http.authorizeRequests( (a) -> a.antMatchers("/main/**").permitAll()
 										.antMatchers("/command/**").hasAnyRole("ADMIN", "TEA", "GEN", "STU")
 										.antMatchers("/student/**").hasAnyRole("STU")
@@ -38,6 +39,7 @@ public class SecurityConfig {
 										.antMatchers("/admin/**").hasRole("ADMIN")
 										.anyRequest().permitAll());
 		
+		//로그인&로그아웃 세팅 
 		http
 		.formLogin()
 		.loginPage("/member/login")

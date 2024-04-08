@@ -19,4 +19,7 @@ public class PurchaseController {
         // 클라이언트에 응답 전송
         return "Data received successfully";
     }
+	
+	
+	
 }

@@ -8,9 +8,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 
-
-
-
 @Controller
 @RequestMapping("/command")
 public class CommandController {
@@ -20,8 +17,6 @@ public class CommandController {
 	// 회원 정보 수정
 	@GetMapping("/modify")
 	public String modify() {
-		
-		
 		return "command/modify";
 	}
 	
