@@ -31,7 +31,6 @@ public class CustomLoginSuccessHandler implements AuthenticationSuccessHandler{
 		
 		UserDetails userDetails = (UserDetails) auth.getPrincipal();
 		String userRole = userDetails.getAuthorities().iterator().next().getAuthority();
-		System.out.println("User Role: " + userRole);
 		
 		if(userRole.equals("ROLE_GEN")) {
 			CustomLoginSuccessHandler custom = new CustomLoginSuccessHandler();

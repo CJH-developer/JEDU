@@ -138,18 +138,28 @@
   height: 10%;
   line-height: 50px;
   display: flex;
+  position: relative;
 }
 
 #toCart {
-	margin-left:100px
+	position: absolute;
+	padding: 0;
+	margin-left:30px;
+	width:150px;
+	height:30px;
+	top: 30px;
+	left: 300px;
 }
 
 /* 모달 닫기 기능 */
 .close {
+  position: absolute;
   color: #aaa;
   float: right;
   font-size: 28px;
   font-weight: bold;
+  top: 18px;
+  left: 520px;
 }
 
 .close:hover,

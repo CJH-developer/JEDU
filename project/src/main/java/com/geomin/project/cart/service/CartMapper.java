@@ -10,7 +10,7 @@ import com.geomin.project.command.CartVO;
 public interface CartMapper {
 	
 	//장바구니 추가
-	public int addtoCart(CartVO vo);
+	public int addtoCart(int user_no);
 	
 	//장바구니 조회
 	public ArrayList<CartVO> getListCart();

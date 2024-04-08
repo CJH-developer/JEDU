@@ -12,6 +12,6 @@ public class CartVO {
 	private Integer cart_id;
 	private Integer user_no;
 	private Integer game_no;
-	private Integer cart_quan;
+	private Integer game_price;
 	
 }
