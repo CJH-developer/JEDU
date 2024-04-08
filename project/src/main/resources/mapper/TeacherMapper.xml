@@ -22,13 +22,14 @@
 			#{sg_name},
 			#{sg_regdate},
 			#{sg_enddate},
-			#{sg_capa},
+			0,
 			#{sg_level},
 			#{sg_plus},
 			#{sg_grouplimit}
 		)
   	</insert>
 
+	<!-- 학습 그룹 조회 -->
   	<select id="learnGroupLook" resultType="learnGroupVO">
   		SELECT DATE_FORMAT(SG_REGDATE, '%Y-%m-%d') AS SG_REGDATE,
   			   SG_NO,
@@ -43,15 +44,17 @@
   			   FROM STUDY_GROUP
   	</select>
   	
+  	<!-- 내가 만든 그룹 목록 -->
   	<select id="myGroupList" resultType="learnGroupVO">
   		SELECT * FROM STUDY_GROUP WHERE USER_NO = #{user_no}
   	</select>
   	
+  	<!-- 숙제 등록 -->
   	<insert id="RegistHomework">
   		INSERT INTO HOMEWORK (
   			USER_NO, 
   			HOMEWORK_NAME, 
-  			HOMEWORK_CONTENT, 
+  			HOMEWORK_CONTENT,
   			HOMEWORK_LEVEL, 
   			HOMEWORK_DUEDATE, 
   			HOMEWORK_REGDATE, 
@@ -59,15 +62,14 @@
   			SG_NO)
   			
 			VALUES (
-			    #{user_no}, 
-			    #{homework_name}, 
-			    #{homework_content}, 
-			    #{homework_level}, 
+			    #{user_no},
+			    #{homework_name},
+			    #{homework_content},
+			    #{homework_level},
 			    #{homework_duedate}, 
-			    #{homework_regdate}, 
-			    #{homework_modidate}, 
-			    <!-- 여기 수정 #{sg_no 들어가야함} -->
-			    '3'
+			    #{homework_regdate},
+			    #{homework_modidate},
+			    #{sg_no}
 			);
   	</insert>
   	

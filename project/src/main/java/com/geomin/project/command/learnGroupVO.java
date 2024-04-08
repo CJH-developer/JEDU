@@ -10,6 +10,7 @@ import lombok.NoArgsConstructor;
 @Data
 @Builder
 public class learnGroupVO {
+	public String sg_no;
 	public String user_no;
 	public String game_no;
 	public String sg_name;

@@ -94,6 +94,8 @@ $("#myGroup").click(function() {
 			selectElement.empty();
 
 			data.forEach(function(group) {
+				console.log(group)
+				console.log("==============")
 				selectElement.append($('<option>', {
 		            value: group.sg_no, // 그룹의 고유한 식별자로 변경해야 합니다.
 		            text: group.sg_name // 그룹의 이름으로 변경해야 합니다.
@@ -106,9 +108,16 @@ $("#myGroup").click(function() {
 		}
 
 	})
-
-
 	console.log(userNo);
 
 })
+
+$("#homework__group__select").change(function() {
+    var selectedValue = $("#homework__group__select").val();
+
+    console.log(selectedValue); // 선택된 학습 그룹의 값 출력
+
+
+    // 나머지 코드...
+});
 
