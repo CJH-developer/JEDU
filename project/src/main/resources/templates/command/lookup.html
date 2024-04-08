@@ -4,7 +4,12 @@
 
 <div class="wrap">
 <script src="/js/frame/lookup.js" defer ></script>
+<script src="/js/frame/addCart.js" defer ></script>
 <link rel="stylesheet" href="/css/frame/lookup.css">
+
+<!-- user_no -->
+<input type="hidden" th:value="${session.vo.user_no}" name="user_no" id="user_no">
+
   <div class="wrap__content">
 
     <div class="lookup__header">
@@ -63,8 +68,14 @@
           <div class="thead__pay">결제</div>
         </div>
         <div class="table__tbody">
+        
+        
           <!-- 반복하는 곳 -->
           <div class="tbody__item">
+          
+          <!-- 컨텐츠 game_no -->
+          <input type="hidden" value=1 name="game_no" id="game_no">
+          
             <!-- 선택 -->
             <div class="tbody__check">
               <input type="checkbox" id="tbody__checkBox__id" class="tbody__checkBox" value="4">
@@ -85,7 +96,7 @@
                 <div class="subscribe__above__count"><div class="price__title">가격(1인) : </div> <span>월 3000원 </span></div>
               </div>
               <div class="tbody__subscribe__below">
-                <div class="item__date">기간 </div>
+                <div class="item__date">기간</div>
                 <span>2024년 10월 12일 ~ 2024년 12월 15일</span>
               </div>
             </div>
@@ -97,69 +108,12 @@
             <div class="tbody__pay">
               <button id="content__purchase">결제</button>
               <button id="content__basket">장바구니</button>
+              <div id="content__complCart">장바구니 추가 완료</div>
             </div>
-          </div>
-
-
-          <!-- 장바구니 추가시 모달창 팝업 -->
-          <div id="addCartModal" class="modal">
-            <div class="modal-content">
-              <p>상품이 장바구니에 추가되었습니다.</p>
-              <button id="toCart">장바구니로 이동하기</button>
-              <span class="close">x</span>
-            </div>
-          </div>
-          
-		  <input type="hidden" th:value="${session.vo.user_no}" name="user_no" id="user_no">
-          
-          <script>
-            const cartModal = document.getElementById("addCartModal");
-            const addCart = document.getElementById("content__basket");
-            const span = document.getElementsByClassName("close")[0];
-            const toCart = document.getElementById("toCart");
-
-            addCart.onclick = function() {
-
-              //성공후, success:function(response)으로 옮겨주기
-              cartModal.style.display = "block";
-              
-			  const user_no = $('#user_no').val();
-              const real_price = $('.real_price').text();
-		      var price = real_price.replace("원", "");
-        	  var price = Number(price);
-			  
-        	  console.log(price);
-        	  console.log(user_no);
-        	  
-
-            	  $.get('/add/cart', {
-                      userNo: user_no,
-                      price: price
-                  })
-                  .done(function(data) {
-                      console.log("성공");
-                      console.log(data);
-                  })
-                  .fail(function(error) {
-                      console.log("실패");
-                  });
-
-
-            }
             
-            span.onclick = function() {
-              cartModal.style.display = "none";
-            }
-
-            window.onclick = function(event) {
-              if (event.target == cartModal) {
-              cartModal.style.display = "none";
-              }else if (event.target == toCart){
-                window.location.href="/cart"
-              }
-            };
-
-          </script>
+          </div>
+		  
+          
 
 
           <!-- 반복하는 곳 -->
@@ -238,6 +192,15 @@
 
           </div>
 
+          <!-- 장바구니 추가시 모달창 팝업 -->
+          <div id="addCartModal" class="modal">
+            <div class="modal-content">
+              <p>상품이 장바구니에 추가되었습니다.</p>
+              <button id="toCart">장바구니로 이동하기</button>
+              <span class="close">x</span>
+            </div>
+          </div>
+          
         </div>
 
         <div class="table__page">

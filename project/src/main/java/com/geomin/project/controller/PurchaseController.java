@@ -1,5 +1,6 @@
 package com.geomin.project.controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -7,11 +8,16 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.geomin.project.cart.service.CartService;
 import com.geomin.project.command.CartVO;
 import com.geomin.project.command.MyData;
 
 @RestController
 public class PurchaseController {
+	
+	@Autowired
+	private CartService cartService;
+	
 	
 	@PostMapping("/submitData")
     public String submitData(@RequestBody MyData myData) {
@@ -25,13 +31,12 @@ public class PurchaseController {
     }
 	
 	@GetMapping("/add/cart")
-	public String cart(@RequestParam("userNo") int userNo, @RequestParam("price") int price) {
+	public int cart(@RequestParam("user_no") int user_no, @RequestParam("game_no") int game_no) {
 		
+		System.out.println(user_no);
+		System.out.println(game_no);
 		
-		System.out.println(userNo);
-		System.out.println(price);
-		
-		return "데이터 도착";
+		return cartService.addtoCart(user_no, game_no);
 	}
 	
 	

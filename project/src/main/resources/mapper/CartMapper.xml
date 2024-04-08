@@ -2,19 +2,19 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
   
-	<mapper namespace="com.geomin.project.cart.service">
+	<mapper namespace="com.geomin.project.cart.service.CartMapper">
   
   
 	<!-- 장바구니 추가  -->
 	<insert id="addtoCart">
-		
+		INSERT INTO CART (USER_NO, GAME_NO) values (#{user_no}, #{game_no})
 	</insert>
 	
 	
 	<!-- 장바구니 조회 -->
   
   	<select id="getListCart" resultType="com.geomin.project.command.CartVO">
-  		select * from CART where 
+  		
   	</select>
   
   
