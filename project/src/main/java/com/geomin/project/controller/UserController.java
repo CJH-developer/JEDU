@@ -13,4 +13,5 @@ public class UserController {
 		System.out.println("user/main페이지");
 		return "user/main";
 	}
+	
 }

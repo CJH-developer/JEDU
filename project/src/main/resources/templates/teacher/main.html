@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<th:block th:replace="~{./baseLayout/base_f :: setContent( ~{ :: .wrap} ) }">
+<th:block th:replace="~{./baseLayout/base_fstu :: setContent( ~{ :: .wrap} ) }">
 
 		<div class="wrap">
 		<script src="/js/frame/teacher.js" defer></script>
@@ -16,7 +16,7 @@
                         <img src="/img/default.png" alt="기본이미지">
                         
                         <div class="profile__header__below">
-                          <span>[[${session.vo.user_name + '님'}]]</span>
+                         
                           <span id="profile__role">교육자</span>
                         </div>
 
@@ -25,7 +25,7 @@
 
                         <div class="profile__body__item">
                           <span id="item">아이디</span>
-                          <span>[[${session.vo.user_id}]]</span>
+                 
                         </div>
 
                         <div class="profile__body__item">
@@ -35,12 +35,12 @@
 
                         <div class="profile__body__item">
                           <span id="item">E-mail</span>
-                          <span>[[${session.vo.user_email}]]</span>
+                       
                         </div>
 
                         <div class="profile__body__item">
                           <span id="item">연락처</span>
-                          <span>[[${session.vo.user_phone}]]</span>
+                        
                         </div>
 
                       </div>

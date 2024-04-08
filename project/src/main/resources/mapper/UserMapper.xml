@@ -36,9 +36,9 @@
   		)
   	</insert> 
   	
-	<select id="login" resultType="com.geomin.project.command.UserVO">
+	<!--<select id="login" resultType="com.geomin.project.command.UserVO">
   		select * from USER WHERE user_id = #{user_id}
-  	</select>
+  	</select>-->
   	
   	<select id="buttonIdCheck" resultType="int">
   		select count(user_id) from USER where user_id = #{user_id}

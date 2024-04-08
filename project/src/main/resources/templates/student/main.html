@@ -6,7 +6,7 @@
 <script src="/js/frame/student.js" defer></script>
      <div class="wrap__content">
 
-       <div th:if="${#authentication.principal.user_role == 'ROLE_STU'}"></div>
+
        <div class="wrap__above">
 
          <!-- main page 프로필 화면 클릭시 회원정보수정 페이지 이동-->
@@ -27,7 +27,7 @@
 
                <div class="profile__body__item">
                  <span id="item">아이디</span>
-                 <span>[[${session.vo.user_id}]]</span>
+            
                </div>
 
                <div class="profile__body__item">
@@ -37,12 +37,12 @@
 
                <div class="profile__body__item">
                  <span id="item">E-mail</span>
-                 <span>[[${session.vo.user_email}]]</span>
+     
                </div>
 
                <div class="profile__body__item">
                  <span id="item">연락처</span>
-                 <span>[[${session.vo.user_phone}]]</span>
+       
                </div>
 
              </div>
