@@ -17,6 +17,7 @@ import org.springframework.stereotype.Component;
 public class CustomLoginSuccessHandler implements AuthenticationSuccessHandler{
 	
 	private String redirectURL;
+	private Integer Session_Timeout = 120 * 300;
 
 	@Override
 	public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response,
@@ -35,21 +36,25 @@ public class CustomLoginSuccessHandler implements AuthenticationSuccessHandler{
 		if(userRole.equals("ROLE_GEN")) {
 			CustomLoginSuccessHandler custom = new CustomLoginSuccessHandler();
 			//custom.setRedirectURL("http://localhost:9494/frame__user");
+			request.getSession().setMaxInactiveInterval(Session_Timeout);
 			response.sendRedirect(redirectURL + "/user/main");
 		
 		}else if (userRole.equals("ROLE_STU")) {
 			CustomLoginSuccessHandler custom = new CustomLoginSuccessHandler();
 			//custom.setRedirectURL("http://localhost:9494/frame__student");
+			request.getSession().setMaxInactiveInterval(Session_Timeout);
 			response.sendRedirect(redirectURL + "/student/main");
 			
 		}else if (userRole.equals("ROLE_TEA")) {
 			CustomLoginSuccessHandler custom = new CustomLoginSuccessHandler();
 			//custom.setRedirectURL("http://localhost:9494/frame__student");
+			request.getSession().setMaxInactiveInterval(Session_Timeout);
 			response.sendRedirect(redirectURL + "/teacher/main");
 		
 		}else if(userRole.equals("ROLE_ADMIN")) {
 			CustomLoginSuccessHandler custom = new CustomLoginSuccessHandler();
 			//custom.setRedirectURL("http://localhost:9494/frame__student");
+			request.getSession().setMaxInactiveInterval(Session_Timeout);
 			response.sendRedirect(redirectURL + "/admin/main");
 		}
 		
