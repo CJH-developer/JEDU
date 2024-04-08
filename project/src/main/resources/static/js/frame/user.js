@@ -37,6 +37,77 @@ const myChart = new Chart(ctx, {
     }
 });
 
+// 달력
+const makeCalendar = (date) => {
+  const currentYear = new Date(date).getFullYear();
+  const currentMonth = new Date(date).getMonth() + 1;
+
+  const firstDay = new Date(date.setDate(1)).getDay();
+  const lastDay = new Date(currentYear, currentMonth, 0).getDate();
+
+  const limitDay = firstDay + lastDay;
+  const nextDay = Math.ceil(limitDay / 7) * 7;
+
+  var Dummy = '';
+
+  for (let i = 0; i < firstDay; i++) {
+    Dummy += `<div class="noColor"></div>`;
+  }
+
+  for (let i = 1; i <= lastDay; i++) {    
+    Dummy += `<div>${i}</div>`;
+  }
+
+  for (let i = limitDay; i < nextDay; i++) {
+    Dummy += `<div class="noColor"></div>`;
+  }
+
+  document.querySelector(`.dateBoard`).innerHTML = Dummy;
+  document.querySelector(`.dateTitle`).innerText = `${currentYear}년 ${currentMonth}월`;
+}
+
+const date = new Date();
+
+makeCalendar(date);
+
+// 이전달 이동
+document.querySelector(`.prevDay`).onclick = () => {
+makeCalendar(new Date(date.setMonth(date.getMonth() - 1)));
+}
+
+// 다음달 이동
+document.querySelector(`.nextDay`).onclick = () => {
+makeCalendar(new Date(date.setMonth(date.getMonth() + 1)));
+}
+
+
+$(window).on("load resize ", function() {
+  var scrollWidth = $('.tbl-content').width() - $('.tbl-content table').width();
+  $('.tbl-header').css({'padding-right':scrollWidth});
+}).resize();
+
+
+// swiper
+var swiper = new Swiper('.swiper', {
+  slidesPerView: 4,
+  direction: getDirection(),
+  navigation: {
+    nextEl: '.swiper-button-next',
+    prevEl: '.swiper-button-prev',
+  },
+  on: {
+    resize: function () {
+      swiper.changeDirection(getDirection());
+    },
+  },
+});
+
+function getDirection() {
+  var windowWidth = window.innerWidth;
+  var direction = windowWidth <= 760 ? 'vertical' : 'horizontal';
+
+  return direction;
+}
 
 
 

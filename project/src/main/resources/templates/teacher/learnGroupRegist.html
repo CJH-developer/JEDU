@@ -7,8 +7,8 @@
 <script src="/js/frame/learnGroupRegist.js" defer></script>
   <div class="wrap__content">
     <form action="learnGroupRegistForm" method="post" class="regist__wrap">
-    <!-- hidden으로 user_no 값 보내줄 예정 -->
-    <input type="hidden" name="user_no" th:value="${session.vo.user_no}">
+      <!-- hidden으로 user_no 값 보내줄 예정 -->
+      <input type="hidden" name="user_no" th:value="${session.vo.user_no}">
 
       <div class="learnGroup__left">
 
@@ -44,6 +44,7 @@
           
           <div class="lg__below">
             <div class="lg__below__wrap">
+
               <div class="lg__below__item">
                 <span>교육자명</span>
                 <input type="text" th:value="${session.vo.user_name}" disabled>
