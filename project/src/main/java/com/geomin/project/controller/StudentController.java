@@ -18,4 +18,16 @@ public class StudentController {
 	public String game() {
 		return "student/game";
 	}
+	
+	@GetMapping("/groupStudyList")
+	public String groupStudyList() {
+		return "student/groupStudyList";
+	}
+	
+	@GetMapping("/homeworkList")
+	public String homeworkList() {
+		return "student/homeworkList";
+	}
+	
+	
 }

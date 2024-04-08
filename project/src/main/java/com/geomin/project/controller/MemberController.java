@@ -60,9 +60,7 @@ public class MemberController {
 	@GetMapping("/login")
 	public String login(@RequestParam(value="err", required=false) String err,
 			Model model) {
-		
 
-		
 		if(err != null) {
 			model.addAttribute("msg", "아이디 또는 비밀번호를 확인하세요");
 		}

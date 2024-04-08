@@ -2,6 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <th:block th:replace="~{./baseLayout/base_f :: setContent( ~{ :: .wrap} ) }">
 
+
 <div class="wrap">
 <script src="/js/frame/lookup.js" defer></script>
   <div class="wrap__content">
@@ -132,10 +133,62 @@
             <!-- 컨텐츠 결제/장바구니 -->
             <div class="tbody__pay">
               <button id="content__purchase">결제</button>
-              <button id="content__basket">장바구니</button>
+              <a href="/command/cart" id="content__basket">장바구니</a>
             </div>
           </div>
+          
+          <!-- 장바구니 추가시 모달창 팝업 -->
+		  <div id="addCartModal" class="modal">
+			  <div class="modal-content">
+			    <p>상품이 장바구니에 추가되었습니다.</p>
+			    <button id="toCart">장바구니로 이동하기</button>
+			    <span class="close">x</span>
+			  </div>
+		  </div>
+		  
+		  <script>
+		    const cartModal = document.getElementById("addCartModal");
+		    const addCart = document.getElementById("content__basket");
+		    const span = document.getElementsByClassName("close")[0];
+		    const toCart = document.getElementById("toCart");
+			
+		    
+		    addCart.onclick = function() {
+		    	
+		    	//성공후, success:function(response)으로 옮겨주기
+		    	cartModal.style.display = "block";
+		    	
+		    	const price = $('.subscribe__above__price').text();
+		    	
+		    	$.ajax({
+		    		url:'/command/cart',
+		    		type:'POST',
+		    		data: {
+		    			price: price
+		    		},
+		    		success: function(data){
+		    			
+		    		},
+		    		error: function(error){
+		    			console.log("실패");
+		    		}
+		    	})
+		    	
+		    }
 
+		    span.onclick = function() {
+		    	cartModal.style.display = "none";
+		    }
+
+		    window.onclick = function(event) {
+		      if (event.target == cartModal) {
+		    	 cartModal.style.display = "none";
+		      }else if (event.target == toCart){
+		    	  window.location.href="/command/cart"
+		      }
+		    };
+		    
+		  </script>
 
           <!-- 반복하는 곳 -->
           <div class="tbody__item">

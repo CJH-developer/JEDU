@@ -95,14 +95,14 @@
 			
 			              <button type="button" class="section__sub__menu" value="학습그룹"><img src="/img/pen.png" alt="화살표"> 학습그룹</button>
 			              <div class="sub__menu__list">
-			                <a href="" class="small__menu" data-title="학습 그룹 조회">학습 그룹 조회</a>
+			                <a href="/student/groupStudyList" class="small__menu" data-title="학습 그룹 조회">학습 그룹 조회</a>
 			                <a href="" class="small__menu" data-title="학습 그룹 신청">학습 그룹 신청</a>
 			              </div>
 			
 			              
 			              <button type="button" class="section__sub__menu" value="HOMEWORK"><img src="/img/vegas.png" alt="화살표">HOMEWORK</button>
 			              <div class="sub__menu__list">
-			                <a href="" class="small__menu" data-title="숙제조회">숙제조회</a>
+			                <a href="/student/homeworkList" class="small__menu" data-title="숙제조회">숙제조회</a>
 			                <a href="" class="small__menu" data-title="숙제제출내역">숙제제출내역</a>
 			              </div>
 			              
@@ -146,6 +146,11 @@
 			                <a href="/teacher/homeWorkTransfer" class="small__menu" data-title="숙제전송">숙제전송</a>
 			                <a href="/teacher/homeWorkScore" class="small__menu" data-title="숙제제출조회">숙제제출조회</a>
 			              </div>
+			              
+			              <button  class="section__sub__menu" value="장바구니">장바구니</button>
+			              	<div class="sub__menu__list">
+			                	<a href="/command/cart" class="small__menu" data-title="장바구니 조회">장바구니 조회</a>
+			              	</div>
 			              
 			            </div>
 		            </div>
@@ -261,7 +266,7 @@
 		                <img src="/img/profile.png" alt="프로필 사진">
 		                <span>[[${session.vo.user_name + '님'}]]</span>
 		              </div>
-		              <button>로그아웃</button>
+		              <a href="/logout">로그아웃</a>
 		
 		            </div>
 		
