@@ -1,14 +1,14 @@
 /* 버튼 클릭 */
 
-var game__content__page = document.querySelector(".table__page__list");
-var page__num = game__content__page.querySelectorAll(".page__button");
-for (var i = 0; i < page__num.length; i++) {
-  page__num[i].addEventListener("click", function() {
-  var current = document.getElementsByClassName("page__active");
-  current[0].className = current[0].className.replace(" page__active", "");
-  this.className += " page__active";
-  });
-}
+//var game__content__page = document.querySelector(".table__page__list");
+//var page__num = game__content__page.querySelectorAll(".page__button");
+//for (var i = 0; i < page__num.length; i++) {
+ // page__num[i].addEventListener("click", function() {
+ // var current = document.getElementsByClassName("page__active");
+ // current[0].className = current[0].className.replace(" page__active", "");
+//  this.className += " page__active";
+ // });
+//}
 
 
 
@@ -18,8 +18,8 @@ const purchaseButton = document.getElementById('purchase');
   const addBasketButton = document.getElementById('add__basket');
 
   // 초기에는 버튼을 숨깁니다.
-  purchaseButton.classList.add('hidden');
-  addBasketButton.classList.add('hidden');
+purchaseButton.classList.add('hidden');
+ addBasketButton.classList.add('hidden');
 
   // 체크박스들의 NodeList 가져오기
   const checkboxes = document.querySelectorAll('.tbody__checkBox');

@@ -38,22 +38,22 @@
           <div class="modify__bodyRight__content">
             <div class="modify__bodyRight__item">
               <span>이름</span>
-              <input type="text" name="user_name" id="inputField1">
+              <input type="text" name="user_name" th:value="${session.vo.user_name}" id="inputField1">
             </div>
 
             <div class="modify__bodyRight__item">
               <span>아이디</span>
-              <input type="text" name="user_id"  id="inputField2">
+              <input type="text" name="user_id" th:value="${session.vo.user_id}" id="inputField2">
             </div>
 
             <div class="modify__bodyRight__item">
               <span>이메일</span>
-              <input type="email" name="user_email"  id="inputField3">
+              <input type="email" name="user_email" th:value="${session.vo.user_email}" id="inputField3">
             </div>
 
             <div class="modify__bodyRight__item">
               <span>연락처</span>
-              <input type="text" name="user_phone"  id="inputField4">
+              <input type="text" name="user_phone" th:value="${session.vo.user_phone}" id="inputField4">
             </div>
 
             <div class="modify__bodyRight__Join">
@@ -66,7 +66,7 @@
                 <input type="text" id="sample4_roadAddress" placeholder="도로명주소" value="session.도로명주소">
                 <input type="text" id="sample4_jibunAddress" placeholder="지번주소" value="session.지번주소">
                 <span id="guide" style="color:#999;display:none"></span>
-                <input type="text" id="sample4_detailAddress" name="user_address" placeholder="상세주소" >
+                <input type="text" id="sample4_detailAddress" name="user_address" placeholder="상세주소" th:value="${session.vo.user_address}">
               </div>
             </div>
 
