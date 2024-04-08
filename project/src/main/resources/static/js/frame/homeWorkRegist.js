@@ -56,8 +56,6 @@ selectElement2.addEventListener("change", function() {
 });
 
 
-
-
 document.getElementById("homework__startDate").addEventListener("change", calculateDays);
 document.getElementById("homework__endDate").addEventListener("change", calculateDays);
 
@@ -81,3 +79,39 @@ function calculateDays() {
         homework__post__count.innerHTML = "";
     }
 }
+
+// 내 학습그룹 불러오기
+$("#myGroup").click(function() {
+	var userNo = $("#user_no").val();
+	
+	$.ajax({
+		url: "/mygroup/" + userNo,
+		method: "GET",
+		success: function(data) {
+			var selectElement = $("#homework__group__select")
+			selectElement.empty();
+			
+			data.forEach(function(group) {
+				selectElement.append($('<option>', {
+		            value: group.sg_no, // 그룹의 고유한 식별자로 변경해야 합니다.
+		            text: group.sg_name // 그룹의 이름으로 변경해야 합니다.
+		        }));
+			})
+			alert("내 학습그룹 불러오기 성공");
+		},
+		error: function(status, err) {
+			console.log(status, err, "에러남")
+		}
+		
+	})
+	
+	
+	console.log(userNo);
+	
+})
+
+
+
+
+
+
