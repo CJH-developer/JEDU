@@ -10,7 +10,7 @@
 <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 
 <!-- CHART JS -->
-<script src="https://cdn.jsdelivr.net/npm/chart.js@3.7.1/dist/chart.min.js" defer></script>
+
 
 <!--  이모티콘 -->
 <script src="https://kit.fontawesome.com/580a20ac80.js" crossorigin="anonymous"></script>
@@ -29,18 +29,14 @@
 <!-- FRAME CSS -->
 <link rel="stylesheet" href="/css/baseLayout/frame.css">
 <link rel="stylesheet" href="/css/frame/info.css">
+<link rel="stylesheet" href="/css/frame/lookup.css">
 <link rel="stylesheet" href="/css/frame/gameList.css">
 <link rel="stylesheet" href="/css/frame/modify.css">
 <link rel="stylesheet" href="/css/frame/gameRegist.css">
 <link rel="stylesheet" href="/css/frame/board.css">
-<link rel="stylesheet" href="/css/frame/lookup.css">
-
 
 <!-- MAIN JS -->
-<script src="/js/frame/lookup.js" defer></script>
-<script src="/js/frame/baseLayout.js" defer></script>
-
-
+<script th:src="@{/js/frame/baseLayout.js}" defer ></script>
 </head>
 
 <body>
@@ -70,13 +66,13 @@
 			
 			              <button type="button" class="section__sub__menu" value="GAME"><img src="/img/mouse_icon.png" alt="마우스아이콘"> GAME</button>
 			              <div class="sub__menu__list">
-			                <a href="/command/gameList" class="small__menu" data-title="게임 컨텐츠" >게임 컨텐츠</a>
-			                <a href="" class="small__menu" data-title="구매 이력">구매 이력</a>
+			                <a href="/command/lookup" class="small__menu" data-title="게임 컨텐츠 조회" >게임 컨텐츠 조회</a>
+			                 <a href="/user/game" class="small__menu" data-title="학습하기">학습하기</a>
 			              </div>
 			
 			              <button type="button" class="section__sub__menu" value="구독"><img src="/img/vegas.png" alt="화살표"> SUBSCRIBE</button>
 			              <div class="sub__menu__list">
-			                <a href="" class="small__menu" data-title="구독상품">구독상품</a>
+			                <a href="/user/myproduct" class="small__menu" data-title="내 구독 상품 조회">내 구독 상품 조회</a>
 			                <a href="" class="small__menu" data-title="학습상태">학습상태</a>
 			              </div>
 			
@@ -95,14 +91,14 @@
 			
 			              <button type="button" class="section__sub__menu" value="학습그룹"><img src="/img/pen.png" alt="화살표"> 학습그룹</button>
 			              <div class="sub__menu__list">
-			                <a href="/student/groupStudyList" class="small__menu" data-title="학습 그룹 조회">학습 그룹 조회</a>
+			                <a href="" class="small__menu" data-title="학습 그룹 조회">학습 그룹 조회</a>
 			                <a href="" class="small__menu" data-title="학습 그룹 신청">학습 그룹 신청</a>
 			              </div>
 			
 			              
 			              <button type="button" class="section__sub__menu" value="HOMEWORK"><img src="/img/vegas.png" alt="화살표">HOMEWORK</button>
 			              <div class="sub__menu__list">
-			                <a href="/student/homeworkList" class="small__menu" data-title="숙제조회">숙제조회</a>
+			                <a href="" class="small__menu" data-title="숙제조회">숙제조회</a>
 			                <a href="" class="small__menu" data-title="숙제제출내역">숙제제출내역</a>
 			              </div>
 			              
@@ -111,6 +107,8 @@
 			              	<!-- 내부 페이지는 전체 페이지 게임할 수 있도록 -->
 			                <a href="/student/game" class="small__menu" data-title="렛츠고바둑스쿨" >렛츠고바둑스쿨</a>
 			              </div>
+			              
+
 			
 			            </div>
 		            </div>
@@ -130,13 +128,16 @@
 			              <div class="sub__menu__list">
 			                <a href="/command/lookup" class="small__menu" data-title="게임컨텐츠조회" >게임컨텐츠조회</a>
 			                <a href="/teacher/myproduct" class="small__menu" data-title="구매이력" >구매이력</a>
+			                <a href="/teacher/myproduct" class="small__menu" data-title="장바구니" >장바구니</a>
 			              </div>
 			
 			              <button type="button" class="section__sub__menu" value="학습그룹"><img src="/img/pen.png" alt="화살표">학습그룹</button>
 			              <div class="sub__menu__list">
 			                <a href="/teacher/learnGroupLook" class="small__menu" data-title="학습 그룹 조회">학습 그룹 조회</a>
 			                <a href="/teacher/learnGroupRegist" class="small__menu" data-title="학습 그룹 등록">학습 그룹 등록</a>
-			                <a href="" class="small__menu" data-title="수강생 현황">수강생 현황</a>
+			                <a href="/teacher/groupRegistApprove" class="small__menu" data-title="그룹 가입 승인">그룹 가입 승인</a>
+			                <a href="/teacher/groupRegistLook" class="small__menu" data-title="그룹 상세 조회">그룹 상세 조회</a>
+			                <a href="/teacher/detailStudentLook" class="small__menu" data-title="수강생 현황">수강생 현황</a>
 			              </div>
 			
 			              
@@ -148,9 +149,11 @@
 			              </div>
 			              
 			              <button  class="section__sub__menu" value="장바구니">장바구니</button>
-			              	<div class="sub__menu__list">
-			                	<a href="/command/cart" class="small__menu" data-title="장바구니 조회">장바구니 조회</a>
-			              	</div>
+			              <div class="sub__menu__list">
+			                <a href="/command/cart" class="small__menu" data-title="장바구니 조회">장바구니 조회</a>
+			              </div>
+			              
+			              
 			              
 			            </div>
 		            </div>

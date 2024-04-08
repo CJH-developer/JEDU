@@ -2,8 +2,11 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <th:block th:replace="~{./baseLayout/base_f :: setContent( ~{ :: .wrap} ) }">
 
+
 	<div class="wrap">
-	<script src="/js/frame/admin.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@3.7.1/dist/chart.min.js" defer></script>
+    <script src="/js/frame/admin.js" defer></script>
+    
        <div class="wrap__content">
          <div class="wrap__above">
 
@@ -96,7 +99,7 @@
             <!-- 메인 Q&A 질문 -->
             <div class="below__notice__content">
 
-              <h3>문의사항</h3>
+              <div class="notice__Bb__title">문의사항</div>
               <div class="tbl-header">
                 <table cellpadding="0" cellspacing="0" border="0">
                   <thead>
