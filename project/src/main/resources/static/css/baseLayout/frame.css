@@ -14,13 +14,13 @@ span, a, p, button, h1,h2,h3,h4,h5{font-family: "Gowun Dodum", sans-serif; font-
 .frame__left__header{width: 100%; height: 10%;  display: flex; align-items: center; padding-left: 10px;}
 .frame__left__header img{width: 65%;}
 
-.frame__left__body{width: 100%; height: 60%;  display: flex; flex-direction: column; border-bottom: 1px solid rgb(231, 231, 231);}
+.frame__left__body{width: 100%; height: 60%;  overflow: auto; display: flex; flex-direction: column; border-bottom: 1px solid rgb(231, 231, 231);}
 
 /* slide menu */
 
 
-.section__left__menu__default__user{width: 100%; height: 100%; display: block;}
-.section__left__menu__student{width: 100%; height: 100%; display: block;}
+.section__left__menu__default__user{width: 100%; height: 100%; display: block; overflow-y: auto;}
+.section__left__menu__student{width: 100%; height: 100%; display: block; overflow: auto;}
 .section__left__menu__teacher{width: 100%; height: 100%; display: block;}
 .section__left__menu__admin{width: 100%; height: 100%; display: block; overflow: auto; }
 
