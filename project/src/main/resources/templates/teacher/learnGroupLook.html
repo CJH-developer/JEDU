@@ -35,7 +35,7 @@
 
           </div>
 
-[[${list}]]
+          [[${list}]]
 
           <div class="looks__wrap__body">
 
@@ -52,7 +52,6 @@
 
 
             <div class="looks__tbody">
-
               <div class="looks__tbody__content" th:each="list : ${list}">
                 <div id="looks__tbody__first"><input type="checkbox" value="dd"></div>
                 <div id="looks__tbody__second">[[${list.sg_name}]]</div>
@@ -62,8 +61,7 @@
                 <div id="looks__tbody__sixth">[[${list.sg_level} + '레벨']]</div>
                 <div id="looks__tbody__seventh">[[${list.sg_capa} + '명']]</div>
               </div>
-            
-              
+
             </div>
 
           </div>

@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+  <mapper namespace="com.geomin.project.teacher.service.TeacherMapper">
+  	<!-- 학습 그룹 등록 -->
+  	<insert id="RegistGroup">
+		INSERT INTO STUDY_GROUP (
+			USER_NO,
+		    GAME_NO,
+		    SG_NAME,
+		    SG_REGDATE,
+		    SG_ENDDATE,
+		    SG_CAPA,
+		    SG_LEVEL,
+		    SG_PLUS,
+		    SG_GROUPLIMIT
+		) VALUES (
+			#{user_no},
+			#{game_no},
+			#{sg_name},
+			#{sg_regdate},
+			#{sg_enddate},
+			#{sg_capa},
+			#{sg_level},
+			#{sg_plus},
+			#{sg_grouplimit}
+		)
+  	</insert>
+
+  	<select id="learnGroupLook" resultType="learnGroupVO">
+  		SELECT DATE_FORMAT(SG_REGDATE, '%Y-%m-%d') AS SG_REGDATE,
+  			   SG_NO,
+  			   USER_NO,
+  			   GAME_NO,
+  			   SG_NAME,
+  			   SG_ENDDATE,
+  			   SG_CAPA,
+  			   SG_LEVEL,
+  			   SG_PLUS,
+  			   SG_GROUPLIMIT
+  			   FROM STUDY_GROUP
+  	</select>
+  	
+  	<select id="myGroupList" resultType="learnGroupVO">
+  		SELECT * FROM STUDY_GROUP WHERE USER_NO = #{user_no}
+  	</select>
+  	
+  	<insert id="RegistHomework">
+  		INSERT INTO HOMEWORK (
+  			USER_NO, 
+  			HOMEWORK_NAME, 
+  			HOMEWORK_CONTENT, 
+  			HOMEWORK_LEVEL, 
+  			HOMEWORK_DUEDATE, 
+  			HOMEWORK_REGDATE, 
+  			HOMEWORK_MODIDATE, 
+  			SG_NO)
+  			
+			VALUES (
+			    #{user_no}, 
+			    #{homework_name}, 
+			    #{homework_content}, 
+			    #{homework_level}, 
+			    #{homework_duedate}, 
+			    #{homework_regdate}, 
+			    #{homework_modidate}, 
+			    <!-- 여기 수정 #{sg_no 들어가야함} -->
+			    '3'
+			);
+  	</insert>
+  	
+  	
+  	
+  
+  
+  </mapper>
+    

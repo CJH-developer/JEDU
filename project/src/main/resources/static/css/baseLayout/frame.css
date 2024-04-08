@@ -1,4 +1,4 @@
-html, body{margin: 0;padding: 0;font-family: "Gothic A1", sans-serif;}
+  html, body{margin: 0;padding: 0;font-family: "Gothic A1", sans-serif;}
 ul, ol, li{list-style: none;}
 button, a{cursor: pointer;}
 button, a, li{color: black;}
