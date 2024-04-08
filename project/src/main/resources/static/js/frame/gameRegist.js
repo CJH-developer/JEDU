@@ -123,15 +123,7 @@ function calculateDateRange() {
 
 
 
-function addMoney() {
-  const origin__price = document.getElementById("origin__price");
-  const price__value = origin__price.value;
 
-  // 입력된 값이 있을 경우 "원" 추가
-  if (price__value) {
-      origin__price.value = price__value + " 원";
-  }
-}
 
 function addDiscount() {
   const discount__rate = document.getElementById("discount__rate");
@@ -150,7 +142,7 @@ function calculateSalePrice() {
 
   if (!isNaN(price) && !isNaN(discount)) {
       const result__price = price * (1 - discount / 100);
-      document.getElementById('result__price').value = result__price.toFixed(0) + ' 원';
+      document.getElementById('result__price').value = result__price.toFixed(0);
   } else {
       document.getElementById('result__price').value = '';
   }
@@ -183,3 +175,21 @@ fileInput.addEventListener('change', function(event) {
     // 파일을 읽기
     reader.readAsDataURL(file);
 });
+
+
+
+function uploadFile() {
+    var formData = new FormData();
+    var fileInput = document.getElementById('fileInput');
+    formData.append('file', fileInput.files[0]);
+    
+    fetch('/gameRegistForm', {
+        method: 'POST',
+        body: formData
+    })
+    .then(response => response.json())
+    .then(data => {
+        document.getElementById('uploadStatus').innerHTML = 'File uploaded successfully. URL: ' + data.fileUrl;
+    })
+    .catch(error => console.error('Error:', error));
+}

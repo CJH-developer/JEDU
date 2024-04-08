@@ -1,0 +1,30 @@
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+  <mapper namespace="com.geomin.project.gameContentService.GameContentMapper">
+  
+  <insert id="regist">
+  	INSERT INTO GAME_CONTENT (
+  		GAME_TITLE,
+  		GAME_TARGET_LEVEL,
+  		GAME_PRICE,
+  		GAME_DISCOUNT_PRICE,
+  		GAME_CONTENT,
+  		GAME_COUNT,
+  		GAME_SUB_REGDATE,
+  		GAME_SUB_ENDDATE
+  	) VALUES (
+  		#{game_title},
+  		#{game_target_level},
+  		#{game_price},
+  		#{game_discount_price},
+  		#{game_content},
+  		#{game_count},
+  		#{game_sub_startDate},
+  		#{game_sub_endDate}
+  	)
+  </insert>
+
+  
+  </mapper>
