@@ -1,0 +1,85 @@
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+  <mapper namespace="com.geomin.project.document.service.DocumentMapper">
+  
+    <!-- 학습 자료 등록 -->
+  	<insert id="regist">
+  		
+  		INSERT INTO DOCUMENT (
+  			DOCU_TYPE,
+  			DOCU_CATEGORY,
+  			DOCU_SERVICE,
+  			DOCU_TITLE,
+  			DOCU_CONTENT,
+  			DOCU_PATH
+  		)VALUES (
+  			#{docu_type},
+  			#{docu_category},
+  			#{docu_service},
+  			#{docu_title},
+  			#{docu_content},
+  			#{docu_path}
+  		)
+  		
+  	</insert>
+  	
+  	  <!-- 학습자료 파일 등록 -->
+  	  <insert id="registFile">
+  	  	<selectKey resultType="int" keyProperty="docu_no" order="BEFORE">
+			SELECT MAX(DOCU_NO) FROM DOCUMENT WHERE DOCU_TITLE = #{docu_title}
+		</selectKey>
+		
+		INSERT INTO DOCU_UPLOAD (
+			FILENAME,
+			FILEPATH,
+			UUID,
+			DOCU_NO,
+			DOCU_TITLE
+		)VALUES(
+			#{fileName},
+			#{filepath},
+			#{uuid},
+			#{docu_no},
+			#{docu_title}
+		)
+		
+  	  </insert>
+  	  
+  	  <!-- 학습자료 조회 -->
+  	  <resultMap id="gameResultMap" type="DocumentVO">
+        <id property="docu_no" column="DOCU_NO"/>
+        <result property="docu_title" column="DOCU_TITLE"/>
+        <result property="docu_type" column="DOCU_TYPE"/>
+        <result property="docu_category" column="DOCU_CATEGORY"/>
+        <result property="docu_service" column="DOCU_SERVICE"/>
+        <result property="docu_path" column="DOCU_PATH"/>
+    </resultMap>
+
+    <resultMap id="uploadResultMap" type="DocumentUploadVO">
+        <id property="uuid" column="UUID"/>
+        <result property="filename" column="FILENAME"/>
+        <result property="filepath" column="FILEPATH"/>
+        <result property="docu_no" column="DOCU_NO"/>
+    </resultMap>
+
+
+    <!-- Select Query -->
+    <select id="getList" resultMap="gameResultMap">
+        SELECT 
+        	D.DOCU_NO,
+        	D.DOCU_TITLE, 
+        	D.DOCU_TYPE, 
+        	D.DOCU_CATEGORY, 
+        	D.DOCU_SERVICE, 
+        	DL.FILENAME, 
+        	DL.FILEPATH, DL.UUID
+		FROM DOCUMENT D
+		LEFT JOIN DOCU_UPLOAD DL
+		ON D.DOCU_NO = DL.DOCU_NO
+		WHERE DL.FILENAME IS NOT NULL
+    </select>
+
+  
+  </mapper>

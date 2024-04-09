@@ -143,12 +143,11 @@ CREATE TABLE DOCUMENT (
 );
 
 CREATE TABLE UPLOAD (
-  UPLOAD_NO INT PRIMARY KEY auto_increment,
-  FILENAME varchar(100) not null, ##실제파일명
-  FILEPATH varchar(100) not null, ##폴더명
-  UUID varchar(50) not null, ##UUID명
-  REGDATE TIMESTAMP default now(),
-  GAME_NO INT, ##FK,
-  GAME__TITLE INT ##FK
+  FILE_NO INT PRIMARY KEY auto_increment,
+  FILENAME varchar(1000), ##실제파일명
+  FILEPATH varchar(1000), ##폴더명
+  UUID varchar(1000), ##UUID명，
+  GAME_NO INT,
+  GAME_TITLE varchar(1000)##FK
 );
 

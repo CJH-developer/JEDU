@@ -4,27 +4,92 @@
   
   <mapper namespace="com.geomin.project.gameContentService.GameContentMapper">
   
-  <insert id="regist">
-  	INSERT INTO GAME_CONTENT (
-  		GAME_TITLE,
-  		GAME_TARGET_LEVEL,
-  		GAME_PRICE,
-  		GAME_DISCOUNT_PRICE,
-  		GAME_CONTENT,
-  		GAME_COUNT,
-  		GAME_SUB_REGDATE,
-  		GAME_SUB_ENDDATE
-  	) VALUES (
-  		#{game_title},
-  		#{game_target_level},
-  		#{game_price},
-  		#{game_discount_price},
-  		#{game_content},
-  		#{game_count},
-  		#{game_sub_startDate},
-  		#{game_sub_endDate}
-  	)
-  </insert>
+  	  <!-- 게임컨텐츠 기본 사항 등록 -->
+	  <insert id="regist">
+	  	INSERT INTO GAME_CONTENT (
+	  		GAME_TITLE,
+	  		GAME_TARGET_LEVEL,
+	  		GAME_PRICE,
+	  		GAME_DISCOUNT_PRICE,
+	  		GAME_CONTENT,
+	  		GAME_COUNT,
+	  		GAME_SUB_REGDATE,
+	  		GAME_SUB_ENDDATE
+	  	) VALUES (
+	  		#{game_title},
+	  		#{game_target_level},
+	  		#{game_price},
+	  		#{game_discount_price},
+	  		#{game_content},
+	  		#{game_count},
+	  		#{game_sub_startDate},
+	  		#{game_sub_endDate}
+	  	)
+	  </insert>
 
+  	  <!-- 게임컨텐츠 파일 등록 -->
+  	  <insert id="registFile">
+  	  	<selectKey resultType="int" keyProperty="game_no" order="BEFORE">
+			SELECT MAX(GAME_NO) FROM GAME_CONTENT WHERE GAME_TITLE = #{game_title}
+		</selectKey>
+		
+		INSERT INTO UPLOAD (
+			FILENAME,
+			FILEPATH,
+			UUID,
+			GAME_NO,
+			GAME_TITLE
+		)VALUES(
+			#{fileName},
+			#{filepath},
+			#{uuid},
+			#{game_no},
+			#{game_title}
+		)
+		
+  	  </insert>
+  	  
+  	  <!-- 게임컨텐츠 조회 -->
+  	 <!--  <select id="getList" resultType="GameContentVO">
+  	  	SELECT * FROM GAME_CONTENT
+  	  </select> -->
+  	   <!-- Result Maps -->
+    <resultMap id="gameResultMap" type="GameContentVO">
+        <id property="game_no" column="GAME_NO"/>
+        <result property="game_title" column="GAME_TITLE"/>
+        <result property="game_target_level" column="GAME_TARGET_LEVEL"/>
+        <result property="game_discount_price" column="GAME_DISCOUNT_PRICE"/>
+        <result property="game_count" column="GAME_COUNT"/>
+        <result property="game_regdate" column="GAME_REGDATE"/>
+    </resultMap>
+
+    <resultMap id="uploadResultMap" type="UploadVO">
+        <id property="uuid" column="UUID"/>
+        <result property="filename" column="FILENAME"/>
+        <result property="filepath" column="FILEPATH"/>
+        <result property="game_no" column="GAME_NO"/>
+    </resultMap>
+
+    <!-- Select Query -->
+    <select id="getList" resultMap="gameResultMap">
+        SELECT 
+        	G.GAME_NO,
+            G.GAME_TITLE, 
+            G.GAME_TARGET_LEVEL, 
+            G.GAME_DISCOUNT_PRICE, 
+            G.GAME_COUNT, 
+            G.GAME_REGDATE, 
+            U.FILENAME, 
+            U.FILEPATH, 
+            U.UUID
+        FROM 
+            GAME_CONTENT AS G
+        LEFT JOIN 
+            UPLOAD U
+        ON 
+            G.GAME_NO = U.GAME_NO
+        WHERE 
+    		U.FILENAME IS NOT NULL
+    </select>
   
   </mapper>
