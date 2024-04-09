@@ -28,7 +28,7 @@ public class CartServiceImpl implements CartService{
 	
 	
 	@Override
-	public ArrayList<CartVO> getListCart() {
+	public ArrayList<CartVO> getListCart(int user_no) {
 		return null;
 	}
 

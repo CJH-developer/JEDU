@@ -4,49 +4,101 @@
   <!-- Bootstrap CSS -->
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/css/bootstrap.min.css">
   <style>
-  	.wrap {position: relative;}
-  	.table {position: absolute; top: 20%; left:0;}
-  	.table__page{position: absolute; top: 50%; right:0;}
-  </style>
+  body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 20px;
+    background-color: #f4f4f4;
+  }
+  .container {
+    max-width: 800px;
+    margin: 0 auto;
+    background: #fff;
+    padding: 20px;
+  }
+  .header {
+    font-size: 24px;
+    text-align: center;
+    margin: 0 auto;
+    color: #333;
+    margin-bottom: 30px;
+  }
+  .cart-item {
+    display: flex;
+	  justify-content: space-around;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 20px;
+    margin-bottom: 20px;
+  }
+  .item-image img {
+    max-width: 100px;
+    margin-right: 20px;
+  }
+  .item-details {
+    flex-grow: 1;
+  }
+  .price {
+    color: #D80000;
+    font-weight: bold;
+    font-size: 20px;
+  }
+  .promo-code {
+    margin-bottom: 20px;
+  }
+  .total-summary {
+    text-align: right;
+    margin-top: 20px;
+  }
+  .total-line {
+    font-size: 20px;
+    color: #D80000;
+    font-weight: bold;
+  }
+	.total_payment{
+		width: 100%;
+		text-decoration: none;
+		margin: 0 auto;
+	}
+</style>
 </head>
 <th:block th:replace="~{./baseLayout/base_f :: setContent( ~{ :: .wrap} ) }">
-<script src="/js/frame/lookup.js" defer></script>
+<script src="/static/js/frame/lookup.js" defer></script>
 <div class="wrap">
+	<!-- user_no -->
 
-	<table class="table table-striped">
-	  <thead>
-	    <tr>
-	      <th scope="col">상품 개수</th>
-	      <th scope="col">게임 콘텐츠 이름</th>
-	      <th scope="col">구독 기간</th>
-	      <th scope="col">가격</th>
-	      <th scope="col">구매하기</th>
-	    </tr>
-	  </thead>
-	  <tbody>
-	    <tr>
-	      <th scope="row">1</th>
-	      <td>Mark</td>
-	      <td>Otto</td>
-	      <td>@mdo</td>
-	      <td><button id="content__purchase">결제하기</button></td>
-	    </tr>
-	  </tbody>
-	</table>
+	<input type="hidden" th:value="${session.vo.user_no}"name="user_no" id="user_no">
+	
+	<div class="container">
+		<div class="header">
+			장바구니 [[${session.vo.user_no}]]
+		</div>
+		<div class="cart-item">
+			<div class="item-image">
+				<img src="/img/01_game_main.png" alt="">
+			</div>
+			<div class="item-details">
+				<div>GAME_TITLE</div>
+				<div>LEVEL:3</div>
+				<div>GAME_CONTENT</div>
+				<div class="price">20000원</div>
+			</div>
+		</div>
+
+		<div class="total-summary">
+			<div>가격: 20000원</div>
+			<div>할인율: 10%</div>
+			<div>할인: 2000원</div>
+			<div class="total-line">
+				총 가격: 18000원
+			</div>
+		</div>
+		<div class="total_payment">
+			<a href="/command/payment" id="payment_btn">결제하기</a>
+		</div>
+	</div>
 
 
-        <div class="table__page">
-          <div class="table__page__list">
-            <button class="page__button page__active">1</button>
-            <button class="page__button">2</button>
-            <button class="page__button">3</button>
-            <button class="page__button">4</button>
-            <button class="page__button">5</button>
-            <button class="page__button">6</button>
-            <button class="page__button">7</button>
-          </div>
-        </div>
-     
+	
 </div>
 </th:block>
 </html>

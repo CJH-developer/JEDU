@@ -17,6 +17,6 @@ public interface CartMapper {
 	public int checkCart(@Param("user_no") int user_no, @Param("game_no") int game_no);
 	
 	//장바구니 조회
-	public ArrayList<CartVO> getListCart();
+	public ArrayList<CartVO> getListCart(int user_no);
 	
 }

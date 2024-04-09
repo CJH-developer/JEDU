@@ -15,5 +15,6 @@ public class CartVO {
 
 	private Integer game_price;
 	private String game_title;
+	private Integer game_discount_price;
 	
 }

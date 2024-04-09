@@ -7,9 +7,6 @@
 <script src="/js/frame/addCart.js" defer ></script>
 <link rel="stylesheet" href="/css/frame/lookup.css">
 
-<!-- user_no -->
-<input type="hidden" th:value="${session.vo.user_no}" name="user_no" id="user_no">
-
   <div class="wrap__content">
 
     <div class="lookup__header">
@@ -109,90 +106,12 @@
               <button id="content__purchase">결제</button>
               <button id="content__basket">장바구니</button>
               <div id="content__complCart">장바구니 추가 완료</div>
-              <div id="content__alreadyInCart">장바구니에 있습니다.</div>
+              <div id="content__alreadyInCart">이미 장바구니에 있습니다.</div>
             </div>
             
           </div>
 		  
           
-
-
-          <!-- 반복하는 곳 -->
-          <div class="tbody__item">
-            <!-- 선택 -->
-            <div class="tbody__check">
-              <input type="checkbox" id="tbody__checkBox__id" class="tbody__checkBox" value="2">
-            </div>
-
-            <!-- 컨텐츠 사진 -->
-            <div class="tbody__image">
-              <img src="/img/01_game_main.png" alt="">
-            </div>
-
-            <!-- 컨텐츠 제목 -->
-            <div class="tbody__title">컨텐츠제목</div>
-
-            <!-- 컨텐츠 가격 -->
-            <div class="tbody__subscribe">
-              <div class="tbody__subscribe__above">
-                <div class="subscribe__above__price"><div class="price__title">기본가 : </div> <span>15000원</span></div>
-                <div class="subscribe__above__count"><div class="price__title">가격(1인) : </div> <span>월 3000원 </span></div>
-              </div>
-              <div class="tbody__subscribe__below">
-                <div class="item__date">기간 </div>
-                <span>2024년 10월 12일 ~ 2024년 12월 15일</span>
-              </div>
-            </div>
-
-            <!-- 컨텐츠 소개 -->
-            <div class="tbody__introduce">상품소개</div>
-            <!-- 컨텐츠 결제/장바구니 -->
-            <div class="tbody__pay">
-              <button id="content__purchase">결제</button>
-              <button id="content__basket">장바구니</button>
-            </div>
-
-          </div>
-
-
-          <!-- 반복하는 곳 -->
-          <div class="tbody__item">
-            <!-- 선택 -->
-            <div class="tbody__check">
-              <input type="checkbox" id="tbody__checkBox__id" class="tbody__checkBox" value="3">
-            </div>
-
-            <!-- 컨텐츠 사진 -->
-            <div class="tbody__image">
-              <img src="/img/01_game_main.png" alt="">
-            </div>
-
-            <!-- 컨텐츠 제목 -->
-            <div class="tbody__title">컨텐츠제목</div>
-
-            <!-- 컨텐츠 가격 -->
-            <div class="tbody__subscribe">
-              <div class="tbody__subscribe__above">
-                <div class="subscribe__above__price"><div class="price__title">기본가 : </div> <span>15000원</span></div>
-                <div class="subscribe__above__count"><div class="price__title">가격(1인) : </div> <span>월 3000원 </span></div>
-              </div>
-              <div class="tbody__subscribe__below">
-                <div class="item__date">기간 </div>
-                <span>2024년 10월 12일 ~ 2024년 12월 15일</span>
-              </div>
-            </div>
-
-            <!-- 컨텐츠 소개 -->
-            <div class="tbody__introduce">상품소개</div>
-
-            <!-- 컨텐츠 결제/장바구니 -->
-            <div class="tbody__pay">
-              <button id="content__purchase">결 제</button>
-              <button id="content__basket">장바구니</button>
-            </div>
-
-          </div>
-
           <!-- 장바구니 추가시 모달창 팝업 -->
           <div id="addCartModal" class="modal">
             <div class="modal-content">

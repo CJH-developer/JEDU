@@ -1,4 +1,3 @@
-
 const cartModal = document.getElementById("addCartModal");
 const content__basket = document.getElementById("content__basket");
 const span = document.getElementsByClassName("close")[0];
@@ -13,7 +12,7 @@ const content__alreadyInCart = document.getElementById('content__alreadyInCart')
 	  const user_no = $('#user_no').val();
 	  const game_no = $('#game_no').val();
 	  
-	  //console.log(user_no);
+	  console.log(user_no);
 	  //console.log(game_no);
 
     	  $.get('/check/cart', {user_no: user_no, game_no : game_no})
@@ -56,5 +55,10 @@ const content__alreadyInCart = document.getElementById('content__alreadyInCart')
         window.location.href="/command/cart"
       }
     };
-    
-    
+/*  
+	for(var i=0; i<content__basket.length; i++){
+		content__basket[i].addEventListener("click", function(){
+			
+		})
+	}
+*/

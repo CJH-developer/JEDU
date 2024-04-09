@@ -1,5 +1,7 @@
 package com.geomin.project.controller;
 
+import java.util.ArrayList;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -52,7 +54,11 @@ public class PurchaseController {
 		return cartService.addtoCart(user_no, game_no);
 	}
 	
-	
-	
+	@GetMapping("/list/cart")
+	public ArrayList<CartVO> getListCart(@RequestParam("user_no") int user_no) {
+		System.out.println("ArrayList실행됨");
+		System.out.println(user_no);
+		return cartService.getListCart(user_no);
+	}
 	
 }

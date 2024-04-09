@@ -15,6 +15,6 @@ public interface CartService {
 	public int checkCart(int user_no, int game_no);
 	
 	//장바구니 조회
-	public ArrayList<CartVO> getListCart();
+	public ArrayList<CartVO> getListCart(int user_no);
 	
 }
