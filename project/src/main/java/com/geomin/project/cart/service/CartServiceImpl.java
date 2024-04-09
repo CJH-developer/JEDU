@@ -15,15 +15,23 @@ public class CartServiceImpl implements CartService{
 	
 	@Override
 	public int addtoCart(int user_no, int game_no) {
-		System.out.println("cartService 동작");
-		System.out.println(user_no);
-		System.out.println(game_no);
+		System.out.println("cartService의 addtoCart 동작");
 		return cartMapper.addtoCart(user_no, game_no);
 	}
-
+	
+	@Override
+	public int checkCart(int user_no, int game_no) {
+		System.out.println("cartService의 checkCart 동작");
+		System.out.println(user_no);
+		return cartMapper.checkCart(user_no, game_no);
+	}
+	
+	
 	@Override
 	public ArrayList<CartVO> getListCart() {
 		return null;
 	}
+
+
 
 }

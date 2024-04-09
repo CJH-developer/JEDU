@@ -5,36 +5,43 @@ const span = document.getElementsByClassName("close")[0];
 const toCart = document.getElementById("toCart");
 const content__complCart = document.getElementById('content__complCart');
 const content__purchase = document.getElementById('content__purchase');
+const content__alreadyInCart = document.getElementById('content__alreadyInCart');
 
     
     content__basket.onclick = function() {
 
-      cartModal.style.display = "block";
-      
 	  const user_no = $('#user_no').val();
-
 	  const game_no = $('#game_no').val();
 	  
-	  console.log(user_no);
-	  console.log(game_no);
-	  
+	  //console.log(user_no);
+	  //console.log(game_no);
 
-    	  $.get('/add/cart', {
-              user_no: user_no,
-              game_no : game_no
-          })
-          .done(function(data) {
-              console.log("성공");
-              console.log(data);
-              content__complCart.style.display = "block";
-    	  	  content__basket.style.display = "none";
-    	  	  content__purchase.style.display = "none";
-          })
-          .fail(function(error) {
-              console.log("실패");
-          });
-
-    	  
+    	  $.get('/check/cart', {user_no: user_no, game_no : game_no})
+           .done(function(checkData) {
+		      console.log(checkData);
+			  if(checkData == false){
+				  alert("이미 장바구니에 추가되어 있습니다");
+				  content__alreadyInCart.style.display = "block";
+				  content__basket.style.display = "none";
+	              content__purchase.style.display = "none";
+			  } else {
+				cartModal.style.display = "block";
+	            $.get('/add/cart', { user_no: user_no, game_no: game_no})
+	            .done(function(data) {
+	                console.log("성공");
+	                console.log(data);
+	                content__complCart.style.display = "block";
+	                content__basket.style.display = "none";
+	                content__purchase.style.display = "none";
+	            })
+	            .fail(function(error) {
+	                console.log("추가 실패");
+	            });
+	          }
+	         })
+	        .fail(function(error){
+				console.log("Check 실패");
+			});
     }
     
     span.onclick = function() {

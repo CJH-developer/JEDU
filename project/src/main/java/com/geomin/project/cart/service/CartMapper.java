@@ -13,6 +13,9 @@ public interface CartMapper {
 	//장바구니 추가
 	public int addtoCart(@Param("user_no") int user_no, @Param("game_no") int game_no);
 	
+	//장바구니 중복 조회
+	public int checkCart(@Param("user_no") int user_no, @Param("game_no") int game_no);
+	
 	//장바구니 조회
 	public ArrayList<CartVO> getListCart();
 	

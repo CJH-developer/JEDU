@@ -30,14 +30,28 @@ public class PurchaseController {
         return "Data received successfully";
     }
 	
+	@GetMapping("/check/cart")
+	public boolean checkCart (@RequestParam("user_no") int user_no, @RequestParam("game_no") int game_no) {
+	        int inCart = cartService.checkCart(user_no, game_no);
+	        
+	        System.out.println("inCart:" + inCart);
+	        
+	        if (inCart > 0) {
+	            return false;
+	        } else {
+	            return true;
+	        }
+	}
+	
 	@GetMapping("/add/cart")
-	public int cart(@RequestParam("user_no") int user_no, @RequestParam("game_no") int game_no) {
+	public int addCart(@RequestParam("user_no") int user_no, @RequestParam("game_no") int game_no) {
 		
 		System.out.println(user_no);
 		System.out.println(game_no);
 		
 		return cartService.addtoCart(user_no, game_no);
 	}
+	
 	
 	
 	
