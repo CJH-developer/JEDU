@@ -8,7 +8,7 @@
 <script src="/js/frame/learnRegist.js" defer></script>
 
    <div class="wrap__content">
-     <form action="" method="get" class="regist__wrap">
+     <form action="learnRegistForm" method="post" class="regist__wrap" enctype="multipart/form-data">
 
        <!-- 컨텐츠 등록 -->
        <div class="regist__left">
@@ -27,14 +27,14 @@
            <!-- 제목 입력 -->
            <div class="regist__below__item">
              <span>학습자료명</span>
-             <input type="text" id="learn__title" placeholder="제목을 입력하세요.">
+             <input type="text" id="learn__title" name="docu_title" placeholder="제목을 입력하세요.">
            </div>
 
            <!-- 구분 선택 -->
            <div class="regist__below__item">
              <span>자료구분</span>
-             <select name="item__select" id="type__select">
-               <option value="none">자료를 구분해주세요.</option>
+             <select name="docu_type" id="type__select">
+               <option value="100">자료를 구분해주세요.</option>
                <option value="0">튜토리얼</option>
                <option value="1">교육영상</option>
              </select>
@@ -44,15 +44,15 @@
            <div class="regist__item__select">
              <span>자료유형</span>
              <div class="item__subMenu">
-               <input type="checkbox" value="0" id="document__video" name="document__video"> 
+               <input type="checkbox" value="0" id="document__video" name="docu_category"> 
                <span>동영상</span>
              </div>
              <div class="item__subMenu">
-               <input type="checkbox" value="1" id="document__book" name="document__book"> 
+               <input type="checkbox" value="1" id="document__book" name="docu_category"> 
                <span>교재</span>
              </div>
              <div class="item__subMenu">
-               <input type="checkbox" value="2" id="document__web" name="document__web"> 
+               <input type="checkbox" value="2" id="document__web" name="docu_category"> 
                <span>웹사이트</span>
              </div>
            </div>
@@ -60,14 +60,14 @@
            <!-- 자료 파일 주소 -->
            <div class="regist__below__item">
              <span>자료파일주소</span>
-             <input type="text" name="filePath" placeholder="자료 주소를 입력하세요.">
+             <input type="text" name="docu_path" placeholder="자료 주소를 입력하세요.">
            </div>  
 
            <!-- 서비스 구분 -->
            <div class="regist__below__item">
              <span>서비스구분</span>
-             <select name="item__select" id="select__price__type">
-               <option value="none">옵션을 선택해주세요.</option>
+             <select name="docu_service" id="select__price__type">
+               <option value="100">옵션을 선택해주세요.</option>
                <option value="1">full(유료)</option>
                <option value="0">shorts(무료)</option>
              </select>
@@ -77,14 +77,14 @@
            <!-- 컨텐츠 설명 -->
            <div class="regist__item__textArea">
              <span>패키지 내용</span>
-             <textarea type="text" id="Learning__textArea" autocomplete="off" placeholder="패키지 내용을 입력해주세요."></textarea>
+             <textarea id="Learning__textArea" name="docu_content" placeholder="패키지 내용을 입력해주세요." ></textarea>
            </div>
            
            <!-- 구독 가능 인원 -->
            <div class="regist__item__learning__file">
              <span>썸네일</span>
 
-             <input type="file" id="fileInput" autocomplete="off" placeholder="숫자만 입력해주세요.">
+             <input type="file" id="fileInput" name="inputFiles">
              <div class="dropBox">
                <h5>이곳에 파일을 드롭해주세요. </h5>
              </div>

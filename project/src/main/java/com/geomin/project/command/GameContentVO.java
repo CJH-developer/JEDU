@@ -12,6 +12,7 @@ import lombok.NoArgsConstructor;
 @Builder
 public class GameContentVO {
 
+	private Integer game_no;
 	private String game_title;
 	private Integer game_target_level;
 	private Integer game_price;
@@ -20,4 +21,9 @@ public class GameContentVO {
 	private Integer game_count;
 	private String game_sub_startDate;
 	private String game_sub_endDate;
+	private String game_regdate;
+	
+	private String filename;  // 작성자가 업로드한 파일명
+	private String filepath;
+	private String uuid;
 }
