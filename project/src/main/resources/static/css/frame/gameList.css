@@ -31,8 +31,7 @@
 /*프래그먼트를 하니까 높이가 걸치적거려서 지웠습니다*/
 /*이동 아이콘을 위해 추가한 것*/
 .JPageVO_JNext{width:30px; height:30px; display: flex; justify-content: center; align-items: center; border:1px solid rgb(206, 205, 205); margin:  5px  5px  0 5px;}
-
-/*여기까지 추가했습니다*/
+/*여기까지*/
 
 
 
@@ -60,6 +59,7 @@
 .game__thumbnail__detail__price span{color: white; font-size: 13px;}
 .game__thumbnail__subscribe{width: 95%; height: 10%;}
 .game__thumbnail__subscribe span{color: white; font-size: 13px;}
+
 
 
 .game__divide__btn:hover {

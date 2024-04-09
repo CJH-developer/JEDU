@@ -48,7 +48,7 @@ public class TestCode {
 	
 	@Test
 	public void text02() {
-		for(int i = 1; i <= 20; i++) {
+		for(int i = 1; i <= 7; i++) {
 			GameContentVO vo=GameContentVO.builder()
 					.game_title("ss")
 					.game_target_level(1)

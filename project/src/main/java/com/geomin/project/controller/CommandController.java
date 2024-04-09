@@ -44,8 +44,9 @@ public class CommandController {
 	@GetMapping("/gameList")
 	public String power(Model model, JCriteria JCri) {
 	ArrayList<GameContentVO> list=commandService.getList(JCri);
-	 List<GameContentVO> pagesubList = list.subList(0, 5);
-	 List<GameContentVO> pagesubListTwo = list.subList(5, 10);
+	 List<GameContentVO> pagesubList = safeList(list,0, 5);
+	 
+	 List<GameContentVO> pagesubListTwo = safeList(list,5, 10);
 	int total=commandService.getTotal(JCri);
 		JPageVO JPageVO=new JPageVO(JCri, total);
 		
@@ -53,6 +54,14 @@ public class CommandController {
 		model.addAttribute("pagesubList",pagesubList);
 		model.addAttribute("pagesubListTwo",pagesubListTwo);
 		return "command/gameList";
+	}
+	public static List <GameContentVO> safeList(List<GameContentVO> list, int fromIndex, int toIndex){
+		int actualToIndex = Math.min(list.size(), toIndex);
+		if(fromIndex >= list.size()) {
+			return new ArrayList<>();
+			
+		}
+		return list.subList(fromIndex,actualToIndex);
 	}
 	
 	// 게임 컨텐츠 목록 - 일반 사용자 / 선생님

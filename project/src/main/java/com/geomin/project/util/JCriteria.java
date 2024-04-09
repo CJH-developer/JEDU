@@ -23,6 +23,8 @@ public class JCriteria {
 public JCriteria() {
 	this.JPage=1;
 	this.JAmount = 10;
+
+	
 }
 
 
