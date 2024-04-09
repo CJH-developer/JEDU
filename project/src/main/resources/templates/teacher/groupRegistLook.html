@@ -20,6 +20,7 @@
             <option value="강남 초급반">강남 초급반</option>
             <option value="강남 초급반">강남 초급반</option>
           </select>
+
         </div>
         <div class="grl__header__btn">
           <button>조회하기</button>
@@ -40,12 +41,12 @@
           </div>
 
           <div class="grl__bh__tbody">
-            <div class="grl__bbt__zero"><img src="/img/05_game_main.png" alt=""></div>
-            <div class="grl__bbt__one">게임 컨텐츠 명</div>
-            <div class="grl__bbt__two">게임 달성 레벨</div>
-            <div class="grl__bbt__three">게임 학습 기간</div>
-            <div class="grl__bbt__four">그룹 제한 인원</div>
-            <div class="grl__bbt__five">그룹가입 승인 인원</div>
+            <div class="grl__bbt__zero">나중에 사진 데이터<img src="/img/05_game_main.png" alt=""></div>
+            <div class="grl__bbt__one">[[${group.game_title}]]</div>
+            <div class="grl__bbt__two">[[${group.sg_level}]]</div>
+            <div class="grl__bbt__three">[[${group.sg_regdate} + '~' + ${group.sg_enddate}]]</div>
+            <div class="grl__bbt__four">[[${group.sg_grouplimit} + '명']]</div>
+            <div class="grl__bbt__five">[[${group.sg_capa} + '명']]</div>
           </div>
 
 
@@ -70,7 +71,7 @@
             <div class="grl__bbtb__wrap">
               <div class="grl_bbtb__one"><input type="checkbox"></div>
               <div class="grl_bbtb__two">1</div>
-              <div class="grl_bbtb__three">홍길동</div>
+              <div class="grl_bbtb__three">여기도 나중에 데이터로</div>
               <div class="grl_bbtb__four">010-3333-4444</div>
               <div class="grl_bbtb__five">hone@naver.com</div>
               <div class="grl_bbtb__six">서울시 강남구</div>

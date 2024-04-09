@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.geomin.project.command.GameContentVO;
 import com.geomin.project.command.HomeWorkVO;
 import com.geomin.project.command.learnGroupVO;
 
@@ -37,7 +38,19 @@ public class TeacherServiceImpl implements TeacherService{
 		
 		return teacherMapper.RegistHomework(vo);
 	}
-	
+
+	@Override
+	public learnGroupVO groupDetail(int sg_no) {
+		
+		return teacherMapper.groupDetail(sg_no);
+	}
+
+	@Override
+	public ArrayList<HomeWorkVO> getHomework() {
+		
+		return teacherMapper.getHomework();
+	}
+
 	
 	
 

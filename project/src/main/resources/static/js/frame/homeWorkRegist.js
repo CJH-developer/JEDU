@@ -97,8 +97,8 @@ $("#myGroup").click(function() {
 				console.log(group)
 				console.log("==============")
 				selectElement.append($('<option>', {
-		            value: group.sg_no, // 그룹의 고유한 식별자로 변경해야 합니다.
-		            text: group.sg_name // 그룹의 이름으로 변경해야 합니다.
+		            value: group.sg_no, // 그룹 번호
+		            text: group.sg_name // 그룹 이름
 		        }));
 			})
 			alert("내 학습그룹 불러오기 성공");
