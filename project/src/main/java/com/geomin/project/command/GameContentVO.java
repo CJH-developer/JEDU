@@ -11,7 +11,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Builder
 public class GameContentVO {
-
+	private Integer game_no;
 	private String game_title;
 	private Integer game_target_level;
 	private Integer game_price;
@@ -20,4 +20,7 @@ public class GameContentVO {
 	private Integer game_count;
 	private String game_sub_startDate;
 	private String game_sub_endDate;
+	private Integer purchase_date;
+	private String sg_name;
+	private String sg_level;
 	}

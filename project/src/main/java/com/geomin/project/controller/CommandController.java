@@ -13,8 +13,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.geomin.project.command.GameContentVO;
-
-import com.geomin.project.service.Command.CommandService;
+import com.geomin.project.service.command.CommandService;
 import com.geomin.project.util.JCriteria;
 import com.geomin.project.util.JPageVO;
 

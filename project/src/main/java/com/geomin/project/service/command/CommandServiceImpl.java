@@ -1,4 +1,4 @@
-package com.geomin.project.service.Command;
+package com.geomin.project.service.command;
 
 import java.util.ArrayList;
 

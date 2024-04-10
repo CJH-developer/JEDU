@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<th:block
+	th:replace="~{./baseLayout/base_f :: setContent( ~{ :: .wrap} ) }">
+	<!-- 조금 많이 고침 민상 -->
+	<div class="wrap">
+		<div class="wrap__content">
+			<!-- 데이터 받는 이유로 추가함 -->
+
+			<input type="hidden" name="JTwoPage" value="1"> <input
+				type="hidden" name="JTwoamount" th:value="${JTwoPageVO.JTwoAmount}">
+				<input type="hidden" name="game_no" th:value="game_vo">
+				<!-- 히든 pk값으로 데이터를 불러오기 위해 햇습니다. -->
+			<!-- 데이터 받는 이유로 추가함 -->
+			<div class="lookup__header">
+				<!-- 조회 타이틀 -->
+				<div class="lookup__header__title">
+					<span>내 구독상품 조회</span>
+				</div>
+
+				<!-- 우측 정렬 -->
+				<div class="myProduct__header__detail">
+
+					<!-- 버튼 정렬 -->
+					<div class="lookup__detail__left">
+						<div class="myProduct__title">
+							<img src="/img/calandar.png" alt="">구매 기간
+						</div>
+						<div class="myProduct__date">
+							<input type="month" data-placeholder="날짜 선택"> ~ <input
+								type="month" data-placeholder="날짜 선택">
+						</div>
+						<button id="myProduct__date__btn">조회</button>
+					</div>
+
+					<!-- select 정렬 -->
+					<div class="lookup__detail__right">
+						<img src="/img/sort.png" alt=""> <select name="" id="">
+							<option value="">정렬</option>
+							<option value="">가나다순</option>
+							<option value="">제목순</option>
+							<option value="">등록일순</option>
+						</select>
+					</div>
+
+				</div>
+
+			</div>
+
+
+			<div class="lookup__body">
+
+				<div cellpadding="0" cellspacing="0" class="lookup__table">
+
+					<div class="table__thead">
+						<div class="thead__check">번호</div>
+						<div class="thead__image">컨텐츠</div>
+						<div class="thead__title">컨텐츠제목</div>
+						<div class="thead__subscribe">가격/구독</div>
+						<div class="thead__introduce">구매일자</div>
+						<div class="thead__pay">학습그룹 등록내역</div>
+					</div>
+					<div class="table__tbody">
+						<!-- 반복하는 곳 -->
+						<div class="tbody_item" th:each="vo, status :${myProductList}">
+							<div class="tbody_check">[[${status.count}]]</div>
+							<div class="tbody_image">
+								<img alt="" src="../../static/img/01_game_main.png">
+							</div>
+							<div class="tbody_title">
+								<textarea name="game_title">[[${vo.game_title}]]</textarea>
+							</div>
+
+
+
+
+							<div class="tbody_subscribe">
+
+								<div class="tbody_subscribe_above">
+									<div class="subscribe_above_price">
+										<div class="price_title"><textarea>[[${vo.game_price}]]</textarea></div>
+									</div>
+									<div class="subscribe_above_count">
+										<div class="price_title"><textarea>[[${vo.game_price}]]</textarea></div>
+									</div>
+
+								</div>
+								<div class="tbody_subscribe_below">
+									<div class="item_date"></div>
+									<textarea name="game_sub_startDate">[[${vo.game_sub_startDate}]]</textarea> ~ <textarea rows="" name="game_sub_endDate"> [[${vo.game_sub_endDate}]]</textarea>
+
+								</div>
+							</div>
+							<div class="tbody_introduce">
+								<textarea>[[${vo.purchase_date}]]</textarea>
+							</div>
+							<div class="tbody_pay">
+
+								<span>[[${vo.sg_name}]][[${vo.sg_level}]]</span>
+							</div>
+
+						</div>
+
+
+
+
+					</div>
+					</table>
+
+					<div
+						th:replace="~{'./re_base_pagevo/User_product_PageList.html' ::  User_product_PageList}"></div>
+				</div>
+
+			</div>
+
+		</div>
+</th:block>
+
+</html>

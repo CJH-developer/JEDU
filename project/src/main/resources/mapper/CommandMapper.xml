@@ -3,7 +3,7 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
   
-  <mapper namespace="com.geomin.project.service.Command.CommandMapper">
+  <mapper namespace="com.geomin.project.service.command.CommandMapper">
   <select id="getList" resultType="com.geomin.project.command.GameContentVO">
   SELECT * from GAME_CONTENT
   order by game_No desc limit #{JPageFirst}, #{JAmount}
@@ -16,7 +16,7 @@
     
     
     </select>
-  
+
   
   
   

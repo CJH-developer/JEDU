@@ -7,10 +7,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import com.geomin.project.command.GameContentVO;
-
 import com.geomin.project.command.UserVO;
 import com.geomin.project.gameContentService.GameContentMapper;
-import com.geomin.project.service.Command.CommandMapper;
+import com.geomin.project.service.command.CommandMapper;
 import com.geomin.project.user.service.UserMapper;
 
 
