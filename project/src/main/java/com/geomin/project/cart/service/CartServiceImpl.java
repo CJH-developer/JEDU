@@ -29,7 +29,7 @@ public class CartServiceImpl implements CartService{
 	
 	@Override
 	public ArrayList<CartVO> getListCart(int user_no) {
-		return null;
+		return cartMapper.getListCart(user_no);
 	}
 
 

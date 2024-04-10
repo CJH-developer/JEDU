@@ -16,9 +16,18 @@
 	</select>
 	
 	<!-- 장바구니 목록 조회 -->
-  
+
   	<select id="getListCart" resultType="com.geomin.project.command.CartVO">
-  		
+  		select c.*,
+  			   g.GAME_TITLE,
+		       g.GAME_PRICE,
+		       g.GAME_CONTENT,
+		       g.GAME_DISCOUNT_PRICE,
+		       g.GAME_TARGET_LEVEL
+		from CART c 
+		left join GAME_CONTENT g 
+		on g.GAME_NO = c.GAME_NO
+		where c.user_no = #{user_no};
   	</select>
   
   
