@@ -35,9 +35,7 @@ public class PurchaseController {
 	@GetMapping("/check/cart")
 	public boolean checkCart (@RequestParam("user_no") int user_no, @RequestParam("game_no") int game_no) {
 	        int inCart = cartService.checkCart(user_no, game_no);
-	        
-	        System.out.println("inCart:" + inCart);
-	        
+
 	        if (inCart > 0) {
 	            return false;
 	        } else {
@@ -56,8 +54,8 @@ public class PurchaseController {
 	
 	@GetMapping("/list/cart")
 	public ArrayList<CartVO> getListCart(@RequestParam("user_no") int user_no) {
-		System.out.println("ArrayList실행됨");
-		System.out.println(user_no);
+//		System.out.println("ArrayList실행됨");
+//		System.out.println(user_no);
 		return cartService.getListCart(user_no);
 	}
 	

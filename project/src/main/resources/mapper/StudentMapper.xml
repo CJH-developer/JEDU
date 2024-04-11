@@ -1,0 +1,17 @@
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+	<mapper namespace="com.geomin.project.student.service.StudentMapper">
+		
+		<insert id="groupApply">
+			INSERT INTO STUDY_GROUP_JOIN (SG_NO, USER_NO, SG_LEVEL,	SGJ_DATE)
+								   VALUES(#{sg_no}, #{user_no}, #{sg_level}, CURDATE() )
+		</insert>
+		
+		<select id="groupCheck" resultType="Integer">
+			SELECT COUNT(*) FROM STUDY_GROUP_JOIN WHERE user_no = #{user_no} AND sg_no = #{sg_no}
+		</select>
+	
+	
+	</mapper>

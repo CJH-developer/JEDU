@@ -25,35 +25,31 @@
 		<div class="header">
 			[[${session.vo.user_id}]]님의 장바구니
 		</div>
-		<div class="cart-item">
+		<div class="cart-item" th:each="cartList : ${cartList}">
 			<div class="item-image">
 				<img src="/img/01_game_main.png" alt="content_pic">
 			</div>
 			<div class="item-details">
-				<div class="game_title"></div>
-				<div class="game_level"></div>
-				<div class="game_content"></div>
-				<div class="price"></div>
+				<div class="game_title">제목: [[${cartList.game_title}]]</div>
+				<div class="game_level">레벨: [[${cartList.game_target_level}]]</div>
+				<div class="game_content">[[${cartList.game_content}]]</div>
+				<div class="price">가격: [[${cartList.game_price}]]</div>
+				<div class="total" > </div>
 			</div>
 		</div>
-		<div class="cart-item">
-			<div class="item-image">
-				<img src="/img/01_game_main.png" alt="">
-			</div>
-			<div class="item-details">
-				<div class="game_title"></div>
-				<div class="game_level"></div>
-				<div class="game_content"></div>
-				<div class="price"></div>
-			</div>
-		</div>
-		<div class="total_bill">총 금액:</div>
+		
+
+		<!-- 총 금액 -->
+		
+		<div class="total_bill" >총 금액:</div>
 		<div class="total-summary">
-			<div id="total_price"></div>
+			<div id="total_price">[[${total_price}]]원</div>
 			<div class="game_discount_price"></div>
 			<div></div>
 			<div class="total_price" id="total_price"></div>
 		</div>
+		
+		<!-- 결재하기 -->
 		<div class="total_payment">
 			<button class="btn-checkout" id="checkoutButton">결재하러 가기</button>
 		</div>
