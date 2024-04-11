@@ -1,56 +1,107 @@
+
 package com.geomin.project.controller;
 
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import java.util.ArrayList;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+
+import com.geomin.project.command.GameContentVO;
+import com.geomin.project.command.HomeWorkVO;
+import com.geomin.project.command.UserVO;
+import com.geomin.project.command.learnGroupVO;
+import com.geomin.project.teacher.service.TeacherService;
+import com.mysql.cj.Session;
 
 @Controller
 @RequestMapping("/teacher")
 public class TeacherController {
-
-	// 메인 화면
+	
+	@Autowired
+	@Qualifier("teacherService")
+	public TeacherService teacherService;
+	 // 메인 화면
+	
 	@GetMapping("/main")
 	public String main() {
 		return "teacher/main";
-	}
+	} // 숙제 등록
 	
-	// 숙제 등록
-	@GetMapping("/homeWorkRegist")
-	public String homeWorkRegist() {
-		return "teacher/homeWorkRegist";
-	}
+
+	@GetMapping("/homeWorkRegist") public String homeWorkRegist() { return
+  "teacher/homeWorkRegist"; } // 숙제 전송
 	
-	// 숙제 전송
-	@GetMapping("/homeWorkTransfer")
-	public String homeWorkTransfer() {
-		return "teacher/homeWorkTransfer";
-	}
+
+	@GetMapping("/homeWorkTransfer") public String homeWorkTransfer() { return
+  "teacher/homeWorkTransfer"; } // 숙제 전송
 	
-	// 숙제 전송
-		@GetMapping("/homeWorkScore")
-		public String homeWorkScore() {
-			return "teacher/homeWorkScore";
-		}
+
+	@GetMapping("/homeWorkScore") public String homeWorkScore() { return
+  "teacher/homeWorkScore"; } // 나의 구독 조회
 	
-	// 나의 구독 조회
-	@GetMapping("/myproduct")
-	public String myproduct() {
-		return "teacher/myproduct";
-	}
+
+	@GetMapping("/myproduct") public String myproduct() { return
+  "teacher/myproduct"; } // 학습 그룹 등록
+
+
+	@GetMapping("/learnGroupRegist") public String learnGroupRegist() {
+ 
+ return "teacher/learnGroupRegist"; } // 학습 그룹 조회
 	
-	// 학습 그룹 등록
-	@GetMapping("/learnGroupRegist")
-	public String learnGroupRegist() {
-		
-		return "teacher/learnGroupRegist";
-	}
-	
-	// 학습 그룹 조회
+
 	@GetMapping("/learnGroupLook")
-	public String learnGroupLook() {
-		
-		return "teacher/learnGroupLook";
-	}
+  
+  public String learnGroupLook(Model model, HttpServletRequest request) { // 이건
+  //만약에 세션값 받아오고 싶으면 // HttpSession session = request.getSession(); // UserVO vo
+ //(UserVO)Session.getAttribute("vo");
+  
+  
+  ArrayList<learnGroupVO> list = teacherService.learnGroupLook();
+  model.addAttribute("list", list);
+  
+  System.out.println("Tㅇㄴㅁㄴㅇㄻㄴㅇㄹㄹㅇㄴ ㄹㄴㅇ ㄹㄴ 123 21ㄷㅁㄴ ㄹㄴㅇㄹ ㄴㅇ ㄹ");
+  System.out.println(list);
+  
+  return "teacher/learnGroupLook"; } // 숙제 등록
 	
-}
+
+	@PostMapping("/homeWorkRegistForm") public String
+  homeWorkRegistForm(HomeWorkVO vo) {
+  
+  System.out.println(vo); teacherService.RegistHomework(vo);
+  
+  return "teacher/main"; }// 그룹 가입 상세 조회
+
+
+	@GetMapping("groupRegistLook") public String groupRegistLook(Model model,
+  
+  @RequestParam("sg_no") int sg_no) {
+  
+  learnGroupVO vo = teacherService.groupDetail(sg_no);
+  
+  model.addAttribute("group", vo);
+  
+  
+  return "teacher/groupRegistLook"; }
+  
+ 
+
+	@GetMapping("groupRegistApprove") public String groupRegistApprove() {
+  
+  
+ return "teacher/groupRegistApprove"; }
+ 
+  @GetMapping("detailStudentLook") public String detailStudentLook() {
+  
+  return "teacher/detailStudentLook"; }
+ 
+ }
