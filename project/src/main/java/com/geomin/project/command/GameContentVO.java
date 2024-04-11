@@ -23,6 +23,9 @@ public class GameContentVO {
 	private String user_no;
 	private String game_sub_startDate; //GAME_SUB_REGDATE라고 테이블파일에 되어있어서 바꿈니다.
 	private String game_sub_endDate;
+
+	private String game_regdate;
+	private String del_check;
 	
 	
 	//조인해서 받아오는값

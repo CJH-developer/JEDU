@@ -17,6 +17,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.geomin.project.command.DocumentUploadVO;
 import com.geomin.project.command.DocumentVO;
+import com.geomin.project.util.Criteria;
 
 
 @Service("DocumentService")
@@ -96,10 +97,38 @@ public class DocumentServiceImpl implements DocumentService{
 	
 	// 학습 - 학습자료 조회 - 내용
 	@Override
-	public ArrayList<DocumentVO> getList() {
+	public ArrayList<DocumentVO> getList(Criteria criteria) {
 		
-		return documentMapper.getList();
+		return documentMapper.getList(criteria);
 	}
+
+	// 학습 - 학습자료 삭제 
+	@Override
+	public int learnContentDelete(int docu_no) {
+		
+		return documentMapper.learnContentDelete(docu_no);
+	}
+
+	// 학습 - 학습자료 삭제 이력
+	@Override
+	public ArrayList<DocumentVO> delList(Criteria criteria) {
+		
+		return documentMapper.delList(criteria);
+	}
+
+	@Override
+	public int getTotal() {
+		return documentMapper.getTotal();
+	}
+
+
+	@Override
+	public int getNoTotal() {
+		
+		return documentMapper.getNoTotal();
+	}
+
+	
 	
 	
 }

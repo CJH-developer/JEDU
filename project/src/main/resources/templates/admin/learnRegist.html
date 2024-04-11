@@ -61,6 +61,8 @@
            <div class="regist__below__item">
              <span>자료파일주소</span>
              <input type="text" name="filePath" placeholder="자료 주소를 입력하세요.">
+             <input type="text" name="docu_path" th:if="${game_no}" th:value="${game_no}" readonly="readonly">
+             <input type="text" name="docu_path" th:unless="${game_no}" placeholder="자료 주소를 입력해주세요.">
            </div>  
 
            <!-- 서비스 구분 -->
@@ -91,7 +93,7 @@
 
            </div>
            
-           
+           <input type="hidden" value="Y" name="del_check">
 
          </div>
 

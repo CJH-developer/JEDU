@@ -12,13 +12,13 @@ for (var i = 0; i < coll.length; i++) {
     // 현재 클릭된 메뉴를 제외한 다른 모든 드롭다운 메뉴 닫기
     for (var j = 0; j < coll.length; j++) {
       if (coll[j] !== currentMenu) {
-        coll[j].classList.remove("active");
+        coll[j].classList.remove("activess");
         coll[j].nextElementSibling.style.maxHeight = null;
       }
     }
 
     // 현재 클릭된 메뉴의 드롭다운 메뉴 열고 닫기
-    currentMenu.classList.toggle("active");
+    currentMenu.classList.toggle("activess");
     if (content.style.maxHeight){
       content.style.maxHeight = null;
     } else {

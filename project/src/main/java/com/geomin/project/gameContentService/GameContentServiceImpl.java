@@ -18,6 +18,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.geomin.project.command.GameContentVO;
 import com.geomin.project.command.UploadVO;
+import com.geomin.project.util.Criteria;
 
 
 @Service("GameContentService")
@@ -95,9 +96,35 @@ public class GameContentServiceImpl implements GameContentService{
 
 	// 게임 - 게임컨텐츠 조회 - 내용
 	@Override
-	public ArrayList<GameContentVO> getList() {
+	public ArrayList<GameContentVO> getList(Criteria criteria) {
 		
-		return gameContentMapper.getList();
+		return gameContentMapper.getList( criteria);
+	}
+
+	
+	// 게임 - 게임컨텐츠 조회 - 게임컨텐츠 삭제 ( del_check => n )
+	@Override
+	public int gameContentDelete(int game_no) {
+		
+		return gameContentMapper.gameContentDelete(game_no);
+	}
+
+	// 게임 - 게임 컨텐츠 삭제 이력 조회
+	@Override
+	public ArrayList<GameContentVO> delHistory(Criteria criteria) {
+		
+		return gameContentMapper.delHistory(criteria);
+	}
+
+	@Override
+	public int getTotal() {
+		return gameContentMapper.getTotal();
+	}
+
+	@Override
+	public int getNoTotal() {
+		
+		return gameContentMapper.getNoTotal();
 	}
 
 

@@ -13,14 +13,16 @@
   			DOCU_SERVICE,
   			DOCU_TITLE,
   			DOCU_CONTENT,
-  			DOCU_PATH
+  			DOCU_PATH,
+  			DEL_CHECK
   		)VALUES (
   			#{docu_type},
   			#{docu_category},
   			#{docu_service},
   			#{docu_title},
   			#{docu_content},
-  			#{docu_path}
+  			#{docu_path},
+  			#{del_check}
   		)
   		
   	</insert>
@@ -48,13 +50,13 @@
   	  </insert>
   	  
   	  <!-- 학습자료 조회 -->
-  	  <resultMap id="gameResultMap" type="DocumentVO">
-        <id property="docu_no" column="DOCU_NO"/>
-        <result property="docu_title" column="DOCU_TITLE"/>
-        <result property="docu_type" column="DOCU_TYPE"/>
-        <result property="docu_category" column="DOCU_CATEGORY"/>
-        <result property="docu_service" column="DOCU_SERVICE"/>
-        <result property="docu_path" column="DOCU_PATH"/>
+ 	  <resultMap id="gameResultMap" type="DocumentVO">
+       <id property="docu_no" column="DOCU_NO"/>
+       <result property="docu_title" column="DOCU_TITLE"/>
+       <result property="docu_type" column="DOCU_TYPE"/>
+       <result property="docu_category" column="DOCU_CATEGORY"/>
+       <result property="docu_service" column="DOCU_SERVICE"/>
+       <result property="docu_path" column="DOCU_PATH"/>
     </resultMap>
 
     <resultMap id="uploadResultMap" type="DocumentUploadVO">
@@ -74,12 +76,80 @@
         	D.DOCU_CATEGORY, 
         	D.DOCU_SERVICE, 
         	DL.FILENAME, 
-        	DL.FILEPATH, DL.UUID
-		FROM DOCUMENT D
-		LEFT JOIN DOCU_UPLOAD DL
-		ON D.DOCU_NO = DL.DOCU_NO
-		WHERE DL.FILENAME IS NOT NULL
+        	DL.FILEPATH, 
+        	DL.UUID,
+        	D.DEL_CHECK
+		FROM 
+			DOCUMENT D
+		LEFT 
+			JOIN DOCU_UPLOAD DL
+		ON 
+			D.DOCU_NO = DL.DOCU_NO
+		WHERE 
+			DL.FILENAME IS NOT NULL
+		AND	
+			D.DEL_CHECK = "Y"	
+		ORDER BY
+			D.DOCU_NO DESC
+		limit #{criteria.pageStart}, #{criteria.amount}
+    </select>
+   
+    <!-- del Select Query -->
+    <select id="delList" resultMap="gameResultMap">
+        SELECT 
+        	D.DOCU_NO,
+        	D.DOCU_TITLE, 
+        	D.DOCU_TYPE, 
+        	D.DOCU_CATEGORY, 
+        	D.DOCU_SERVICE, 
+        	DL.FILENAME, 
+        	DL.FILEPATH, 
+        	DL.UUID,
+        	D.DEL_CHECK
+		FROM 
+			DOCUMENT D
+		LEFT 
+			JOIN DOCU_UPLOAD DL
+		ON 
+			D.DOCU_NO = DL.DOCU_NO
+		WHERE 
+			DL.FILENAME IS NOT NULL
+		AND
+			D.DEL_CHECK = "N"
+		ORDER BY
+			D.DOCU_NO DESC
+		limit #{criteria.pageStart}, #{criteria.amount}
     </select>
 
+	<!-- 학습자료 조회 - 삭제 -->
+    <update id="learnContentDelete">
+    	UPDATE 
+    		DOCUMENT
+    	SET 
+    		DEL_CHECK = "N"
+    	WHERE
+    		DOCU_NO = #{docu_no}
+    </update>
+  
+
+	<!-- Select Query -->
+    <select id="getTotal" resultType="int">
+        SELECT 
+        	COUNT(*) AS TOTAL
+		FROM 
+			DOCUMENT 
+		WHERE 
+			DEL_CHECK = "Y"
+    </select>
+  
+  	<!-- Select Query -->
+    <select id="getNoTotal" resultType="int">
+        SELECT 
+        	COUNT(*) AS TOTAL
+		FROM 
+			DOCUMENT 
+		WHERE 
+			DEL_CHECK = "N"
+    </select>
   
   </mapper>
