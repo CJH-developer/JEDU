@@ -1,8 +1,6 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-<!-- 포트원 API -->
-<script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.1.8.js"></script>
 <!-- Bootstrap CSS -->
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/css/bootstrap.min.css">
 <link rel="stylesheet" href="/css/frame/cart.css">
@@ -59,6 +57,7 @@
 	  $("#checkoutButton").click(function() {
 		    window.location.href="/command/payment"
 	  });
+
 	  
 	  var totalContent = $(".game_title").val() ;
 	  console.log(totalContent + "11");  

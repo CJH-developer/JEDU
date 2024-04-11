@@ -46,9 +46,7 @@ public class PurchaseController {
 	@GetMapping("/add/cart")
 	public int addCart(@RequestParam("user_no") int user_no, @RequestParam("game_no") int game_no) {
 		
-		System.out.println(user_no);
-		System.out.println(game_no);
-		
+
 		return cartService.addtoCart(user_no, game_no);
 	}
 	

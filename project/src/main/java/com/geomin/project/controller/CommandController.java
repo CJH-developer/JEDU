@@ -74,11 +74,15 @@ public class CommandController {
 	    return "command/cart";
 	}
 
-	
 	@GetMapping("/payment")
-	public String payment() {
+	public String payment(HttpServletRequest request, Model model) {
+
 		return "command/payment";
 	}
+
+
+	
+	
 	
 	
 }

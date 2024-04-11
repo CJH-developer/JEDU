@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<!-- Bootstrap CSS -->
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/css/bootstrap.min.css">
+<link rel="stylesheet" href="/css/frame/cart.css">
+<link rel="stylesheet" href="/css/order/orderSuccess.css">
+<!-- JQuery -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+</head>
+<th:block th:replace="~{./baseLayout/base_f :: setContent( ~{ :: .wrap} ) }">
+<script src="/static/js/frame/lookup.js" defer></script>
+<script src="/static/js/frame/payment.js" defer></script>
+  
+  
+  <body>
+			
+  			
+			
+			<div class="wrap" th:each="cartList : ${cartList}">
+				[[${cartList.user_no}]]
+				<div class="container">
+				  <div class="circle-border">
+				    <div class="circle success"></div>
+				  </div>
+				  
+				</div>
+			        <div class="text-center">
+           			 <h3 class="md:text-2xl text-base text-gray-900 font-semibold text-center">결재 완료!</h3>
+            		<p class="text-gray-600 my-2">JEDU에 컨탠츠를 결재해 주셔서 감사합니다!</p>
+            		<p> 앞으로  </p>
+            		<div class="py-10 text-center">
+                	<a href="#" class="px-12 bg-indigo-600 hover:bg-indigo-500 text-white font-semibold py-3">
+                    GO BACK 
+               		</a>
+            		</div>
+       			 </div>
+			</div>
+			
+			
+</th:block>
+</html>
