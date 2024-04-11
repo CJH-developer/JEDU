@@ -18,7 +18,7 @@ public class JTwoPageVO {
 	private int JTwoPage;
 	private int JTwoAmount;
 	private int JTwoTotal;
-	private List<Integer> JTwoPageFirst;
+
 	private int JTwoFirst;
 	private int JTwoEnd;
 	private boolean JTwoPrev;
@@ -29,7 +29,9 @@ public class JTwoPageVO {
 
 
 
-	private List<Integer> JTwoPageList;
+
+
+	private List<Integer> JTwoPageFirst;
 
 
 

@@ -23,9 +23,9 @@ public class UserServiceTwoImpl implements UserServiceTwo {
 	}
 
 	@Override
-	public int MyToTal(JTwoCriteria JTwo) {
+	public int JTwoTotal(JTwoCriteria JTwo) {
 		// TODO Auto-generated method stub
-		return userServiceTwoMapper.MyToTal(JTwo);
+		return userServiceTwoMapper.JTwoTotal(JTwo);
 	}
 
 	

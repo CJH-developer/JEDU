@@ -37,7 +37,7 @@ public JTwoCriteria(int JTwoPage, int JTwoAmount) {
 }
 
 
-public int getJTwoPageList() {
+public int getJTwoPageFirst() {
 	return (JTwoPage-1) * JTwoAmount;
 }
 }

@@ -7,5 +7,5 @@ import com.geomin.project.util.JTwoCriteria;
 
 public interface UserServiceTwo {
 	public ArrayList<GameContentVO> MyList(JTwoCriteria JTwo);
-	public int MyToTal(JTwoCriteria JTwo); 
+	public int JTwoTotal(JTwoCriteria JTwo); 
 }

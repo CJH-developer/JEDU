@@ -50,14 +50,14 @@ public class UserController {
 	public String Usermyproduct(Model model,JTwoCriteria JTwo) {
 		
 		ArrayList<GameContentVO> List=userServiceTwo.MyList(JTwo);
-		int total = userServiceTwo.MyToTal(JTwo);
-		JTwoPageVO JTwoPageVO=new JTwoPageVO(JTwo,total);
+		int JTwoTotal = userServiceTwo.JTwoTotal(JTwo);
+		JTwoPageVO JTwoPageVO=new JTwoPageVO(JTwo,JTwoTotal);
 		model.addAttribute("JTwoPageVO",JTwoPageVO);
 		model.addAttribute("List", List);
 		//구매이력의 페이지당 포함될수 있는 리스트 양이 다르기 때문에 (JPageVO, JCriteria)한 묶음으로 한개 (JTwoPageVO, JTwocriteria)한 묶음으로 한개씩 두개를 만들었습니다.
 		System.out.println(List);
 		System.out.println(JTwoPageVO);
-		
+		System.out.println(JTwoTotal);
 		return "user/User_myproduct";
 	}
 

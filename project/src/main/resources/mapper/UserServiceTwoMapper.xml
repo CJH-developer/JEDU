@@ -10,7 +10,7 @@ FROM game_content AS e
 LEFT JOIN game_purchase AS d ON e.user_no = d.user_no 
 LEFT JOIN study_group AS f ON e.user_no = f.user_no 
 ORDER BY e.game_no DESC 
-LIMIT #{JTwoPageList}, #{JTwoAmount};
+LIMIT #{JTwoPageFirst}, #{JTwoAmount};
   
   
   
@@ -21,11 +21,11 @@ LIMIT #{JTwoPageList}, #{JTwoAmount};
   
   
   </select>
-    <select id="MyToTal" resultType="int">
-SELECT count(*) as total
+    <select id="JTwoTotal" resultType="int">
+SELECT count(*) as JTwoTotal
 FROM game_content AS e 
-INNER JOIN game_purchase AS d ON e.user_no = d.user_no 
-INNER JOIN study_group AS f ON e.user_no = f.user_no    ; 
+LEFT JOIN game_purchase AS d ON e.user_no = d.user_no 
+LEFT JOIN study_group AS f ON e.user_no = f.user_no    ; 
   </select>
   
   </mapper>

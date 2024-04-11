@@ -5,8 +5,7 @@
 		
 	<div class="wrap">
 	
-			<input type="hidden" name="JTwoPage" value="1"> <input
-					type="hidden" name="JTwoAmount" th:value="${JTwoPageVO.JTwoAmount}">
+			<input type="hidden" name="JTwoPage" value="1">
 
 			<div class="wrap__content">
 			
@@ -111,12 +110,13 @@
 						</div>
 
 
+	<div th:replace='/re_base_pagevo/User_product_PageList.html :: User_product_PageList'></div>
 
-	<div th:replace="~{./re_base_pagevo/User_product_PageList.html :: User_product_PageList}"></div>
 
 					</div>
 
 
+	
 
 				</div>
 
