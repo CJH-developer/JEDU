@@ -35,7 +35,7 @@ public class MyUserDetailsService implements UserDetailsService{
 		System.out.println("사용자가 입력한 값:" + user_id);
 		
 		UserVO vo = userMapper.login(user_id);
-		System.out.println(vo.getUser_id());
+		
 		
 		
 		if(vo != null) {

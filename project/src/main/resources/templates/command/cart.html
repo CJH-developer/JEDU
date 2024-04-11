@@ -1,52 +1,74 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-  <!-- Bootstrap CSS -->
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/css/bootstrap.min.css">
-  <style>
-  	.wrap {position: relative;}
-  	.table {position: absolute; top: 20%; left:0;}
-  	.table__page{position: absolute; top: 50%; right:0;}
-  </style>
+<!-- 포트원 API -->
+<script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.1.8.js"></script>
+<!-- Bootstrap CSS -->
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/css/bootstrap.min.css">
+<link rel="stylesheet" href="/css/frame/cart.css">
+<!-- JQuery -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 <th:block th:replace="~{./baseLayout/base_f :: setContent( ~{ :: .wrap} ) }">
-<script src="/js/frame/lookup.js" defer></script>
+<script src="/static/js/frame/lookup.js" defer></script>
+<script src="/static/js/frame/payment.js" defer></script>
+
+
+
 <div class="wrap">
+	<!-- user_no -->
 
-	<table class="table table-striped">
-	  <thead>
-	    <tr>
-	      <th scope="col">상품 개수</th>
-	      <th scope="col">게임 콘텐츠 이름</th>
-	      <th scope="col">구독 기간</th>
-	      <th scope="col">가격</th>
-	      <th scope="col">구매하기</th>
-	    </tr>
-	  </thead>
-	  <tbody>
-	    <tr>
-	      <th scope="row">1</th>
-	      <td>Mark</td>
-	      <td>Otto</td>
-	      <td>@mdo</td>
-	      <td><button id="content__purchase">결제하기</button></td>
-	    </tr>
-	  </tbody>
-	</table>
+	<input type="hidden" th:value="${session.vo.user_id}" name="user_no" id="user_no">
+	
+	
+	<div class="container">
+		<div class="header">
+			[[${session.vo.user_id}]]님의 장바구니
+		</div>
+		<div class="cart-item">
+			<div class="item-image">
+				<img src="/img/01_game_main.png" alt="content_pic">
+			</div>
+			<div class="item-details">
+				<div class="game_title"></div>
+				<div class="game_level"></div>
+				<div class="game_content"></div>
+				<div class="price"></div>
+			</div>
+		</div>
+		<div class="cart-item">
+			<div class="item-image">
+				<img src="/img/01_game_main.png" alt="">
+			</div>
+			<div class="item-details">
+				<div class="game_title"></div>
+				<div class="game_level"></div>
+				<div class="game_content"></div>
+				<div class="price"></div>
+			</div>
+		</div>
+		<div class="total_bill">총 금액:</div>
+		<div class="total-summary">
+			<div id="total_price"></div>
+			<div class="game_discount_price"></div>
+			<div></div>
+			<div class="total_price" id="total_price"></div>
+		</div>
+		<div class="total_payment">
+			<button class="btn-checkout" id="checkoutButton">결재하러 가기</button>
+		</div>
+	</div>
+	
+	<script>
+	  $("#checkoutButton").click(function() {
+		    window.location.href="/command/payment"
+	  });
+	  
+	  var totalContent = $(".game_title").val() ;
+	  console.log(totalContent + "11");  
+	</script>
 
-
-        <div class="table__page">
-          <div class="table__page__list">
-            <button class="page__button page__active">1</button>
-            <button class="page__button">2</button>
-            <button class="page__button">3</button>
-            <button class="page__button">4</button>
-            <button class="page__button">5</button>
-            <button class="page__button">6</button>
-            <button class="page__button">7</button>
-          </div>
-        </div>
-     
+	
 </div>
 </th:block>
 </html>

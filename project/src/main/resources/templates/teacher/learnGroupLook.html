@@ -35,8 +35,6 @@
 
           </div>
 
-          [[${list}]]
-
           <div class="looks__wrap__body">
 
             <div id="looks__thead">
@@ -54,7 +52,7 @@
             <div class="looks__tbody">
               <div class="looks__tbody__content" th:each="list : ${list}">
                 <div id="looks__tbody__first"><input type="checkbox" value="dd"></div>
-                <div id="looks__tbody__second">[[${list.sg_name}]]</div>
+                <a th:href="@{groupRegistLook(sg_no=${list.sg_no})}" id="looks__tbody__second">[[${list.sg_name}]]</a>
                 <div id="looks__tbody__third">[[${list.game_no}]]</div>
                 <div id="looks__tbody__fourth"> [[${list.sg_capa}]]명 / [[${list.sg_grouplimit} + '명']]</div>
                 <div id="looks__tbody__fifth">[[${list.sg_regdate} + ' ~ ' + ${list.sg_enddate}]]</div>

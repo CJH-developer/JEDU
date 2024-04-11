@@ -8,7 +8,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
+import com.geomin.project.command.GameContentVO;
 import com.geomin.project.command.HomeWorkVO;
 import com.geomin.project.command.learnGroupVO;
 import com.geomin.project.teacher.service.TeacherService;
@@ -29,7 +31,11 @@ public class TeacherController {
 	
 	// 숙제 등록
 	@GetMapping("/homeWorkRegist")
-	public String homeWorkRegist() {
+	public String homeWorkRegist(Model model) {
+		
+		ArrayList<HomeWorkVO> list = teacherService.getHomework();
+		model.addAttribute("list", list);
+		
 		return "teacher/homeWorkRegist";
 	}
 	
@@ -73,7 +79,6 @@ public class TeacherController {
 	// 학습 그룹 조회
 	@GetMapping("/learnGroupLook")
 	public String learnGroupLook(Model model) {
-		
 		ArrayList<learnGroupVO> list = teacherService.learnGroupLook();
 		model.addAttribute("list", list);
 		
@@ -87,7 +92,32 @@ public class TeacherController {
 		System.out.println(vo);
 		teacherService.RegistHomework(vo);
 		
-		return "";
+		return "teacher/main";
+	}
+	
+	// 그룹 가입 상세 조회
+	@GetMapping("groupRegistLook")
+	public String groupRegistLook(Model model,
+								  @RequestParam("sg_no") int sg_no) {
+		
+		learnGroupVO vo = teacherService.groupDetail(sg_no);
+		
+		model.addAttribute("group", vo);
+
+		
+		return "teacher/groupRegistLook";
+	}
+	
+	@GetMapping("groupRegistApprove")
+	public String groupRegistApprove() {
+		
+		return "teacher/groupRegistApprove";
+	}
+	
+	@GetMapping("detailStudentLook")
+	public String detailStudentLook() {
+		
+		return "teacher/detailStudentLook";
 	}
 	
 }

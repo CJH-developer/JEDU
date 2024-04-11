@@ -20,7 +20,7 @@ public class MyUserDetails implements UserDetails{
 	}
 	
 	public String getUser_role() {
-		System.out.println("GetUser_Role" + userVO.getUser_role());
+		
 		return userVO.getUser_role();
 	}
 	

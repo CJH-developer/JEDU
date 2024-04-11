@@ -142,6 +142,7 @@ CREATE TABLE DOCUMENT (
     FOREIGN KEY (USER_NO) REFERENCES USER (USER_NO)
 );
 
+
 CREATE TABLE UPLOAD (
   FILE_NO INT PRIMARY KEY auto_increment,
   FILENAME varchar(1000), ##실제파일명
@@ -151,3 +152,8 @@ CREATE TABLE UPLOAD (
   GAME_TITLE varchar(1000)##FK
 );
 
+select c.*, g.game_price 
+from CART c 
+left join GAME_CONTENT g 
+on g.GAME_NO = c.GAME_NO
+where c.user_no = 37;

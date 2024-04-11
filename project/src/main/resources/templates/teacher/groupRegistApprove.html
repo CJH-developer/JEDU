@@ -4,27 +4,27 @@
 
 <div class="wrap">
 <link rel="stylesheet" href="/css/frame/groupRegistLook.css">
+<script src="/js/frame/groupRegistApprove.js" defer></script>
+
+
   <div class="wrap__content">
     <form action="" method="get" class="regist__wrap">
+        <input type="hidden" th:value="${session.vo.user_no}" id="user_no" name="user_no">
+        
 
       <div class="grl__header">
 
         <div class="grl__header__title"><span>그룹 가입 승인</span></div>
         <div class="grl__header__select">
-          <select name="" id="">
+          <select name="" id="selectGroup">
             <option value="none">학습 그룹 선택해주세요.</option>
-            <option value="강남 초급반">강남 초급반</option>
-            <option value="강남 초급반">강남 초급반</option>
-            <option value="강남 초급반">강남 초급반</option>
-            <option value="강남 초급반">강남 초급반</option>
-            <option value="강남 초급반">강남 초급반</option>
-            <option value="강남 초급반">강남 초급반</option>
           </select>
         </div>
         <div class="grl__header__btn">
-          <button>조회하기</button>
-          <button>승인</button>
-          <button>거절</button>
+          <button type="button" id="myGroup">내 학습그룹</button>
+          <button type="button" id="searchGroup">조회하기</button>
+          <button type="button">승인</button>
+          <button type="button">거절</button>
         </div>
 
       </div>
@@ -71,95 +71,23 @@
               <div class="grl_bttbb__two">홍길동</div>
               <div class="grl_bttbb__three">010-3333-4444</div>
               <div class="grl_bttbb__four">2024.02.01</div>
-              <div class="grl_bttbb__five"><input type="checkbox"></div>
+              <div class="grl_bttbb__five"><input type="checkbox" class="checkbox"></div>
             </div>
-
-            <div class="grl__bbtb__wrap">
-              <div class="grl_bttbb__one">1</div>
-              <div class="grl_bttbb__two">홍길동</div>
+            
+             <div class="grl__bbtb__wrap">
+              <div class="grl_bttbb__one">2</div>
+              <div class="grl_bttbb__two">엄준식</div>
               <div class="grl_bttbb__three">010-3333-4444</div>
               <div class="grl_bttbb__four">2024.02.01</div>
-              <div class="grl_bttbb__five"><input type="checkbox"></div>
+              <div class="grl_bttbb__five"><input type="checkbox" class="checkbox"></div>
             </div>
-
-            <div class="grl__bbtb__wrap">
-              <div class="grl_bttbb__one">1</div>
-              <div class="grl_bttbb__two">홍길동</div>
+            
+             <div class="grl__bbtb__wrap">
+              <div class="grl_bttbb__one">3</div>
+              <div class="grl_bttbb__two">김준식</div>
               <div class="grl_bttbb__three">010-3333-4444</div>
               <div class="grl_bttbb__four">2024.02.01</div>
-              <div class="grl_bttbb__five"><input type="checkbox"></div>
-            </div>
-
-            <div class="grl__bbtb__wrap">
-              <div class="grl_bttbb__one">1</div>
-              <div class="grl_bttbb__two">홍길동</div>
-              <div class="grl_bttbb__three">010-3333-4444</div>
-              <div class="grl_bttbb__four">2024.02.01</div>
-              <div class="grl_bttbb__five"><input type="checkbox"></div>
-            </div>
-
-            <div class="grl__bbtb__wrap">
-              <div class="grl_bttbb__one">1</div>
-              <div class="grl_bttbb__two">홍길동</div>
-              <div class="grl_bttbb__three">010-3333-4444</div>
-              <div class="grl_bttbb__four">2024.02.01</div>
-              <div class="grl_bttbb__five"><input type="checkbox"></div>
-            </div>
-
-            <div class="grl__bbtb__wrap">
-              <div class="grl_bttbb__one">1</div>
-              <div class="grl_bttbb__two">홍길동</div>
-              <div class="grl_bttbb__three">010-3333-4444</div>
-              <div class="grl_bttbb__four">2024.02.01</div>
-              <div class="grl_bttbb__five"><input type="checkbox"></div>
-            </div>
-
-            <div class="grl__bbtb__wrap">
-              <div class="grl_bttbb__one">1</div>
-              <div class="grl_bttbb__two">홍길동</div>
-              <div class="grl_bttbb__three">010-3333-4444</div>
-              <div class="grl_bttbb__four">2024.02.01</div>
-              <div class="grl_bttbb__five"><input type="checkbox"></div>
-            </div>
-
-            <div class="grl__bbtb__wrap">
-              <div class="grl_bttbb__one">1</div>
-              <div class="grl_bttbb__two">홍길동</div>
-              <div class="grl_bttbb__three">010-3333-4444</div>
-              <div class="grl_bttbb__four">2024.02.01</div>
-              <div class="grl_bttbb__five"><input type="checkbox"></div>
-            </div>
-
-            <div class="grl__bbtb__wrap">
-              <div class="grl_bttbb__one">1</div>
-              <div class="grl_bttbb__two">홍길동</div>
-              <div class="grl_bttbb__three">010-3333-4444</div>
-              <div class="grl_bttbb__four">2024.02.01</div>
-              <div class="grl_bttbb__five"><input type="checkbox"></div>
-            </div>
-
-            <div class="grl__bbtb__wrap">
-              <div class="grl_bttbb__one">1</div>
-              <div class="grl_bttbb__two">홍길동</div>
-              <div class="grl_bttbb__three">010-3333-4444</div>
-              <div class="grl_bttbb__four">2024.02.01</div>
-              <div class="grl_bttbb__five"><input type="checkbox"></div>
-            </div>
-
-            <div class="grl__bbtb__wrap">
-              <div class="grl_bttbb__one">1</div>
-              <div class="grl_bttbb__two">홍길동</div>
-              <div class="grl_bttbb__three">010-3333-4444</div>
-              <div class="grl_bttbb__four">2024.02.01</div>
-              <div class="grl_bttbb__five"><input type="checkbox"></div>
-            </div>
-
-            <div class="grl__bbtb__wrap">
-              <div class="grl_bttbb__one">1</div>
-              <div class="grl_bttbb__two">홍길동</div>
-              <div class="grl_bttbb__three">010-3333-4444</div>
-              <div class="grl_bttbb__four">2024.02.01</div>
-              <div class="grl_bttbb__five"><input type="checkbox"></div>
+              <div class="grl_bttbb__five"><input type="checkbox" class="checkbox"></div>
             </div>
 
           </div>
@@ -171,6 +99,10 @@
     </form>
   </div>
 </div>
+
+
   
 </th:block>
+
+
 </html>

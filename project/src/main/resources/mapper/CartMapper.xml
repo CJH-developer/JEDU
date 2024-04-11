@@ -2,19 +2,32 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
   
-	<mapper namespace="com.geomin.project.cart.service">
+	<mapper namespace="com.geomin.project.cart.service.CartMapper">
   
   
 	<!-- 장바구니 추가  -->
 	<insert id="addtoCart">
-		
+		INSERT INTO CART (USER_NO, GAME_NO) values (#{user_no}, #{game_no})
 	</insert>
 	
+	<!-- 장바구니 중복 조회-->
+	<select id="checkCart" resultType="Integer">
+		SELECT COUNT(*) FROM CART WHERE user_no = #{user_no} AND game_no = #{game_no}
+	</select>
 	
-	<!-- 장바구니 조회 -->
-  
+	<!-- 장바구니 목록 조회 -->
+
   	<select id="getListCart" resultType="com.geomin.project.command.CartVO">
-  		select * from CART where 
+  		select c.*,
+  			   g.GAME_TITLE,
+		       g.GAME_PRICE,
+		       g.GAME_CONTENT,
+		       g.GAME_DISCOUNT_PRICE,
+		       g.GAME_TARGET_LEVEL
+		from CART c 
+		left join GAME_CONTENT g 
+		on g.GAME_NO = c.GAME_NO
+		where c.user_no = #{user_no};
   	</select>
   
   
