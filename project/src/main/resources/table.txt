@@ -142,4 +142,11 @@ CREATE TABLE DOCUMENT (
     FOREIGN KEY (USER_NO) REFERENCES USER (USER_NO)
 );
 
+select g.game_title, g.game_price, u.USER_NO from GAME_CONTENT g, USER u where u.USER_NO = 38;
+insert into CART (user_no, game_no) values (38, 1);
 
+select c.*, g.game_price 
+from CART c 
+left join GAME_CONTENT g 
+on g.GAME_NO = c.GAME_NO
+where c.user_no = 37;
