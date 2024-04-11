@@ -52,18 +52,28 @@
 
           <div class="ll__body__tbody">
 
-			    <th:block th:each="Document : ${Document}">
-            <div class="ll__tbody__content">
-              <div class="ll__tbody_one"><input type="checkbox" th:value="${Document.docu_no}" class="learn_checkBox"></div>
-              <div class="ll__tbody_two"><img th:src="@{/display/{filepath}/{uuid}/{filename}(filepath=${Document.filepath},uuid=${Document.uuid},filename=${Document.filename})}"  ></div>
-              <div class="ll__tbody_three" th:text="${Document.docu_title}">컨텐츠명</div>
-              <div class="ll__tbody_four" th:text="${Document.docu_type}">레벨</div>
-              <div class="ll__tbody_five" th:text="${Document.docu_category}">구독개월</div>
-              <div class="ll__tbody_six" th:text="${Document.docu_service}">기간</div>
-              <div class="ll__tbody_seven" th:text="${Document.docu_path}">판매가</div>
-              <div class="ll__tbody_eight"><button id="ll__modify">수정</button><button id="ll__delete">삭제</button></div>
-            </div>
-          </th:block>
+			<th:block th:each="Document : ${Document}">
+	            <div class="ll__tbody__content">
+	              <div class="ll__tbody_one"><input type="checkbox" th:value="${Document.docu_no}" class="learn_checkBox"></div>
+	              <div class="ll__tbody_two"><img th:src="@{/display/{filepath}/{uuid}/{filename}(filepath=${Document.filepath},uuid=${Document.uuid},filename=${Document.filename})}"  ></div>
+	              <div class="ll__tbody_three" th:text="${Document.docu_title}">학습자료명</div>
+	              <div class="ll__tbody_four">
+	              	<span th:if="${Document.docu_type == 0}">튜토리얼</span>
+	              	<span th:if="${Document.docu_type == 1}">교육영상</span>
+	              </div>
+	              <div class="ll__tbody_five">
+                  <span th:if="${Document.docu_category == 0}">동영상</span>
+                  <span th:if="${Document.docu_category == 1}">교재</span>
+                  <span th:if="${Document.docu_category == 2}">웹사이트</span>
+                  </div>
+	              <div class="ll__tbody_six">
+                  <span th:if="${Document.docu_service == 0}">무료</span>
+                  <span th:if="${Document.docu_service == 1}">유료</span>
+				        </div>
+	              <div class="ll__tbody_seven" th:text="${Document.docu_path}">등록일</div>
+	              <div class="ll__tbody_eight"><button id="ll__modify">수정</button><button id="ll__delete">삭제</button></div>
+	            </div>
+          	</th:block>
 
           </div>
 

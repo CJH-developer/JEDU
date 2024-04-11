@@ -90,6 +90,15 @@
             G.GAME_NO = U.GAME_NO
         WHERE 
     		U.FILENAME IS NOT NULL
+    	<choose>
+	        <when test="level == 0">
+	            <!-- 레벨이 0인 경우 전체를 가져옴 -->
+	        </when>
+	        <otherwise>
+	            AND G.GAME_TARGET_LEVEL = #{level}
+	        </otherwise>
+    	</choose>
     </select>
+    
   
   </mapper>
