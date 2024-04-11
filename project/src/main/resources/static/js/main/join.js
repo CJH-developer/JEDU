@@ -100,6 +100,7 @@ function sample4_execDaumPostcode() {
               },
               error: function(status, error) {
                 $("#id_check_result").html("아이디를 입력해주세요.")
+                console.log(status, error)
               }
           });
         	

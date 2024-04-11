@@ -62,12 +62,38 @@ public class CheckRestController {
 		map.put("groupdetail", teacherService.groupDetail(sg_no));
 		map.put("boys", teacherService.groupDetail2(sg_no));
 		
-
 		return map;
-
-		
 	}
 	
+	// 그룹 가입 승인
+	@GetMapping("/approve/{user_no}")
+	public int approve(@PathVariable("user_no") int user_no) {
+		
+		int result =teacherService.approve(user_no);
+		System.out.println(result);
+		
+		return result;
+	}
+	
+	// 그룹 가입 승인 시, capacity + 1
+	@GetMapping("/groupcapa/{sg_no}")
+	public int groupcapa(@PathVariable("sg_no") int sg_no) {
+		return teacherService.capacity(sg_no);
+	}
+	
+	// 그룹 가입 거절
+	@GetMapping("/reject/{sg_no}")
+	public int reject(@PathVariable("sg_no") int sg_no) {
+		return teacherService.reject(sg_no);
+	}
+	
+//	// 그룹 가입 거절 시 인구수 -1
+//	@GetMapping("/groupcapaminus/{sg_no}")
+//	public int groupcapaminus(@PathVariable("sg_no") int sg_no) {
+//		
+//		return teacherService.capaMinus(sg_no);
+//	}
+//	
 	
 
 }

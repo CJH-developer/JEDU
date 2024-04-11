@@ -31,5 +31,20 @@ public interface TeacherMapper {
 	
 	// 그룹 상세조회 2(그룹 신청 이력 있을 때)
 	public ArrayList<learnGroupVO> groupDetail2(int sg_no);
+	
+	// 그룹 가입 승인
+	public int approve(int user_no);
+	
+	// 그룹 가입 승인 시 capacity + 1
+	public int capacity(int sg_no);
+	
+	// 그룹 가입 거절
+	public int reject(int user_no);
+	
+	
+	// 그룹 가입 거절 시 capacity - 1
+//	public int capaMinus(int sg_no);
+	
+	
 
 }

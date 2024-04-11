@@ -87,11 +87,34 @@
   	</select>
   	
   	
-  	
+  	<!-- 숙제 전체 가져오기 -->
   	<select id="getHomework" resultType="HomeWorkVO">
   		select * from HOMEWORK;
   	</select>
   	
+  	<!-- 그룹 승인 -->
+  	<update id="approve">
+  		UPDATE STUDY_GROUP_JOIN SET SGJ_AUTH = 1 WHERE USER_NO = #{user_no}
+  	</update>
+  	
+  	<!-- 그룹 승인 됐을 때 capacity 1 증가  -->
+  	<update id="capacity">
+  		UPDATE STUDY_GROUP SET SG_CAPA = SG_CAPA + 1 WHERE SG_NO = #{sg_no}
+  	</update>
+  	
+  	<!-- 그룹 가입 거절 -->
+  	<delete id="reject">
+  		DELETE FROM STUDY_GROUP_JOIN WHERE USER_NO = #{user_no}
+  	</delete>
+  	
+  	<!-- 그룹 가입 거절(테스트용) -->
+<!--   	<update id="reject">
+  		UPDATE STUDY_GROUP_JOIN SET SGJ_AUTH = 5 WHERE USER_NO = #{user_no}
+  	</update> -->
+  	
+<!--   	<update id="capaMinus">
+		UPDATE STUDY_GROUP SET SG_CAPA = CASE WHEN SG_CAPA > 0 THEN SG_CAPA -1 ELSE SG_CAPA END WHERE USER_NO = #{user_no}
+  	</update> -->
   	
   	
   

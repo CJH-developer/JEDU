@@ -57,6 +57,30 @@ public class TeacherServiceImpl implements TeacherService{
 		return teacherMapper.groupDetail2(sg_no);
 	}
 
+	@Override
+	public int approve(int user_no) {
+		
+		return teacherMapper.approve(user_no);
+	}
+
+	@Override
+	public int capacity(int sg_no) {
+		
+		return teacherMapper.capacity(sg_no);
+	}
+
+	@Override
+	public int reject(int user_no) {
+		
+		return teacherMapper.reject(user_no);
+	}
+
+//	@Override
+//	public int capaMinus(int sg_no) {
+//		
+//		return teacherMapper.capaMinus(sg_no);
+//	}
+
 	
 	
 
