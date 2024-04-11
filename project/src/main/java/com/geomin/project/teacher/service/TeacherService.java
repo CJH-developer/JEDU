@@ -2,6 +2,7 @@ package com.geomin.project.teacher.service;
 
 import java.util.ArrayList;
 
+import com.geomin.project.command.GameContentVO;
 import com.geomin.project.command.HomeWorkVO;
 import com.geomin.project.command.learnGroupVO;
 
@@ -18,6 +19,13 @@ public interface TeacherService {
 	
 	// 숙제 등록
 	public int RegistHomework(HomeWorkVO vo);
+	
+	// 숙제 조회
+	public ArrayList<HomeWorkVO> getHomework();
+	
+	// 그룹 상세조회(join 걸었음)
+	public learnGroupVO groupDetail(int sg_no);
+	
 	
 	
 
