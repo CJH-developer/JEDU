@@ -142,8 +142,15 @@ CREATE TABLE DOCUMENT (
     FOREIGN KEY (USER_NO) REFERENCES USER (USER_NO)
 );
 
-select g.game_title, g.game_price, u.USER_NO from GAME_CONTENT g, USER u where u.USER_NO = 38;
-insert into CART (user_no, game_no) values (38, 1);
+
+CREATE TABLE UPLOAD (
+  FILE_NO INT PRIMARY KEY auto_increment,
+  FILENAME varchar(1000), ##실제파일명
+  FILEPATH varchar(1000), ##폴더명
+  UUID varchar(1000), ##UUID명，
+  GAME_NO INT,
+  GAME_TITLE varchar(1000)##FK
+);
 
 select c.*, g.game_price 
 from CART c 
