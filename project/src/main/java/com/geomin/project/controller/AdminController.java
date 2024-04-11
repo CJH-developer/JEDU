@@ -5,13 +5,10 @@ package com.geomin.project.controller;
 
 import java.util.ArrayList;
 import java.util.List;
-
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
-
-
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -23,9 +20,10 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.geomin.project.command.DocumentVO;
 import com.geomin.project.command.GameContentVO;
-
+import com.geomin.project.command.PageVO;
 import com.geomin.project.document.service.DocumentService;
 import com.geomin.project.gameContentService.GameContentService;
+import com.geomin.project.util.Criteria;
 
 
 
@@ -56,12 +54,15 @@ public class AdminController {
 	
 	// 게임 메뉴 - 컨텐츠 조회
 	@GetMapping("/gameLook")
-	public String gameLook(Model model) {
+	public String gameLook(Model model, Criteria criteria) {
 		
-		ArrayList<GameContentVO> list = gameContentService.getList();
+		ArrayList<GameContentVO> list = gameContentService.getList(criteria);
+		int total = gameContentService.getTotal();
+		PageVO vo = new PageVO(criteria, total);
 		model.addAttribute("gameContent", list);
-		System.out.println("불러온 리스트 값 : " + list.toString());
+		model.addAttribute("pageVO", vo);
 		return "admin/gameLook";
+		
 	}
 	
 	// 게임 메뉴 - 컨텐츠 등록
@@ -98,15 +99,31 @@ public class AdminController {
 		return "redirect:/admin/gameLook";
 	}
 	
+	@GetMapping("/gameDeleteHistory")
+	public String gameDeleteHistory(Model model, Criteria criteria) {
+		
+		ArrayList<GameContentVO> gameDeleteHistory = gameContentService.delHistory(criteria);
+		int total = gameContentService.getNoTotal();
+		PageVO vo = new PageVO(criteria, total);
+		model.addAttribute("gameDeleteHistory", gameDeleteHistory);
+		model.addAttribute("pageVO", vo);
+		
+		return "admin/gameDeleteHistory";
+	}
+	
+	
+	
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 	// 학습 메뉴 - 학습 자료 조회
 	@GetMapping("/learnLook")
-	public String learnLook(Model model) {
+	public String learnLook(Model model, Criteria criteria) {
 		
-		ArrayList<DocumentVO> list = documentService.getList();
+		ArrayList<DocumentVO> list = documentService.getList(criteria);
+		int total = documentService.getTotal();
+		PageVO vo = new PageVO(criteria, total);
 		model.addAttribute("Document", list);
-		System.out.println("불러온 리스트 값 : " + list.toString());
+		model.addAttribute("pageVO", vo);
 		
 		return "admin/learnLook";
 	}
@@ -114,7 +131,10 @@ public class AdminController {
 	
 	// 학습 메뉴 - 학습 자료 등록
 	@GetMapping("/learnRegist")
-	public String learnRegist() {
+	public String learnRegist(@RequestParam(value = "game_no", required = false) String game_no, Model model) {
+
+		model.addAttribute("game_no",game_no);
+		
 		return "admin/learnRegist";
 	}
 	
@@ -147,6 +167,19 @@ public class AdminController {
 		return "redirect:/admin/learnLook";
 	}
 	
+	
+	@GetMapping("/learnDeleteHistory")
+	public String learnDeleteHistory(Model model, Criteria criteria) {
+		
+		ArrayList<DocumentVO> list =  documentService.delList(criteria);
+		int total = documentService.getNoTotal();
+		System.out.println(total + "total");
+		PageVO vo = new PageVO(criteria, total);
+		model.addAttribute("Document", list);
+		model.addAttribute("pageVO", vo);
+		
+		return "admin/learnDeleteHistory";
+	}
 	
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	

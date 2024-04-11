@@ -5,11 +5,12 @@
 <div class="wrap">
 <link rel="stylesheet" href="/css/frame/learnLook.css">
 <script src="/js/frame/learnLook.js" defer></script>
+
   <div class="wrap__content">
-    <form action="" method="get" class="regist__wrap" enctype="multipart/form-data">
-      
-      <input type="hidden" name="page" value="1">
-	  <input type="hidden" name="amount" th:value="${pageVO.amount}">
+    <form action="" method="post" class="regist__wrap" enctype="multipart/form-data">
+    
+    <input type="hidden" name="page" value="1">
+  	<input type="hidden" name="amount" th:value="${pageVO.amount}">
       
       <div class="ll__header">
         <div class="ll__header__title"><span>학습 자료 검색</span></div>
@@ -57,7 +58,7 @@
 
 			<th:block th:each="Document : ${Document}">
 	            <div class="ll__tbody__content">
-	              <div class="ll__tbody_one"><input type="checkbox" th:value="${Document.docu_no}" name="selectedLearn" class="learn_checkBox"></div>
+	              <div class="ll__tbody_one"><input type="checkbox" th:value="${Document.docu_no}" class="learn_checkBox"></div>
 	              <div class="ll__tbody_two"><img th:src="@{/display/{filepath}/{uuid}/{filename}(filepath=${Document.filepath},uuid=${Document.uuid},filename=${Document.filename})}"  ></div>
 	              <div class="ll__tbody_three" th:text="${Document.docu_title}">학습자료명</div>
 	              <div class="ll__tbody_four">
@@ -77,18 +78,16 @@
 	              <div class="ll__tbody_eight"><button id="ll__modify">수정</button><button class="ll__delete">삭제</button></div>
 	            </div>
           	</th:block>
-			
-          </div>
-			
 
+          </div>
         </div>
-        <th:block th:replace="~{./baseLayout/page :: pageNation(${pageVO})}"></th:block>
+        <th:block th:replace="~{./baseLayout/page_learnDel :: pageNation(${pageVOlearnDel})}"></th:block>
       </div>
       
-
-
     </form>
+     
   </div>
+ 	
 </div>
   
 </th:block>

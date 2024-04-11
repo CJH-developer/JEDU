@@ -14,7 +14,8 @@
 	  		GAME_CONTENT,
 	  		GAME_COUNT,
 	  		GAME_SUB_REGDATE,
-	  		GAME_SUB_ENDDATE
+	  		GAME_SUB_ENDDATE,
+	  		DEL_CHECK
 	  	) VALUES (
 	  		#{game_title},
 	  		#{game_target_level},
@@ -23,7 +24,8 @@
 	  		#{game_content},
 	  		#{game_count},
 	  		#{game_sub_startDate},
-	  		#{game_sub_endDate}
+	  		#{game_sub_endDate},
+	  		#{del_check}
 	  	)
 	  </insert>
 
@@ -61,6 +63,7 @@
         <result property="game_discount_price" column="GAME_DISCOUNT_PRICE"/>
         <result property="game_count" column="GAME_COUNT"/>
         <result property="game_regdate" column="GAME_REGDATE"/>
+        <result property="del_check" column="DEL_CHECK"/>
     </resultMap>
 
     <resultMap id="uploadResultMap" type="UploadVO">
@@ -81,7 +84,8 @@
             G.GAME_REGDATE, 
             U.FILENAME, 
             U.FILEPATH, 
-            U.UUID
+            U.UUID,
+            G.DEL_CHECK
         FROM 
             GAME_CONTENT AS G
         LEFT JOIN 
@@ -90,7 +94,72 @@
             G.GAME_NO = U.GAME_NO
         WHERE 
     		U.FILENAME IS NOT NULL
+     	AND
+			G.DEL_CHECK = "Y"
+		ORDER BY
+			G.GAME_NO DESC
+		limit #{criteria.pageStart}, #{criteria.amount}
     </select>
+    
+    <!-- Select Query -->
+    <select id="getTotal" resultType="int">
+        SELECT 
+        	COUNT(*) AS TOTAL
+		FROM 
+			GAME_CONTENT 
+		WHERE 
+			DEL_CHECK = "Y"
+    </select>
+    
+    <select id="delHistory" resultMap="gameResultMap">
+        SELECT 
+        	G.GAME_NO,
+            G.GAME_TITLE, 
+            G.GAME_TARGET_LEVEL, 
+            G.GAME_DISCOUNT_PRICE, 
+            G.GAME_COUNT, 
+            G.GAME_REGDATE, 
+            U.FILENAME, 
+            U.FILEPATH, 
+            U.UUID,
+            G.DEL_CHECK
+        FROM 
+            GAME_CONTENT AS G
+        LEFT JOIN 
+            UPLOAD U
+        ON 
+            G.GAME_NO = U.GAME_NO
+        WHERE 
+    		U.FILENAME IS NOT NULL
+     	AND
+			G.DEL_CHECK = "N"
+		ORDER BY
+			G.GAME_NO DESC
+		limit #{criteria.pageStart}, #{criteria.amount}
+    </select>
+    
+    <!-- Select Query -->
+    <select id="getNoTotal" resultType="int">
+        SELECT 
+        	COUNT(*) AS TOTAL
+		FROM 
+			GAME_CONTENT 
+		WHERE 
+			DEL_CHECK = "N"
+    </select>
+    
+    
+    <!-- 게임컨텐츠 조회 - 삭제 -->
+    <update id="gameContentDelete">
+    	UPDATE 
+    		GAME_CONTENT 
+    	SET 
+    		DEL_CHECK = "N"
+    	WHERE
+    		GAME_NO = #{game_no}
+    </update>
+    
+  
     
     
   

@@ -14,8 +14,8 @@
 .ll__header__button{width: 15%; height: 100%; display: flex; align-items: center; justify-content: space-evenly;}
 .ll__header__button button{width: 80px; height: 25px;}
 
-.ll__body__table{width: 100%; height: 93%; margin-top: 15px; display: flex; flex-direction: column;}
-
+.ll__body__table{width: 100%; height: 85%; margin-top: 15px; display: flex; flex-direction: column;}
+.page{width:100%; height:8%; display:flex; align-items: center;} 
 .ll__body__thead{width: 100%; height: 8%; display: flex; align-items: center; background-color: rgb(61, 106, 231);}
 
 .ll__thead_one{width: 4%; height: 100%; display: flex; align-items: center; justify-content: center; border-right: 1px solid rgb(16, 48, 228); font-size: 13px;  color: white;}
@@ -43,5 +43,5 @@
 
 #ll__modify{width: 60px; height: 25px; margin: 0px 5px; border: none; background-color: rgb(17, 177, 65); color: white;}
 #ll__modify:hover{background-color: rgb(11, 141, 50);}
-#ll__delete{width: 60px; height: 25px; margin: 0px 5px; border: none; background-color: rgb(236, 42, 42); color: white;}
-#ll__delete:hover{background-color: rgb(201, 33, 33);}
+.ll__delete{width: 60px; height: 25px; margin: 0px 5px; border: none; background-color: rgb(236, 42, 42); color: white;}
+.ll__delete:hover{background-color: rgb(201, 33, 33);}

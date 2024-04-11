@@ -11,7 +11,7 @@
     <input type="hidden" name="page" value="1">
 	<input type="hidden" name="amount" th:value="${pageVO.amount}">
       <div class="gl__header">
-        <div class="gl__header__title"><span>컨텐츠 등록 현황</span></div>
+        <div class="gl__header__title"><span>게임컨텐츠 삭제이력</span></div>
         <div class="gl__header__select">
           <select name="" id="levelSelect">
             <option value="100">레벨을 선택해주세요.</option>
@@ -46,22 +46,21 @@
 
           <div class="gl__body__tbody">
 
-			<th:block th:each="gameContent : ${gameContent}">
+			<th:block th:each="gameDeleteHistory : ${gameDeleteHistory}">
 	            <div class="gl__tbody__content">
-	              <div class="gl__tbody_one"><input type="checkbox" th:value="${gameContent.game_no}" name="selectedGame" class="game_checkBox"></div>
-	              <div class="gl__tbody_two"><img th:src="@{/display/{filepath}/{uuid}/{filename}(filepath=${gameContent.filepath},uuid=${gameContent.uuid},filename=${gameContent.filename})}"  ></div>
-	              <div class="gl__tbody_three" th:text="${gameContent.game_title}">컨텐츠명</div>
+	              <div class="gl__tbody_one"><input type="checkbox" th:value="${gameDeleteHistory.game_no}" name="selectedGame" class="game_checkBox"></div>
+	              <div class="gl__tbody_two"><img th:src="@{/display/{filepath}/{uuid}/{filename}(filepath=${gameDeleteHistory.filepath},uuid=${gameDeleteHistory.uuid},filename=${gameDeleteHistory.filename})}"  ></div>
+	              <div class="gl__tbody_three" th:text="${gameDeleteHistory.game_title}">컨텐츠명</div>
 	              <div class="gl__tbody_four">
-                  <span th:if="${gameContent.game_target_level == 1}">초급</span>
-                  <span th:if="${gameContent.game_target_level == 2}">중급</span>
-                  <span th:if="${gameContent.game_target_level == 3}">고급</span>
-                  <span th:if="${gameContent.game_target_level == 4}">프로</span>
+                  <span th:if="${gameDeleteHistory.game_target_level == 1}">초급</span>
+                  <span th:if="${gameDeleteHistory.game_target_level == 2}">중급</span>
+                  <span th:if="${gameDeleteHistory.game_target_level == 3}">고급</span>
+                  <span th:if="${gameDeleteHistory.game_target_level == 4}">프로</span>
                 </div>
-	              <div class="gl__tbody_five" th:text="${gameContent.game_count} + 개월">구독개월</div>
-	              <div class="gl__tbody_six" th:text="${gameContent.game_regdate}">기간</div>
-	              <div class="gl__tbody_seven" th:text="${gameContent.game_discount_price} + 원">판매가</div>
+	              <div class="gl__tbody_five" th:text="${gameDeleteHistory.game_count} + 개월">구독개월</div>
+	              <div class="gl__tbody_six" th:text="${gameDeleteHistory.game_regdate}">기간</div>
+	              <div class="gl__tbody_seven" th:text="${gameDeleteHistory.game_discount_price} + 원">판매가</div>
 	              <div class="gl__tbody_eight">
-	              	<button id="gl__modify">수정</button>
 	              	<button type="button" class="gl__delete" >삭제</button>
 	              </div>
 	            </div>
@@ -71,7 +70,7 @@
 
 
         </div>
-        <th:block th:replace="~{./baseLayout/page_gameContent :: pageNation(${pageVOgameContent})}"></th:block>
+        <th:block th:replace="~{./baseLayout/page_gameDel :: pageNation(${pageVOgameDel})}"></th:block>
       </div>
       
 

@@ -10,12 +10,13 @@
 
 .gl__header__select{width: 90%; height: 100%; display: flex; align-items: center; justify-content: space-between;}
 .gl__header__select select{border: none; width: 200px; height: 30px; border-bottom: 1px solid rgb(196, 196, 196); margin-right: 5px; &:focus{outline: none;}}
-.learn__button{margin-right: 30px; width: 110px; height: 30px; background-color: rgb(61, 106, 231); display: flex; align-items: center; justify-content: center; border-radius: 5px;}
-.learn__button a{font-size: 13px; color: white;}
-.learn__button:hover{background-color: rgb(38, 85, 214);}
+.learn__button{margin-right: 30px; width: 110px; height: 30px; background-color: rgb(61, 106, 231); display: flex; align-items: center; justify-content: center; border-radius: 5px; }
+.learn__button button{width: 100%; height: 100%; background-color: rgb(61, 106, 231); border: none; border-radius: 5px; &:focus{outline: none;}}
+.learn__button button{font-size: 13px; color: white;}
+.learn__button button:hover{background-color: rgb(38, 85, 214);}
 
-.gl__body__table{width: 100%; height: 93%; margin-top: 15px; display: flex; flex-direction: column;}
-
+.gl__body__table{width: 100%; height: 85%; margin-top: 15px; display: flex; flex-direction: column;}
+.page{width:100%; height:8%; display:flex; align-items: center;} 
 .gl__body__thead{width: 100%; height: 8%; display: flex; align-items: center; background-color: rgb(61, 106, 231);}
 
 .gl__thead_one{width: 4%; height: 100%; display: flex; align-items: center; justify-content: center; border-right: 1px solid rgb(16, 48, 228); font-size: 13px;  color: white;}
@@ -43,5 +44,5 @@
 
 #gl__modify{width: 60px; height: 25px; margin: 0px 5px; border: none; background-color: rgb(17, 177, 65); color: white;}
 #gl__modify:hover{background-color: rgb(11, 141, 50);}
-#gl__delete{width: 60px; height: 25px; margin: 0px 5px; border: none; background-color: rgb(236, 42, 42); color: white;}
-#gl__delete:hover{background-color: rgb(201, 33, 33);}
+.gl__delete{width: 60px; height: 25px; margin: 0px 5px; border: none; background-color: rgb(236, 42, 42); color: white;}
+.gl__delete:hover{background-color: rgb(201, 33, 33);}
