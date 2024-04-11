@@ -18,4 +18,5 @@ public interface GameContentService {
 	// 게임 - 게임컨텐츠 조회 - 내용
 	public ArrayList<GameContentVO> getList();
 	
+
 }

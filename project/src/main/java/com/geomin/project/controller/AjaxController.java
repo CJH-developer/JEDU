@@ -24,9 +24,6 @@ import com.geomin.project.gameContentService.GameContentService;
 @RestController
 public class AjaxController {
 
-	@Autowired
-	@Qualifier("GameContentService")
-	private GameContentService gameContentService;
 	
 	// 파일 업로드 경로
 	@Value("${project.upload.path}")

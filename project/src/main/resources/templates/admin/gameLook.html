@@ -13,10 +13,10 @@
         <div class="gl__header__select">
           <select name="" id="levelSelect">
             <option value="100">레벨을 선택해주세요.</option>
-            <option value="1" th:selected="${level == 1}">초급</option>
-            <option value="2" th:selected="${level == 2}">중급</option>
-            <option value="3" th:selected="${level == 3}">고급</option>
-            <option value="4" th:selected="${level == 4}">프로</option>
+            <option value="1">초급</option>
+            <option value="2">중급</option>
+            <option value="3">고급</option>
+            <option value="4">프로</option>
           </select>
 
           <div class="learn__button">
@@ -44,7 +44,7 @@
           <div class="gl__body__tbody">
 
 			<th:block th:each="gameContent : ${gameContent}">
-	            <div class="gl__tbody__content"  th:if="${gameContent.game_target_level == selectedLevel || selectedLevel == ''}">
+	            <div class="gl__tbody__content">
 	              <div class="gl__tbody_one"><input type="checkbox" th:value="${gameContent.game_no}" class="game_checkBox"></div>
 	              <div class="gl__tbody_two"><img th:src="@{/display/{filepath}/{uuid}/{filename}(filepath=${gameContent.filepath},uuid=${gameContent.uuid},filename=${gameContent.filename})}"  ></div>
 	              <div class="gl__tbody_three" th:text="${gameContent.game_title}">컨텐츠명</div>
