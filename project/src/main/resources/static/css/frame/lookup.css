@@ -59,7 +59,7 @@
 
 /* ----------- 장바구니 추가 후 -------------- */
 #content__complCart{width: 120px; height: 55px;  line-height: 55px; margin: 0px 5px; font-size: 14px;  font-weight: bold; display:none;}
-#content__alreadyInCart{width: 120px; height: 55px;  line-height: 55px; margin: 0px 5px; font-size: 14px;  font-weight: bold; display:none;}
+#content__alreadyInCart{max-width: 25px; max-height: 25px;  line-height: 55px; margin: 0 auto; font-size: 14px;  font-weight: bold; display:none;}
 
 
 

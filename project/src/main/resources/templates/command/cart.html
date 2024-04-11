@@ -55,35 +55,14 @@
 			<div class="total_price" id="total_price"></div>
 		</div>
 		<div class="total_payment">
-			<button class="btn-checkout" id="checkoutButton">결재하기</button>
+			<button class="btn-checkout" id="checkoutButton">결재하러 가기</button>
 		</div>
 	</div>
 	
-	<div id="myModal" class="modal">
-	  <div class="modal-content">
-	    <span class="close">X</span>
-	    <p></p>
-	    <p></p>
-	  </div>
-    </div>
-	
 	<script>
-	  var modal = document.getElementById('myModal');
-	  var btn = document.getElementById('checkoutButton');
-	  var span = document.getElementsByClassName('close')[0];
-
 	  $("#checkoutButton").click(function() {
-		    modal.style.display = 'block';
+		    window.location.href="/command/payment"
 	  });
-	  
-	  span.onclick = function() {
-		    modal.style.display = 'none';
-	  }
-	  window.onclick = function(event) {
-		    if (event.target == modal) {
-		      modal.style.display = 'none';
-		    }
-	  }
 	  
 	  var totalContent = $(".game_title").val() ;
 	  console.log(totalContent + "11");  
