@@ -49,13 +49,14 @@ public class UserController {
 	@GetMapping("/User_myproduct")
 	public String Usermyproduct(Model model,JTwoCriteria JTwo) {
 		
-		ArrayList<GameContentVO> MyList=userServiceTwo.MyList(JTwo);
+		ArrayList<GameContentVO> List=userServiceTwo.MyList(JTwo);
 		int total = userServiceTwo.MyToTal(JTwo);
 		JTwoPageVO JTwoPageVO=new JTwoPageVO(JTwo,total);
 		model.addAttribute("JTwoPageVO",JTwoPageVO);
-		model.addAttribute("Mylist", MyList);
+		model.addAttribute("List", List);
 		//구매이력의 페이지당 포함될수 있는 리스트 양이 다르기 때문에 (JPageVO, JCriteria)한 묶음으로 한개 (JTwoPageVO, JTwocriteria)한 묶음으로 한개씩 두개를 만들었습니다.
-		
+		System.out.println(List);
+		System.out.println(JTwoPageVO);
 		
 		return "user/User_myproduct";
 	}

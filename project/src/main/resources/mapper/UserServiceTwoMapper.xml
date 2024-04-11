@@ -4,11 +4,13 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
   
   <mapper namespace="com.geomin.project.UserServiceTwo.UserServiceTwoMapper">
-  <select id="MyList" resultType="GameContentVO">
-	select * from game_content as e inner join game_purchase as d on
-	e.user_no = d.user_no inner join study_group as f on e.user_no =
-	f.user_no order by e.game_no  desc limit #{JTwoPageList}, #{JTwoAmount}; 
-  
+  <select id="MyList" resultType="com.geomin.project.command.GameContentVO">
+SELECT e.game_title, e.game_price, e.game_sub_startDate, e.game_sub_endDate, d.purchase_date, f.sg_name, f.sg_level 
+FROM game_content AS e 
+LEFT JOIN game_purchase AS d ON e.user_no = d.user_no 
+LEFT JOIN study_group AS f ON e.user_no = f.user_no 
+ORDER BY e.game_no DESC 
+LIMIT #{JTwoPageList}, #{JTwoAmount};
   
   
   
@@ -20,7 +22,10 @@
   
   </select>
     <select id="MyToTal" resultType="int">
-    select count(*) as total from game_content as e inner join game_purchase as d on e.game_no = d.game_no inner join study_group as f on e.game_no = f.game_no; 
+SELECT count(*) as total
+FROM game_content AS e 
+INNER JOIN game_purchase AS d ON e.user_no = d.user_no 
+INNER JOIN study_group AS f ON e.user_no = f.user_no    ; 
   </select>
   
   </mapper>

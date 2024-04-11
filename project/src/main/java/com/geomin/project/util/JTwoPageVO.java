@@ -19,19 +19,19 @@ public class JTwoPageVO {
 	private int JTwoAmount;
 	private int JTwoTotal;
 	private List<Integer> JTwoPageFirst;
-	private int JFirst;
-	private int JEnd;
-	private boolean JPrev;
-	private boolean JNext;
+	private int JTwoFirst;
+	private int JTwoEnd;
+	private boolean JTwoPrev;
+	private boolean JTwoNext;
 
 
-	private int JRealEnd;
+	private int JTwoRealEnd;
 
-	private JCriteria JCri;
 
-	private List<Integer> JPageList;
 
 	private List<Integer> JTwoPageList;
+
+
 
 	public JTwoPageVO(JTwoCriteria JTwo,  int JTwoTotal) {
 		this.JTwoPage = JTwo.getJTwoPage();
@@ -39,21 +39,21 @@ public class JTwoPageVO {
 		this.JTwoTotal = JTwoTotal;
 		this.JTwo = JTwo;
 
-		this.JEnd = (int) (Math.ceil(this.JTwoPage / 5.0) * 5);
+		this.JTwoEnd = (int) (Math.ceil(this.JTwoPage / 5.0) * 5);
 
-		this.JFirst = this.JEnd - 5 + 1;
+		this.JTwoFirst = this.JTwoEnd - 5 + 1;
 
-		this.JRealEnd = (int) (Math.ceil(this.JTwoTotal / (double) this.JTwoAmount));
+		this.JTwoRealEnd = (int) (Math.ceil(this.JTwoTotal / (double) this.JTwoAmount));
 
-		if (this.JEnd > this.JRealEnd) {
-			this.JEnd = this.JRealEnd;
+		if (this.JTwoEnd > this.JTwoRealEnd) {
+			this.JTwoEnd = this.JTwoRealEnd;
 		}
 
-		this.JPrev = this.JFirst > 1;
+		this.JTwoPrev = this.JTwoFirst > 1;
 
-		this.JNext = this.JRealEnd > this.JEnd;
+		this.JTwoNext = this.JTwoRealEnd > this.JTwoEnd;
 
-		this.JTwoPageFirst = IntStream.rangeClosed(this.JFirst, this.JEnd).boxed().collect(Collectors.toList());
+		this.JTwoPageFirst = IntStream.rangeClosed(this.JTwoFirst, this.JTwoEnd).boxed().collect(Collectors.toList());
 	}
 
 }

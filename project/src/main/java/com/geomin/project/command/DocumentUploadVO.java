@@ -9,13 +9,12 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class UploadVO {
-	
+public class DocumentUploadVO {
+
 	private Integer file_no;
 	private String fileName;  // 작성자가 업로드한 파일명
 	private String filepath;
 	private String uuid;
-	private Integer game_no; // fk
-	private String game_title; // fk
-	
+	private Integer docu_no; // fk
+	private String docu_title; // fk
 }
