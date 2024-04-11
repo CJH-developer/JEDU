@@ -31,17 +31,18 @@
 
 	<!-- 학습 그룹 조회 -->
   	<select id="learnGroupLook" resultType="learnGroupVO">
-  		SELECT DATE_FORMAT(SG_REGDATE, '%Y-%m-%d') AS SG_REGDATE,
-  			   SG_NO,
-  			   USER_NO,
-  			   GAME_NO,
-  			   SG_NAME,
-  			   SG_ENDDATE,
-  			   SG_CAPA,
-  			   SG_LEVEL,
-  			   SG_PLUS,
-  			   SG_GROUPLIMIT
-  			   FROM STUDY_GROUP
+		SELECT DATE_FORMAT(SG_REGDATE, '%Y-%m-%d') AS SG_REGDATE,
+			   SG.SG_NO,
+			   SG.USER_NO,
+			   SG.GAME_NO,
+			   GC.GAME_TITLE,
+			   SG.SG_NAME,
+			   SG.SG_ENDDATE,
+			   SG.SG_CAPA,
+			   SG.SG_LEVEL,
+			   SG.SG_PLUS,
+			   SG.SG_GROUPLIMIT
+		FROM STUDY_GROUP SG JOIN GAME_CONTENT GC ON SG.GAME_NO = GC.GAME_NO;
   	</select>
   	
   	<!-- 내가 만든 그룹 목록 -->
@@ -74,28 +75,18 @@
   	</insert>
   	
   	
-  	<!-- 그룹 상세정보(1) -->
-  	<select id="groupDetail" resultType="learnGroupVO">
-<!--   		<selectKey resultType="int" keyProperty="game_no" order="BEFORE">
-  			SELECT GAME_NO FROM STUDY_GROUP WHERE SG_NO = #{sg_no}
-  		</selectKey> -->
-  		
-	  		SELECT * FROM GAME_CONTENT GC
-			LEFT JOIN STUDY_GROUP SG ON SG.GAME_NO = GC.GAME_NO WHERE SG_NO = #{sg_no};
-  	
-<!--   	  	  	SELECT DATE_FORMAT(SG_REGDATE, '%Y-%m-%d') AS SG_REGDATE,
-  			   SG_NO,
-  			   USER_NO,
-  			   GAME_NO,
-  			   SG_NAME,
-  			   SG_ENDDATE,
-  			   SG_CAPA,
-  			   SG_LEVEL,
-  			   SG_PLUS,
-  			   SG_GROUPLIMIT
-  			   FROM STUDY_GROUP WHERE SG_NO = #{sg_no} -->
-  	
+  	<!-- 그룹 상세정보 -->
+   	<select id="groupDetail" resultType="learnGroupVO">
+	  	SELECT * FROM GAME_CONTENT GC
+		LEFT JOIN STUDY_GROUP SG ON SG.GAME_NO = GC.GAME_NO WHERE SG_NO = #{sg_no};
   	</select>
+  	
+  	<!-- 그룹 상세정보(승인 요청 포함) -->
+   	<select id="groupDetail2" resultType="learnGroupVO">
+		SELECT * FROM USER U LEFT JOIN STUDY_GROUP_JOIN S ON U.USER_NO = S.USER_NO WHERE SG_NO = ${sg_no} AND S.SGJ_AUTH = 0
+  	</select>
+  	
+  	
   	
   	<select id="getHomework" resultType="HomeWorkVO">
   		select * from HOMEWORK;

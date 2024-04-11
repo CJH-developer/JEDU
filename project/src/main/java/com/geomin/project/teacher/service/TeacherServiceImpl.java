@@ -51,6 +51,12 @@ public class TeacherServiceImpl implements TeacherService{
 		return teacherMapper.getHomework();
 	}
 
+	@Override
+	public ArrayList<learnGroupVO> groupDetail2(int sg_no) {
+		
+		return teacherMapper.groupDetail2(sg_no);
+	}
+
 	
 	
 

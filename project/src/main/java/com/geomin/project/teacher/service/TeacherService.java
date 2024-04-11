@@ -26,6 +26,11 @@ public interface TeacherService {
 	// 그룹 상세조회(join 걸었음)
 	public learnGroupVO groupDetail(int sg_no);
 	
+	// 그룹 상세조회 2(그룹 신청 이력 있을 때)
+	public ArrayList<learnGroupVO> groupDetail2(int sg_no);
+	
+	
+	
 	
 	
 

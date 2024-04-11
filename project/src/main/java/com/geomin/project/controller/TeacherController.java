@@ -2,6 +2,9 @@ package com.geomin.project.controller;
 
 import java.util.ArrayList;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -12,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.geomin.project.command.GameContentVO;
 import com.geomin.project.command.HomeWorkVO;
+import com.geomin.project.command.UserVO;
 import com.geomin.project.command.learnGroupVO;
 import com.geomin.project.teacher.service.TeacherService;
 
@@ -78,9 +82,17 @@ public class TeacherController {
 	
 	// 학습 그룹 조회
 	@GetMapping("/learnGroupLook")
-	public String learnGroupLook(Model model) {
+	public String learnGroupLook(Model model, HttpServletRequest request) {
+		// 이건 만약에 세션값 받아오고 싶으면
+//		HttpSession session = request.getSession();
+//		UserVO vo = (UserVO)session.getAttribute("vo");
+
+		
 		ArrayList<learnGroupVO> list = teacherService.learnGroupLook();
 		model.addAttribute("list", list);
+		
+		System.out.println("Tㅇㄴㅁㄴㅇㄻㄴㅇㄹㄹㅇㄴ ㄹㄴㅇ ㄹㄴ 123 21ㄷㅁㄴ ㄹㄴㅇㄹ ㄴㅇ ㄹ");
+		System.out.println(list);
 		
 		return "teacher/learnGroupLook";
 	}
@@ -110,6 +122,7 @@ public class TeacherController {
 	
 	@GetMapping("groupRegistApprove")
 	public String groupRegistApprove() {
+		
 		
 		return "teacher/groupRegistApprove";
 	}
