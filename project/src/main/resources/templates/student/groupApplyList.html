@@ -6,7 +6,6 @@
 <link rel="stylesheet" href="/css/frame/groupRegistLook.css">
 <script src="/js/student/groupRegistList.js" defer></script>
   <div class="wrap__content">
-<!--    <form action="/student/applyGroup" method="get" class="regist__wrap"> -->
       <div class="grl__header">
 
         <div class="grl__header__title"><span>그룹 가입 상세 조회</span></div>
@@ -23,7 +22,9 @@
 
         </div>
         <div class="grl__header__btn">
-          <button type="submit" id="groupApply">가입신청</button>
+          <button type="submit" id="groupApply" >가입신청</button>
+			
+		  <div id="inCartMessage" class="alert-message">승인 절차가 진행 중입니다.</div>
         </div>
         <div id="cartMessage" class="cart-message">그룹 스터디에 신청되었습니다.</div>
 		<div id="inCartMessage" class="alert-message">승인 절차가 진행 중입니다.</div>
@@ -59,8 +60,6 @@
         </div>
 
       </div>
-
-   <!--  </form> -->
   </div>
 </div>
   

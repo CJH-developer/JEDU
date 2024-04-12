@@ -52,8 +52,10 @@ public class StudentController {
 	@GetMapping("/groupApplyList")
 	public String groupRegistLook(Model model,
 								  @RequestParam("sg_no") int sg_no) {		
-		learnGroupVO vo = teacherService.groupDetail(sg_no);		
+		learnGroupVO vo = teacherService.groupDetail(sg_no);
+		System.out.println(vo.sgj_pro);
 		model.addAttribute("group", vo);
+		
  	
 		return "student/groupApplyList";
 	}

@@ -11,17 +11,16 @@ console.log($("#hiddenSg_No").val());
 		
 		const sg_no = $("#hiddenSg_No").val();
         const user_no = $("#hiddenUser_No").val();
-        const sg_level = $("#hiddenSg_Level").val(); // Ensure this hidden input exists in your HTML
+        const sg_level = $("#hiddenSg_Level").val();
         
         $.get('/check/group', {user_no: user_no, sg_no: sg_no})
          .done(function(checkData) {
-             if(checkData === false) { // If the user is already in the group
-                 displayMessage(inCartMessage); // Show the inCartMessage
+             if(checkData === false) { 
+                 displayMessage(inCartMessage); 
              } else {
-                 // If the user can be added to the group, apply to the group
                  $.get('/apply/group', {user_no: user_no, sg_no: sg_no, sg_level: sg_level})
                   .done(function(data) {
-                      displayMessage(cartMessage); // Show the cartMessage
+                      displayMessage(cartMessage); 
                   })
                   .fail(function(error) {
                       console.log("Apply to group failed");
@@ -35,14 +34,13 @@ console.log($("#hiddenSg_No").val());
 
     function displayMessage(element) {
         element.style.display = "block";
-        clearTimeout(element.timeoutId); // Clear any existing timeout to avoid hiding the message too early
+        clearTimeout(element.timeoutId);
         element.classList.add('visible');
         element.style.opacity = '1';
         element.timeoutId = setTimeout(function() {
             element.style.opacity = '0';
-            // Optional: Hide the element after fade-out
             setTimeout(() => { element.style.display = "none"; }, 600); // Adjust timing as necessary
-        }, 2000); // Adjust message display duration as necessary
+        }, 2000); 
     }
 	
 		/*$.ajax({

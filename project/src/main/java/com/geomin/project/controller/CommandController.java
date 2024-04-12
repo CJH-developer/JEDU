@@ -53,30 +53,53 @@ public class CommandController {
 		
 		HttpSession session = request.getSession();
 		UserVO vo = (UserVO) session.getAttribute("vo");
-		int user_no = Integer.parseInt(vo.user_no);
+		model.addAttribute("vo", vo);
 		
+		int user_no = Integer.parseInt(vo.user_no);
 		ArrayList<CartVO> cartList = cartService.getListCart(user_no);
 		
-		System.out.println(cartList.get(0).getGame_price());
+		if(cartList != null) {
+			int total_price = 0;
 		
-		int total_price = 0;
-		
-		for(CartVO c : cartList) {
-			total_price += c.getGame_price();
+			for(CartVO c : cartList) {
+				total_price += c.getGame_price();
+			}
+			
+			System.out.println(total_price);
+			
+			model.addAttribute("cartList", cartList);
+			model.addAttribute("total_price", total_price);
+			return "command/cart";
 		}
-		
-		System.out.println(total_price);
-		
-		model.addAttribute("cartList", cartList);
-		model.addAttribute("total_price", total_price);
-		
 		
 	    return "command/cart";
 	}
 
 	@GetMapping("/payment")
 	public String payment(HttpServletRequest request, Model model) {
-
+		
+		HttpSession session = request.getSession();
+		UserVO vo = (UserVO) session.getAttribute("vo");
+		model.addAttribute("vo", vo);
+		
+		int user_no = Integer.parseInt(vo.user_no);
+		ArrayList<CartVO> cartList = cartService.getListCart(user_no);
+		
+		if(cartList != null) {
+			int total_price = 0;
+		
+			for(CartVO c : cartList) {
+				total_price += c.getGame_price();
+			}
+			
+			System.out.println(total_price);
+			
+			model.addAttribute("cartList", cartList);
+			model.addAttribute("total_price", total_price);
+			return "command/payment";
+		}
+		
+		
 		return "command/payment";
 	}
 

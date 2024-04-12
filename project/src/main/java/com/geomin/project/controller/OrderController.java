@@ -104,11 +104,16 @@ public class OrderController {
      */
     @GetMapping("/success")
     public String paymentRequest(HttpServletRequest request, Model model) throws Exception {
-		HttpSession session = request.getSession();
+		
+    	HttpSession session = request.getSession();
 		UserVO vo = (UserVO) session.getAttribute("vo");
 		int user_no = Integer.parseInt(vo.user_no);
+		
 		ArrayList<CartVO> cartList = cartService.getListCart(user_no);
 		model.addAttribute("cartList", cartList);
+		
+		//결재 완료시 지워주기
+		cartService.successPay(user_no);
     	
     	return "order/success";
     }
