@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -11,19 +12,27 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.ui.Model;
 import org.springframework.util.FileCopyUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+
 import org.springframework.web.bind.annotation.RestController;
 
-import com.geomin.project.command.GameContentVO;
+import com.geomin.project.document.service.DocumentService;
 import com.geomin.project.gameContentService.GameContentService;
 
 @RestController
 public class AjaxController {
 
+	@Autowired
+	@Qualifier("GameContentService")
+	private GameContentService gameContentService;
+	
+	@Autowired
+	@Qualifier("DocumentService")
+	private DocumentService documentService;
 	
 	// 파일 업로드 경로
 	@Value("${project.upload.path}")
@@ -55,7 +64,22 @@ public class AjaxController {
 		return entity;
 	}
 	
-	
 
+	@PostMapping("/deleteSelectedGames")
+    public ResponseEntity<String> deleteSelectedGames(@RequestBody Map<String, List<String>> request) {
+        List<String> selectedGames = request.get("selectedGames");
+        // 선택된 게임들을 삭제하는 서비스 메서드 호출
+        int game_no = Integer.parseInt(selectedGames.get(0));
+        gameContentService.gameContentDelete(game_no);
+        return new ResponseEntity<>("선택된 게임 삭제 완료", HttpStatus.OK);
+    }
+	
+	@PostMapping("/deleteSelectedLearning")
+    public ResponseEntity<String> deleteSelectedLearning(@RequestBody Map<String, List<String>> request) {
+        List<String> selectedlearns = request.get("selectedlearns");
+        int docu_no = Integer.parseInt(selectedlearns.get(0));
+        documentService.learnContentDelete(docu_no);
+        return new ResponseEntity<>("선택된 게임 삭제 완료", HttpStatus.OK);
+    }
 	
 }

@@ -10,6 +10,7 @@ import lombok.NoArgsConstructor;
 @Data
 @Builder
 public class learnGroupVO {
+
 	public String sg_no;
 	public String user_no;
 	public String game_no;
@@ -33,5 +34,15 @@ public class learnGroupVO {
 	private String game_sub_startDate;
 	private String game_sub_endDate;
 	
+	// USER 가져옴
+	public String user_id;
+	public String user_name;
+	public String user_level;
+	public String user_email;
+	public String user_phone;
+	public String user_birth;
+	public String user_address;
+	public String user_gender;
 	
+	public String user_regdate;
 }

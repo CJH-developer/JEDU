@@ -22,6 +22,7 @@ public class GameContentVO {
 	private String game_sub_startDate;
 	private String game_sub_endDate;
 	private String game_regdate;
+	private String del_check;
 	
 	private String filename;  // 작성자가 업로드한 파일명
 	private String filepath;
