@@ -18,8 +18,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.geomin.project.board.service.BoardService;
 import com.geomin.project.command.DocumentVO;
 import com.geomin.project.command.GameContentVO;
+import com.geomin.project.command.NoticeVO;
 import com.geomin.project.command.PageVO;
 import com.geomin.project.document.service.DocumentService;
 import com.geomin.project.gameContentService.GameContentService;
@@ -38,6 +40,10 @@ public class AdminController {
 	@Autowired
 	@Qualifier("DocumentService")
 	private DocumentService documentService;
+	
+	@Autowired
+	@Qualifier("BoardService")
+	private BoardService boardService;
 	
 	// 파일 업로드 경로
 //	@Value("${project.upload.path}")
@@ -188,6 +194,18 @@ public class AdminController {
 	@GetMapping("/noticeRegist")
 	public String noticeRegist() {
 		return "admin/noticeRegist";
+	}
+	
+	@PostMapping("/noticeRegistForm")
+	public String noticeRegistForm(NoticeVO vo, RedirectAttributes ra) {
+		int result = boardService.regist(vo);
+
+		if(result == 1) {
+			ra.addFlashAttribute("msg", "정상적으로 등록되었습니다.");
+		}else {
+			ra.addFlashAttribute("msg", "게시글 등록을 다시 확인요청드립니다.");
+		}
+		return "redirect:/admin/noticeRegist";
 	}
 	
 	// 게시판 - FAQ 등록
