@@ -32,7 +32,7 @@
 .lookup__body{width: 100%; height: 90%; display: flex; align-items: center;}
 .lookup__table{width: 100%; height: 100%; display: flex; flex-direction: column;}
 
-.table__thead{width: 96%; height: 7%; display: flex; align-items: center;  background-color: rgb(36, 86, 224);}
+.table__thead{width: 96%; height: 7%; display: flex; align-items: center; justify-content: center; background-color: rgb(36, 86, 224);}
 .table__tbody{width: 96%; height: 88%; border: 1px solid rgb(202, 200, 200);}
 .table__page{width: 96%; height: 5%;}
 
@@ -43,18 +43,25 @@
 .thead__introduce{width: 24%; height: 100%; display: flex; align-items: center; justify-content: center; color: white; font-size: 12px;border-right: 1px solid rgb(23, 112, 228);}
 .thead__pay{width: 10%; height: 100%; display: flex; align-items: center; justify-content: center; color: white; font-size: 12px;}
 
-.tbody__item{width: 100%; height: 25%; border-bottom: 1px solid rgb(209, 209, 209); display: flex; align-items: center; }
+
+.tbody__item{width: 100%; height: 25%; border-bottom: 1px solid rgb(209, 209, 209); display: flex; align-items: center; justify-content:center; }
 .tbody__check{width: 6%; height: 100%; display: flex; align-items: center; justify-content: center; font-size: 12px; color: black; border-right: 1px solid rgb(214, 214, 214);}
 .tbody__image{width: 20%; height: 100%; display: flex; align-items: center; justify-content: center; color: black; font-size: 12px; border-right: 1px solid rgb(214, 214, 214);}
 .tbody__title{width: 20%; height: 100%; display: flex; align-items: center; justify-content: center; color: black; font-size: 12px; border-right: 1px solid rgb(214, 214, 214);}
 .tbody__subscribe{width: 20%; height: 100%; display: flex; flex-direction: column; align-items: center; justify-content: center; color: black; font-size: 12px; border-right: 1px solid rgb(214, 214, 214);}
 .tbody__introduce{width: 24%; height: 100%; display: flex; align-items: center; justify-content: center; color: black; font-size: 12px; border-right: 1px solid rgb(214, 214, 214);}
-.tbody__pay{width: 10%; height: 100%; display: flex; align-items: center; justify-content: center;}
+.tbody__pay{width: 10%; height: 100%; display: flex; align-items: center; justify-content:space-between;}
 .tbody__pay button{width: 60px; height: 25px; margin: 0px 5px; font-size: 12px; border: 1px solid rgb(184, 182, 182); font-weight: bold;}
-#content__purchase{background-color: rgb(233, 161, 6);}
+#content__purchase{background-color: rgb(233, 161, 6); margin-left:20px}
 #content__purchase:hover{background-color: rgb(240, 174, 52);}
-#content__basket{background-color: rgb(15, 172, 15);}
+#content__basket{background-color: rgb(15, 172, 15); margin-left:15px;}
 #content__basket:hover{background-color: rgb(30, 218, 30);}
+
+/* ----------- 장바구니 추가 후 -------------- */
+#content__complCart{width: 120px; height: 55px;  line-height: 55px; margin: 0px 5px; font-size: 14px;  font-weight: bold; display:none;}
+#content__alreadyInCart{max-width: 25px; max-height: 25px;  line-height: 55px; margin: 0 auto; font-size: 14px;  font-weight: bold; display:none;}
+
+
 
 .tbody__image img{width: 95%; height: 95%;}
 
@@ -114,49 +121,39 @@
 
 #content__group__cnt{color: red; font-weight: bold; margin-right: 5px;}
 
-/* 장바구니 모달창 */
-.modal {
-  display: none;
-  position: fixed; 
-  z-index: 1; 
-  left: 0;
-  top: 0;
-  width: 100%; 
-  height: 100%; 
-  overflow: auto; 
-  background-color: rgb(0,0,0);
-  background-color: rgba(0,0,0,0.4);
-}
 
-/* 모달안 내용 */
-.modal-content {
-  background-color: #fefefe;
-  margin: 10% auto; 
-  padding: 20px;
-  border: 1px solid #888;
-  width: 30%;
-  height: 10%;
-  line-height: 50px;
-  display: flex;
+/* 장바구니 추가시 나타나는 메세지 */
+.cart-message {
+  background-color: #A0A0A0;
+  color: white;
+  padding: 10px;
+  border: 1px solid #B0B0B0;
+  border-radius: 5px;
+  text-align: center;
+  width: 600px;
+  position: fixed;
+  left:55%; 
+  bottom: 10%; 
+  transform: translateX(-50%); 
+  opacity: 0;
+  transition: opacity 0.5s ease-in-out;
+  pointer-events: none; 
 }
-
-#toCart {
-	margin-left:100px
-}
-
-/* 모달 닫기 기능 */
-.close {
-  color: #aaa;
-  float: right;
-  font-size: 28px;
-  font-weight: bold;
-}
-
-.close:hover,
-.close:focus {
-  color: black;
-  text-decoration: none;
-  cursor: pointer;
+.alert-message {
+  background-color: #f8d7da;
+  color: #721c24;
+  padding: 10px;
+  border: 1px solid #f5c6cb;
+  border-radius: 5px;
+  text-align: center;
+  width: 600px;
+  position: fixed;
+  left: 55%; 
+  bottom: 10%; 
+  transform: translateX(-50%); 
+  opacity: 0;
+  transition: opacity 0.5s ease-in-out;
+  pointer-events: none; 
 }
 
 

@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import org.apache.ibatis.annotations.Mapper;
 
+import com.geomin.project.command.GameContentVO;
 import com.geomin.project.command.HomeWorkVO;
 import com.geomin.project.command.learnGroupVO;
 
@@ -21,5 +22,31 @@ public interface TeacherMapper {
 	
 	// 숙제 등록
 	public int RegistHomework(HomeWorkVO vo);
+	
+	// 숙제 조회
+	public ArrayList<HomeWorkVO> getHomework();
+	
+	// 그룹 상세조회(join 걸었음)
+	public learnGroupVO groupDetail(int sg_no);
+	
+	// 그룹 상세조회 2(그룹 신청 이력 있을 때)
+	public ArrayList<learnGroupVO> groupDetail2(int sg_no);
+	
+	// 그룹 가입 승인
+	public int approve(int user_no);
+	
+	// 그룹 가입 승인 시 capacity + 1
+	public int capacity(int sg_no);
+	
+	// 그룹 가입 거절
+	public int reject(int user_no);
+	
+	// 그룹 가입 거절 시 capacity - 1
+//	public int capaMinus(int sg_no);
+	
+	// 내가 만든 숙제들 확인(숙제 전송 페이지)
+	public ArrayList<HomeWorkVO> getMyHomework(String user_no);
+	
+	
 
 }

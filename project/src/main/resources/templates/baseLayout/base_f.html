@@ -4,6 +4,8 @@
 
 <head>
 <meta charset="UTF-8">
+<!-- JQuery -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
 <!--  SWIPER -->
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
@@ -37,6 +39,7 @@
 
 <!-- MAIN JS -->
 <script th:src="@{/js/frame/baseLayout.js}" defer ></script>
+
 </head>
 
 <body>
@@ -44,7 +47,10 @@
 	<div class="background">
     	<div class="frame__wrapper">
       		<div class="frame__content">
-
+				
+				<!-- user_no -->
+				<input type="hidden" th:value="${session.vo.user_no}" name="user_no" id="user_no">
+				
 		        <!-- nav bar -->
 		        <!-- 이곳이 권한 마다 변경 -->
 		        <div class="frame__left">
@@ -75,7 +81,7 @@
 			                <a href="/user/myproduct" class="small__menu" data-title="내 구독 상품 조회">내 구독 상품 조회</a>
 			                <a href="" class="small__menu" data-title="학습상태">학습상태</a>
 			              </div>
-			
+						  
 			            </div>
 		            	</div>
 		
@@ -91,7 +97,7 @@
 			
 			              <button type="button" class="section__sub__menu" value="학습그룹"><img src="/img/pen.png" alt="화살표"> 학습그룹</button>
 			              <div class="sub__menu__list">
-			                <a href="" class="small__menu" data-title="학습 그룹 조회">학습 그룹 조회</a>
+			                <a href="/student/groupStudyList" class="small__menu" data-title="학습 그룹 조회">학습 그룹 조회</a>
 			                <a href="" class="small__menu" data-title="학습 그룹 신청">학습 그룹 신청</a>
 			              </div>
 			
@@ -148,13 +154,14 @@
 			                <a href="/teacher/homeWorkScore" class="small__menu" data-title="숙제제출조회">숙제제출조회</a>
 			              </div>
 			              
-			              <button  class="section__sub__menu" value="장바구니">장바구니</button>
+			              <button class="section__sub__menu" value="장바구니">장바구니</button>
 			              <div class="sub__menu__list">
 			                <a href="/command/cart" class="small__menu" data-title="장바구니 조회">장바구니 조회</a>
 			              </div>
 			              
 			            </div>
 		            </div>
+			
 		
 		            <!-- 관리자 권한 불러올 메뉴 -->
 		            <div th:if="${#authentication.principal.user_role == 'ROLE_ADMIN'}" sec:authorized="isAuthenticated()">
@@ -179,6 +186,8 @@
 			                <a href="/admin/gameRegist" class="small__menu" data-title="게임컨텐츠등록" >게임 컨텐츠등록</a>
 			                <a href="/admin/learnLook" class="small__menu" data-title="학습컨텐츠조회" >학습 컨텐츠 조회</a>
 			                <a href="/admin/learnRegist" class="small__menu" data-title="학습컨텐츠등록" >학습 컨텐츠등록</a>
+			                <a href="/admin/gameDeleteHistory" class="small__menu" data-title="게임 컨텐츠 삭제이력" >게임 컨텐츠 삭제이력</a>
+			                <a href="/admin/learnDeleteHistory" class="small__menu" data-title="학습자료 삭제이력" >학습자료 삭제이력</a>
 			              </div>
 			
 			              <button type="button" class="section__sub__menu" value="게시판관리"><img src="/img/pen.png" alt="화살표">게시판관리</button>

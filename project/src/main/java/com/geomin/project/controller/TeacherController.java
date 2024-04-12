@@ -2,14 +2,20 @@ package com.geomin.project.controller;
 
 import java.util.ArrayList;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
+import com.geomin.project.command.GameContentVO;
 import com.geomin.project.command.HomeWorkVO;
+import com.geomin.project.command.UserVO;
 import com.geomin.project.command.learnGroupVO;
 import com.geomin.project.teacher.service.TeacherService;
 
@@ -27,19 +33,33 @@ public class TeacherController {
 		return "teacher/main";
 	}
 	
-	// 숙제 등록
+	// 숙제 등록 페이지
 	@GetMapping("/homeWorkRegist")
-	public String homeWorkRegist() {
+	public String homeWorkRegist(Model model) {
+		
+		// 숙제 등록 페이지 속 숙제 목록 보기
+		ArrayList<HomeWorkVO> list = teacherService.getHomework();
+		model.addAttribute("list", list);
+		
 		return "teacher/homeWorkRegist";
 	}
 	
 	// 숙제 전송
 	@GetMapping("/homeWorkTransfer")
-	public String homeWorkTransfer() {
+	public String homeWorkTransfer(HttpServletRequest request,
+									Model model) {
+		// 세션값 받아오기
+		HttpSession session = request.getSession();
+		UserVO vo = (UserVO)session.getAttribute("vo");
+		
+		ArrayList<HomeWorkVO> list = teacherService.getMyHomework(vo.user_no);
+		model.addAttribute("homework", list);
+		
+		
 		return "teacher/homeWorkTransfer";
 	}
 	
-	// 숙제 전송
+	// 숙제 제출 조회
 	@GetMapping("/homeWorkScore")
 	public String homeWorkScore() {
 		return "teacher/homeWorkScore";
@@ -72,10 +92,17 @@ public class TeacherController {
 	
 	// 학습 그룹 조회
 	@GetMapping("/learnGroupLook")
-	public String learnGroupLook(Model model) {
+	public String learnGroupLook(Model model, HttpServletRequest request) {
+		// 이건 만약에 세션값 받아오고 싶으면
+//		HttpSession session = request.getSession();
+//		UserVO vo = (UserVO)session.getAttribute("vo");
+
 		
 		ArrayList<learnGroupVO> list = teacherService.learnGroupLook();
 		model.addAttribute("list", list);
+		
+		System.out.println("Tㅇㄴㅁㄴㅇㄻㄴㅇㄹㄹㅇㄴ ㄹㄴㅇ ㄹㄴ 123 21ㄷㅁㄴ ㄹㄴㅇㄹ ㄴㅇ ㄹ");
+		System.out.println(list);
 		
 		return "teacher/learnGroupLook";
 	}
@@ -87,7 +114,36 @@ public class TeacherController {
 		System.out.println(vo);
 		teacherService.RegistHomework(vo);
 		
-		return "";
+		return "teacher/main";
 	}
+	
+	// 그룹 가입 상세 조회
+	@GetMapping("groupRegistLook")
+	public String groupRegistLook(Model model,
+								  @RequestParam("sg_no") int sg_no) {
+		
+		learnGroupVO vo = teacherService.groupDetail(sg_no);
+		
+		model.addAttribute("group", vo);
+
+		
+		return "teacher/groupRegistLook";
+	}
+	
+	// 학습 그룹 승인
+	@GetMapping("groupRegistApprove")
+	public String groupRegistApprove() {
+		
+		return "teacher/groupRegistApprove";
+	}
+	
+	
+	@GetMapping("detailStudentLook")
+	public String detailStudentLook() {
+		
+		return "teacher/detailStudentLook";
+	}
+	
+	
 	
 }

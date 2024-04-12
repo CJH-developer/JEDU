@@ -9,6 +9,7 @@
   <div class="wrap__content">
     <form action="homeWorkRegistForm" method="post" class="regist__wrap">
 
+
       <!-- 컨텐츠 등록 -->
       <div class="homework__regist__left">
 
@@ -55,6 +56,7 @@
             </select>
             <button type="button" id="myGroup">내 학습그룹 불러오기</button>
           </div>
+          
 
           <!-- 자료 파일 주소 -->
           <div class="regist__item__date">
@@ -80,75 +82,12 @@
 
               <div class="homework__body">
 
-                <div class="homework__tbody">
-                  <div class="homework__tbody__one"><span>1</span></div>
-                  <div class="homework__tbody__two"><span>오늘의숙제</span></div>
-                  <div class="homework__tbody__three"><span>알파고를 이기고 오세요</span></div>
-                  <div class="homework__tbody__four"><span>20레벨</span></div>
-                  <div class="homework__tbody__five"><span>9일전</span></div>
-                  <div class="homework__tbody__six"><span>2024-04-05</span></div>
-                </div>
-
-                <div class="homework__tbody">
-                  <div class="homework__tbody__one"><span>2</span></div>
-                  <div class="homework__tbody__two"><span>오늘의숙제</span></div>
-                  <div class="homework__tbody__three"><span>알파고를 이기고 오세요</span></div>
-                  <div class="homework__tbody__four"><span>20레벨</span></div>
-                  <div class="homework__tbody__five"><span>9일전</span></div>
-                  <div class="homework__tbody__six"><span>2024-04-05</span></div>
-                </div>
-
-                <div class="homework__tbody">
-                  <div class="homework__tbody__one"><span>3</span></div>
-                  <div class="homework__tbody__two"><span>오늘의숙제</span></div>
-                  <div class="homework__tbody__three"><span>알파고를 이기고 오세요</span></div>
-                  <div class="homework__tbody__four"><span>20레벨</span></div>
-                  <div class="homework__tbody__five"><span>9일전</span></div>
-                  <div class="homework__tbody__six"><span>2024-04-05</span></div>
-                </div>
-
-                <div class="homework__tbody">
-                  <div class="homework__tbody__one"><span>4</span></div>
-                  <div class="homework__tbody__two"><span>오늘의숙제</span></div>
-                  <div class="homework__tbody__three"><span>알파고를 이기고 오세요</span></div>
-                  <div class="homework__tbody__four"><span>20레벨</span></div>
-                  <div class="homework__tbody__five"><span>9일전</span></div>
-                  <div class="homework__tbody__six"><span>2024-04-05</span></div>
-                </div>
-
-                <div class="homework__tbody">
-                  <div class="homework__tbody__one"><span>5</span></div>
-                  <div class="homework__tbody__two"><span>오늘의숙제</span></div>
-                  <div class="homework__tbody__three"><span>알파고를 이기고 오세요</span></div>
-                  <div class="homework__tbody__four"><span>20레벨</span></div>
-                  <div class="homework__tbody__five"><span>9일전</span></div>
-                  <div class="homework__tbody__six"><span>2024-04-05</span></div>
-                </div>
-
-                <div class="homework__tbody">
-                  <div class="homework__tbody__one"><span>6</span></div>
-                  <div class="homework__tbody__two"><span>오늘의숙제</span></div>
-                  <div class="homework__tbody__three"><span>알파고를 이기고 오세요</span></div>
-                  <div class="homework__tbody__four"><span>20레벨</span></div>
-                  <div class="homework__tbody__five"><span>9일전</span></div>
-                  <div class="homework__tbody__six"><span>2024-04-05</span></div>
-                </div>
-
-                <div class="homework__tbody">
-                  <div class="homework__tbody__one"><span>7</span></div>
-                  <div class="homework__tbody__two"><span>오늘의숙제</span></div>
-                  <div class="homework__tbody__three"><span>알파고를 이기고 오세요</span></div>
-                  <div class="homework__tbody__four"><span>20레벨</span></div>
-                  <div class="homework__tbody__five"><span>9일전</span></div>
-                  <div class="homework__tbody__six"><span>2024-04-05</span></div>
-                </div>
-
-                <div class="homework__tbody">
-                  <div class="homework__tbody__one"><span>8</span></div>
-                  <div class="homework__tbody__two"><span>오늘의숙제</span></div>
-                  <div class="homework__tbody__three"><span>알파고를 이기고 오세요</span></div>
-                  <div class="homework__tbody__four"><span>20레벨</span></div>
-                  <div class="homework__tbody__five"><span>9일전</span></div>
+                <div class="homework__tbody" th:each="list, index : ${list}">
+                  <div class="homework__tbody__one"><span>[[${index.count}]]</span></div>
+                  <div class="homework__tbody__two"><span>[[${list.homework_name}]]</span></div>
+                  <div class="homework__tbody__three"><span>[[${list.homework_content}]]</span></div>
+                  <div class="homework__tbody__four"><span>[[${list.homework_level}]]레벨</span></div>
+                  <div class="homework__tbody__five"><span>[[${list.leftDays()} + '일 전']]</span></div>
                   <div class="homework__tbody__six"><span>2024-04-05</span></div>
                 </div>
 
