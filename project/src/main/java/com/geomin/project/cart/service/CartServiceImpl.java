@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.geomin.project.command.CartVO;
 
-@Service
+@Service("CartServiceImpl")
 public class CartServiceImpl implements CartService{
 	
 	@Autowired
