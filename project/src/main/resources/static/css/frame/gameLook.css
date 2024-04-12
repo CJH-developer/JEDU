@@ -8,10 +8,12 @@
 .gl__header__title{width: 10%; height: 100%; display: flex; align-items: center;}
 .gl__header__title span{font-weight: bold;}
 
-.gl__header__select{width: 90%; height: 100%; display: flex; align-items: center; justify-content: space-between;}
+.gl__header__select{width: 15%; height: 100%; display: flex; align-items: center; }
 .gl__header__select select{border: none; width: 200px; height: 30px; border-bottom: 1px solid rgb(196, 196, 196); margin-right: 5px; &:focus{outline: none;}}
-.learn__button{margin-right: 30px; width: 110px; height: 30px; background-color: rgb(61, 106, 231); display: flex; align-items: center; justify-content: center; border-radius: 5px; }
-.learn__button button{width: 100%; height: 100%; background-color: rgb(61, 106, 231); border: none; border-radius: 5px; &:focus{outline: none;}}
+.sendSelectSearch{width:55%; height:100%; display:flex; align-items: center;}
+.sendSelectSearch a{width:50px; height:30px;  color:white; background-color: rgb(61, 106, 231); color:whtie; display:flex; align-items: center; justify-content:center; } 
+.learn__button{margin-right: 30px; width: 20%; height: 30px;  display: flex; align-items: center; justify-content: flex-end; border-radius: 5px; }
+.learn__button button{width: 50%; height: 100%; background-color: rgb(61, 106, 231); border: none; border-radius: 5px; &:focus{outline: none;}}
 .learn__button button{font-size: 13px; color: white;}
 .learn__button button:hover{background-color: rgb(38, 85, 214);}
 

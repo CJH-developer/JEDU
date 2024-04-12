@@ -53,3 +53,12 @@ $(document).ready(function() {
         });
     });
 });
+
+
+var search__ll__Btn = document.getElementById("search__ll__Btn");
+	search__ll__Btn.addEventListener('click', function() {
+		
+		event.preventDefault(); //고유 이벤트 중지
+		document.learnLook.submit(); // form submit
+		
+	});

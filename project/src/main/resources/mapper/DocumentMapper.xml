@@ -13,7 +13,7 @@
   			DOCU_SERVICE,
   			DOCU_TITLE,
   			DOCU_CONTENT,
-  			DOCU_PATH,
+  			GAME_NO,
   			DEL_CHECK
   		)VALUES (
   			#{docu_type},
@@ -89,6 +89,26 @@
 			DL.FILENAME IS NOT NULL
 		AND	
 			D.DEL_CHECK = "Y"	
+		<if test="criteria.searchType == 0">
+			AND 
+				D.DOCU_TYPE = 0
+		</if>
+		<if test="criteria.searchType == 1">
+			AND 
+				D.DOCU_TYPE = 1
+		</if>
+		<if test="criteria.searchCategory == 0">
+			AND 
+				D.DOCU_CATEGORY = 0
+		</if>
+		<if test="criteria.searchCategory == 1">
+			AND 
+				D.DOCU_CATEGORY = 1
+		</if>
+		<if test="criteria.searchCategory == 2">
+			AND 
+				D.DOCU_CATEGORY = 2
+		</if>
 		ORDER BY
 			D.DOCU_NO DESC
 		limit #{criteria.pageStart}, #{criteria.amount}

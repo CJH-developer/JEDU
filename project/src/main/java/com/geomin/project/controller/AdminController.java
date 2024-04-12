@@ -60,6 +60,7 @@ public class AdminController {
 		int total = gameContentService.getTotal();
 		PageVO vo = new PageVO(criteria, total);
 		model.addAttribute("gameContent", list);
+		System.out.println("getLevelSelect : " + criteria.getLevelSelect());
 		model.addAttribute("pageVO", vo);
 		return "admin/gameLook";
 		

@@ -8,9 +8,10 @@
 .ll__header__title{width: 10%; height: 100%; display: flex; align-items: center;}
 .ll__header__title span{font-weight: bold;}
 
-.ll__header__select{width: 75%; height: 100%; display: flex; align-items: center;}
-.ll__header__select select{border: none; width: 200px; height: 30px; border-bottom: 1px solid rgb(196, 196, 196); margin-right: 5px; &:focus{outline: none;}}
-
+.ll__header__select{width: 30%; height: 100%; display: flex; align-items: center;}
+.ll__header__select select{border: none; width: 200px; height: 30px; border-bottom: 1px solid rgb(196, 196, 196); margin-right: 10px; &:focus{outline: none;}}
+.search__ll__button{width:50%; height:100%; display: flex; align-items: center; }
+.search__ll__button a{width:50px; height:35px; background-color: rgb(61, 106, 231); color:white; display: flex; align-items: center; justify-content: center;}
 .ll__header__button{width: 15%; height: 100%; display: flex; align-items: center; justify-content: space-evenly;}
 .ll__header__button button{width: 80px; height: 25px;}
 

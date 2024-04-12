@@ -10,7 +10,9 @@ public class Criteria {
 
 	////////////////////////////////////////
 	//검색에 필요한 키워드 추가
-	private String searchLevel; //상품이름
+	private String levelSelect; //컨텐츠 레벨
+	private String searchType;
+	private String searchCategory;
 	
 	public Criteria() {
 		this.page = 1;
