@@ -37,68 +37,15 @@
 
             <div class="transfer__tbody">
 
-              <div class="transfer__tbody__content">
+              <div class="transfer__tbody__content" th:each="homework : ${homework}">
                 <div class="transfer__tbody__one"><input type="checkbox"></div>
-                <div class="transfer__tbody__two">오늘의 숙제</div>
-                <div class="transfer__tbody__three">알파고를 10판 연속이기십쇼.</div>
-                <div class="transfer__tbody__four">20레벨</div>
-                <div class="transfer__tbody__five">뚱이네</div>
-                <div class="transfer__tbody__six">1일전</div>
+                <div class="transfer__tbody__two">[[${homework.homework_name}]]</div>
+                <div class="transfer__tbody__three">[[${homework.homework_content}]]</div>
+                <div class="transfer__tbody__four">[[${homework.homework_level + '레벨'}]]</div>
+                <div class="transfer__tbody__five">[[${homework.sg_name}]]</div>
+                <div class="transfer__tbody__six">[[${homework.leftDays() + '일 전'}]]</div>
               </div>
 
-              <div class="transfer__tbody__content">
-                <div class="transfer__tbody__one"><input type="checkbox"></div>
-                <div class="transfer__tbody__two">오늘의 숙제</div>
-                <div class="transfer__tbody__three">알파고를 10판 연속이기십쇼.</div>
-                <div class="transfer__tbody__four">20레벨</div>
-                <div class="transfer__tbody__five">뚱이네</div>
-                <div class="transfer__tbody__six">1일전</div>
-              </div>
-
-              <div class="transfer__tbody__content">
-                <div class="transfer__tbody__one"><input type="checkbox"></div>
-                <div class="transfer__tbody__two">오늘의 숙제</div>
-                <div class="transfer__tbody__three">알파고를 10판 연속이기십쇼.</div>
-                <div class="transfer__tbody__four">20레벨</div>
-                <div class="transfer__tbody__five">뚱이네</div>
-                <div class="transfer__tbody__six">1일전</div>
-              </div>
-
-              <div class="transfer__tbody__content">
-                <div class="transfer__tbody__one"><input type="checkbox"></div>
-                <div class="transfer__tbody__two">오늘의 숙제</div>
-                <div class="transfer__tbody__three">알파고를 10판 연속이기십쇼.</div>
-                <div class="transfer__tbody__four">20레벨</div>
-                <div class="transfer__tbody__five">뚱이네</div>
-                <div class="transfer__tbody__six">1일전</div>
-              </div>
-
-              <div class="transfer__tbody__content">
-                <div class="transfer__tbody__one"><input type="checkbox"></div>
-                <div class="transfer__tbody__two">오늘의 숙제</div>
-                <div class="transfer__tbody__three">알파고를 10판 연속이기십쇼.</div>
-                <div class="transfer__tbody__four">20레벨</div>
-                <div class="transfer__tbody__five">뚱이네</div>
-                <div class="transfer__tbody__six">1일전</div>
-              </div>
-
-              <div class="transfer__tbody__content">
-                <div class="transfer__tbody__one"><input type="checkbox"></div>
-                <div class="transfer__tbody__two">오늘의 숙제</div>
-                <div class="transfer__tbody__three">알파고를 10판 연속이기십쇼.</div>
-                <div class="transfer__tbody__four">20레벨</div>
-                <div class="transfer__tbody__five">뚱이네</div>
-                <div class="transfer__tbody__six">1일전</div>
-              </div>
-
-              <div class="transfer__tbody__content">
-                <div class="transfer__tbody__one"><input type="checkbox"></div>
-                <div class="transfer__tbody__two">오늘의 숙제</div>
-                <div class="transfer__tbody__three">알파고를 10판 연속이기십쇼.</div>
-                <div class="transfer__tbody__four">20레벨</div>
-                <div class="transfer__tbody__five">뚱이네</div>
-                <div class="transfer__tbody__six">1일전</div>
-              </div>
 
             </div>
 

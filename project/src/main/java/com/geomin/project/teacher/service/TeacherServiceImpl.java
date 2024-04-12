@@ -27,6 +27,7 @@ public class TeacherServiceImpl implements TeacherService{
 		return teacherMapper.learnGroupLook();
 	}
 
+	// 내 그룹 조회
 	@Override
 	public ArrayList<learnGroupVO> myGroupList(int user_no) {
 		
@@ -50,6 +51,42 @@ public class TeacherServiceImpl implements TeacherService{
 		
 		return teacherMapper.getHomework();
 	}
+
+	@Override
+	public ArrayList<learnGroupVO> groupDetail2(int sg_no) {
+		
+		return teacherMapper.groupDetail2(sg_no);
+	}
+
+	@Override
+	public int approve(int user_no) {
+		
+		return teacherMapper.approve(user_no);
+	}
+
+	@Override
+	public int capacity(int sg_no) {
+		
+		return teacherMapper.capacity(sg_no);
+	}
+
+	@Override
+	public int reject(int user_no) {
+		
+		return teacherMapper.reject(user_no);
+	}
+
+	@Override
+	public ArrayList<HomeWorkVO> getMyHomework(String user_no) {
+		
+		return teacherMapper.getMyHomework(user_no);
+	}
+
+//	@Override
+//	public int capaMinus(int sg_no) {
+//		
+//		return teacherMapper.capaMinus(sg_no);
+//	}
 
 	
 	
