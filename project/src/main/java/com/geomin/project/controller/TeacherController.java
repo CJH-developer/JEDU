@@ -52,8 +52,12 @@ public class TeacherController {
 		HttpSession session = request.getSession();
 		UserVO vo = (UserVO)session.getAttribute("vo");
 		
+		// 내가 만든 숙제 조회
 		ArrayList<HomeWorkVO> list = teacherService.getMyHomework(vo.user_no);
 		model.addAttribute("homework", list);
+		
+		// 내가 만든 그룹 조회
+		
 		
 		
 		return "teacher/homeWorkTransfer";
