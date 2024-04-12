@@ -40,5 +40,10 @@ public interface TeacherService {
 	
 	// 그룹 가입 거절 시 capacity - 1
 //	public int capaMinus(int sg_no);
+	
+	// 내가 만든 숙제들 확인(숙제 전송 페이지)
+	public ArrayList<HomeWorkVO> getMyHomework(String user_no);
+	
+	
 
 }

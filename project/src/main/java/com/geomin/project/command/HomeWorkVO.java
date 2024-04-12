@@ -11,14 +11,19 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class HomeWorkVO {
-	public String user_no;
-	public String homework_name;
-	public String homework_content;
-	public String homework_level;
-	public String homework_duedate;
-	public String homework_regdate;
-	public String homework_modidate;
-	public String sg_no;
+	private String user_no;
+	private String homework_name;
+	private String homework_content;
+	private String homework_level;
+	private String homework_duedate;
+	private String homework_regdate;
+	private String homework_modidate;
+	private String sg_no;
+	
+	// 학습그룹 이름, 레벨, 기한 들고옴
+	private String sg_name;
+	private String sg_level;
+	
 	
 	public int leftDays() throws Exception {
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");

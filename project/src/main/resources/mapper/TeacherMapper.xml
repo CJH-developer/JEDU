@@ -107,14 +107,21 @@
   		DELETE FROM STUDY_GROUP_JOIN WHERE USER_NO = #{user_no}
   	</delete>
   	
-  	<!-- 그룹 가입 거절(테스트용) -->
-<!--   	<update id="reject">
-  		UPDATE STUDY_GROUP_JOIN SET SGJ_AUTH = 5 WHERE USER_NO = #{user_no}
-  	</update> -->
-  	
+  	  	
 <!--   	<update id="capaMinus">
 		UPDATE STUDY_GROUP SET SG_CAPA = CASE WHEN SG_CAPA > 0 THEN SG_CAPA -1 ELSE SG_CAPA END WHERE USER_NO = #{user_no}
   	</update> -->
+  	
+  	
+  	<!-- 숙제 전체 가져오기 -->
+  	<select id="getMyHomework" resultType="HomeWorkVO">
+  		SELECT * FROM HOMEWORK H LEFT JOIN STUDY_GROUP SG ON H.SG_NO = SG.SG_NO WHERE H.USER_NO = #{user_no}
+  	</select>
+  	
+  	
+  	
+  	
+  	
   	
   	
   

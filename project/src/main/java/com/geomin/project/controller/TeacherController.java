@@ -33,10 +33,11 @@ public class TeacherController {
 		return "teacher/main";
 	}
 	
-	// 숙제 등록
+	// 숙제 등록 페이지
 	@GetMapping("/homeWorkRegist")
 	public String homeWorkRegist(Model model) {
 		
+		// 숙제 등록 페이지 속 숙제 목록 보기
 		ArrayList<HomeWorkVO> list = teacherService.getHomework();
 		model.addAttribute("list", list);
 		
@@ -45,11 +46,20 @@ public class TeacherController {
 	
 	// 숙제 전송
 	@GetMapping("/homeWorkTransfer")
-	public String homeWorkTransfer() {
+	public String homeWorkTransfer(HttpServletRequest request,
+									Model model) {
+		// 세션값 받아오기
+		HttpSession session = request.getSession();
+		UserVO vo = (UserVO)session.getAttribute("vo");
+		
+		ArrayList<HomeWorkVO> list = teacherService.getMyHomework(vo.user_no);
+		model.addAttribute("homework", list);
+		
+		
 		return "teacher/homeWorkTransfer";
 	}
 	
-	// 숙제 전송
+	// 숙제 제출 조회
 	@GetMapping("/homeWorkScore")
 	public String homeWorkScore() {
 		return "teacher/homeWorkScore";
@@ -120,17 +130,20 @@ public class TeacherController {
 		return "teacher/groupRegistLook";
 	}
 	
+	// 학습 그룹 승인
 	@GetMapping("groupRegistApprove")
 	public String groupRegistApprove() {
 		
-		
 		return "teacher/groupRegistApprove";
 	}
+	
 	
 	@GetMapping("detailStudentLook")
 	public String detailStudentLook() {
 		
 		return "teacher/detailStudentLook";
 	}
+	
+	
 	
 }
