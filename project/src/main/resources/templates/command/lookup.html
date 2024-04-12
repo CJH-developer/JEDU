@@ -94,18 +94,22 @@
 
             <!-- 컨텐츠 소개 -->
             <div class="tbody__introduce">상품소개</div>
-
+<!-- select * from cart where user_no = #{user_no} 로 데이터를 끌고 와서 모델로 컨트롤러에서 뿌려준다.
+     그리고 컨텐츠를 admin이 뿌려줄때 들어오는 game_no랑 
+	 controller에서 cartVO롤 가지고 온느 game_no랑 비교해서 만약 일치하면 th:if 문으로 결재 및 장바구니 부분을 제어한다.	
+  -->
             <!-- 컨텐츠 결제/장바구니 -->
             <div class="tbody__pay">
-              <button id="content__purchase">결제</button>
+              <a href="/command/payment" id="content__purchase">결제</a>
               <button id="content__basket">장바구니</button>
               <img src="/img/free-icon-check-390923.png" id="content__alreadyInCart"></img>
             </div>
             
           </div>
 		  
+		  
 		  <div id="cartMessage" class="cart-message">장바구니에 추가되었습니다</div>
-		  <div id="inCartMessage" class="alert-message">장바구니 이미 존재합니다</div>
+		  <div id="inCartMessage" class="alert-message">장바구니에 이미 존재합니다</div>
        
         </div>
         

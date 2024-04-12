@@ -3,6 +3,8 @@ package com.geomin.project.student.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.geomin.project.command.learnGroupVO;
+
 @Service
 public class StudentServiceImpl implements StudentService{
 
@@ -18,6 +20,8 @@ public class StudentServiceImpl implements StudentService{
 	public int groupCheck(int user_no, int sg_no) {
 		return studentMapper.groupCheck(user_no, sg_no);
 	}
+
+
 
 	
 	

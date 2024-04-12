@@ -6,7 +6,8 @@ const content__complCart = document.getElementById('content__complCart');
 const content__purchase = document.getElementById('content__purchase');
 const content__alreadyInCart = document.getElementById('content__alreadyInCart');
 const cartMessage = document.getElementById('cartMessage');
-const inCartMessage = document.getElementById('inCartMessage'); 
+const inCartMessage = document.getElementById('inCartMessage');
+const alreadyInCart = document.getElementById('content__alreadyInCart');
 
 
 content__basket.onclick = function() {
@@ -22,7 +23,7 @@ content__basket.onclick = function() {
 		      console.log(checkData);
 			  if(checkData == false){
 				  inCartMessage.style.display = "block";
-				  content__alreadyInCart.style.display = "block";
+	              alreadyInCart.style.display="block"
 				  content__basket.style.display = "none";
 	              content__purchase.style.display = "none";
 	              
@@ -39,7 +40,7 @@ content__basket.onclick = function() {
 	            .done(function(data) {
 	                console.log("성공");
 	                console.log(data);
-	                
+	                alreadyInCart.style.display="block"
 	                clearTimeout(cartMessage.timeoutId); 
 					cartMessage.classList.add('visible'); 
 					cartMessage.style.opacity = '1'; 
@@ -72,6 +73,10 @@ content__basket.onclick = function() {
         window.location.href="/command/cart"
       }
     };
+    
+
+    
+
 /*  
 
 	for(var i=0; i<content__basket.length; i++){

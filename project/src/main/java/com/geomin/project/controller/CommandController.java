@@ -44,7 +44,15 @@ public class CommandController {
 	
 	// 게임 컨텐츠 목록 - 일반 사용자 / 선생님
 	@GetMapping("/lookup")
-	public String lookup() {
+	public String lookup(HttpServletRequest request, Model model) {
+		HttpSession session = request.getSession();
+		UserVO vo = (UserVO) session.getAttribute("vo");
+		model.addAttribute("vo", vo);
+		
+		int user_no = Integer.parseInt(vo.user_no);
+		
+		
+		
 		return "command/lookup";
 	}
 	

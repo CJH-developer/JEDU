@@ -29,7 +29,6 @@
 			<div class="item-image">
 				<img src="/img/01_game_main.png" alt="content_pic">
 			</div>
-			<button class="delete_btn">&times;</button>
 			<div class="item-details">
 				<div class="game_title">제목: [[${cartList.game_title}]]</div>
 				<div class="game_level">레벨: [[${cartList.game_target_level}]]</div>
@@ -37,6 +36,7 @@
 				<div class="price">가격: [[${cartList.game_price}]]</div>
 				<div class="game_no" th:data-game-no=${cartList.game_no}></div>
 			</div>
+			<button class="delete_btn">&times;</button>
 		</div>
 		
 
@@ -64,10 +64,11 @@
 		    window.location.href="/command/payment"
 	  });
 	  
-	  $(".delete_btn").click(function() {
+	  $(".delete_btn").click(function(e) {
 			$.get("/del/cart", {user_no: user_no, game_no: game_no})
 			 .done(function(data){
 				 console.log("successfully deleted")
+				 e.target.parentElement.style.display="none";
 			 })
 			 .fail(function(error){
 				 console.log("fail to delete");

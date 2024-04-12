@@ -21,8 +21,7 @@ public class learnGroupVO {
 	public String sg_enddate;
 	public String sg_plus;
 	public String sg_grouplimit;
-	public String sgj_pro;
-	
+
 	
 	// gameContent 가져옴
 	private String game_title;
