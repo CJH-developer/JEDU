@@ -1,5 +1,5 @@
 /* 장바구니 목록 불러오기 */
-
+/*
 	
 const user_no = document.getElementById("user_no").value;
 console.log(user_no);
@@ -26,4 +26,14 @@ $.get('/list/cart', {user_no: user_no})
  .fail(function(error){
 	 console.log("실패")
  });
+
+*/
+
+ 
+
+
+
+
+
+
 

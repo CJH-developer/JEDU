@@ -42,6 +42,12 @@ dependencies {
 	//testImplementation 'org.springframework.security:spring-security-test'
 	
 	testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+	
+	//toss페이에 필요한 것
+	implementation 'com.googlecode.json-simple:json-simple:1.1.1'
+	
+	
+	
 }
 	
 
