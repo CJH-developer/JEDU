@@ -14,10 +14,10 @@
       <div class="lookup__header__title"><span>게임컨텐츠 조회</span></div>
 
       <!-- 조회 검색 -->
-      <div class="lookup__header__search">
-        <input type="text" id="lookup__search" placeholder="검색할 단어를 입력하세요.">
-        <button>검색</button>
-      </div>
+      <form action="/command/lookup" method="get" class="lookup__header__search">
+        <input type="text" name="search" id="lookup__search" placeholder="검색할 제목을 입력하세요.">
+        <button type="submit">검색</button>
+      </form>
 
       <!-- 우측 정렬 -->
       <div class="lookup__header__detail">
@@ -69,44 +69,82 @@
           <!-- 반복하는 곳 -->
           <div class="tbody__item">
           
-          <!-- 컨텐츠 game_no -->
-          <input type="hidden" value=1 name="game_no" id="game_no">
-
-            <!-- 컨텐츠 사진 -->
-            <div class="tbody__image">
-              <img src="/img/01_game_main.png" alt="">
-            </div>
-
-            <!-- 컨텐츠 제목 -->
-            <div class="tbody__title">컨텐츠제목</div>
-
-            <!-- 컨텐츠 가격 -->
-            <div class="tbody__subscribe">
-              <div class="tbody__subscribe__above">
-                <div class="subscribe__above__price"><div class="price__title">기본가 : </div> <span class="real_price">15000원</span></div>
-                <div class="subscribe__above__count"><div class="price__title">가격(1인) : </div> <span>월 3000원 </span></div>
-              </div>
-              <div class="tbody__subscribe__below">
-                <div class="item__date">기간</div>
-                <span>2024년 10월 12일 ~ 2024년 12월 15일</span>
-              </div>
-            </div>
-
-            <!-- 컨텐츠 소개 -->
-            <div class="tbody__introduce">상품소개</div>
-<!-- select * from cart where user_no = #{user_no} 로 데이터를 끌고 와서 모델로 컨트롤러에서 뿌려준다.
-     그리고 컨텐츠를 admin이 뿌려줄때 들어오는 game_no랑 
-	 controller에서 cartVO롤 가지고 온느 game_no랑 비교해서 만약 일치하면 th:if 문으로 결재 및 장바구니 부분을 제어한다.	
-  -->
-            <!-- 컨텐츠 결제/장바구니 -->
-            <div class="tbody__pay">
-              <a href="/command/payment" id="content__purchase">결제</a>
-              <button id="content__basket">장바구니</button>
-              <img src="/img/free-icon-check-390923.png" id="content__alreadyInCart"></img>
-            </div>
+	          <!-- 컨텐츠 game_no -->
+	          <input type="hidden" value=1 name="game_no" id="game_no">
+	
+	            <!-- 컨텐츠 사진 -->
+	            <div class="tbody__image">
+	              <img src="/img/01_game_main.png" alt="">
+	            </div>
+	
+	            <!-- 컨텐츠 제목 -->
+	            <div class="tbody__title">컨텐츠제목</div>
+	
+	            <!-- 컨텐츠 가격 -->
+	            <div class="tbody__subscribe">
+	              <div class="tbody__subscribe__above">
+	                <div class="subscribe__above__price"><div class="price__title">기본가 : </div> <span class="real_price">15000원</span></div>
+	                <div class="subscribe__above__count"><div class="price__title">가격(1인) : </div> <span>월 3000원 </span></div>
+	              </div>
+	              <div class="tbody__subscribe__below">
+	                <div class="item__date">기간</div>
+	                <span>2024년 10월 12일 ~ 2024년 12월 15일</span>
+	              </div>
+	            </div>
+	
+	            <!-- 컨텐츠 소개 -->
+	            <div class="tbody__introduce">상품소개</div>
+	<!-- select * from cart where user_no = #{user_no} 로 데이터를 끌고 와서 모델로 컨트롤러에서 뿌려준다.
+	     그리고 컨텐츠를 admin이 뿌려줄때 들어오는 game_no랑 
+		 controller에서 cartVO롤 가지고 온느 game_no랑 비교해서 만약 일치하면 th:if 문으로 결재 및 장바구니 부분을 제어한다.	
+	  -->
+	            <!-- 컨텐츠 결제/장바구니 -->
+	            <div class="tbody__pay">
+	              <a href="/command/payment" id="content__purchase" class="content__purchase">결제</a>
+	              <button id="content__basket" class="content__basket">장바구니</button>
+	            </div>
             
           </div>
 		  
+		   <!-- 반복하는 곳 -->
+          <div class="tbody__item">
+          
+	          <!-- 컨텐츠 game_no -->
+	          <input type="hidden" value=3 name="game_no" id="game_no">
+	
+	            <!-- 컨텐츠 사진 -->
+	            <div class="tbody__image">
+	              <img src="/img/01_game_main.png" alt="">
+	            </div>
+	
+	            <!-- 컨텐츠 제목 -->
+	            <div class="tbody__title">컨텐츠제목</div>
+	
+	            <!-- 컨텐츠 가격 -->
+	            <div class="tbody__subscribe">
+	              <div class="tbody__subscribe__above">
+	                <div class="subscribe__above__price"><div class="price__title">기본가 : </div> <span class="real_price">15000원</span></div>
+	                <div class="subscribe__above__count"><div class="price__title">가격(1인) : </div> <span>월 3000원 </span></div>
+	              </div>
+	              <div class="tbody__subscribe__below">
+	                <div class="item__date">기간</div>
+	                <span>2024년 10월 12일 ~ 2024년 12월 15일</span>
+	              </div>
+	            </div>
+	
+	            <!-- 컨텐츠 소개 -->
+	            <div class="tbody__introduce">상품소개</div>
+	<!-- select * from cart where user_no = #{user_no} 로 데이터를 끌고 와서 모델로 컨트롤러에서 뿌려준다.
+	     그리고 컨텐츠를 admin이 뿌려줄때 들어오는 game_no랑 
+		 controller에서 cartVO롤 가지고 온느 game_no랑 비교해서 만약 일치하면 th:if 문으로 결재 및 장바구니 부분을 제어한다.	
+	  -->
+	            <!-- 컨텐츠 결제/장바구니 -->
+	            <div class="tbody__pay">
+	              <a href="/command/payment" id="content__purchase" class="content__purchase">결제</a>
+	              <button id="content__basket">장바구니</button>
+	            </div>
+            
+          </div>
 		  
 		  <div id="cartMessage" class="cart-message">장바구니에 추가되었습니다</div>
 		  <div id="inCartMessage" class="alert-message">장바구니에 이미 존재합니다</div>

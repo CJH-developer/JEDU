@@ -42,6 +42,11 @@ public class CartServiceImpl implements CartService{
 		return cartMapper.delCart(user_no, game_no);
 	}
 
+	@Override
+	public int gamePurchase(int user_no, int game_no) {
+		return cartMapper.gamePurchase(user_no, game_no);
+	}
+
 
 
 }

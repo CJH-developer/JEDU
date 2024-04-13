@@ -23,6 +23,7 @@ public interface CartService {
 	//장바구니 삭제
 	public int delCart(int user_no, int game_no);
 
-	
+	//결제 내역 추가
+	public int gamePurchase(int user_no, int game_no);
 	
 }

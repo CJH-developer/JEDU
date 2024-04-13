@@ -49,9 +49,14 @@ public class CommandController {
 		UserVO vo = (UserVO) session.getAttribute("vo");
 		model.addAttribute("vo", vo);
 		
+		//결재 내역이 있는지 검사 (있으면 표출을 안한다)
 		int user_no = Integer.parseInt(vo.user_no);
-		
-		
+		ArrayList<CartVO> cartList = cartService.getListCart(user_no);
+		for(CartVO c : cartList) {
+			int game_no = c.getGame_no();
+			
+			//여기서 서비스 만들어서 조회하고 표출한다.
+		}
 		
 		return "command/lookup";
 	}

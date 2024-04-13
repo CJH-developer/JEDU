@@ -47,9 +47,17 @@ public class PurchaseController {
 	
 	@GetMapping("/del/cart")
 	public void delCart(@RequestParam("user_no") int user_no, @RequestParam("game_no") int game_no) {
+		System.out.println(user_no+"님의 " + game_no + "번이 장바구니에서 제거함");
 		cartService.delCart(user_no, game_no);
 	}
 	
+	
+	/*
+	 * @GetMapping("/game/purchase") public void purchase(@RequestParam("user_no")
+	 * int user_no, @RequestParam("game_no") int game_no) {
+	 * System.out.println(user_no+"님의 " + game_no + "가 결재 내역에 입력되었습니다.");
+	 * cartService.gamePurchase(user_no, game_no); }
+	 */
 	
 	
 }
