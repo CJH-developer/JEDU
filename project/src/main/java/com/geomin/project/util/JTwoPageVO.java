@@ -1,8 +1,13 @@
 package com.geomin.project.util;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
+
+import org.springframework.context.annotation.Configuration;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -10,9 +15,9 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
-@AllArgsConstructor
-@Builder
-public class JTwoPageVO {
+
+@Configuration
+public class JTwoPageVO implements WebMvcConfigurer {
 	private JTwoCriteria JTwo;
 
 	private int JTwoPage;
@@ -57,5 +62,6 @@ public class JTwoPageVO {
 
 		this.JTwoPageFirst = IntStream.rangeClosed(this.JTwoFirst, this.JTwoEnd).boxed().collect(Collectors.toList());
 	}
+ 
 
 }

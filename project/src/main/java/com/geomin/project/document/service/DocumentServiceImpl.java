@@ -1,5 +1,6 @@
 package com.geomin.project.document.service;
 
+
 import java.io.File;
 import java.io.IOException;
 import java.time.LocalDate;
@@ -8,6 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 import java.util.stream.Collectors;
+
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -61,24 +63,22 @@ public class DocumentServiceImpl implements DocumentService{
 	
 		String filepath = makeFolder();
 		
-		// 3. 업로드 할 경로
-		String savePath = uploadPath + "/" + filepath + "/" + uuid + "_" + filename; 
 		
-		System.out.println("파일명 : " + filename); // DB에 원본 파일명 저장
-		System.out.println("폴더명 : " + filepath); // DB에 폴더명 저장
-		System.out.println("랜덤이름 : " + uuid); // DB 저장
-		System.out.println("파일 사이즈 : " + size);
-		System.out.println("업로드 할 경로 : " + savePath);
-		
-		
-		try {
-			File saveFile = new File(savePath);
-			file.transferTo(saveFile);
-			
-		} catch (IOException e) {
-			
-			e.printStackTrace();
-		}
+		  // 3. 업로드 할 경로 String savePath = uploadPath + "/" + filepath + "/" + uuid +
+//		  "_" + filename;
+//		  
+//		  System.out.println("파일명 : " + filename); // DB에 원본 파일명 저장
+//		  System.out.println("폴더명 : " + filepath); // DB에 폴더명 저장
+//		  System.out.println("랜덤이름 : " + uuid); // DB 저장 System.out.println("파일 사이즈 : "
+//		  + size); System.out.println("업로드 할 경로 : " + savePath);
+//		  
+//		  
+//		  try { File saveFile = new File(savePath); file.transferTo(saveFile);
+//		  
+//		  } catch (IOException e) {
+//		  
+//		  e.printStackTrace(); }
+		 
 		
 		// 업로드 이후에 데이터베이스에 경로를 저장
 		// prod_id 는 service 영역에서 구할 수 있는 방법이 없다.
@@ -126,6 +126,12 @@ public class DocumentServiceImpl implements DocumentService{
 	public int getNoTotal() {
 		
 		return documentMapper.getNoTotal();
+	}
+
+	@Override
+	public ArrayList<DocumentVO> getList() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 	

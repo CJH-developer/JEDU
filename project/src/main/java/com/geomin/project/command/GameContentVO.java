@@ -21,22 +21,31 @@ public class GameContentVO {
 	private String game_content;
 	private Integer game_count;
 	private String user_no;
-	private String game_sub_startDate; //GAME_SUB_REGDATE라고 테이블파일에 되어있어서 바꿈니다.
+	private String game_sub_regDate; //GAME_SUB_REGDATE라고 테이블파일에 되어있어서 바꿈니다.
 	private String game_sub_endDate;
+	
 
 	private String game_regdate;
 	private String del_check;
 	
 	
 	//조인해서 받아오는값
-	private LocalDate purchase_date;
+	///////////////////////////
+
+	private String purchase_date;
 	private String sg_name;
 	private String sg_level;
-	
+	//////////////////////////////
 
-   
-	private String filename;  // 작성자가 업로드한 파일명
+	// 작성자가 업로드한 파일명
+	////////////////////////////
+	private String filename;  
 	private String filepath;
 	private String uuid;
+	//////////////////////
+	
+	
 
+	
+	
 	}

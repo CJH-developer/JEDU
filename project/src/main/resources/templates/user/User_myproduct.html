@@ -1,14 +1,16 @@
 <!DOCTYPE html>
+<!-- 시간 함수 변환을 위해-->
 <html xmlns:th="http://www.thymeleaf.org">
+
 <th:block
 	th:replace="~{./baseLayout/base_f :: setContent( ~{ :: .wrap} ) }">
-		
+
 	<div class="wrap">
-	
-			<input type="hidden" name="JTwoPage" value="1">
 
 			<div class="wrap__content">
-			
+					<form name="User_myproduct" action="User_myproduct" method="get" >
+							<input type="hidden" name="JTwoPage" value="1">
+					<input type="hidden" name="JTwoAmount" th:value="${JTwoPageVO.JTwoAmount}">
 
 				<div class="lookup__header">
 					<!-- 조회 타이틀 -->
@@ -25,9 +27,10 @@
 								<img src="/img/calandar.png" alt="">구매 기간
 							</div>
 							<div class="myProduct__date">
-								<input type="month" data-placeholder="날짜 선택"> ~ <input
-									type="month" data-placeholder="날짜 선택">
+								<input type="date" data-placeholder="날짜 선택" name="startDate" th:value="${JTwoPageVO.JTwo.startDate}"> ~ <input
+									type="date" data-placeholder="날짜 선택" name="endDate" th:value="${JTwoPageVO.JTwo.endDate}">
 							</div>
+					
 							<button id="myProduct__date__btn">조회</button>
 						</div>
 
@@ -46,19 +49,19 @@
 				</div>
 
 
-				<div class="lookup__body">
+				<div class="lookup__bodys">
 
-					<div class="lookup__table">
+					<div class="lookup__tables">
 
-						<div class="table__thead">
-							<div class="thead__check">번호</div>
+						<div class="table__theads">
+							<div class="thead__check" >번호</div>
 							<div class="thead__image">컨텐츠</div>
 							<div class="thead__title">컨텐츠제목</div>
 							<div class="thead__subscribe">가격/구독</div>
 							<div class="thead__introduce">구매일자</div>
 							<div class="thead__pay">학습그룹 등록내역</div>
 						</div>
-						<div class="table__tbody">
+						<div class="table__tbodys">
 							<!-- 반복하는 곳 -->
 							<div class="tbody__item" th:each="vo, status : ${List}">
 								<!-- 선택 -->
@@ -88,7 +91,7 @@
 									</div>
 									<div class="tbody__subscribe__below">
 										<div class="item__date">기간</div>
-										<span>[[${vo.game_sub_startDate}]] ~
+										<span>[[${vo.game_sub_regDate}]] ~
 											[[${vo.game_sub_endDate}]]</span>
 									</div>
 								</div>
@@ -110,7 +113,7 @@
 						</div>
 
 
-	<div th:replace='/re_base_pagevo/User_product_PageList.html :: User_product_PageList'></div>
+	<div th:replace='/re_base_pagevo/User_product_PageList.html :: User_product_PageList'></div>	
 
 
 					</div>
@@ -120,10 +123,11 @@
 
 				</div>
 
-
+			</form>
 			</div>
+
+
 		
-	
 	</div>
 
 </th:block>

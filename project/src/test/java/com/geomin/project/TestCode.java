@@ -61,19 +61,16 @@ public class TestCode {
 	public void text02() {
 		for(int i = 1; i <= 7; i++) {
 			GameContentVO vo=GameContentVO.builder()
-					.user_no("12")
+				
 					.game_title("ss")
 					.game_target_level(1)
 					.game_price(1)
 					.game_discount_price(1)
 					.game_content("sasa")
 					.game_count(12)
-					.game_sub_startDate("2024-02-15")
+					.game_sub_regDate("2024-02-15")
 					.game_sub_endDate("2024-04-14")
-					.game_content("sdaasda")
-					.game_title("눈오는 일기")
-					.game_price(20000)
-					.purchase_date(LocalDate.of(2024, 3, 15))
+				
 					.build();
 			
 			

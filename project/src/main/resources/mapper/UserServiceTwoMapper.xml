@@ -2,17 +2,33 @@
 <!DOCTYPE mapper
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-  
+
   <mapper namespace="com.geomin.project.UserServiceTwo.UserServiceTwoMapper">
   <select id="MyList" resultType="com.geomin.project.command.GameContentVO">
-SELECT e.game_title, e.game_price, e.game_sub_startDate, e.game_sub_endDate, d.purchase_date, f.sg_name, f.sg_level 
-FROM game_content AS e 
-LEFT JOIN game_purchase AS d ON e.user_no = d.user_no 
-LEFT JOIN study_group AS f ON e.user_no = f.user_no 
-ORDER BY e.game_no DESC 
+
+   
+SELECT * FROM (
+    SELECT gc.*, gp.*, sg.*
+    FROM game_content AS gc
+    RIGHT JOIN game_purchase AS gp ON gc.user_no = gp.user_no
+    LEFT JOIN study_group AS sg ON gc.user_no = sg.user_no
+    WHERE gp.purchase_date >= '2024-01-01 00:00:00' -- 예시 조건
+    AND gp.purchase_date <![CDATA[ <= '2024-12-31 23:59:59']]> -- 예시 조건
+
+    UNION ALL
+
+    SELECT gc.*, gp.*, sg.*
+    FROM game_content AS gc
+    LEFT JOIN game_purchase AS gp ON gc.user_no = gp.user_no
+    RIGHT JOIN study_group AS sg ON gc.user_no = sg.user_no
+    WHERE gp.purchase_date >= '2024-01-01 00:00:00' -- 예시 조건
+    AND gp.purchase_date  <![CDATA[<]]>= '2024-12-31 23:59:59' -- 예시 조건
+) AS combined
+ORDER BY combined.game_no DESC
 LIMIT #{JTwoPageFirst}, #{JTwoAmount};
-  
-  
+
+
+
   
   
   
