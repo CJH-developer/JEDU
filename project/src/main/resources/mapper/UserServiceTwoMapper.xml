@@ -7,13 +7,13 @@
   <select id="MyList" resultType="com.geomin.project.command.GameContentVO">
 
    
-SELECT * FROM (
+<!--  SELECT * FROM (
     SELECT gc.*, gp.*, sg.*
     FROM game_content AS gc
     RIGHT JOIN game_purchase AS gp ON gc.user_no = gp.user_no
     LEFT JOIN study_group AS sg ON gc.user_no = sg.user_no
-    WHERE gp.purchase_date >= '2024-01-01 00:00:00' -- 예시 조건
-    AND gp.purchase_date <![CDATA[ <= '2024-12-31 23:59:59']]> -- 예시 조건
+    WHERE gp.purchase_date >= '2024-01-01 00:00:00'  예시 조건
+    AND gp.purchase_date <![CDATA[ <= '2024-12-31 23:59:59']]> 예시 조건
 
     UNION ALL
 
@@ -21,27 +21,87 @@ SELECT * FROM (
     FROM game_content AS gc
     LEFT JOIN game_purchase AS gp ON gc.user_no = gp.user_no
     RIGHT JOIN study_group AS sg ON gc.user_no = sg.user_no
-    WHERE gp.purchase_date >= '2024-01-01 00:00:00' -- 예시 조건
-    AND gp.purchase_date  <![CDATA[<]]>= '2024-12-31 23:59:59' -- 예시 조건
+    WHERE gp.purchase_date >= '2024-01-01 00:00:00'  예시 조건
+    AND gp.purchase_date  <![CDATA[<]]>= '2024-12-31 23:59:59' 예시 조건
 ) AS combined
 ORDER BY combined.game_no DESC
 LIMIT #{JTwoPageFirst}, #{JTwoAmount};
+-->
+  
 
+  SELECT g.purchase_date, a.user_no as user_no, a.game_price, a.game_title, a.game_sub_endDate, a.game_sub_regDate 
+FROM game_content AS a
+LEFT JOIN game_purchase AS g ON a.user_no = g.user_no
+LEFT JOIN study_group AS s ON a.user_no = s.user_no
+WHERE (g.purchase_date >= STR_TO_DATE(#{startDate}, '%Y-%m-%d') OR #{startDate} IS NULL OR #{startDate} = '')
+AND (g.purchase_date <![CDATA[<=]]> STR_TO_DATE(#{endDate}, '%Y-%m-%d') OR #{endDate} IS NULL OR #{endDate} = '')
 
+UNION All
 
-  
-  
-  
-  
+SELECT g.purchase_date, a.game_no as user_no, a.game_price, a.game_title, a.game_sub_regDate, a.game_sub_regDate 
+FROM game_content AS a
+RIGHT JOIN game_purchase AS g ON a.user_no = g.user_no
+LEFT JOIN study_group AS s ON a.user_no = s.user_no
+WHERE (g.purchase_date >= STR_TO_DATE(#{startDate}, '%Y-%m-%d') OR #{startDate} IS NULL OR #{startDate} = '')
+AND (g.purchase_date<![CDATA[<=]]> STR_TO_DATE(#{endDate}, '%Y-%m-%d') OR #{endDate} IS NULL OR #{endDate} = '')
+
+UNION All
+
+SELECT g.purchase_date, a.user_no as user_no, a.game_price, a.game_title, a.game_sub_regDate, a.game_sub_endDate 
+FROM game_content AS a
+LEFT JOIN study_group AS s ON a.user_no = s.user_no
+RIGHT JOIN game_purchase AS g ON a.user_no = g.user_no
+WHERE (g.purchase_date >= STR_TO_DATE(#{startDate}, '%Y-%m-%d') OR #{startDate} IS NULL OR #{startDate} = '')
+AND (g.purchase_date <![CDATA[<= ]]>STR_TO_DATE(#{endDate}, '%Y-%m-%d') OR #{endDate} IS NULL OR #{endDate} = '')
+
+ORDER BY user_no DESC
+LIMIT #{JTwoPageFirst}, #{JTwoAmount}
+<!--    
+  SELECT *
+FROM (
+    SELECT gc.game_no, gp.purchase_date
+    FROM game_content AS gc
+    LEFT JOIN game_purchase AS gp ON gc.user_no = gp.user_no
+    WHERE 1=1
+    <if test="startDate != null and !startDate.isEmpty()">
+        AND gp.purchase_date >= STR_TO_DATE(#{startDate}, '%Y-%m-%d')
+    </if>
+    <if test="endDate != null and !endDate.isEmpty()">
+        AND gp.purchase_date <![CDATA[<= ]]> STR_TO_DATE(#{endDate}, '%Y-%m-%d')
+    </if>
+    UNION all
+    SELECT gc.game_no, gp.purchase_date
+    FROM game_content AS gc
+    RIGHT JOIN game_purchase AS gp ON gc.user_no = gp.user_no
+    WHERE 1=1
+    <if test="startDate != null and !startDate.isEmpty()">
+        AND gp.purchase_date >= STR_TO_DATE(#{startDate}, '%Y-%m-%d')
+    </if>
+    <if test="endDate != null and !endDate.isEmpty()">
+        AND gp.purchase_date <![CDATA[<= ]]> STR_TO_DATE(#{endDate}, '%Y-%m-%d')
+    </if>
+) AS command
+ORDER BY game_no
+LIMIT #{JTwoPageFirst}, #{JTwoAmount}
+  -->
   
   
   
   </select>
     <select id="JTwoTotal" resultType="int">
-SELECT count(*) as JTwoTotal
+<!--  SELECT count(*) as JTwoTotal
 FROM game_content AS e 
 LEFT JOIN game_purchase AS d ON e.user_no = d.user_no 
-LEFT JOIN study_group AS f ON e.user_no = f.user_no    ; 
+LEFT JOIN study_group AS f ON e.user_no = f.user_no    ; -->
+    SELECT	
+            a.user_no AS user_no
+          
+        FROM game_content AS a
+        JOIN game_purchase AS g ON a.user_no = g.user_no
+        JOIN study_group AS s ON a.user_no = s.user_no
+        GROUP BY a.user_no
+        ORDER BY a.user_no
+        LIMIT #{JTwoAmount} OFFSET #{good}
   </select>
   
   </mapper>

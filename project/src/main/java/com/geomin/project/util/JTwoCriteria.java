@@ -7,9 +7,13 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 
 @Data
+@AllArgsConstructor
+
 
  // 여기는 페이지하고 페이지에 나오는 리스트 량을 설정하는 클래스
 public class JTwoCriteria {
@@ -29,7 +33,8 @@ public class JTwoCriteria {
     private String endDate; 
 
    
- 
+    private int good = (JTwoPage - 1) * JTwoAmount; 
+    
 
     
    
