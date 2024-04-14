@@ -1,12 +1,14 @@
 package com.geomin.project.command;
 
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
+@Builder
 public class UserVO {
 		public String user_no;
 		public String user_id;

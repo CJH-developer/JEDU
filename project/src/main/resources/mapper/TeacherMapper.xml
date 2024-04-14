@@ -118,6 +118,15 @@
   		SELECT * FROM HOMEWORK H LEFT JOIN STUDY_GROUP SG ON H.SG_NO = SG.SG_NO WHERE H.USER_NO = #{user_no}
   	</select>
   	
+  	<!-- 그룹 가입 된 사람들 -->
+  	<select id="mygroupguys" resultType="learnGroupVO">
+  		SELECT * FROM USER U LEFT JOIN STUDY_GROUP_JOIN S ON U.USER_NO = S.USER_NO WHERE SG_NO = #{sg_no} AND S.SGJ_AUTH = 1;
+  	</select>
+  	
+  	<insert id="homeworkSend" parameterType="map">
+		INSERT INTO HOMEWORK_HISTORY (HOMEWORK_NO, USER_NO, TEACH_ASSIGNDATE)
+		VALUES (#{homework_no}, #{user_no}, NOW() );
+  	</insert>
   	
   	
   	

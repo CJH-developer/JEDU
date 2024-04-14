@@ -8,9 +8,9 @@ $("#myGroup").click(function() {
 	
 	inCartMessage.style.display = "block";
 	
-	              clearTimeout(inCartMessage.timeoutId); 
-					cartMessage.classList.add('visible'); 
-					cartMessage.style.opacity = '1'; 
+	              clearTimeout(inCartMessage.timeoutId);
+					cartMessage.classList.add('visible');
+					cartMessage.style.opacity = '1';
 					cartMessage.timeoutId = setTimeout(function() {
 						cartMessage.style.opacity = '0'; 
 					}, 2000)

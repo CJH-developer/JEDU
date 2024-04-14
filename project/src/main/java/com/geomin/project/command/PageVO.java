@@ -6,7 +6,10 @@ import java.util.stream.IntStream;
 
 import com.geomin.project.util.Criteria;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Data
 public class PageVO {

@@ -4,14 +4,17 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
+@Builder
 public class HomeWorkVO {
 	private String user_no;
+	private String homework_no;
 	private String homework_name;
 	private String homework_content;
 	private String homework_level;

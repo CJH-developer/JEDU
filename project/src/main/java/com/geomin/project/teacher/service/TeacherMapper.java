@@ -1,6 +1,7 @@
 package com.geomin.project.teacher.service;
 
 import java.util.ArrayList;
+import java.util.Map;
 
 import org.apache.ibatis.annotations.Mapper;
 
@@ -46,6 +47,12 @@ public interface TeacherMapper {
 	
 	// 내가 만든 숙제들 확인(숙제 전송 페이지)
 	public ArrayList<HomeWorkVO> getMyHomework(String user_no);
+	
+	// 그룹 가입된 사람들 가져오기
+	public ArrayList<learnGroupVO> mygroupguys(int sg_no);
+	
+	// 숙제 내주기
+	public int homeworkSend(Map<String, Object> homework);
 	
 	
 	

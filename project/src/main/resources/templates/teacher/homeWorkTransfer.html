@@ -5,6 +5,9 @@
 <div class="wrap">
 <link rel="stylesheet" href="/css/frame/homeWorkTransfer.css">
 
+<script src="/js/frame/homeWorkTransfer.js" defer></script>
+
+<input type="hidden" th:value="${session.vo.user_no}" id="user_no" name="user_no">
 
   <div class="wrap__content">
     <form action="" method="get" class="regist__wrap">
@@ -20,7 +23,6 @@
             <div class="transfer__search1">
               <input type="text" id="searchInput1" placeholder="전체선택 또는 숙제명을 입력하세요.">
               <button>조회</button>
-            </select>
             </div>
           </div>
 
@@ -38,12 +40,13 @@
             <div class="transfer__tbody">
 
               <div class="transfer__tbody__content" th:each="homework : ${homework}">
-                <div class="transfer__tbody__one"><input type="checkbox"></div>
+                <div class="transfer__tbody__one"><input type="checkbox" class="homework-checkbox"></div>
                 <div class="transfer__tbody__two">[[${homework.homework_name}]]</div>
                 <div class="transfer__tbody__three">[[${homework.homework_content}]]</div>
                 <div class="transfer__tbody__four">[[${homework.homework_level + '레벨'}]]</div>
                 <div class="transfer__tbody__five">[[${homework.sg_name}]]</div>
                 <div class="transfer__tbody__six">[[${homework.leftDays() + '일 전'}]]</div>
+                <input type="hidden" th:value="${homework.homework_no}" class="homeworkNo">
               </div>
 
 
@@ -52,15 +55,15 @@
           </div>
 
         </div>
-
+        
         <div class="transfer__wrap__below">
 
           <div class="transfer__title2">
             <span>학습그룹</span>
             <div class="transfer__search2">
               <input type="text" id="searchInput2" placeholder="전체선택 또는 학습그룹을 입력하세요.">
-              <button>검색</button>
-              <button>전송하기</button>
+              <button type="button" id="myGroup">내 학습그룹</button>
+              <button type="button" id="send">전송하기</button>
             </div>
           </div>
 
@@ -69,54 +72,21 @@
             <div class="transfer__table2__body">
               <div class="transfer__thead2">
                 <div class="transfer__thead2__one"><input type="checkbox"></div>
-                <div class="transfer__thead2__two">학습자명</div>
-                <div class="transfer__thead2__three">연락처</div>
-                <div class="transfer__thead2__four">현재 레벨</div>
+                <div class="transfer__thead2__two">그룹명</div>
+                <div class="transfer__thead2__three">그룹인원</div>
+                <div class="transfer__thead2__four">그룹레벨</div>
               </div>
 
-              <div class="transfer__tbody2">
+              <div class="transfer__tbody2 left">
 
                 <div class="transfer__tbody__content2">
                   <div class="transfer__tbody2__one"><input type="checkbox"></div>
-                  <div class="transfer__tbody2__two">홍길동</div>
-                  <div class="transfer__tbody2__three">010-3333-4444</div>
-                  <div class="transfer__tbody2__four">20레벨</div>
+                  <div class="transfer__tbody2__two">학습그룹을 조회해주세요</div>
+                  <div class="transfer__tbody2__three"></div>
+                  <div class="transfer__tbody2__four"></div>
                 </div>
+                
 
-                <div class="transfer__tbody__content2">
-                  <div class="transfer__tbody2__one"><input type="checkbox"></div>
-                  <div class="transfer__tbody2__two">홍길동</div>
-                  <div class="transfer__tbody2__three">010-3333-4444</div>
-                  <div class="transfer__tbody2__four">20레벨</div>
-                </div>
-
-                <div class="transfer__tbody__content2">
-                  <div class="transfer__tbody2__one"><input type="checkbox"></div>
-                  <div class="transfer__tbody2__two">홍길동</div>
-                  <div class="transfer__tbody2__three">010-3333-4444</div>
-                  <div class="transfer__tbody2__four">20레벨</div>
-                </div>
-              
-                <div class="transfer__tbody__content2">
-                  <div class="transfer__tbody2__one"><input type="checkbox"></div>
-                  <div class="transfer__tbody2__two">홍길동</div>
-                  <div class="transfer__tbody2__three">010-3333-4444</div>
-                  <div class="transfer__tbody2__four">20레벨</div>
-                </div>
-
-                <div class="transfer__tbody__content2">
-                  <div class="transfer__tbody2__one"><input type="checkbox"></div>
-                  <div class="transfer__tbody2__two">홍길동</div>
-                  <div class="transfer__tbody2__three">010-3333-4444</div>
-                  <div class="transfer__tbody2__four">20레벨</div>
-                </div>
-
-                <div class="transfer__tbody__content2">
-                  <div class="transfer__tbody2__one"><input type="checkbox"></div>
-                  <div class="transfer__tbody2__two">홍길동</div>
-                  <div class="transfer__tbody2__three">010-3333-4444</div>
-                  <div class="transfer__tbody2__four">20레벨</div>
-                </div>
 
               </div>
 
@@ -130,49 +100,15 @@
                 <div class="transfer__thead2__four">현재 레벨</div>
               </div>
 
-              <div class="transfer__tbody2">
+              <div class="transfer__tbody2 right">
 
                 <div class="transfer__tbody__content2">
                   <div class="transfer__tbody2__one"><input type="checkbox"></div>
-                  <div class="transfer__tbody2__two">홍길동</div>
-                  <div class="transfer__tbody2__three">010-3333-4444</div>
-                  <div class="transfer__tbody2__four">20레벨</div>
+                  <div class="transfer__tbody2__two">학습그룹을 선택해주세요</div>
+                  <div class="transfer__tbody2__three"></div>
+                  <div class="transfer__tbody2__four"></div>
                 </div>
 
-                <div class="transfer__tbody__content2">
-                  <div class="transfer__tbody2__one"><input type="checkbox"></div>
-                  <div class="transfer__tbody2__two">홍길동</div>
-                  <div class="transfer__tbody2__three">010-3333-4444</div>
-                  <div class="transfer__tbody2__four">20레벨</div>
-                </div>
-
-                <div class="transfer__tbody__content2">
-                  <div class="transfer__tbody2__one"><input type="checkbox"></div>
-                  <div class="transfer__tbody2__two">홍길동</div>
-                  <div class="transfer__tbody2__three">010-3333-4444</div>
-                  <div class="transfer__tbody2__four">20레벨</div>
-                </div>
-              
-                <div class="transfer__tbody__content2">
-                  <div class="transfer__tbody2__one"><input type="checkbox"></div>
-                  <div class="transfer__tbody2__two">홍길동</div>
-                  <div class="transfer__tbody2__three">010-3333-4444</div>
-                  <div class="transfer__tbody2__four">20레벨</div>
-                </div>
-
-                <div class="transfer__tbody__content2">
-                  <div class="transfer__tbody2__one"><input type="checkbox"></div>
-                  <div class="transfer__tbody2__two">홍길동</div>
-                  <div class="transfer__tbody2__three">010-3333-4444</div>
-                  <div class="transfer__tbody2__four">20레벨</div>
-                </div>
-
-                <div class="transfer__tbody__content2">
-                  <div class="transfer__tbody2__one"><input type="checkbox"></div>
-                  <div class="transfer__tbody2__two">홍길동</div>
-                  <div class="transfer__tbody2__three">010-3333-4444</div>
-                  <div class="transfer__tbody2__four">20레벨</div>
-                </div>
 
               </div>
 
