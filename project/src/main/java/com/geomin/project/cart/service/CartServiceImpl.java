@@ -47,6 +47,11 @@ public class CartServiceImpl implements CartService{
 		return cartMapper.gamePurchase(user_no, game_no);
 	}
 
+	@Override
+	public int checkPurchase(int user_no, int game_no) {
+		return cartMapper.checkPurchase(user_no, game_no);
+	}
+
 
 
 }

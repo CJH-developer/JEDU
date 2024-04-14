@@ -43,6 +43,12 @@
   		INSERT INTO GAME_PURCHASE(USER_NO, GAME_NO) values (#{user_no}, #{game_no})
   	</insert>
   	
+  	<!-- 결재 내역 조회-->
+	<select id="checkPurchase" resultType="Integer">
+		SELECT COUNT(*) FROM GAME_PURCHASE WHERE user_no = #{user_no} AND game_no = #{game_no}
+	</select>
+  	
+  	
   </mapper>
   
   

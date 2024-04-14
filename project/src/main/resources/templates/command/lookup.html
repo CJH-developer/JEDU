@@ -140,13 +140,14 @@
 	  -->
 	            <!-- 컨텐츠 결제/장바구니 -->
 	            <div class="tbody__pay">
-	              <a href="/command/payment" id="content__purchase" class="content__purchase">결제</a>
+	              <a href="/command/payment" id="content__purchase" th:value="${} class="content__purchase">결제</a>
 	              <button id="content__basket">장바구니</button>
 	            </div>
             
           </div>
 		  
 		  <div id="cartMessage" class="cart-message">장바구니에 추가되었습니다</div>
+		  <div id="paidMessage" class="paid-message">이미 구매하신 내역이 있습니다.</div>
 		  <div id="inCartMessage" class="alert-message">장바구니에 이미 존재합니다</div>
        
         </div>

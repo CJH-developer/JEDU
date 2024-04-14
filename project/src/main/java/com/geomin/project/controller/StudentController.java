@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.geomin.project.command.UserVO;
 import com.geomin.project.command.learnGroupVO;
+import com.geomin.project.student.service.StudentService;
 import com.geomin.project.teacher.service.TeacherService;
 
 @Controller
@@ -22,6 +23,9 @@ public class StudentController {
 	
 	@Autowired
 	TeacherService teacherService;
+	
+	@Autowired
+	StudentService studentService;
 	
 	@GetMapping("/main")
 	public String main() {
@@ -51,7 +55,15 @@ public class StudentController {
 	// 그룹 가입 상세 조회
 	@GetMapping("/groupApplyList")
 	public String groupRegistLook(Model model,
-								  @RequestParam("sg_no") int sg_no) {		
+								  @RequestParam("sg_no") int sg_no) {
+		
+		/*
+		 * int inGroup = studentService.groupCheck(user_no, sg_no);
+		 * 
+		 * if (inGroup > 0) { System.out.println("신청한 내용 있음"); } else {
+		 * System.out.println("신청한 내용 없음"); }
+		 */
+		  
 		learnGroupVO vo = teacherService.groupDetail(sg_no);
 		model.addAttribute("group", vo);
 		

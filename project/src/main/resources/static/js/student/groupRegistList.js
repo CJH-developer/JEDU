@@ -39,7 +39,7 @@ console.log($("#hiddenSg_No").val());
         element.style.opacity = '1';
         element.timeoutId = setTimeout(function() {
             element.style.opacity = '0';
-            setTimeout(() => { element.style.display = "none"; }, 600); // Adjust timing as necessary
+            setTimeout(() => { element.style.display = "none"; }, 300); // Adjust timing as necessary
         }, 2000); 
     }
 	

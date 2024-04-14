@@ -26,4 +26,7 @@ public interface CartService {
 	//결제 내역 추가
 	public int gamePurchase(int user_no, int game_no);
 	
+	//결재 내용 체크
+	public int checkPurchase(int user_no, int game_no);
+	
 }
