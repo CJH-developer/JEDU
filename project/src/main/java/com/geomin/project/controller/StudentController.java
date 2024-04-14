@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.geomin.project.command.HomeWorkVO;
 import com.geomin.project.command.UserVO;
 import com.geomin.project.command.learnGroupVO;
 import com.geomin.project.student.service.StudentService;
@@ -48,7 +49,16 @@ public class StudentController {
 	}
 	
 	@GetMapping("/homeworkList")
-	public String homeworkList() {
+	public String homeworkList(Model model, HttpServletRequest request) {
+		
+		HttpSession session = request.getSession();
+		UserVO vo = (UserVO) session.getAttribute("vo");
+		int user_no = Integer.parseInt(vo.user_no);
+		ArrayList<HomeWorkVO> hwList = studentService.getHomeworkList(user_no);
+		
+		model.addAttribute("hwList", hwList);
+		
+		
 		return "student/homeworkList";
 	}
 	
