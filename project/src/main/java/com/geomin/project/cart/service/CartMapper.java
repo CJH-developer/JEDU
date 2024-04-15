@@ -25,4 +25,11 @@ public interface CartMapper {
 	//장바구니 삭제
 	public int delCart(@Param("user_no") int user_no, @Param("game_no") int game_no);
 	
+	//결제 내역 추가
+	public int gamePurchase(@Param("user_no") int user_no, @Param("game_no") int game_no);
+	
+	//결재 내용 체크
+	public int checkPurchase(@Param("user_no") int user_no, @Param("game_no") int game_no);
+
+	
 }

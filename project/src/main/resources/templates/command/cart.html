@@ -19,8 +19,8 @@
 	<input type="hidden" th:value="${session.vo.user_id}" name="user_no" id="user_no">
 	
 	
-	<div class="container">
-		<div class="header">
+	<div class=receipt-container>
+		<div class="receipt-header">
 			<div class="session_id" th:data-user-no="${session.vo.user_no}">
 			[[${session.vo.user_id}]]님의 장바구니
 			</div>
@@ -29,7 +29,6 @@
 			<div class="item-image">
 				<img src="/img/01_game_main.png" alt="content_pic">
 			</div>
-			<button class="delete_btn">&times;</button>
 			<div class="item-details">
 				<div class="game_title">제목: [[${cartList.game_title}]]</div>
 				<div class="game_level">레벨: [[${cartList.game_target_level}]]</div>
@@ -37,18 +36,15 @@
 				<div class="price">가격: [[${cartList.game_price}]]</div>
 				<div class="game_no" th:data-game-no=${cartList.game_no}></div>
 			</div>
+			<button class="delete_btn">X</button>
 		</div>
 		
 
 		<!-- 총 금액 -->
-		
-		<div class="total_bill" >총 금액:</div>
-		<div class="total-summary">
-			<div id="total_price">[[${total_price}]]원</div>
-			<div class="game_discount_price"></div>
-			<div></div>
-			<div class="total_price" id="total_price"></div>
-		</div>
+		<div class="total_bill">
+            <span>총 금액:</span> 
+            <div id="total_price" class="total_price" th:text="${total_price} + 원"></div>
+        </div>
 		
 		<!-- 결재하기 -->
 		<div class="total_payment">
@@ -59,15 +55,18 @@
 	<script>
 	  const user_no = $('.session_id').data('user-no');
 	  const game_no = $(".game_no").data('game-no');
-	
+	  const total = $('#total_price').text();
+	  console.log(total);
+	  
 	  $("#checkoutButton").click(function() {
 		    window.location.href="/command/payment"
 	  });
 	  
-	  $(".delete_btn").click(function() {
+	  $(".delete_btn").click(function(e) {
 			$.get("/del/cart", {user_no: user_no, game_no: game_no})
 			 .done(function(data){
 				 console.log("successfully deleted")
+				 e.target.parentElement.style.display="none";
 			 })
 			 .fail(function(error){
 				 console.log("fail to delete");

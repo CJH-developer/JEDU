@@ -15,14 +15,21 @@
               <span>학습 그룹 조회</span>
               <div class="looks__header__search">
                 <input type="text" placeholder="학습그룹명을 입력하세요.">
-                <button>검색</button>
+                <button class="search_btn">검색</button>
               </div>
             </div>
+            
+            <script>
+            	const search = $(".search_btn");
+            	
+            	search.onclick(function(){
+            		
+            	})
+            	
+            </script>
 
             <div class="looks__header__submit">
-              <button>상세보기</button>
-              <button>변경</button>
-              <button>삭제</button>
+
 
               <select name="" id="">
                 <option value="none">정렬</option>
@@ -38,7 +45,7 @@
           <div class="looks__wrap__body">
 
             <div id="looks__thead">
-              <button id="looks__thead__first"><input type="checkbox"></button>
+              <button id="looks__thead__first"></button>
               <button id="looks__thead__second">학습그룹명</button>
               <button id="looks__thead__third">게임컨텐츠명</button>
               <button id="looks__thead__fourth">그룹T/O</button>
@@ -51,7 +58,7 @@
 
             <div class="looks__tbody">
               <div class="looks__tbody__content" th:each="list : ${list}">
-                <div id="looks__tbody__first"><input type="checkbox" value="dd"></div>
+                <div id="looks__tbody__first"></div>
                 <a th:href="@{/student/groupApplyList(sg_no=${list.sg_no})}" id="looks__tbody__second">[[${list.sg_name}]]</a>
                 <div id="looks__tbody__third">[[${list.game_no}]]</div>
                 <div id="looks__tbody__fourth"> [[${list.sg_capa}]]명 / [[${list.sg_grouplimit} + '명']]</div>

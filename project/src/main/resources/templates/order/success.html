@@ -8,14 +8,16 @@
 <!-- JQuery -->
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
+
 <style>
-	.goback_btn {width:200px; height:20px; border:1px solid black}
+	.goback_btn {width:200px; height:20px; border:1px solid black;}
+	.wrap{display: flex;flex-direction: column; justify-content: center; align-items: center; height: 500vh;}
+    .text-center{text-align: center;}
 </style>
 
 </head>
 <th:block th:replace="~{./baseLayout/base_f :: setContent( ~{ :: .wrap} ) }">
-<script src="/static/js/frame/lookup.js" defer></script>
-<script src="/static/js/frame/payment.js" defer></script>
+
   
   
   <body>
@@ -27,15 +29,33 @@
 	            		<p> 앞으로 더 많은 이용 부탁 드립니다. </p>
 	            		<div class="">
 	            		</div>
-	       			 </div>
-					<div class="container">
-					  <div class="circle-border">
-					    <div class="circle success"></div>
-					  </div>
-					</div>
-	                <a href="/teacher/main" class="goback_btn"> 홈으로 돌아가기 </a>
+       			 </div>
+				<div class="container">
+				  <div class="circle-border">
+				    <div class="circle success"></div>
+				  </div>
 				</div>
+					
+	            <button class="goback_btn"> 홈으로 돌아가기 </button>
+			
 			</div>
+			
+			
+			<script>
+/* 			const purchase = $('.goback_btn');
+
+
+			$('.goback_btn').click(function() {
+			    $.get("/game/purchase", {user_no: user_no, game_no: game_no})
+			     .done(function(result) {
+			            console.log("success");
+			            window.location.href = "/teacher/main";
+			        })
+			     .fail(function(error) {
+			            console.log("fail");
+			        });
+			}); */
+			</script>
 			
 			
 </th:block>

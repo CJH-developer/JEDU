@@ -38,6 +38,16 @@
   		DELETE FROM CART WHERE USER_NO = #{user_no} AND GAME_NO = #{game_no}
   	</delete>
   	
+  	<!-- 결재 내역 추가 -->
+  	<insert id="gamePurchase">
+  		INSERT INTO GAME_PURCHASE(USER_NO, GAME_NO) values (#{user_no}, #{game_no})
+  	</insert>
+  	
+  	<!-- 결재 내역 조회-->
+	<select id="checkPurchase" resultType="Integer">
+		SELECT COUNT(*) FROM GAME_PURCHASE WHERE user_no = #{user_no} AND game_no = #{game_no}
+	</select>
+  	
   	
   </mapper>
   

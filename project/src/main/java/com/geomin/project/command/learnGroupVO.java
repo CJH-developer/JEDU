@@ -15,6 +15,7 @@ import lombok.NoArgsConstructor;
 @Builder
 public class learnGroupVO {
 
+
 	private String sg_no;
 	private String user_no;
 	private String game_no;

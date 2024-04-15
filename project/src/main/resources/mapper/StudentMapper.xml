@@ -4,14 +4,21 @@
   
 	<mapper namespace="com.geomin.project.student.service.StudentMapper">
 		
+		
+		<!-- 그룹 스터디 신청 -->
 		<insert id="groupApply">
 			INSERT INTO STUDY_GROUP_JOIN (SG_NO, USER_NO, SG_LEVEL,	SGJ_DATE)
 								   VALUES(#{sg_no}, #{user_no}, #{sg_level}, CURDATE() )
 		</insert>
 		
+		<!-- 그룹 신청 중복 여부 -->
 		<select id="groupCheck" resultType="Integer">
 			SELECT COUNT(*) FROM STUDY_GROUP_JOIN WHERE user_no = #{user_no} AND sg_no = #{sg_no}
 		</select>
 	
-	
+		<!-- 숙제 조회 -->
+		<select id="getHomeworkList" resultType="HomeWorkVO">
+			SELECT * FROM HOMEWORK WHERE USER_NO = #{user_no}
+		</select>
+		
 	</mapper>

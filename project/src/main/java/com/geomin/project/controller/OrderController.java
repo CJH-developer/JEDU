@@ -114,6 +114,12 @@ public class OrderController {
 		
 		//결재 완료시 지워주기
 		cartService.successPay(user_no);
+		
+		//결재 내역 입력하기
+		for(CartVO c : cartList) {
+			int game_no = c.getGame_no();
+			cartService.gamePurchase(user_no, game_no);
+		}
     	
     	return "order/success";
     }
