@@ -8,9 +8,9 @@ $("#myGroup").click(function() {
 	
 	inCartMessage.style.display = "block";
 	
-	              clearTimeout(inCartMessage.timeoutId); 
-					cartMessage.classList.add('visible'); 
-					cartMessage.style.opacity = '1'; 
+	              clearTimeout(inCartMessage.timeoutId);
+					cartMessage.classList.add('visible');
+					cartMessage.style.opacity = '1';
 					cartMessage.timeoutId = setTimeout(function() {
 						cartMessage.style.opacity = '0'; 
 					}, 2000)
@@ -212,7 +212,7 @@ $("#reject").click(function() {
 					
 					            // 승인 요청 내역 채우기
 					            $(".grl__bbb__tbody").empty(); // 이전 데이터 삭제
-					
+								
 					            data.boys.forEach(function(boy, index) {
 					                var $row = $('<div class="grl__bbtb__wrap">');
 					                $row.append('<div class="grl_bttbb__one">' + (index + 1) + '</div>');
