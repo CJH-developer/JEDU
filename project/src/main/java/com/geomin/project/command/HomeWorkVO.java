@@ -35,7 +35,6 @@ public class HomeWorkVO {
         long diff = dueDate.getTime() - regDate.getTime();
 		
         return (int) (diff / (24 * 60 * 60 * 1000));
-		
 	}
 	
 }

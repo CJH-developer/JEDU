@@ -6,10 +6,8 @@ $('.homework-checkbox').change(function () {
     }
 });
 
-
 // 전송하기 눌렀을 때
 $("#send").click(function() {
-	
 	// 숙제번호 가져오기
 	var homeworkNo = $(".homework-checkbox:checked").closest('.transfer__tbody__content').find('.homeworkNo').val();
 	console.log("숙제번호: " + homeworkNo);
@@ -53,7 +51,6 @@ $(document).on("change", ".transfer__tbody__content2.right input[type='checkbox'
 		        
     }
 });
-
 
 
 // 내 학습그룹 불러오기
@@ -112,7 +109,6 @@ $("#myGroup").click(function() {
 							}
 						})
                         
-                        
                     }
                 });
                 checkboxColumn.append(checkboxInput);
@@ -126,18 +122,17 @@ $("#myGroup").click(function() {
                 // 현재 레벨 컬럼
                 var levelColumn = $('<div class="transfer__tbody2__four">' + user.sg_level + '레벨' +'</div>').text(user.level);
 
-
                 // 컨텐츠에 컬럼들 추가
                 newContent.append(checkboxColumn, nameColumn, contactColumn, levelColumn);
 
                 // tbody에 컨텐츠 추가
                 tbodyElement.append(newContent);
-                
+
             });
         },
         error: function(status, err) {
             console.log(status, err, "에러남");
-            alert("에러");
+            alert("학습그룹을 불러오는 도중에 에러가 발생했습니다");
         }
     });
 });
