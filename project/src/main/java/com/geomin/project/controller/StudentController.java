@@ -112,9 +112,7 @@ public class StudentController {
 	//슥제 제출
 	@GetMapping("/submission")
 	public String submission(HomeWorkVO hwVO) {
-		int user_no = Integer.parseInt( hwVO.getUser_no() );
-		int homework_no =  Integer.parseInt( hwVO.getHomework_no() );
-		studentService.homeworkSubmission(user_no, homework_no);
+		studentService.homeworkSubmission(hwVO);
 		return "redirect:/student/main";
 	}
 	

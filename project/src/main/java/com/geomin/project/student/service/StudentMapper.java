@@ -29,7 +29,7 @@ public interface StudentMapper {
 	public ArrayList<HomeWorkVO> getHomeworkList (int user_no);
 	
 	//숙제 제출
-	public int homeworkSubmission(int user_no, int homework_no);
+	public int homeworkSubmission(HomeWorkVO hwVO);
 	
 	//승인 조회
 	

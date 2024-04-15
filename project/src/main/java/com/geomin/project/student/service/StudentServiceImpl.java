@@ -35,8 +35,8 @@ public class StudentServiceImpl implements StudentService{
 	}
 
 	@Override
-	public int homeworkSubmission(int user_no, int homework_no) {
-		return studentMapper.homeworkSubmission(user_no, homework_no);
+	public int homeworkSubmission(HomeWorkVO hwVO) {
+		return studentMapper.homeworkSubmission(hwVO);
 	}
 
 
