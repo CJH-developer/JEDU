@@ -31,6 +31,20 @@ $drop.ondragleave = (e) => {
   $drop.classList.remove("active");
 }
 
+function updateValue() {
+    var checkbox = document.getElementById("important");
+    var valueInput = document.getElementsByName("notice_check")[0]; // notice_check의 값을 저장할 input 요소
+
+    if (checkbox.checked) {
+        valueInput.value = "1"; // 체크되었을 때 1로 변경
+        console.log(valueInput.value);
+    } else {
+        valueInput.value = "0"; // 체크가 해제되었을 때 0으로 변경
+        console.log(valueInput.value);
+    }
+}
+
+
 
 
 const notice__regist__check = document.getElementById('notice__regist__check');
@@ -90,6 +104,7 @@ document.addEventListener("DOMContentLoaded", function() {
   currentDateCheckbox.addEventListener("change", function() {
       if (currentDateCheckbox.checked) {
           outputDiv.innerHTML = getCurrentDate();
+          currentDateCheckbox.value = getCurrentDate();
       } else {
           outputDiv.innerHTML = "";
       }

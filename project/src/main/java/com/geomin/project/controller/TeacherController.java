@@ -1,6 +1,8 @@
 package com.geomin.project.controller;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -52,8 +54,12 @@ public class TeacherController {
 		HttpSession session = request.getSession();
 		UserVO vo = (UserVO)session.getAttribute("vo");
 		
+		// 내가 만든 숙제 조회
 		ArrayList<HomeWorkVO> list = teacherService.getMyHomework(vo.user_no);
 		model.addAttribute("homework", list);
+		
+		// 내가 만든 그룹 조회
+		
 		
 		
 		return "teacher/homeWorkTransfer";
@@ -75,6 +81,8 @@ public class TeacherController {
 	@GetMapping("/learnGroupRegist")
 	public String learnGroupRegist() {
 		
+		
+		
 		return "teacher/learnGroupRegist";
 	}
 	
@@ -84,10 +92,7 @@ public class TeacherController {
 	public String learnGroupRegistForm(learnGroupVO vo) {
 
 		teacherService.RegistGroup(vo);
-		
-		
 		return "teacher/main";
-		
 	}
 	
 	// 학습 그룹 조회
@@ -125,6 +130,11 @@ public class TeacherController {
 		learnGroupVO vo = teacherService.groupDetail(sg_no);
 		
 		model.addAttribute("group", vo);
+		
+		Map<String, Object> map = new HashMap<>();
+		map.put("groupdetail", teacherService.groupDetail(sg_no));
+		map.put("boys", teacherService.mygroupguys(sg_no));
+		model.addAttribute("info", map);
 
 		
 		return "teacher/groupRegistLook";
