@@ -46,14 +46,13 @@ public class StudentController {
 		UserVO vo = (UserVO) session.getAttribute("vo");
 		int user_no = Integer.parseInt(vo.user_no);
 		
-		
-		
 		ArrayList<learnGroupVO> list = teacherService.learnGroupLook();
 		model.addAttribute("list", list);
 		
 		return "student/groupStudyList";
 	}
 	
+	//숙제 리스트 받아오기
 	@GetMapping("/homeworkList")
 	public String homeworkList(Model model, HttpServletRequest request) {
 		
@@ -62,9 +61,9 @@ public class StudentController {
 		int user_no = Integer.parseInt(vo.user_no);
 		ArrayList<HomeWorkVO> hwList = studentService.getHomeworkList(user_no);
 		
+		model.addAttribute("user_name", vo.user_name);
 		model.addAttribute("hwList", hwList);
-		
-		
+	
 		return "student/homeworkList";
 	}
 	
@@ -72,18 +71,15 @@ public class StudentController {
 	@GetMapping("/groupApplyList")
 	public String groupRegistLook(Model model,
 								  @RequestParam("sg_no") int sg_no) {
-		
 		/*
 		 * int inGroup = studentService.groupCheck(user_no, sg_no);
 		 * 
 		 * if (inGroup > 0) { System.out.println("신청한 내용 있음"); } else {
 		 * System.out.println("신청한 내용 없음"); }
 		 */
-		  
 		learnGroupVO vo = teacherService.groupDetail(sg_no);
 		model.addAttribute("group", vo);
-		
- 	
+
 		return "student/groupApplyList";
 	}
 	
@@ -97,6 +93,29 @@ public class StudentController {
 		
 		return "student/groupApproval";
 	}
-
+	
+	//숙제 내역 조회
+	@GetMapping("/homeworkTable")
+	public String homeworkTable(Model model, HttpServletRequest request) {
+		
+		HttpSession session = request.getSession();
+		UserVO vo = (UserVO) session.getAttribute("vo");
+		int user_no = Integer.parseInt(vo.user_no);
+		ArrayList<HomeWorkVO> hwList = studentService.getHomeworkList(user_no);
+		
+		model.addAttribute("user_name", vo.user_name);
+		model.addAttribute("hwList", hwList);
+		
+		return "student/homeworkTable";
+	};
+	
+	//슥제 제출
+	@GetMapping("/submission")
+	public String submission(HomeWorkVO hwVO) {
+		int user_no = Integer.parseInt( hwVO.getUser_no() );
+		int homework_no =  Integer.parseInt( hwVO.getHomework_no() );
+		studentService.homeworkSubmission(user_no, homework_no);
+		return "redirect:/student/main";
+	}
 	
 }

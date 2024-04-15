@@ -25,9 +25,11 @@ public interface StudentMapper {
 	//그룹 신청 승인 여부
 	public int groupApproval ();
 	
-	
 	//숙제 조회
 	public ArrayList<HomeWorkVO> getHomeworkList (int user_no);
+	
+	//숙제 제출
+	public int homeworkSubmission(int user_no, int homework_no);
 	
 	//승인 조회
 	

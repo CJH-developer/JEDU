@@ -34,6 +34,11 @@ public class StudentServiceImpl implements StudentService{
 		return studentMapper.groupCheckingList(user_no);
 	}
 
+	@Override
+	public int homeworkSubmission(int user_no, int homework_no) {
+		return studentMapper.homeworkSubmission(user_no, homework_no);
+	}
+
 
 
 	

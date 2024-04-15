@@ -23,9 +23,15 @@ public class HomeWorkVO {
 	private String homework_modidate;
 	private String sg_no;
 	
+	
 	// 학습그룹 이름, 레벨, 기한 들고옴
 	private String sg_name;
 	private String sg_level;
+	private String user_name;
+	
+	//Homework_History
+	private String stu_content;
+	private String stu_q;
 	
 	
 	public int leftDays() throws Exception {
