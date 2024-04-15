@@ -12,6 +12,9 @@ public interface StudentService {
 	
 	//스터디 그룹 신청 중복 조회
 	public int groupCheck (int user_no, int sg_no);
+	
+	//그룹 승인 완료시 조회 안하기
+	public int groupCheckingList (int user_no);
 
 	//숙제 조회
 	public ArrayList<HomeWorkVO> getHomeworkList (int user_no);

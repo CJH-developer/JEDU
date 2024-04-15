@@ -28,12 +28,10 @@
         <div id="cartMessage" class="cart-message">그룹 스터디에 신청되었습니다.</div>
 		<div id="inCartMessage" class="alert-message">승인 절차가 진행 중입니다.</div>
 		<input type="hidden" id="hiddenSg_No" th:value="${group.sg_no}" name="sg_no">
-		<input type="hidden" id="hiddenUser_No" th:value="${group.user_no}" name="user_no">
+		<input type="hidden" id="hiddenUser_No" th:value="${session.vo.user_no}" name="user_no">
 		<input type="hidden" id="hiddenSg_Level" th:value="${group.sg_level}" name="user_no">
 		
-		<script>
 
-		</script>
       </div>
       <div class="grl__body">
         <div class="grl__body__header">

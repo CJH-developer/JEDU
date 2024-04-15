@@ -16,6 +16,7 @@
 			SELECT COUNT(*) FROM STUDY_GROUP_JOIN WHERE user_no = #{user_no} AND sg_no = #{sg_no}
 		</select>
 	
+		<!-- 숙제 조회 -->
 		<select id="getHomeworkList" resultType="HomeWorkVO">
 			SELECT * FROM HOMEWORK WHERE USER_NO = #{user_no}
 		</select>

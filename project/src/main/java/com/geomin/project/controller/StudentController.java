@@ -40,7 +40,13 @@ public class StudentController {
 	}
 	
 	@GetMapping("/groupStudyList")
-	public String groupStudyList(Model model) {
+	public String groupStudyList(Model model,  HttpServletRequest request) {
+		
+		HttpSession session = request.getSession();
+		UserVO vo = (UserVO) session.getAttribute("vo");
+		int user_no = Integer.parseInt(vo.user_no);
+		
+		
 		
 		ArrayList<learnGroupVO> list = teacherService.learnGroupLook();
 		model.addAttribute("list", list);
@@ -81,18 +87,16 @@ public class StudentController {
 		return "student/groupApplyList";
 	}
 	
-	//그룹 가입 신청
-//	@GetMapping("/applyGroup")
-//	public String applyGroup(@RequestParam("sg_no") int sg_no, HttpServletRequest request) {
-//		
-//		HttpSession session = request.getSession();
-//		UserVO vo = (UserVO) session.getAttribute("vo");
-//		int user_no = Integer.parseInt(vo.user_no);
-//		
-//		System.out.println(user_no);
-//		
-//		return "redirect:/student/groupApplyList";
-//	}
+	//그룹 가입 신청 승인 여부
+	@GetMapping("/groupApproval")
+	public String groupApprove(HttpServletRequest request) {
+		
+		HttpSession session = request.getSession();
+		UserVO vo = (UserVO) session.getAttribute("vo");
+		int user_no = Integer.parseInt(vo.user_no);
+		
+		return "student/groupApproval";
+	}
 
 	
 }
