@@ -32,11 +32,21 @@ public class HomeWorkVO {
 	//Homework_History
 	private String stu_content;
 	private String stu_q;
+	private String teach_assigndate;
 	
 	
 	public int leftDays() throws Exception {
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
         Date regDate = sdf.parse(this.homework_regdate);
+        Date dueDate = sdf.parse(this.homework_duedate);
+        long diff = dueDate.getTime() - regDate.getTime();
+		
+        return (int) (diff / (24 * 60 * 60 * 1000));
+	}
+	
+	public int hwDuedate() throws Exception {
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        Date regDate = sdf.parse(this.teach_assigndate);
         Date dueDate = sdf.parse(this.homework_duedate);
         long diff = dueDate.getTime() - regDate.getTime();
 		

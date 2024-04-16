@@ -1,1 +1,4 @@
+.container {position:relative;}
+h2{position:absolute; top:30px; left:40%; text-align:center;}
+.table{position:absolute; top:120px; left:0;}
 .thead-color {background-color: #88ABE3; color: white;}

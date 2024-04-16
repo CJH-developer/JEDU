@@ -1,10 +1,12 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
+<script src="/js/student/groupRegistList.js" defer></script>
+<link rel="stylesheet" href="/css/frame/groupRegistLook.css">
+<link rel="stylesheet" href="/css/student/groupRegistList.css">
+
 <th:block th:replace="~{./baseLayout/base_f :: setContent( ~{ :: .wrap} ) }">
 
 <div class="wrap">
-<link rel="stylesheet" href="/css/frame/groupRegistLook.css">
-<script src="/js/student/groupRegistList.js" defer></script>
   <div class="wrap__content">
       <div class="grl__header">
 
@@ -23,10 +25,10 @@
         </div>
         <div class="grl__header__btn">
           <button type="submit" id="groupApply" >가입신청</button>
-		  <div id="inProcess" class="inProcess" th:if="group.sgj_pro == 0">승인 절차가 진행 중</div>
         </div>
-        <div id="cartMessage" class="cart-message">그룹 스터디에 신청되었습니다.</div>
-		<div id="inCartMessage" class="alert-message">승인 절차가 진행 중입니다.</div>
+        <div id="approvedMessage" class="approved-message">이미 가입을 완료 하셨습니다.</div>
+        <div id="applyMessage" class="apply-message">그룹 스터디에 신청되었습니다.</div>
+		<div id="processMessage" class="process-message">승인 절차가 진행 중입니다.</div>
 		<input type="hidden" id="hiddenSg_No" th:value="${group.sg_no}" name="sg_no">
 		<input type="hidden" id="hiddenUser_No" th:value="${session.vo.user_no}" name="user_no">
 		<input type="hidden" id="hiddenSg_Level" th:value="${group.sg_level}" name="user_no">

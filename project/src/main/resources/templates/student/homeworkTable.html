@@ -1,36 +1,43 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js" defer></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" defer></script>
+<script src="/js/student/homeworkTable.js" defer></script>
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700&display=swap" rel="stylesheet">
-
 <link rel="stylesheet" href="/css/student/homeworkTable.css">
-<th:block th:replace="~{./baseLayout/base_f :: setContent( ~{ :: .wrap} ) }">
 <link rel="stylesheet" href="/css/frame/learnGroupLook.css">
-<script src="/js/frame/learnGroupLook.js" defer></script>
+<th:block th:replace="~{./baseLayout/base_f :: setContent( ~{ :: .wrap} ) }">
 
-   	<div class="wrap">
-
+<div class="wrap">
 
 		<div class="container">
+		  <h2>숙제 이력</h2>
 		  <table class="table">
 		    <thead class="thead-color">
 		      <tr>
 		        <th>번호</th>
+		        <th>homework_no</th>
 		        <th>제목</th>
 		        <th>내용</th>
-		        <th>마감 날짜</th>
-		        <th>남은 날짜</th>
+		        <th>제출 날짜</th>
+		        <th>숙제 제출</th>
 		      </tr>
 		    </thead>
 		    <tbody>
-		      <tr th:each="hw : ${hwList}">
+		      <tr th:each="hw : ${hwList}" th:data-url="@{/student/homeworkList(user_no=${hw.user_no})}">
 		        <td th:text="${hwStat.count}"></td>
+		        <td th:text="${hw.homework_no}"></td>
 		        <td th:text="${hw.homework_name}"></td>
 		        <td th:text="${hw.homework_content}"></td>
 		        <td th:text="${hw.homework_duedate}"></td>
+		        <td th:if="${hw.stu_content != null}">
+		        	<h6><span class="badge badge-primary">제출 완료</span></h6>
+		        </td>
+		        <td th:if="${hw.stu_content == null}">
+		        	<h6><span class="badge badge-pill badge-danger" th:text=" '제출 D-' + ${hw.hwDuedate()}"></span></h6>	 
+		        </td>
 		      </tr>
 		    </tbody>
 		  </table>
@@ -38,6 +45,6 @@
 
 
     </div>
-
+	
 </th:block>
 </html>

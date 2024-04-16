@@ -81,8 +81,6 @@ public class TeacherController {
 	@GetMapping("/learnGroupRegist")
 	public String learnGroupRegist() {
 		
-		
-		
 		return "teacher/learnGroupRegist";
 	}
 	

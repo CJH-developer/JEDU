@@ -1,4 +1,4 @@
-.cart-message {
+.apply-message {
   background-color: #A0A0A0;
   color: white;
   padding: 10px;
@@ -14,11 +14,28 @@
   transition: opacity 0.5s ease-in-out;
   pointer-events: none; 
 }
-.alert-message {
+.process-message {
   background-color: #f8d7da;
   color: #721c24;
   padding: 10px;
   border: 1px solid #f5c6cb;
+  border-radius: 5px;
+  text-align: center;
+  width: 600px;
+  position: fixed;
+  left: 55%; 
+  bottom: 10%; 
+  transform: translateX(-50%); 
+  opacity: 0;
+  transition: opacity 0.5s ease-in-out;
+  pointer-events: none; 
+}
+
+.approved-message {
+  background-color: #1FCD34;
+  color: white;
+  padding: 10px;
+  border: 1px solid #98F2A3;
   border-radius: 5px;
   text-align: center;
   width: 600px;

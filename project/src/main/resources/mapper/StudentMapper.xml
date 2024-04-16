@@ -11,9 +11,22 @@
 								   VALUES(#{sg_no}, #{user_no}, #{sg_level}, CURDATE() )
 		</insert>
 		
+		<!-- 그룹 신청 리스트 -->
+		<select id="groupList" resultType="StudyGroupVO">
+			select * from STUDY_GROUP_JOIN where USER_NO = #{user_no} and SG_NO = #{sg_no};
+		</select>
+		
 		<!-- 그룹 신청 중복 여부 -->
 		<select id="groupCheck" resultType="Integer">
 			SELECT COUNT(*) FROM STUDY_GROUP_JOIN WHERE user_no = #{user_no} AND sg_no = #{sg_no}
+		</select>
+		
+		<!-- 그룹 신청 승인 여부 -->
+		<select id="groupApplyList" resultType="StudyGroupVO">
+			SELECT * FROM STUDY_GROUP_JOIN SGJ
+			LEFT JOIN STUDY_GROUP SG 
+			ON SGJ.SG_NO = SG.SG_NO
+			where SGJ.USER_NO = #{user_no};
 		</select>
 	
 		<!-- 숙제 조회 -->
