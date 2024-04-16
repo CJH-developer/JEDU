@@ -7,6 +7,7 @@ import java.util.List;
 
 import org.springframework.web.multipart.MultipartFile;
 
+import com.geomin.project.command.DocumentVO;
 import com.geomin.project.command.GameContentVO;
 import com.geomin.project.command.UploadVO;
 import com.geomin.project.util.Criteria;
@@ -26,4 +27,11 @@ public interface GameContentService {
 	// 게임 컨텐츠 - 삭제 이력 조회
 	public ArrayList<GameContentVO> delHistory(Criteria criteria);
 	public int getNoTotal();
+	
+	// 게임 수정
+	public GameContentVO gameList(int game_no);
+	public int gameUpdate(GameContentVO vo, List<MultipartFile> list);
+	
+	
+	
 }

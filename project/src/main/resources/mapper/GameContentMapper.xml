@@ -177,7 +177,54 @@
     </update>
     
   
+  	<!-- 게임 컨텐츠 수정 조회 -->
+  	<select id="gameList" resultType="GameContentVO">
+  	
+  	SELECT * FROM GAME_CONTENT WHERE GAME_NO = #{game_no}
+  	
+  	</select>
     
+    <!-- 게임 수정 폼 -->
+    <update id="gameUpdate">
+    	UPDATE GAME_CONTENT
+    	SET
+    		GAME_TITLE = #{game_title},
+    		GAME_TARGET_LEVEL = #{game_target_level},
+    		GAME_PRICE = #{game_price},
+    		GAME_DISCOUNT_PRICE = #{game_discount_price},
+    		GAME_CONTENT = #{game_content},
+    		GAME_COUNT = #{game_count},
+    		GAME_SUB_REGDATE = #{game_sub_startDate},
+    		GAME_SUB_ENDDATE = #{game_sub_endDate},
+    		DEL_CHECK = #{del_check}
+    	WHERE
+    		GAME_NO = #{game_no}
+    </update>
     
+    <update id="updateFile">
+  	  	<selectKey resultType="int" keyProperty="game_no" order="BEFORE">
+			SELECT MAX(GAME_NO) FROM GAME_CONTENT WHERE GAME_NO = #{game_no}
+		</selectKey>
+		
+		UPDATE UPLOAD 
+		SET
+			FILENAME = #{fileName},
+			FILEPATH = #{filepath},
+			UUID = #{uuid},
+			GAME_TITLE = #{game_title}
+		WHERE
+			GAME_NO = #{game_no}
+		
+  	  </update>
+  	  
+  	  
+  	
+  	
+  	
+  	
+  	
+  	
+  	
+  	
   
   </mapper>
