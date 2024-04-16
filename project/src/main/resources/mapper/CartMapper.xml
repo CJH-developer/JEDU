@@ -4,17 +4,18 @@
   
 	<mapper namespace="com.geomin.project.cart.service.CartMapper">
   
-	<!-- 장바구니 추가  -->
+	  
+	<!-- 장바구니 추가  --><!--  
 	<insert id="addtoCart">
 		INSERT INTO CART (USER_NO, GAME_NO) values (#{user_no}, #{game_no})
 	</insert>
-	
-	<!-- 장바구니 중복 조회-->
+	-->
+	<!-- 장바구니 중복 조회--><!--  
 	<select id="checkCart" resultType="Integer">
 		SELECT COUNT(*) FROM CART WHERE user_no = #{user_no} AND game_no = #{game_no}
 	</select>
-	
-	<!-- 장바구니 목록 조회 -->
+	-->
+	<!-- 장바구니 목록 조회 --><!-- 
   	<select id="getListCart" resultType="com.geomin.project.command.CartVO">
   		select c.*,
   			   g.GAME_TITLE,
@@ -27,27 +28,17 @@
 		on g.GAME_NO = c.GAME_NO
 		where c.user_no = #{user_no};
   	</select>
-  
-  	<!-- 장바구니 결재 완료 -->
+   -->
+  	<!-- 장바구니 결재 완료 --><!--  
   	<delete id="successPay">
   		DELETE FROM CART WHERE USER_NO = #{user_no}
   	</delete>
-  	
-  	<!-- 장바구니 삭제 -->
+  	-->
+  	<!-- 장바구니 삭제 --><!--  
   	<delete id="delCart">
   		DELETE FROM CART WHERE USER_NO = #{user_no} AND GAME_NO = #{game_no}
   	</delete>
-  	
-  	<!-- 결재 내역 추가 -->
-  	<insert id="gamePurchase">
-  		INSERT INTO GAME_PURCHASE(USER_NO, GAME_NO) values (#{user_no}, #{game_no})
-  	</insert>
-  	
-  	<!-- 결재 내역 조회-->
-	<select id="checkPurchase" resultType="Integer">
-		SELECT COUNT(*) FROM GAME_PURCHASE WHERE user_no = #{user_no} AND game_no = #{game_no}
-	</select>
-  	
+  	-->
   	
   </mapper>
   

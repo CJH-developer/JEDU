@@ -1,254 +1,218 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<th:block th:replace="~{./baseLayout/base_f :: setContent( ~{ :: .wrap} ) }">
+<body>
+	<th:block
+		th:replace="~{./baseLayout/base_f :: setContent( ~{ :: .wrap} ) }">
+		<div class="wrap">
+			<script src="/js/frame/modal.js" defer></script>
+			<script src="/js/frame/gameList.js" defer></script>
 
-<div class="wrap">
-<script src="/js/frame/modal.js" defer></script>
- <script src="/js/frame/gameList.js" defer></script>
- 
-<div id="myModal" class="modal">
+			<div id="myModal" class="modal">
 
-    <!-- Modal content -->
-    <div class="modal-content">
-      <span class="close">&times;</span>
-      <div class="modal__msg">
-        <div class="gameContentInfo">
+				<!-- Modal content -->
+				<div class="modal-content">
+					<span class="close">&times;</span>
+					<div class="modal__msg">
+						<div class="gameContentInfo">
 
-          <div class="gameContentInfo__wrap">
-      
-            <div class="gameContentInfo__wrap__mainTitle">게임 컨텐츠 제목</div>
-      
-            <div class="gameContentInfo__img"><img src="/img/04_game_main.png" alt=""></div>
-            <div id="gameContentInfo__form">
-      
-              <div class="default__information"><span>바둑게임을 통해서 바둑의 개념을 익히고, 문제를 하나씩 풀어나가는...</span></div>
-              <div class="default__info"><span>난이도 : </span></div>
-              <div class="default__info"><span>학습대상 : </span></div>
-              <div class="default__info"><span>구매 혜택 : </span></div>
-      
-              <div class="default__price"><span>정가 :</span></div>
-              <div class="default__price"><span>할인가 : </span></div>
-              <div class="default__price"><span>학습기간 : </span></div>
-      
-              <div class="default__button">
-                <form action="" method="get"><button type="submit">1개월 구독</button></form>
-                <form action="" method="get"><button type="submit">3개월 구독</button></form>
-                <form action="" method="get"><button type="submit">6개월 구독</button></form>
-                <form action="" method="get"><button type="submit">12개월 구독</button></form>
-              </div>
-      
-            </div>
-      
-          </div>
-        </div>
-      </div>
-    </div>
+							<div class="gameContentInfo__wrap">
 
-  </div>
+								<div class="gameContentInfo__wrap__mainTitle">게임 컨텐츠 제목</div>
 
+								<div class="gameContentInfo__img">
+									<img src="/img/04_game_main.png" alt="">
+								</div>
+								<div id="gameContentInfo__form">
 
-   <div class="wrap__content">  
+									<div class="default__information">
+										<span>바둑게임을 통해서 바둑의 개념을 익히고, 문제를 하나씩 풀어나가는...</span>
+									</div>
+									<div class="default__info">
+										<span>난이도 :[[${game_title}]] </span>
+									</div>
+									<div class="default__info">
+										<span>학습대상 : </span>
+									</div>
+									<div class="default__info">
+										<span>구매 혜택 : </span>
+									</div>
 
+									<div class="default__price">
+										<span>정가 :</span>
+									</div>
+									<div class="default__price">
+										<span>할인가 : </span>
+									</div>
+									<div class="default__price">
+										<span>학습기간 : </span>
+									</div>
 
-     <div class="game__content__header">
-       <div class="game__content__header__wrapper">
+									<div class="default__button">
+										<form action="" method="get">
+											<button type="submit">1개월 구독</button>
+										</form>
+										<form action="" method="get">
+											<button type="submit">3개월 구독</button>
+										</form>
+										<form action="" method="get">
+											<button type="submit">6개월 구독</button>
+										</form>
+										<form action="" method="get">
+											<button type="submit">12개월 구독</button>
+										</form>
+									</div>
 
-         <div class="game__content__title"><span>게임 컨텐츠 조회</span></div>
-         <div class="game__content__search">
+								</div>
 
-           <form action="" method="get" class="game__search__input">
-             <input type="text" name="gameContentSearch" placeholder="찾을 강의를 입력하세요.">
-             <button>검색</button>
-           </form>
-
-           <div id="game__divide">
-             
-             <button class="game__divide__btn active">
-               <img src="/img/pc.png" alt="">
-               <span>전체</span>
-             </button>
-
-             <button class="game__divide__btn">
-               <img src="/img/pc.png" alt="">
-               <span>튜토리얼</span>
-             </button>
-
-             <button class="game__divide__btn">
-               <img src="/img/pc.png" alt="">
-               <span>초급</span>
-             </button>
-
-             <button class="game__divide__btn">
-               <img src="/img/pc.png" alt="">
-               <span>중급</span>
-             </button>
-
-             <button class="game__divide__btn">
-               <img src="/img/pc.png" alt="">
-               <span>고급</span>
-             </button>
-
-             <button class="game__divide__btn">
-               <img src="/img/pc.png" alt="">
-               <span>프로</span>
-             </button>
-
-             <button class="game__divide__btn">
-               <img src="/img/freeMoney.png" alt="">
-               <span>무료</span>
-             </button>
-
-             <button class="game__divide__btn">
-               <img src="/img/money2.png" alt="">
-               <span>유료</span>
-             </button>
-
-           </div>
-
-           <div class="game__sort">
-             
-             <div class="game__sort__div">
-               <img src="/img/sort.png" alt="">
-               <select name="sort" id="sort">
-                 <option value="none">정렬상태</option>
-                 <option value="글자">글자</option>
-                 <option value="등록일">등록일</option>
-                 <option value="구독수">구독수</option>
-               </select>
-             </div>
-
-           </div>
-
-
-         </div>
-
-       </div>
-     </div>
+							</div>
+						</div>
+					</div>
+				</div>
 
 
 
-     <div class="game__body">
+			</div>
 
-       <div class="game__body__content">
+			<div class="wrap__content">
 
-         <div class="game__content__above">
-           
 
-           <div class="game__item__wrap" id="myBtn">
-             <div class="game__content__item">
-               <div class="game__thumbnail"><img src="/img/05_game_main.png" alt=""></div>
-               <div class="game__thumbnail__title"><span>게임컨텐츠 제목</span></div>
-               <div class="game__thumbnail__type"><span>초급</span></div>
-               <div class="game__thumbnail__price"><span>25000원</span></div>
-             </div>
-           </div>
+				<div class="game__content__header">
+					<div class="game__content__header__wrapper">
 
-           <div class="game__item__wrap">
-             <div class="game__content__item" id="myBtn">
-               <div class="game__thumbnail"><img src="/img/05_game_main.png" alt=""></div>
-               <div class="game__thumbnail__title"><span>게임컨텐츠 제목</span></div>
-               <div class="game__thumbnail__type"><span>중급</span></div>
-               <div class="game__thumbnail__price"><span>25000원</span></div>
-             </div>
-           </div>
+						<div class="game__content__title">
+							<span>게임 컨텐츠 조회</span>
+						</div>
+						<div class="game__content__search">
 
-           <div class="game__item__wrap">
-             <div class="game__content__item" id="myBtn">
-               <div class="game__thumbnail"><img src="/img/05_game_main.png" alt=""></div>
-               <div class="game__thumbnail__title"><span>게임컨텐츠 제목</span></div>
-               <div class="game__thumbnail__type"><span>초급</span></div>
-               <div class="game__thumbnail__price"><span>25000원</span></div>
-             </div>
-           </div>
+							<form action="" method="get" class="game__search__input">
+								<input type="hidden" name="JPage" value="1"> <input
+									type="hidden" name="Jamount" th:value="${JPageVO.JAmount}">
+								<!-- 폼있는 부분에다가 페이지가 이동되는지 실험을 해봤습니다 -->
+								<input type="text" name="gameContentSearch"
+									placeholder="찾을 강의를 입력하세요.">
+								<button>검색</button>
+							</form>
 
-           <div class="game__item__wrap">
-             <div class="game__content__item" id="myBtn">
-               <div class="game__thumbnail"><img src="/img/05_game_main.png" alt=""></div>
-               <div class="game__thumbnail__title"><span>게임컨텐츠 제목</span></div>
-               <div class="game__thumbnail__type"><span>프로</span></div>
-               <div class="game__thumbnail__price"><span>25000원</span></div>
-             </div>
-           </div>
+							<div id="game__divide">
 
-           <div class="game__item__wrap" id="myBtn">
-             <div class="game__content__item">
-               <div class="game__thumbnail"><img src="/img/05_game_main.png" alt=""></div>
-               <div class="game__thumbnail__title"><span>게임컨텐츠 제목</span></div>
-               <div class="game__thumbnail__type"><span>고급</span></div>
-               <div class="game__thumbnail__price"><span>25000원</span></div>
-             </div>
-           </div>
+								<button class="game__divide__btn active">
+									<img src="/img/pc.png" alt=""> <span>전체</span>
+								</button>
 
-         </div>
+								<button class="game__divide__btn">
+									<img src="/img/pc.png" alt=""> <span>튜토리얼</span>
+								</button>
 
-         <div class="game__content__below">
-           
-           <div class="game__item__wrap" id="myBtn">
-             <div class="game__content__item">
-               <div class="game__thumbnail"><img src="/img/05_game_main.png" alt=""></div>
-               <div class="game__thumbnail__title"><span>게임컨텐츠 제목</span></div>
-               <div class="game__thumbnail__type"><span>초급</span></div>
-               <div class="game__thumbnail__price"><span>25000원</span></div>
-             </div>
-           </div>
+								<button class="game__divide__btn">
+									<img src="/img/pc.png" alt=""> <span>초급</span>
+								</button>
 
-           <div class="game__item__wrap" id="myBtn">
-             <div class="game__content__item">
-               <div class="game__thumbnail"><img src="/img/05_game_main.png" alt=""></div>
-               <div class="game__thumbnail__title"><span>게임컨텐츠 제목</span></div>
-               <div class="game__thumbnail__type"><span>중급</span></div>
-               <div class="game__thumbnail__price"><span>25000원</span></div>
-             </div>
-           </div>
+								<button class="game__divide__btn">
+									<img src="/img/pc.png" alt=""> <span>중급</span>
+								</button>
 
-           <div class="game__item__wrap" id="myBtn">
-             <div class="game__content__item">
-               <div class="game__thumbnail"><img src="/img/05_game_main.png" alt=""></div>
-               <div class="game__thumbnail__title"><span>게임컨텐츠 제목</span></div>
-               <div class="game__thumbnail__type"><span>초급</span></div>
-               <div class="game__thumbnail__price"><span>25000원</span></div>
-             </div>
-           </div>
+								<button class="game__divide__btn">
+									<img src="/img/pc.png" alt=""> <span>고급</span>
+								</button>
 
-           <div class="game__item__wrap" id="myBtn">
-             <div class="game__content__item">
-               <div class="game__thumbnail"><img src="/img/05_game_main.png" alt=""></div>
-               <div class="game__thumbnail__title"><span>게임컨텐츠 제목</span></div>
-               <div class="game__thumbnail__type"><span>프로</span></div>
-               <div class="game__thumbnail__price"><span>25000원</span></div>
-             </div>
-           </div>
+								<button class="game__divide__btn">
+									<img src="/img/pc.png" alt=""> <span>프로</span>
+								</button>
 
-           <div class="game__item__wrap" id="myBtn">
-             <div class="game__content__item">
-               <div class="game__thumbnail"><img src="/img/05_game_main.png" alt=""></div>
-               <div class="game__thumbnail__title"><span>게임컨텐츠 제목</span></div>
-               <div class="game__thumbnail__type"><span>고급</span></div>
-               <div class="game__thumbnail__price"><span>25000원</span></div>
-             </div>
-           </div>
+								<button class="game__divide__btn">
+									<img src="/img/freeMoney.png" alt=""> <span>무료</span>
+								</button>
 
-         </div>
+								<button class="game__divide__btn">
+									<img src="/img/money2.png" alt=""> <span>유료</span>
+								</button>
 
-         <div id="game__content__page">
-           <div class="page__num page__active"><span>1</span></div>
-           <div class="page__num"><span>2</span></div>
-           <div class="page__num"><span>3</span></div>
-           <div class="page__num"><span>4</span></div>
-           <div class="page__num"><span>5</span></div>
-           <div class="page__num"><span>6</span></div>
-           <div class="page__num"><span>7</span></div>
-           <div class="page__num"><span>8</span></div>
-         </div>
+							</div>
 
-       </div>
-       
-     </div>
+							<div class="game__sort">
+
+								<div class="game__sort__div">
+									<img src="/img/sort.png" alt=""> <select name="sort"
+										id="sort">
+										<option value="none">정렬상태</option>
+										<option value="글자">글자</option>
+										<option value="등록일">등록일</option>
+										<option value="구독수">구독수</option>
+									</select>
+								</div>
+
+							</div>
+
+
+						</div>
+					</div>
 
 
 
-   </div>
- </div>
+				</div>
 
-</th:block>
+				<div class="game__body">
+
+					<div class="game__body__content">
+
+						<div class="game__content__above">
+
+
+
+							<div class="game__item__wrap"
+								th:each="vo, status : ${pagesubList}" id="myBtn">
+
+								<div class="game__content__item">
+									<div class="game__thumbnail">
+										<img src="/img/05_game_main.png" alt="">
+									</div>
+									<div class="game__thumbnail__title">
+										<span>[[${vo.game_title}]]</span>
+									</div>
+									<div class="game__thumbnail__type">
+										<span>[[${vo.game_target_level}]]</span>
+									</div>
+									<div class="game__thumbnail__price">
+										<span>[[${vo.game_price}]]</span>
+									</div>
+								</div>
+							</div>
+
+
+
+
+						</div>
+
+						<div class="game__content__below">
+
+							<div class="game__item__wrap" id="myBtn"
+								th:each="vo, status : ${pagesubListTwo}">
+								<div class="game__content__item">
+									<div class="game__thumbnail">
+										<img src="/img/05_game_main.png" alt="">
+									</div>
+									<div class="game__thumbnail__title">
+										<span>[[${vo.game_title}]]</span>
+									</div>
+									<div class="game__thumbnail__type">
+										<span>[[${vo.game_target_level}]]</span>
+									</div>
+									<div class="game__thumbnail__price">
+										<span>[[${vo.game_price}]]</span>
+									</div>
+								</div>
+							</div>
+						</div>
+
+
+
+						<div
+							th:replace="/re_base_pagevo/base_Page.html ::  game__content__page"></div>
+
+					</div>
+				</div>
+			</div>
+		</div>
+	</th:block>
+</body>
 </html>

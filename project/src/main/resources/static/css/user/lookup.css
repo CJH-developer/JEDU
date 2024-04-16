@@ -1,4 +1,3 @@
-
 .lookup__header{width: 100%; height: 10%; display: flex; align-items: center; justify-content: space-between;}
 
 .lookup__header__title{width: 10.5%; height: 100%; display: flex; align-items: center;}
@@ -8,6 +7,7 @@
 .lookup__header__search input{width: 250px; height: 35px; border: none; border-bottom: 1px solid rgb(207, 207, 207); padding-left: 10px;  &:focus{outline: none;}}
 .lookup__header__search button{width: 50px; height: 35px; background-color:rgb(92, 128, 228); color: white; border: none;}
 .lookup__header__search button:hover{background-color: rgb(65, 108, 224);}
+
 
 .lookup__header__detail{width: 70%; height: 100%; display: flex; align-items: center;}
 
@@ -23,18 +23,23 @@
 #add__basket{background-color: rgb(15, 172, 15); width: 85px; height: 30px; border-radius: 0; font-size: 12px; font-weight: bold;}
 #add__basket:hover{background-color: rgb(30, 218, 30); }
 
-
-
-
+.wrap__content{width: 100%;height: 100%;  position: relative; overflow: hidden; min-height:500px;}
+.dEnd{display:flex; justify-content: center; align-items: center}
+#Estart{display: inline-block; vertical-align: bottom; bottom:10px; position:absolute;  width: 100%;margin-bottom:10px;}
 .lookup__detail__right{width: 20%; height: 100%; display: flex; align-items: center; justify-content: center;}
 .lookup__detail__right select{border: none; border-bottom: 1px solid rgb(206, 205, 205); padding-bottom: 5px; &:focus{outline: none;}}
 .lookup__detail__right img{width: 20px; height: 20px;}
 
-.lookup__body{width: 100%; height: 90%; display: flex; align-items: center;}
-.lookup__table{width: 100%; height: 100%; display: flex; flex-direction: column;}
+.lookup__bodys{width: 100%; height: 90%; display: flex; align-items: center; min-height:300px;}
+.lookup__tables{width: 100%; height: 100%; display: flex; flex-direction: column; /*최소높이로 맞춰놓음*/min-height: 300px; /* 빈 상태에서도 컨테이너의 높이를 유지 */  }
 
-.table__thead{width: 96%; height: 7%; display: flex; align-items: center; justify-content: center; background-color: rgb(36, 86, 224);}
-.table__tbody{width: 96%; height: 88%; border: 1px solid rgb(202, 200, 200);}
+
+.table__theads{width: 96%; height: 7%; display: flex; align-items: center; justify-content: center; background-color: rgb(36, 86, 224); /*최소 높이 30이로 줌*/ min-height: 30px;}
+
+
+.table__tbodys{width: 96%; height: 100%;} /*border: 1px solid rgb(202, 200, 200);*/
+
+.non_date_table__tbody{width: 96%; height: 100%;border:non;}
 .table__page{width: 96%; height: 5%;}
 
 .thead__check{width: 6%; height: 100%; display: flex; align-items: center; justify-content: center; font-size: 12px; color: white; border-right: 1px solid rgb(23, 112, 228);}
@@ -44,22 +49,15 @@
 .thead__introduce{width: 24%; height: 100%; display: flex; align-items: center; justify-content: center; color: white; font-size: 12px;border-right: 1px solid rgb(23, 112, 228);}
 .thead__pay{width: 10%; height: 100%; display: flex; align-items: center; justify-content: center; color: white; font-size: 12px;}
 
-
-.tbody__item{width: 100%; height: 25%; border-bottom: 1px solid rgb(209, 209, 209); display: flex; align-items: center; justify-content:center;}
-.tbody__item{width: 100%; height: 25%; border-bottom: 1px solid rgb(209, 209, 209); display: flex; align-items: center; justify-content:center; }
+.lookup__table-item{   flex: 1; }
+.tbody__item{width: 100%; height: 37%; border-bottom: 1px solid rgb(209, 209, 209); display: flex; align-items: center; justify-content:center;   flex: 0 0 auto }
 .tbody__check{width: 6%; height: 100%; display: flex; align-items: center; justify-content: center; font-size: 12px; color: black; border-right: 1px solid rgb(214, 214, 214);}
 .tbody__image{width: 20%; height: 100%; display: flex; align-items: center; justify-content: center; color: black; font-size: 12px; border-right: 1px solid rgb(214, 214, 214);}
 .tbody__title{width: 20%; height: 100%; display: flex; align-items: center; justify-content: center; color: black; font-size: 12px; border-right: 1px solid rgb(214, 214, 214);}
 .tbody__subscribe{width: 20%; height: 100%; display: flex; flex-direction: column; align-items: center; justify-content: center; color: black; font-size: 12px; border-right: 1px solid rgb(214, 214, 214);}
 .tbody__introduce{width: 24%; height: 100%; display: flex; align-items: center; justify-content: center; color: black; font-size: 12px; border-right: 1px solid rgb(214, 214, 214);}
 .tbody__pay{width: 10%; height: 100%; display: flex; align-items: center; justify-content:space-between;}
-
 .tbody__pay button{width: 60px; height: 25px; margin: 0px 5px; font-size: 12px; border: 1px solid rgb(184, 182, 182); font-weight: bold;}
-
-.tbody__pay button{width: 100px; height: 25px; margin: 0px 5px; font-size: 12px; border: 1px solid rgb(184, 182, 182); font-weight: bold;}
-.tbody__pay a{line-height:25px; text-align: center; width: 70px; height: 25px; margin: 0px 5px; font-size: 12px; border: 1px solid rgb(184, 182, 182); font-weight: bold;}
-
-
 #content__purchase{background-color: rgb(233, 161, 6); margin-left:20px}
 #content__purchase:hover{background-color: rgb(240, 174, 52);}
 #content__basket{background-color: rgb(15, 172, 15); margin-left:15px;}
@@ -163,21 +161,6 @@
   transition: opacity 0.5s ease-in-out;
   pointer-events: none; 
 }
-.paid-message {
-  background-color: #4CAF50;
-  color: white;
-  padding: 10px;
-  border: 1px solid #B0B0B0;
-  border-radius: 5px;
-  text-align: center;
-  width: 600px;
-  position: fixed;
-  left:55%; 
-  bottom: 10%; 
-  transform: translateX(-50%); 
-  opacity: 0;
-  transition: opacity 0.5s ease-in-out;
-  pointer-events: none; 
-}
+
 
 .tbody__sub__date{width: 24%; height: 100%; display: flex; align-items: center; justify-content: center; color: rgb(8, 8, 8); font-size: 16px;border-right: 1px solid rgb(205, 208, 212);}

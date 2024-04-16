@@ -5,29 +5,32 @@
   <mapper namespace="com.geomin.project.gameContentService.GameContentMapper">
   
   	  <!-- 게임컨텐츠 기본 사항 등록 -->
-	  <insert id="regist">
-	  	INSERT INTO GAME_CONTENT (
-	  		GAME_TITLE,
-	  		GAME_TARGET_LEVEL,
-	  		GAME_PRICE,
-	  		GAME_DISCOUNT_PRICE,
-	  		GAME_CONTENT,
-	  		GAME_COUNT,
-	  		GAME_SUB_REGDATE,
-	  		GAME_SUB_ENDDATE,
-	  		DEL_CHECK
-	  	) VALUES (
-	  		#{game_title},
-	  		#{game_target_level},
-	  		#{game_price},
-	  		#{game_discount_price},
-	  		#{game_content},
-	  		#{game_count},
-	  		#{game_sub_startDate},
-	  		#{game_sub_endDate},
-	  		#{del_check}
-	  	)
-	  </insert>
+	
+<insert id="regist">
+    INSERT INTO GAME_CONTENT (
+        GAME_TITLE,
+        GAME_TARGET_LEVEL,
+        GAME_PRICE,
+        GAME_DISCOUNT_PRICE,
+        GAME_CONTENT,
+        GAME_COUNT,
+        GAME_SUB_regDATE,
+        GAME_SUB_ENDDATE
+        <!-- , del_check -->
+    ) VALUES (
+        #{game_title},
+        #{game_target_level},
+        #{game_price},
+        #{game_discount_price},
+        #{game_content},
+        #{game_count},
+        #{game_sub_regDate},
+        #{game_sub_endDate}
+        <!-- , #{del_check} -->
+    )
+</insert>
+
+	
 
   	  <!-- 게임컨텐츠 파일 등록 -->
   	  <insert id="registFile">
@@ -39,13 +42,13 @@
 			FILENAME,
 			FILEPATH,
 			UUID,
-			GAME_NO,
+			
 			GAME_TITLE
 		)VALUES(
 			#{fileName},
 			#{filepath},
 			#{uuid},
-			#{game_no},
+			
 			#{game_title}
 		)
 		
@@ -147,6 +150,8 @@
         ON 
             G.GAME_NO = U.GAME_NO
         WHERE 
+        
+        
     		U.FILENAME IS NOT NULL
      	AND
 			G.DEL_CHECK = "N"

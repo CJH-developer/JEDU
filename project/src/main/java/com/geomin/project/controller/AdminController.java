@@ -9,6 +9,7 @@ import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -46,8 +47,8 @@ public class AdminController {
 	private BoardService boardService;
 	
 	// 파일 업로드 경로
-//	@Value("${project.upload.path}")
-//	private String uploadPath;
+	@Value("${project.upload.path}")
+	private String uploadPath;
 	
 	// 메인 화면 - 관리자 
 	@GetMapping("/main")

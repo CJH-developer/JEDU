@@ -39,6 +39,27 @@
 
 <!-- MAIN JS -->
 <script th:src="@{/js/frame/baseLayout.js}" defer ></script>
+<!-- 추가한 부분 민상 -->
+<link rel="stylesheet" href="/css/frame/PurChase_Log.css">
+		<link rel="stylesheet" href="/css/user/lookup.css"> 
+		<link rel="stylesheet" href="/css/user/gameList.css"> 
+		<link rel="stylesheet" href="/css/user/study_fun.css"> 
+		<link rel="stylesheet" href="/css/user/study_status.css">
+
+<!-- 추가한 부분 민상 -->
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,700,0,200" />
+
+<!-- MAIN JS -->
+<script src="/js/frame/lookup.js" defer></script>
+<script src="/js/frame/baseLayout.js" defer></script>
+
+<!-- 민상 User_myproduct의 js -->
+<script src="/js/user/User_myproduct.js" defer></script>
+
+
+
+<script th:src="@{/js/frame/baseLayout.js}" defer ></script>
+
 
 </head>
 
@@ -72,14 +93,14 @@
 			
 			              <button type="button" class="section__sub__menu" value="GAME"><img src="/img/mouse_icon.png" alt="마우스아이콘"> GAME</button>
 			              <div class="sub__menu__list">
-			                <a href="/command/lookup" class="small__menu" data-title="게임 컨텐츠 조회" >게임 컨텐츠 조회</a>
-			                 <a href="/user/game" class="small__menu" data-title="학습하기">학습하기</a>
+			                <a href="/command/gameList" class="small__menu" data-title="게임 컨텐츠 조회" >게임 컨텐츠 조회</a>
+			                 <a href="/user/study_fun" class="small__menu" data-title="학습하기">학습하기</a>
 			              </div>
 			
 			              <button type="button" class="section__sub__menu" value="구독"><img src="/img/vegas.png" alt="화살표"> SUBSCRIBE</button>
 			              <div class="sub__menu__list">
-			                <a href="/user/myproduct" class="small__menu" data-title="내 구독 상품 조회">내 구독 상품 조회</a>
-			                <a href="" class="small__menu" data-title="학습상태">학습상태</a>
+			                <a href="/user/User_myproduct" class="small__menu" data-title="내 구독 상품 조회">내 구독 상품 조회</a>
+			                <a href="/user/Study_Status" class="small__menu" data-title="학습상태">학습상태</a>
 			              </div>
 						  
 			            </div>

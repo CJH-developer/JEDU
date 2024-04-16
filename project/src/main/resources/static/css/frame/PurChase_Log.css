@@ -1,0 +1,2 @@
+.wrap{display: flex; flex-direction: row; justify-content:center; align-items: center; }
+.good{border: 2px solid #537ce9  ; width:80%;  color:red; height: 50%;border-radius: 20px}
