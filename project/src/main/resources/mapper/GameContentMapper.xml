@@ -76,12 +76,7 @@
     <!-- Select Query -->
     <select id="getList" resultMap="gameResultMap">
         SELECT 
-        	G.GAME_NO,
-            G.GAME_TITLE, 
-            G.GAME_TARGET_LEVEL, 
-            G.GAME_DISCOUNT_PRICE, 
-            G.GAME_COUNT, 
-            G.GAME_REGDATE, 
+        	G.*, 
             U.FILENAME, 
             U.FILEPATH, 
             U.UUID,
