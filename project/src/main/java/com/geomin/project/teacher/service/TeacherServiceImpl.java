@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.geomin.project.command.GameContentVO;
 import com.geomin.project.command.HomeWorkVO;
+import com.geomin.project.command.HomeworkHistoryVO;
 import com.geomin.project.command.learnGroupVO;
 
 @Service
@@ -93,6 +94,18 @@ public class TeacherServiceImpl implements TeacherService{
 	public int homeworkSend(Map<String, Object> homework) {
 		
 		return teacherMapper.homeworkSend(homework);
+	}
+
+	@Override
+	public ArrayList<HomeworkHistoryVO> homeworkReceive(int homework_no) {
+		
+		return teacherMapper.homeworkReceive(homework_no);
+	}
+
+	@Override
+	public int homeworkGrade(Map<String, Object> homework) {
+		
+		return teacherMapper.homeworkGrade(homework);
 	}
 
 //	@Override

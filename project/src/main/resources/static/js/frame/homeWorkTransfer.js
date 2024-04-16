@@ -39,7 +39,6 @@ $("#send").click(function() {
 		
 	}
 	
-		
 })
 
 // 오른쪽 체크된 애들 user_no
@@ -56,7 +55,6 @@ $(document).on("change", ".transfer__tbody__content2.right input[type='checkbox'
 // 내 학습그룹 불러오기
 $("#myGroup").click(function() {
     var userNo = $("#user_no").val();
-
     $.ajax({
         url: "/mygroup/" + userNo,
         method: "GET",

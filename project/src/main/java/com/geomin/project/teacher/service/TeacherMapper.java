@@ -7,6 +7,7 @@ import org.apache.ibatis.annotations.Mapper;
 
 import com.geomin.project.command.GameContentVO;
 import com.geomin.project.command.HomeWorkVO;
+import com.geomin.project.command.HomeworkHistoryVO;
 import com.geomin.project.command.learnGroupVO;
 
 @Mapper
@@ -54,6 +55,11 @@ public interface TeacherMapper {
 	// 숙제 내주기
 	public int homeworkSend(Map<String, Object> homework);
 	
+	// 숙제 제출 내역
+	public ArrayList<HomeworkHistoryVO> homeworkReceive(int homework_no);
+	
+	// 숙제 평가하고 저장 눌렀을 때
+	public int homeworkGrade(Map<String, Object> homework);
 	
 	
 	
