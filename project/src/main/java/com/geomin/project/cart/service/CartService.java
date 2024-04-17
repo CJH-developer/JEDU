@@ -34,4 +34,6 @@ public interface CartService {
 	public ArrayList<PurchaseVO> purchaseHistory (int user_no);
 	
 	
+	
+	
 }

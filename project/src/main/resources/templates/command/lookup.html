@@ -44,7 +44,7 @@
         <div class="lookup__detail__right">
           <img src="/img/sort.png" alt="">
           <select name="" id="">
-            <option value=""> 정렬</option>
+            <option value="">정렬</option>
             <option value="">가나다순</option>
             <option value="">제목순</option>
             <option value="">등록일순</option>
@@ -54,7 +54,6 @@
       </div>
 
     </div>
-
 
     <div class="lookup__body">
 
@@ -68,8 +67,9 @@
           <div class="thead__introduce">상품소개</div>
           <div class="thead__pay">결제</div>
         </div>
-        <div class="table__tbody">
         
+        
+        <div class="table__tbody">
           <!-- 반복하는 곳 -->
           <div class="tbody__item" th:each="list : ${gameContent}">
           
@@ -81,7 +81,7 @@
 				
 	            <!-- 컨텐츠 사진 -->
 	            <div class="tbody__image">
-	              <img src="/img/01_game_main.png" alt="">
+	              <img th:src="@{/display/{filepath}/{uuid}/{filename}(filepath=${list.filepath},uuid=${list.uuid},filename=${list.filename})}">
 	            </div>
 	
 	            <!-- 컨텐츠 제목 -->
@@ -109,20 +109,17 @@
           </div>
            
 
-	
 		  <div id="paidMessage" class="paid-message">이미 구매하신 내역이 있습니다.</div>
 		  <div id="inCartMessage" class="alert-message">장바구니에 이미 존재합니다</div>
       	  <div id="cartMessage" class="cart-message">장바구니에 추가되었습니다</div>
        
         </div>
-        
-
-
+        <th:block th:replace="~{./baseLayout/page_lookup :: pageNation(${pageVOlookup})}"></th:block>
       </div>
-
+		 
     </div>
-
-      <th:block th:replace="~{./baseLayout/page_lookup :: pageNation(${pageVOlookup})}"></th:block> 
+	
+      
   </div>
 </div>
 

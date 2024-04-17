@@ -13,7 +13,6 @@ import com.geomin.project.board.service.BoardRepository;
 import com.geomin.project.command.FaqVO;
 import com.geomin.project.command.NoticeVO;
 import com.geomin.project.command.QnaVO;
-import com.mysql.cj.protocol.x.Notice;
 
 @Controller
 @RequestMapping("/menu")

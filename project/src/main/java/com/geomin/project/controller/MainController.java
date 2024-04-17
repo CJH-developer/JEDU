@@ -20,7 +20,6 @@ import com.geomin.project.gameContentService.GameContentService;
 import com.geomin.project.util.Criteria;
 
 @Controller
-@RequestMapping("/")
 public class MainController {
 
 	@Autowired
@@ -35,7 +34,7 @@ public class MainController {
 	@Qualifier("DocumentService")
 	private DocumentService documentService;
 	
-	@GetMapping("main")
+	@GetMapping("/main")
 	public String main(Model model, Criteria ciriteria) {
 		
 		ArrayList<NoticeVO> noticeVO = boardService.getNotice();
@@ -52,7 +51,7 @@ public class MainController {
 		model.addAttribute("faqVO", faqVO);
 		model.addAttribute("qnaVO", qnaVO);
 		
-		return "/main";
+		return "main";
 	}
 	
 }

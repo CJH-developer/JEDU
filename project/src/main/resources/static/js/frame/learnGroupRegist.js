@@ -41,3 +41,12 @@ document.getElementById("learn__group__level").oninput = function() {
   document.getElementById("pre__head__level").innerHTML = learn__group__level + " 레벨";
 };
 
+// 모달창(팝업으로 내 구매이력 가져오기)
+var button = document.querySelector('.lg__tbody__one button');
+
+// 버튼 클릭 이벤트 핸들러 등록
+button.addEventListener('click', function() {
+  // 모달 창 열기
+  var modal = window.open('myproductPopup', 'popup', 'width=1400,height=1200');
+
+});
