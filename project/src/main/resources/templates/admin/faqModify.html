@@ -5,13 +5,13 @@
 <div class="wrap">
 <script src="/js/frame/faqRegist.js" defer></script>
   <div class="wrap__content">
-    <form action="/admin/faqRegistForm" method="post" class="regist__wrap">
-
+    <form action="/admin/faqModifyForm" method="post" class="regist__wrap">
+	  <input type="hidden" name="faq_no" th:value="${vo.faq_no}">
       <!-- 컨텐츠 등록 -->
       <div class="regist__left">
 
         <div class="regist__left__above">
-          <span>게시판 - FAQ 등록</span>
+          <span>게시판 - FAQ 수정</span>
           <div class="left__above__button">
             <button>등록</button>
             <button>취소</button>
@@ -23,11 +23,14 @@
           <div class="regist__below__item">
             <span>FAQ 유형</span>
             <select name="faq_type" id="item__select">
-              <option value="none">유형을 선택해주세요.</option>
-              <option value="1">상품결제</option>
-              <option value="2">상품관리</option>
-              <option value="3">학습그룹</option>
-              <option value="4">기타</option>
+              <option th:if="${vo.faq_type == 1}" value="1" th:selected>상품결제</option>
+   			  <option th:if="${vo.faq_type == 2}" value="2" th:selected>상품관리</option>
+   			  <option th:if="${vo.faq_type == 3}" value="3" th:selected>학습그룹</option>
+   			  <option th:if="${vo.faq_type == 4}" value="4" th:selected>기타</option>
+              <option th:unless="${vo.faq_type == 1}" value="1">상품결제</option>
+              <option th:unless="${vo.faq_type == 2}" value="2">상품관리</option>
+              <option th:unless="${vo.faq_type == 3}" value="3">학습그룹</option>
+              <option th:unless="${vo.faq_type == 4}" value="4">기타</option>
             </select>
           </div>
 
@@ -35,13 +38,13 @@
           <!-- 제목 입력 -->
           <div class="regist__below__item">
             <span>질의</span>
-            <input type="text" id="faq__question" name="faq_question" placeholder="질의를 입력하세요.">
+            <input type="text" id="faq__question" name="faq_question"  th:placeholder="${vo.faq_question}">
           </div>
 
           <!-- 제목 입력 -->
           <div class="regist__below__item">
             <span>답변</span>
-            <input type="text" id="faq__answer" name="faq_answer" placeholder="답변을 입력하세요.">
+            <input type="text" id="faq__answer" name="faq_answer"  th:placeholder="${vo.faq_answer}">
           </div>
           
           

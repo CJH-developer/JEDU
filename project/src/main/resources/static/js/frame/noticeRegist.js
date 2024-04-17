@@ -169,3 +169,5 @@ fileInput.addEventListener("change", function() {
         document.getElementById("board__file").innerHTML = "파일을 선택해주세요.";
     }
 });
+
+

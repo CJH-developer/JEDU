@@ -1,5 +1,5 @@
 var swiper = new Swiper('.swiper', {
-  slidesPerView: 3.5,
+  slidesPerView: 3.4,
   direction: getDirection(),
   navigation: {
     nextEl: '.swiper-button-next',
@@ -14,7 +14,7 @@ var swiper = new Swiper('.swiper', {
 
 function getDirection() {
   var windowWidth = window.innerWidth;
-  var direction = window.innerWidth <= 760 ? 'vertical' : 'horizontal';
+  var direction = windowWidth.innerWidth <= 760 ? 'vertical' : 'horizontal';
 
   return direction;
 }

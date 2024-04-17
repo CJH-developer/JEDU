@@ -12,17 +12,21 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.geomin.project.board.service.BoardRepository;
 import com.geomin.project.board.service.BoardService;
 import com.geomin.project.command.DocumentVO;
+import com.geomin.project.command.FaqVO;
 import com.geomin.project.command.GameContentVO;
 import com.geomin.project.command.NoticeVO;
 import com.geomin.project.command.PageVO;
+import com.geomin.project.command.QnaVO;
 import com.geomin.project.document.service.DocumentService;
 import com.geomin.project.gameContentService.GameContentService;
 import com.geomin.project.util.Criteria;
@@ -43,7 +47,7 @@ public class AdminController {
 	
 	@Autowired
 	@Qualifier("BoardService")
-	private BoardService boardService;
+	private BoardRepository boardService;
 	
 	// 파일 업로드 경로
 //	@Value("${project.upload.path}")
@@ -66,7 +70,6 @@ public class AdminController {
 		int total = gameContentService.getTotal();
 		PageVO vo = new PageVO(criteria, total);
 		model.addAttribute("gameContent", list);
-		System.out.println("getLevelSelect : " + criteria.getLevelSelect());
 		model.addAttribute("pageVO", vo);
 		return "admin/gameLook";
 		
@@ -118,6 +121,37 @@ public class AdminController {
 		return "admin/gameDeleteHistory";
 	}
 	
+	@GetMapping("/gameModify")
+	public String gameContentModify(@RequestParam("game_no") int game_no, Model model) {
+		GameContentVO vo = gameContentService.gameList(game_no);
+		model.addAttribute("vo", vo);
+		return "admin/gameModify";
+	}
+	
+	@PostMapping("/gameModifyForm")
+	public String gameModifyForm(GameContentVO vo, RedirectAttributes ra, @RequestParam("inputFile") List<MultipartFile> list) {
+		
+		list = list.stream().filter(m -> m.isEmpty() == false).collect(Collectors.toList());
+		// 2. 이미지 타입인지 검사
+		for(MultipartFile file : list) {
+			
+			if(file.getContentType().contains("image") == false) {
+				ra.addFlashAttribute("msg", "이미지는 필수로 선택합니다. png/jpg/jpeg/500x500만 가능합니다.");
+				return "redirect:/admin/gameModify";
+			}
+			
+		}
+		
+		// 3.이미지를 올린 경우는 서비스로 위임
+				int result = gameContentService.gameUpdate(vo, list);
+				if(result == 1) { //성공
+					ra.addFlashAttribute("msg", "정상적으로 처리되었습니다."); //리다이렉트시 1회성
+				}else { //실패
+					ra.addFlashAttribute("msg", "등록에 실패했습니다. 관리자에게 문의하세요. 8282-8282");
+				}
+		
+		return "redirect:/admin/gameLook";
+	}
 	
 	
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -188,7 +222,55 @@ public class AdminController {
 		return "admin/learnDeleteHistory";
 	}
 	
+	
+	// 학습 자료 수정
+	
+	@GetMapping("/learnModify")
+	public String learnModify(@RequestParam("docu_no") int docu_no, Model model) {
+		DocumentVO vo = documentService.docuList(docu_no);
+		model.addAttribute("vo", vo);
+		return "admin/learnModify";
+	}
+	
+	@PostMapping("/learnModifyForm")
+	public String learnModifyForm(DocumentVO vo, RedirectAttributes ra, @RequestParam("inputFiles") List<MultipartFile> list) {
+		
+		list = list.stream().filter(m -> m.isEmpty() == false).collect(Collectors.toList());
+		
+		// 2. 이미지 타입인지 검사
+		for(MultipartFile file : list) {
+			
+			if(file.getContentType().contains("image") == false) {
+				ra.addFlashAttribute("msg", "이미지는 필수로 선택합니다. png/jpg/jpeg/500x500만 가능합니다.");
+				return "redirect:/admin/learnModify";
+			}
+			
+		}
+		// 3.이미지를 올린 경우는 서비스로 위임
+		int result = documentService.docuUpdate(vo, list);
+		if(result == 1) { //성공
+			ra.addFlashAttribute("msg", "정상적으로 처리되었습니다."); //리다이렉트시 1회성
+		}else { //실패
+			ra.addFlashAttribute("msg", "등록에 실패했습니다. 관리자에게 문의하세요. 8282-8282");
+		}
+		return "redirect:/admin/learnLook";
+	}
+	
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	
+	@GetMapping("/boardLook")
+	public String boardLook(Model model) {
+		
+		ArrayList<NoticeVO> noticeList = boardService.getNotice();
+		ArrayList<FaqVO> faqList = boardService.getFaq();
+		ArrayList<QnaVO> qnaList = boardService.getQna();
+		model.addAttribute("noticeList" , noticeList);
+		model.addAttribute("faqList", faqList);
+		model.addAttribute("qnaList",qnaList);
+		
+		return "admin/boardLook";
+	}
+	
 	
 	// 게시판 - 공지사항 등록
 	@GetMapping("/noticeRegist")
@@ -205,8 +287,44 @@ public class AdminController {
 		}else {
 			ra.addFlashAttribute("msg", "게시글 등록을 다시 확인요청드립니다.");
 		}
-		return "redirect:/admin/noticeRegist";
+		return "redirect:/admin/boardLook";
 	}
+	
+	// 게시판 - 공지사항 삭제
+	@GetMapping("/noticeDeleteForm")
+	public String noticeDeleteForm(@RequestParam("notice_no") int notice_no) {
+		
+		boardService.NoticeDelete(notice_no);
+		
+		return "redirect:/admin/boardLook";
+	}
+	
+	// 게시판 - 공지사항 수정
+	@GetMapping("/noticeModify")
+	public String noticeModify(@RequestParam("notice_no") int notice_no, Model model) {
+		
+		NoticeVO vo =  boardService.noticeModify(notice_no);
+		model.addAttribute("vo", vo);
+		return "admin/noticeModify";
+	}
+	
+	@PostMapping("/noticeModifyForm")
+	public String noticeModifyForm(NoticeVO vo, RedirectAttributes ra) {
+		int result = boardService.noticeModifyUpdate(vo);
+		
+		if(result == 1) {
+			ra.addFlashAttribute("msg", "정상적으로 등록되었습니다.");
+			return "redirect:/admin/boardLook";
+		}else {
+			ra.addFlashAttribute("msg", "수정사항을 다시 확인요청드립니다.");
+			return "admin/noticeModify";
+		}
+		
+		
+	}
+	
+	///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	
 	
 	// 게시판 - FAQ 등록
 	@GetMapping("/faqRegist")
@@ -214,12 +332,96 @@ public class AdminController {
 		return "admin/faqRegist";
 	}
 	
+	@PostMapping("/faqRegistForm")
+	public String faqReistForm(FaqVO vo, RedirectAttributes ra) {
+		
+		int result = boardService.faqRegist(vo);
+		if(result == 1) {
+			ra.addFlashAttribute("msg", "정상적으로 등록되었습니다.");
+		}else {
+			ra.addFlashAttribute("msg", "게시글 등록을 다시 확인요청드립니다.");
+		}
+		
+		return "redirect:/admin/boardLook";
+	}
+	
+	// 게시판 - FAQ 삭제
+	@GetMapping("/faqDeleteForm")
+	public String faqDeleteForm(@RequestParam("faq_no") int faq_no) {
+
+		boardService.FaqDelete(faq_no);
+
+		return "redirect:/admin/boardLook";
+	}
+	
+	@GetMapping("/faqModify")
+	public String faqModify(@RequestParam("faq_no") int faq_no, Model model) {
+		
+		FaqVO vo = boardService.faqModify(faq_no);
+		model.addAttribute("vo", vo);
+		
+		return "admin/faqModify";
+	}
+	
+	@PostMapping("/faqModifyForm")
+	public String faqModifyForm(FaqVO vo, RedirectAttributes ra) {
+		int result = boardService.faqModifyUpdate(vo);
+		if(result == 1) {
+			ra.addFlashAttribute("msg", "정상적으로 등록되었습니다.");
+			return "redirect:/admin/boardLook";
+		}else {
+			ra.addFlashAttribute("msg", "수정사항을 다시 확인요청드립니다.");
+			return "admin/faqModify";
+		}
+		
+		
+	}
+	
+	
+	///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
 	// 게시판 - Q&A 등록
 	@GetMapping("/qnaRegist")
 	public String qnaRegist() {
 		return "admin/qnaRegist";
 	}
 	
+	@PostMapping("/qnaRegistForm")
+	public String qnaRegistForm(QnaVO vo, RedirectAttributes ra) {
+		int result = boardService.qnaRegist(vo);
+		System.out.println("qna등록성공여부 : " + result);
+		if(result == 1) {
+			ra.addFlashAttribute("msg", "정상적으로 등록되었습니다.");
+		}else {
+			ra.addFlashAttribute("msg", "게시글 등록을 다시 확인요청드립니다.");
+		}
+		return "redirect:/admin/boardLook";
+	}
 	
+	// 게시판 - qna 삭제
+	@GetMapping("/qnaDeleteForm")
+	public String qnaDeleteForm(@RequestParam("qna_no") int qna_no) {
+		boardService.qnaDelete(qna_no);
+		return "redirect:/admin/boardLook";
+	}
 	
+	@GetMapping("/qnaModify")
+	public String qnaModify(@RequestParam("qna_no") int qna_no, Model model) {
+		QnaVO vo = boardService.qnaModify(qna_no);
+		model.addAttribute("vo", vo);
+		return "admin/qnaModify";
+	}
+	
+	@PostMapping("/qnaModifyForm")
+	public String qnaModifyForm(QnaVO vo, RedirectAttributes ra) {
+		
+		int result = boardService.qnaModifyUpdate(vo);
+		if(result == 1) {
+			ra.addFlashAttribute("msg", "정상적으로 등록되었습니다.");
+		}else {
+			ra.addFlashAttribute("msg", "Q&A 수정을 다시 확인요청드립니다.");
+		}
+		
+		return "redirect:/admin/boardLook";
+	}
 }
