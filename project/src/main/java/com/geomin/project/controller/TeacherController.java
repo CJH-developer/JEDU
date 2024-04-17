@@ -85,11 +85,6 @@ public class TeacherController {
 		return "teacher/homeWorkScore";
 	}
 	
-	// 나의 구독 조회
-	@GetMapping("/myproduct")
-	public String myproduct() {
-		return "teacher/myproduct";
-	}
 	
 	// 학습 그룹 등록 페이지
 	@GetMapping("/learnGroupRegist")

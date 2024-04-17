@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.geomin.project.command.CartVO;
+import com.geomin.project.command.PurchaseVO;
 
 @Service("CartServiceImpl")
 public class CartServiceImpl implements CartService{
@@ -51,6 +52,13 @@ public class CartServiceImpl implements CartService{
 	public int checkPurchase(int user_no, int game_no) {
 		return cartMapper.checkPurchase(user_no, game_no);
 	}
+	
+	//구매 이력 리스트
+	@Override
+	public ArrayList<PurchaseVO> purchaseHistory(int user_no) {
+		return cartMapper.purchaseHistory(user_no);
+	}
+
 
 
 
