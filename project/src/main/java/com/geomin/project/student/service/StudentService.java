@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import com.geomin.project.command.HomeWorkVO;
 import com.geomin.project.command.StudyGroupVO;
 import com.geomin.project.command.learnGroupVO;
+import com.geomin.project.util.StudyGroupCriteria;
 
 public interface StudentService {
 	
@@ -28,5 +29,12 @@ public interface StudentService {
 	
 	//숙제 제출
     public int homeworkSubmission(HomeWorkVO hwVO);
+	
+	//그룹 스터디 조회
+	public ArrayList<StudyGroupVO> getList(StudyGroupCriteria cri);
+	public int getTotal();
+	
+	//ai 체크
+    public ArrayList<StudyGroupVO> aiList(int user_no, int user_level);
 	
 }

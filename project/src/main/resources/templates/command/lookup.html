@@ -102,7 +102,7 @@
 	            <div class="tbody__introduce" th:text="${list.game_content}">상품소개</div>
 	            <!-- 컨텐츠 결제/장바구니 -->
 	            <div class="tbody__pay">
-        		  <a th:href="@{/command/payment(listId=${list.game_no})}" class="content__purchase">결제</a>
+				  <a th:href="@{/command/payment(listId=${list.game_no})}" class="content__purchase" style="background-color:#2D69FF; color:white;">결제</a>
 	              <button id="content__basket" class="content__basket">장바구니</button>
 	            </div>
             

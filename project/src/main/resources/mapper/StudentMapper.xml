@@ -48,4 +48,38 @@
 			                        AND HOMEWORK_NO = #{homework_no}
 		</update>
 		
+		
+		<!-- 스터디그룹 페이지네이션 -->
+		<resultMap id="studyGroupMap" type="StudyGroupVO">
+	        <id property="sg_no" column="SG_NO"/>
+	        <result property="game_no" column="GAME_NO"/>
+	        <result property="sg_name" column="SG_NAME"/>
+	        <result property="sg_capa" column="SG_CAPA"/>
+	        <result property="sg_grouplimit" column="SG_GROUPLIMIT"/>
+	        <result property="sg_regdate" column="SG_REGDATE"/>
+	        <result property="sg_enddate" column="SG_ENDDATE"/>
+	        <result property="sg_level" column="SG_LEVEL"/>
+	        <result property="game_title" column="GAME_TITLE"/>
+    	</resultMap>
+		<select id="getTotal" resultType="int">
+			SELECT COUNT(*) FROM STUDY_GROUP
+		</select>
+		
+		<select id="getList" resultMap="studyGroupMap">
+			SELECT SG.*, GC.*
+			FROM STUDY_GROUP SG
+			LEFT JOIN GAME_CONTENT GC
+			ON SG.GAME_NO = GC.GAME_NO
+			limit #{pageStart}, #{amount}
+		</select>
+		
+		<select id="aiList" resultMap="studyGroupMap">
+		  SELECT SG.*, U.USER_LEVEL 
+		  FROM STUDY_GROUP SG LEFT JOIN 
+		  		(SELECT * FROM USER WHERE USER_NO = #{user_no}) U 
+		  ON SG.USER_NO = U.USER_NO 
+		  WHERE SG.SG_LEVEL = #{user_level};
+		</select>
+		
+		
 	</mapper>

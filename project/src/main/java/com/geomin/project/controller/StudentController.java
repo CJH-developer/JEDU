@@ -14,12 +14,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.geomin.project.command.HomeWorkVO;
+import com.geomin.project.command.PageVO;
 import com.geomin.project.command.StudyGroupVO;
 import com.geomin.project.command.UserVO;
 import com.geomin.project.command.learnGroupVO;
 import com.geomin.project.student.service.StudentMapper;
 import com.geomin.project.student.service.StudentService;
 import com.geomin.project.teacher.service.TeacherService;
+import com.geomin.project.util.StudyGroupCriteria;
 
 @Controller
 @RequestMapping("/student")
@@ -43,14 +45,21 @@ public class StudentController {
 	}
 	
 	@GetMapping("/groupStudyList")
-	public String groupStudyList(Model model,  HttpServletRequest request) {
+	public String groupStudyList(Model model,  HttpServletRequest request,
+								 StudyGroupCriteria cri) {
 		
 		HttpSession session = request.getSession();
 		UserVO vo = (UserVO) session.getAttribute("vo");
 		int user_no = Integer.parseInt(vo.user_no);
 		
-		ArrayList<learnGroupVO> list = teacherService.learnGroupLook();
+		//그룹스터디 내용 리스트		
+		ArrayList<StudyGroupVO> list = studentService.getList(cri);
 		model.addAttribute("list", list);
+		
+		//페이지네이션
+		int total = studentService.getTotal();
+		PageVO pageVO = new PageVO(cri, total);
+		model.addAttribute("pageVO", pageVO);
 		
 		return "student/groupStudyList";
 	}

@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import com.geomin.project.command.HomeWorkVO;
 import com.geomin.project.command.StudyGroupVO;
 import com.geomin.project.command.learnGroupVO;
+import com.geomin.project.util.StudyGroupCriteria;
 
 @Service
 public class StudentServiceImpl implements StudentService{
@@ -53,6 +54,21 @@ public class StudentServiceImpl implements StudentService{
 		return studentMapper.homeworkSubmission(hwVO);
 	}
 
+	//그룹 스터디 조회
+	@Override
+	public ArrayList<StudyGroupVO> getList(StudyGroupCriteria cri) {
+		return studentMapper.getList(cri);
+	}
+	@Override
+	public int getTotal() {
+		return studentMapper.getTotal();
+	}
+
+	
+	//ai 체크
+	public ArrayList<StudyGroupVO> aiList(int user_no, int user_level){
+		return studentMapper.aiList(user_no, user_level);
+	};
 
 
 	
