@@ -51,6 +51,7 @@ a{text-decoration:none;}
 .tbody__title{width: 20%; height: 100%; display: flex; align-items: center; justify-content: center; color: black; font-size: 12px; border-right: 1px solid rgb(214, 214, 214);}
 .tbody__subscribe{width: 20%; height: 100%; display: flex; flex-direction: column; align-items: center; justify-content: center; color: black; font-size: 12px; border-right: 1px solid rgb(214, 214, 214);}
 .tbody__introduce{width: 24%; height: 100%; display: flex; align-items: center; justify-content: center; color: black; font-size: 12px; border-right: 1px solid rgb(214, 214, 214);}
+
 .tbody__pay{width: 10%; height: 100%; display: flex; align-items: center; justify-content:space-between;}
 .tbody__pay button{width: 80px; height: 25px; margin: 0px 5px; font-size: 12px; border: 1px solid rgb(184, 182, 182); font-weight: bold;}
 .tbody__pay a{line-height:25px; text-align: center; width: 70px; height: 25px; margin: 0px 5px; font-size: 12px; border: 1px solid rgb(184, 182, 182); font-weight: bold;}
