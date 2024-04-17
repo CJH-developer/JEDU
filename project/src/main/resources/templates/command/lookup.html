@@ -65,7 +65,6 @@
         </div>
         <div class="table__tbody">
         
-        
           <!-- 반복하는 곳 -->
           <div class="tbody__item" th:each="list : ${gameContent}">
           
@@ -83,7 +82,7 @@
 	            <!-- 컨텐츠 가격 -->
 	            <div class="tbody__subscribe">
 	              <div class="tbody__subscribe__above">
-	                <div class="subscribe__above__price"><div class="price__title">기본가 : </div> <span class="real_price" th:text="${list.game_price} + '원'"원</span></div>
+	                <div class="subscribe__above__price"><div class="price__title">기본가 : </div> <span class="real_price" th:text="${list.game_price} + '원'"></span></div>
 	              </div>
 	              <div class="tbody__subscribe__below">
 	                <div class="item__date" >기간</div>
@@ -100,70 +99,23 @@
 	            </div>
             
           </div>
-		  
-		   <!-- 반복하는 곳 -->
-          <div class="tbody__item">
-          
-	          <!-- 컨텐츠 game_no -->
-	          <input type="hidden" value=3 name="game_no" id="game_no">
-	
-	            <!-- 컨텐츠 사진 -->
-	            <div class="tbody__image">
-	              <img src="/img/01_game_main.png" alt="">
-	            </div>
-	
-	            <!-- 컨텐츠 제목 -->
-	            <div class="tbody__title">컨텐츠제목</div>
-	
-	            <!-- 컨텐츠 가격 -->
-	            <div class="tbody__subscribe">
-	              <div class="tbody__subscribe__above">
-	                <div class="subscribe__above__price"><div class="price__title">기본가 : </div> <span class="real_price">15000원</span></div>
-	                <div class="subscribe__above__count"><div class="price__title">가격(1인) : </div> <span>월 3000원 </span></div>
-	              </div>
-	              <div class="tbody__subscribe__below">
-	                <div class="item__date">기간</div>
-	                <span>2024년 10월 12일 ~ 2024년 12월 15일</span>
-	              </div>
-	            </div>
-	
-	            <!-- 컨텐츠 소개 -->
-	            <div class="tbody__introduce">상품소개</div>
-	<!-- select * from cart where user_no = #{user_no} 로 데이터를 끌고 와서 모델로 컨트롤러에서 뿌려준다.
-	     그리고 컨텐츠를 admin이 뿌려줄때 들어오는 game_no랑 
-		 controller에서 cartVO롤 가지고 온느 game_no랑 비교해서 만약 일치하면 th:if 문으로 결재 및 장바구니 부분을 제어한다.	
-	  -->
-	            <!-- 컨텐츠 결제/장바구니 -->
-	            <div class="tbody__pay">
-	              <a href="/command/payment" id="content__purchase" class="content__purchase">결제</a>
-	              <button id="content__basket">장바구니</button>
-	            </div>
-            
-          </div>
-		  
-		  <div id="cartMessage" class="cart-message">장바구니에 추가되었습니다</div>
+           
+       
+
+
+ 		  <div id="cartMessage" class="cart-message">장바구니에 추가되었습니다</div>
 		  <div id="paidMessage" class="paid-message">이미 구매하신 내역이 있습니다.</div>
 		  <div id="inCartMessage" class="alert-message">장바구니에 이미 존재합니다</div>
        
         </div>
         
-        <button id="toCart" class="toCart">장바구니로 이동하기</button>
 
-        <div class="table__page">
-          <div class="table__page__list">
-            <button class="page__button page__active">1</button>
-            <button class="page__button">2</button>
-            <button class="page__button">3</button>
-            <button class="page__button">4</button>
-            <button class="page__button">5</button>
-            <button class="page__button">6</button>
-            <button class="page__button">7</button>
-          </div>
-        </div>
+
       </div>
 
     </div>
 
+      <th:block th:replace="~{./baselayout/page_lookup :: pageNation(${pageVOlookup})}"></th:block> 
   </div>
 </div>
 

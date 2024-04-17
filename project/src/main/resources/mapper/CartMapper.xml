@@ -48,6 +48,16 @@
 		SELECT COUNT(*) FROM GAME_PURCHASE WHERE user_no = #{user_no} AND game_no = #{game_no}
 	</select>
   	
+  	<!-- 구매 리스트 조회 -->
+  	<select id="purchaseHistory" resultType="PurchaseVO">
+		SELECT GPUR.*, GCONT.*
+		FROM GAME_PURCHASE GPUR
+		LEFT JOIN GAME_CONTENT GCONT
+		ON GPUR.GAME_NO = GCONT.GAME_NO
+		WHERE GPUR.USER_NO = #{user_no}
+	</select>
+  	
+  	
   	
   </mapper>
   
