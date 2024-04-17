@@ -1,6 +1,9 @@
 package com.geomin.project.controller;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 import javax.servlet.ServletRequest;
 import javax.servlet.http.HttpServletRequest;
@@ -78,7 +81,7 @@ public class CommandController {
 		
 		ArrayList<PurchaseVO> purList = cartService.purchaseHistory(user_no);
 		model.addAttribute("purList", purList);
-		System.out.println(purList.toString());
+				
 		
 		return "command/myproduct";
 	}
