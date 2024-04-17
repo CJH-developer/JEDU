@@ -11,14 +11,41 @@
 								   VALUES(#{sg_no}, #{user_no}, #{sg_level}, CURDATE() )
 		</insert>
 		
+		<!-- 그룹 신청 리스트 -->
+		<select id="groupList" resultType="StudyGroupVO">
+			select * from STUDY_GROUP_JOIN where USER_NO = #{user_no} and SG_NO = #{sg_no};
+		</select>
+		
 		<!-- 그룹 신청 중복 여부 -->
 		<select id="groupCheck" resultType="Integer">
 			SELECT COUNT(*) FROM STUDY_GROUP_JOIN WHERE user_no = #{user_no} AND sg_no = #{sg_no}
 		</select>
+		
+		<!-- 그룹 신청 승인 여부 -->
+		<select id="groupApplyList" resultType="StudyGroupVO">
+			SELECT * FROM STUDY_GROUP_JOIN SGJ
+			LEFT JOIN STUDY_GROUP SG 
+			ON SGJ.SG_NO = SG.SG_NO
+			where SGJ.USER_NO = #{user_no};
+		</select>
 	
 		<!-- 숙제 조회 -->
 		<select id="getHomeworkList" resultType="HomeWorkVO">
-			SELECT * FROM HOMEWORK WHERE USER_NO = #{user_no}
+			SELECT HW_HIS.*, HW.*, U.USER_NAME 
+			FROM HOMEWORK_HISTORY HW_HIS 
+			LEFT JOIN HOMEWORK HW
+			ON HW.HOMEWORK_NO = HW_HIS.HOMEWORK_NO
+			LEFT JOIN USER U
+			ON HW.USER_NO = U.USER_NO
+			WHERE HW_HIS.USER_NO = #{user_no}
 		</select>
+		
+		<!-- 숙제 제출 -->
+		<update id="homeworkSubmission">
+			UPDATE HOMEWORK_HISTORY SET STU_CONTENT = #{stu_content},
+			                            STU_Q = #{stu_q}
+			                        WHERE USER_NO = #{user_no}
+			                        AND HOMEWORK_NO = #{homework_no}
+		</update>
 		
 	</mapper>

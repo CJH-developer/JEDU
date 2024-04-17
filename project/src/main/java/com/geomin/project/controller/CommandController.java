@@ -17,7 +17,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.geomin.project.cart.service.CartService;
 import com.geomin.project.command.CartVO;
+import com.geomin.project.command.GameContentVO;
+import com.geomin.project.command.PageVO;
 import com.geomin.project.command.UserVO;
+import com.geomin.project.gameContentService.GameContentService;
+import com.geomin.project.util.Criteria;
 
 
 @Controller
@@ -26,6 +30,9 @@ public class CommandController {
 	
 	@Autowired
 	private CartService cartService;
+	
+	@Autowired
+	private GameContentService gameContentService;
 	
 	private HttpSession httpSession;
 	
@@ -44,20 +51,22 @@ public class CommandController {
 	
 	// 게임 컨텐츠 목록 - 일반 사용자 / 선생님
 	@GetMapping("/lookup")
-	public String lookup(HttpServletRequest request, Model model) {
-		HttpSession session = request.getSession();
-		UserVO vo = (UserVO) session.getAttribute("vo");
-		model.addAttribute("vo", vo);
+	public String lookup(HttpServletRequest request, Model model, Criteria criteria) {
 		
-		//결재 내역이 있는지 검사 (있으면 표출을 안한다)
-		int user_no = Integer.parseInt(vo.user_no);
-		ArrayList<CartVO> cartList = cartService.getListCart(user_no);
-		for(CartVO c : cartList) {
-			int game_no = c.getGame_no();
-			
-			//여기서 서비스 만들어서 조회하고 표출한다.
-		}
+		/*
+		 * HttpSession session = request.getSession(); UserVO vo = (UserVO)
+		 * session.getAttribute("vo"); int user_no = Integer.parseInt(vo.user_no);
+		 * ArrayList<CartVO> cartList = cartService.getListCart(user_no);
+		 * model.addAttribute("vo", vo); model.addAttribute("cartList", cartList);
+		 */
 		
+		ArrayList<GameContentVO> list = gameContentService.getList(criteria);
+		int total = gameContentService.getTotal();
+		PageVO vo = new PageVO(criteria, total);
+		model.addAttribute("gameContent", list);
+		model.addAttribute("pageVO", vo);
+		System.out.println(list.toString());
+
 		return "command/lookup";
 	}
 	
@@ -115,7 +124,6 @@ public class CommandController {
 		
 		return "command/payment";
 	}
-
 
 	
 	

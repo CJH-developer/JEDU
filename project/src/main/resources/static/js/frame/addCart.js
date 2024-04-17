@@ -6,7 +6,6 @@ const content__purchase = document.getElementById('content__purchase');
 const cartMessages = document.querySelectorAll('#cartMessage');
 const paidMessages = document.querySelectorAll('#paidMessage');
 const inCartMessages = document.querySelectorAll('#inCartMessage');
-const alreadyInCarts = document.querySelectorAll('#content__alreadyInCart');
 
 const content__baskets = document.querySelectorAll(".tbody__item #content__basket");
 
@@ -20,6 +19,7 @@ for (let i = 0; i < content__baskets.length; i++) {
 		
 		$.get('/check/purchase', {user_no: user_no, game_no: game_no})
 		 .done(function(paid) {
+			 console.log("이미 결재한 내역 있음")
 			 if(paid == false){
 			  	paidMessages.forEach(function(paidMessage) {
                     paidMessage.style.display = "block";
@@ -33,7 +33,7 @@ for (let i = 0; i < content__baskets.length; i++) {
 			 } else {
 		        $.get('/check/cart', {user_no: user_no, game_no: game_no})
 		            .done(function(checkData) {
-		                console.log(checkData);
+		                console.log("장바구니 들어있는지 확인 여부 Y");
 		                if (checkData == false) {
 		                    inCartMessages.forEach(function(inCartMessage) {
                                 inCartMessage.style.display = "block";
@@ -47,15 +47,14 @@ for (let i = 0; i < content__baskets.length; i++) {
 		                } else {
 		                    $.get('/add/cart', {user_no: user_no, game_no: game_no})
 		                        .done(function(data) {
-		                            console.log("성공");
-		                            console.log(data);
-		                            alreadyInCarts.forEach(function(alreadyInCart) {
-                                        alreadyInCart.style.display = "block";
-                                        clearTimeout(alreadyInCart.timeoutId);
-                                        alreadyInCart.classList.add('visible');
-                                        alreadyInCart.style.opacity = '1';
-                                        alreadyInCart.timeoutId = setTimeout(function() {
-                                            alreadyInCart.style.opacity = '0';
+		                            console.log("장바구니에 들어감");
+		                            cartMessages.forEach(function(cartMessage) {
+                                        cartMessage.style.display = "block";
+                                        clearTimeout(cartMessage.timeoutId);
+                                        cartMessage.classList.add('visible');
+                                        cartMessage.style.opacity = '1';
+                                        cartMessage.timeoutId = setTimeout(function() {
+                                            cartMessage.style.opacity = '0';
                                         }, 2000);
                                     });
 		                        })
