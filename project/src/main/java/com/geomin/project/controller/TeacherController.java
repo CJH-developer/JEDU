@@ -67,7 +67,21 @@ public class TeacherController {
 	
 	// 숙제 제출 조회
 	@GetMapping("/homeWorkScore")
-	public String homeWorkScore() {
+	public String homeWorkScore(HttpServletRequest request,
+								Model model) {
+		
+		// 세션값 받아오기
+		HttpSession session = request.getSession();
+		UserVO vo = (UserVO)session.getAttribute("vo");
+		
+		// 내가 만든 숙제 조회
+		ArrayList<HomeWorkVO> list = teacherService.getMyHomework(vo.user_no);
+		model.addAttribute("homework", list);
+		
+		// 숙제 제출한 사람들 가져오기
+		
+		
+		
 		return "teacher/homeWorkScore";
 	}
 	
@@ -106,7 +120,6 @@ public class TeacherController {
 		ArrayList<learnGroupVO> list = teacherService.learnGroupLook();
 		model.addAttribute("list", list);
 		
-		System.out.println("Tㅇㄴㅁㄴㅇㄻㄴㅇㄹㄹㅇㄴ ㄹㄴㅇ ㄹㄴ 123 21ㄷㅁㄴ ㄹㄴㅇㄹ ㄴㅇ ㄹ");
 		System.out.println(list);
 		
 		return "teacher/learnGroupLook";
