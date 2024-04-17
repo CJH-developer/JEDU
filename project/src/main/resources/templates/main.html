@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<th:block th:replace="~{./baseLayout/base_m :: setContent( ~{ :: section} ) }">
+<th:block th:replace="~{/baseLayout/base_m :: setContent( ~{ :: section} ) }">
 
   <section>
 
@@ -30,20 +30,17 @@
 
         <div class="tutorial__left">
         <span>튜토리얼 <img src="/img/KBA_mascot_black.png" alt=""></span>
-        <a href="">더보기</a>
+        <a href="/menu/eduVideo">더보기</a>
         </div>
         <div class="swiper">
           <div class="swiper-wrapper">
-            <div class="swiper-slide">1</div>
-            <div class="swiper-slide">2</div>
-            <div class="swiper-slide">3</div>
-            <div class="swiper-slide">4</div>
-            <div class="swiper-slide">5</div>
-            <div class="swiper-slide">6</div>
-            <div class="swiper-slide">7</div>
-            <div class="swiper-slide">8</div>
-            <div class="swiper-slide">9</div>
-            <div class="swiper-slide">10</div>
+            <div class="swiper-slide"><iframe width="370" height="250" src="https://www.youtube.com/embed/H0TPXsAg7mM?si=mrDnVppVQQ2IhZY5" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></div>
+            <div class="swiper-slide"><iframe width="370" height="250" src="https://www.youtube.com/embed/XKClDm0aefU?si=j5d55-lEqZkK83Mu" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></div>
+            <div class="swiper-slide"><iframe width="370" height="250" src="https://www.youtube.com/embed/j-aMwN3GFks?si=IF9bln2F9OUTu3ao" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></div>
+            <div class="swiper-slide"><iframe width="370" height="250" src="https://www.youtube.com/embed/fUVep6kUxh0?si=gJDbVkTiv0H4GD3J" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></div>
+            <div class="swiper-slide"><iframe width="370" height="250" src="https://www.youtube.com/embed/6Dbzz2OXVjc?si=zc-rPE-J8Yapkk03" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></div>
+            <div class="swiper-slide"><iframe width="370" height="250" src="https://www.youtube.com/embed/7TUfCBsEYi4?si=BCUPTCci1fdZwWQC" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></div>
+            <div class="swiper-slide"><iframe width="370" height="250" src="https://www.youtube.com/embed/Ijkno6ERXu4?si=xrfJ1opP6CVZhMFg" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></div>
           </div>
           <div class="swiper-button-next"></div>
           <div class="swiper-button-prev"></div>
@@ -58,20 +55,14 @@
 
         <div class="lecture__left">
         <span>유/무료 강의 <img src="/img/KBA_mascot_black2.png" alt=""></span>
-        <a href="">더보기</a>
+        <a href="/admin/gameLook">더보기</a>
         </div>
         <div class="swiper">
-          <div class="swiper-wrapper">
-            <div class="swiper-slide">1</div>
-            <div class="swiper-slide">2</div>
-            <div class="swiper-slide">3</div>
-            <div class="swiper-slide">4</div>
-            <div class="swiper-slide">5</div>
-            <div class="swiper-slide">6</div>
-            <div class="swiper-slide">7</div>
-            <div class="swiper-slide">8</div>
-            <div class="swiper-slide">9</div>
-            <div class="swiper-slide">10</div>
+          <div class="swiper-wrapper" >
+            <div class="swiper-slide" th:each="gameContent:${gameContent}">
+            	<img th:src="@{/display/{filepath}/{uuid}/{filename}(filepath=${gameContent.filepath},uuid=${gameContent.uuid},filename=${gameContent.filename})}">
+            	<div class="swiper__title" th:text="${gameContent.game_title}"></div>
+            </div>
           </div>
           <div class="swiper-button-next"></div>
           <div class="swiper-button-prev"></div>
@@ -86,20 +77,14 @@
 
         <div class="learning__left">
         <span>학습그룹 <img src="/img/KBA_mascot_black2.png" alt=""></span>
-        <a href="">더보기</a>
+        <a href="/admin/learnLook">더보기</a>
         </div>
         <div class="swiper">
           <div class="swiper-wrapper">
-            <div class="swiper-slide">1</div>
-            <div class="swiper-slide">2</div>
-            <div class="swiper-slide">3</div>
-            <div class="swiper-slide">4</div>
-            <div class="swiper-slide">5</div>
-            <div class="swiper-slide">6</div>
-            <div class="swiper-slide">7</div>
-            <div class="swiper-slide">8</div>
-            <div class="swiper-slide">9</div>
-            <div class="swiper-slide">10</div>
+            <div class="swiper-slide" th:each="Document:${Document}">
+				<img th:src="@{/display/{filepath}/{uuid}/{filename}(filepath=${Document.filepath},uuid=${Document.uuid},filename=${Document.filename})}"  >
+				<div class="swiper__title" th:text="${Document.docu_title}"></div>
+			</div>
           </div>
           <div class="swiper-button-next"></div>
           <div class="swiper-button-prev"></div>
@@ -120,12 +105,9 @@
           </div>
 
           <div class="notice__item__box">
-            <div class="box__item"><a href="">공지사항1</a></div>
-            <div class="box__item"><a href="">공지사항2</a></div>
-            <div class="box__item"><a href="">공지사항3</a></div>
-            <div class="box__item"><a href="">공지사항4</a></div>
-            <div class="box__item"><a href="">공지사항5</a></div>
-            <div class="box__item"><a href="">공지사항6</a></div>
+          <th:block th:each="noticeVO:${noticeVO}">
+            <div class="box__item"><a href="/menu/center" th:text="${noticeVO.notice_title}">공지사항1</a></div>
+          </th:block>
           </div>
 
         </div>
@@ -137,12 +119,9 @@
           </div>
 
           <div class="faq__item__box">
-            <div class="box__item"><a href="">faq1</a></div>
-            <div class="box__item"><a href="">faq2</a></div>
-            <div class="box__item"><a href="">faq3</a></div>
-            <div class="box__item"><a href="">faq4</a></div>
-            <div class="box__item"><a href="">faq5</a></div>
-            <div class="box__item"><a href="">faq6</a></div>
+          <th:block th:each="faqVO:${faqVO}">
+            <div class="box__item"><a href="/menu/center" th:text="${faqVO.faq_question}">faq1</a></div>
+          </th:block>
           </div>
 
         </div>
@@ -154,12 +133,9 @@
           </div>
 
           <div class="qna__item__box">
-            <div class="box__item"><a href="">Q&A</a></div>
-            <div class="box__item"><a href="">Q&A</a></div>
-            <div class="box__item"><a href="">Q&A</a></div>
-            <div class="box__item"><a href="">Q&A</a></div>
-            <div class="box__item"><a href="">Q&A</a></div>
-            <div class="box__item"><a href="">Q&A</a></div>
+          <th:block th:each="qnaVO:${qnaVO}">
+            <div class="box__item"><a href="/menu/center" th:text="${qnaVO.qna_title}">Q&A</a></div>
+          </th:block>
           </div>
 
         </div>
