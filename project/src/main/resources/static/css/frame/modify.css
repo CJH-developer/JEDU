@@ -8,7 +8,7 @@
 .modify__body__left{width: 25%; height: 100%; }
 .modify__profile__change{border-radius: 25px; width: 100%; height: 50%; display: flex; flex-direction: column; align-items: center; justify-content: center; border: 1px solid rgb(206, 206, 206); }
 .profile__change__header{width: 96%; height: 68%; border: 1px solid rgb(206, 206, 206); border-radius: 25px; }
-.profile__change__header img{width: 100%; height: 100%; padding: 10px; border-radius: 25px;}
+.profile__change__header img{width: 90%; height: 90%; padding: 10px; border-radius: 25px;}
 .profile__change__body{width: 96%; height: 28%; display: flex; align-items: center; justify-content: center; }
 .profile__body__form{width: 90%; height: 80%; display: flex; flex-direction: column; align-items: center; justify-content: center;}
 #modify__fileInput{width:100%; height: 40%;}

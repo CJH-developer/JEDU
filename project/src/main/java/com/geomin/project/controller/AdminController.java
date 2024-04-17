@@ -26,10 +26,14 @@ import com.geomin.project.command.FaqVO;
 import com.geomin.project.command.GameContentVO;
 import com.geomin.project.command.NoticeVO;
 import com.geomin.project.command.PageVO;
+import com.geomin.project.command.PageVOmember;
 import com.geomin.project.command.QnaVO;
+import com.geomin.project.command.UserVO;
 import com.geomin.project.document.service.DocumentService;
 import com.geomin.project.gameContentService.GameContentService;
+import com.geomin.project.user.service.UserService;
 import com.geomin.project.util.Criteria;
+import com.geomin.project.util.CriteriaMember;
 
 
 
@@ -49,13 +53,23 @@ public class AdminController {
 	@Qualifier("BoardService")
 	private BoardRepository boardService;
 	
+	@Autowired
+	private UserService userService;
+	
 	// 파일 업로드 경로
 //	@Value("${project.upload.path}")
 //	private String uploadPath;
 	
 	// 메인 화면 - 관리자 
 	@GetMapping("/main")
-	public String main() {
+	public String main(Model model, Criteria criteria) {
+		
+		ArrayList<QnaVO> qnaList = boardService.getQna();
+		model.addAttribute("qnaList", qnaList);
+		
+		ArrayList<GameContentVO> list = gameContentService.getList(criteria);
+		model.addAttribute("gameContent", list);
+		
 		return "admin/main";
 	}
 	
@@ -423,5 +437,28 @@ public class AdminController {
 		}
 		
 		return "redirect:/admin/boardLook";
+	}
+	
+	///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+	@GetMapping("/member")
+	public String member(Model model, CriteriaMember criteria) {
+		ArrayList<UserVO> list = userService.getList(criteria);
+		int total = userService.getTotal();
+		PageVOmember vo = new PageVOmember(criteria, total);
+		
+		model.addAttribute("UserList", list);
+		model.addAttribute("pageVO", vo);
+		
+		return "admin/member";
+	}
+	
+	@GetMapping("/userSelect")
+	public String userSelect(@RequestParam("user_no") int userNo, Model model) {
+		System.out.println(userNo);
+		UserVO vo = userService.findUser(userNo);
+		model.addAttribute("findUser",vo);
+		
+		return "redirect:/admin/member";
 	}
 }

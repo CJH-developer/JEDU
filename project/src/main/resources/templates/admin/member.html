@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<th:block th:replace="~{./baseLayout/base_f :: setContent( ~{ :: .wrap} ) }">
+
+
+<div class="wrap">
+<link rel="stylesheet" href="/css/frame/member.css">
+   
+   <div class="m_wrap">
+  
+   
+     <form name="member" action="member" method="get" class="m_wrap__above">
+	   <input type="hidden" name="page" value="1">
+   	   <input type="hidden" name="amount" th:value="${pageVO.amount}">
+       <div class="m_a__title"><span>회원 관리</span></div>
+       <div class="m_a_select">
+       
+         <select name="memberRole" id="memberRole">
+           <option value="100" th:selected="${pageVO.criteria.memberRole == none}">회원 유형을 선택해주세요.</option>
+           <option value="1" th:selected="${pageVO.criteria.memberRole == 1}">사용자 - 선생</option>
+           <option value="2" th:selected="${pageVO.criteria.memberRole == 2}">사용자 - 학생</option>
+           <option value="3" th:selected="${pageVO.criteria.memberRole == 3}">사용자 - 일반</option>
+         </select>
+         <button type="submit">검색</button>
+       </div>
+
+     </form>
+
+     <!-- 아래 -->
+     <div class="m_wrap__below">
+		
+       <div class="m_b__left">
+         <div class="mb__thead">
+           <div class="mb__thead__one">회원 번호</div>
+           <div class="mb__thead__two">회원 이름</div>
+           <div class="mb__thead__three">회원 유형</div>
+           <div class="mb__thead__four">회원 연락처</div>
+           <div class="mb__thead__five">비고</div>
+         </div>
+         <div class="mb__tbody">
+
+           <div class="mb__tbody__content" th:each="UserList:${UserList}">
+           	 <input type="hidden" name="user_no" th:value="${UserList.user_no}">
+             <div class="mb__tbody__one" th:text="${UserList.user_no}">회원 번호</div>
+             <div class="mb__tbody__two" th:text="${UserList.user_name}">회원 이름</div>
+             <div class="mb__tbody__three" th:text="${UserList.user_role}">회원 유형</div>
+             <div class="mb__tbody__four" th:text="${UserList.user_phone}">회원 연락처</div>
+             <div class="mb__tbody__five">
+               <a th:href="@{/admin/userSelect(user_no = ${UserList.user_no})}">상세보기</a>
+             </div>
+           </div>
+
+         </div>
+	<th:block th:replace="~{./baseLayout/page_member :: pageNation(${pageVOmember})}"></th:block>
+       </div>
+
+
+
+       <div class="m_b__right">
+         
+         <div class="mb__head"><span>회원정보 상세</span></div>
+         <div class="mb__body">
+
+           <div class="mbb_above">
+
+             <div class="mbb__ab__left">
+               
+               <div class="item__first">
+                 <span>회원명</span>
+                 <input type="text" name="" value="" readonly>
+                 <div>권한</div>
+                 <div>성별</div>
+               </div>
+
+               <div class="item__second">
+                 <span>연락처</span>
+                 <input type="text" name="" value="" readonly>
+               </div>
+
+               <div class="item__second">
+                 <span>이메일</span>
+                 <input type="text" name="" value="" readonly>
+               </div>
+
+               <div class="item__third">
+                 <span>주소</span>
+                 <input type="text" name="" value="" readonly>
+               </div>
+
+               <div class="item__second">
+                 <span>가입일자</span>
+                 <input type="text" name="" value="" readonly>
+               </div>
+
+             </div>
+
+             <div class="mbb__ab__right">
+               <img src="/img/KBA_mascot _white.png" alt="">
+             </div>
+           </div>
+
+
+           <div class="mbb__below">
+
+             <div class="mbb__below__head">
+               <div class="mbb__bh__a">활동 이력</div>
+               <div class="mbb__bh__b">최근 활동한 일자 및 시간</div>
+             </div>
+             <div class="mbb__below__body">
+               <button>휴먼계정 전환</button>
+               <button>계정 삭제</button>
+             </div>
+
+           </div>
+
+         </div>
+
+       </div>
+
+     </div>
+
+   </div>
+ </div>
+
+</th:block>
+</html>

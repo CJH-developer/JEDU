@@ -89,7 +89,7 @@ $(window).on("load resize ", function() {
 
 // swiper
 var swiper = new Swiper('.swiper', {
-  slidesPerView: 4,
+  slidesPerView: 3.5,
   direction: getDirection(),
   navigation: {
     nextEl: '.swiper-button-next',

@@ -4,24 +4,21 @@ package com.geomin.project.util;
 import lombok.Data;
 
 @Data
-public class Criteria {
+public class CriteriaMember {
 
 	private int page; //페이지번호
 	private int amount; //데이터개수
 
 	////////////////////////////////////////
 	//검색에 필요한 키워드 추가
-	private String levelSelect; //컨텐츠 레벨
-	private String searchType;
-	private String searchCategory;
+	private String memberRole;
 	
-	
-	public Criteria() {
+	public CriteriaMember() {
 		this.page = 1;
-		this.amount = 4;
+		this.amount = 11;
 	}
 
-	public Criteria(int page, int amount) {
+	public CriteriaMember(int page, int amount) {
 		super();
 		this.page = page;
 		this.amount = amount;
