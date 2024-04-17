@@ -63,7 +63,6 @@ public class CommandController {
 		PageVO vo = new PageVO(criteria, total);
 		model.addAttribute("gameContent", list);
 		model.addAttribute("pageVO", vo);
-		System.out.println(list.toString());
 
 		return "command/lookup";
 	}

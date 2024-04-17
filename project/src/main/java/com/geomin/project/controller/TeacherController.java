@@ -15,10 +15,14 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.geomin.project.cart.service.CartService;
 import com.geomin.project.command.GameContentVO;
 import com.geomin.project.command.HomeWorkVO;
+import com.geomin.project.command.PageVO;
+import com.geomin.project.command.PurchaseVO;
 import com.geomin.project.command.UserVO;
 import com.geomin.project.command.learnGroupVO;
+import com.geomin.project.gameContentService.GameContentService;
 import com.geomin.project.teacher.service.TeacherService;
 
 
@@ -28,6 +32,12 @@ public class TeacherController {
 	
 	@Autowired
 	TeacherService teacherService;
+	
+	@Autowired
+	private CartService cartService;
+	
+	@Autowired
+	private GameContentService gameContentService;
 
 	// 메인 화면
 	@GetMapping("/main")
@@ -129,7 +139,7 @@ public class TeacherController {
 	}
 	
 	// 그룹 가입 상세 조회
-	@GetMapping("groupRegistLook")
+	@GetMapping("/groupRegistLook")
 	public String groupRegistLook(Model model,
 								  @RequestParam("sg_no") int sg_no) {
 		
@@ -147,17 +157,32 @@ public class TeacherController {
 	}
 	
 	// 학습 그룹 승인
-	@GetMapping("groupRegistApprove")
+	@GetMapping("/groupRegistApprove")
 	public String groupRegistApprove() {
 		
 		return "teacher/groupRegistApprove";
 	}
 	
 	
-	@GetMapping("detailStudentLook")
+	@GetMapping("/detailStudentLook")
 	public String detailStudentLook() {
 		
 		return "teacher/detailStudentLook";
+	}
+	
+	@GetMapping("/myproductPopup")
+	public String myproductPopup(HttpServletRequest request, Model model) {
+		
+		HttpSession session = request.getSession();
+		UserVO vo =(UserVO) session.getAttribute("vo");
+		int user_no = Integer.parseInt(vo.user_no);
+		
+		ArrayList<PurchaseVO> purList = cartService.purchaseHistory(user_no);
+		model.addAttribute("purList", purList);
+		
+		
+		
+		return "teacher/myproductPopup";
 	}
 	
 	
