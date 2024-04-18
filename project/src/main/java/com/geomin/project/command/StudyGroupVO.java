@@ -8,7 +8,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class StudyGroupVO {
-	
+
 	public String sg_no;
 	public String user_no;
 	public String game_no;
@@ -19,10 +19,10 @@ public class StudyGroupVO {
 	public String sg_enddate;
 	public String sg_plus;
 	public String sg_grouplimit;
-	
+
 	//스터디 그룹 승인 절차
 	public String sgj_auth;
 	public String sgj_target_date;
-	
-	
+
+
 }

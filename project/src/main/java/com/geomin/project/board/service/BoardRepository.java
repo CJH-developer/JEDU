@@ -10,11 +10,11 @@ public class BoardRepository implements BoardService{
 
 	@Autowired
 	private BoardMapper boardMapper;
-	
+
 	// 공지사항 등록
 	@Override
 	public int regist(NoticeVO vo) {
-		
+
 		return boardMapper.regist(vo);
 	}
 

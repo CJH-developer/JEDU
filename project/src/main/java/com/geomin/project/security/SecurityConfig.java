@@ -8,9 +8,6 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
-import org.springframework.security.web.authentication.AuthenticationFailureHandler;
-
-import com.geomin.project.security.CustomLoginFailureHandler;
 
 @EnableWebSecurity
 @Configuration
@@ -30,7 +27,7 @@ public class SecurityConfig {
     SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
 
         http.csrf(csrf -> csrf.disable());
-		
+
 		//권한별 페이지 진입
 		http.authorizeRequests( (a) -> a.antMatchers("/main/**").permitAll()
 										.antMatchers("/command/**").hasAnyRole("ADMIN", "TEA", "GEN", "STU")
@@ -39,7 +36,7 @@ public class SecurityConfig {
 										.antMatchers("/admin/**").hasRole("ADMIN")
 										.anyRequest().permitAll());
 
-        //·Î±×ÀÎ&·Î±×¾Æ¿ô ¼¼ÆÃ 
+        //·Î±×ÀÎ&·Î±×¾Æ¿ô ¼¼ÆÃ
         http
                 .formLogin(login -> login
                         .loginPage("/member/login")
@@ -55,27 +52,27 @@ public class SecurityConfig {
 		//.successHandler(customLoginSuccessHandler());
 
 
-		
+
 		return http.build();
 	}
 
 
     @Bean
     CustomLoginFailureHandler customLoginFailureHandler() {
-		
+
 		CustomLoginFailureHandler custom = new CustomLoginFailureHandler();
 		custom.setRedirectURL("/member/login?err=true");
-		
+
 		return custom;
 	}
 
     @Bean
     CustomLoginSuccessHandler customLoginSuccessHandler() {
-		
+
 		CustomLoginSuccessHandler custom = new CustomLoginSuccessHandler();
 		custom.setRedirectURL("");
-		
+
         return custom;
     }
-	
+
 }

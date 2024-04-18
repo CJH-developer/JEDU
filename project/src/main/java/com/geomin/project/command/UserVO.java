@@ -23,11 +23,11 @@ public class UserVO {
 		public String user_gender;
 		public String user_sns_check;
 		public String user_email_check;
-		
-		
-		
-	
+
+
+
+
 }
 
-	
+
 

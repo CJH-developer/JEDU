@@ -17,7 +17,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-
 import org.springframework.web.bind.annotation.RestController;
 
 import com.geomin.project.document.service.DocumentService;
@@ -29,11 +28,11 @@ public class AjaxController {
 	@Autowired
 	@Qualifier("GameContentService")
 	private GameContentService gameContentService;
-	
+
 	@Autowired
 	@Qualifier("DocumentService")
 	private DocumentService documentService;
-	
+
 	// 파일 업로드 경로
 	@Value("${project.upload.path}")
 	private String uploadPath;
@@ -42,20 +41,20 @@ public class AjaxController {
 	public ResponseEntity<byte[]> display(@PathVariable("filepath") String filepath,
 										  @PathVariable("uuid") String uuid,
 										  @PathVariable("filename") String filename){
-		
+
 		ResponseEntity<byte[]> entity = null;
 		try {
 			// 로컬에 있는 파일데이터 byte 정보
 			String savePath = uploadPath + "/" + filepath + "/" + uuid + "_" + filename;
 			File file = new File(savePath);
-			
+
 			// 데이터
 			byte[] arr = FileCopyUtils.copyToByteArray(file);
-			
+
 			// 헤더
 			HttpHeaders header = new HttpHeaders();
 			header.add("Content-Type", Files.probeContentType(file.toPath()));
-			
+
 			entity = new ResponseEntity<>(arr, header ,HttpStatus.OK);
 		} catch (IOException e) {
 
@@ -63,7 +62,7 @@ public class AjaxController {
 		}
 		return entity;
 	}
-	
+
 
 	@PostMapping("/deleteSelectedGames")
     public ResponseEntity<String> deleteSelectedGames(@RequestBody Map<String, List<String>> request) {
@@ -73,7 +72,7 @@ public class AjaxController {
         gameContentService.gameContentDelete(game_no);
         return new ResponseEntity<>("선택된 게임 삭제 완료", HttpStatus.OK);
     }
-	
+
 	@PostMapping("/deleteSelectedLearning")
     public ResponseEntity<String> deleteSelectedLearning(@RequestBody Map<String, List<String>> request) {
         List<String> selectedlearns = request.get("selectedlearns");
@@ -81,5 +80,5 @@ public class AjaxController {
         documentService.learnContentDelete(docu_no);
         return new ResponseEntity<>("선택된 게임 삭제 완료", HttpStatus.OK);
     }
-	
+
 }

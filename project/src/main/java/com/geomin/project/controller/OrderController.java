@@ -32,7 +32,7 @@
 //@RequestMapping("/order")
 //public class OrderController {
 //	private final Logger logger = LoggerFactory.getLogger(this.getClass());
-//	
+//
 //	@Autowired
 //	CartService cartService;
 //
@@ -104,23 +104,23 @@
 //     */
 //    @GetMapping("/success")
 //    public String paymentRequest(HttpServletRequest request, Model model) throws Exception {
-//		
+//
 //    	HttpSession session = request.getSession();
 //		UserVO vo = (UserVO) session.getAttribute("vo");
 //		int user_no = Integer.parseInt(vo.user_no);
-//		
+//
 //		ArrayList<CartVO> cartList = cartService.getListCart(user_no);
 //		model.addAttribute("cartList", cartList);
-//		
+//
 //		//결재 완료시 지워주기
 //		cartService.successPay(user_no);
-//		
+//
 //		//결재 내역 입력하기
 //		for(CartVO c : cartList) {
 //			int game_no = c.getGame_no();
 //			cartService.gamePurchase(user_no, game_no);
 //		}
-//    	
+//
 //    	return "order/success";
 //    }
 //

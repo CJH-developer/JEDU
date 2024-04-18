@@ -12,7 +12,7 @@ public class StudentRestController {
 
 	@Autowired
 	StudentService studentService;
-	
+
 	@GetMapping("apply/group")
 	public int groupApply(@RequestParam("user_no") int user_no,
 						   @RequestParam("sg_no") int sg_no,
@@ -20,19 +20,19 @@ public class StudentRestController {
 
 		return studentService.groupApply(user_no, sg_no, sg_level);
 	}
-	
+
 	@GetMapping("check/group")
 	public boolean groupCheck(@RequestParam("user_no") int user_no,
 						  @RequestParam("sg_no") int sg_no) {
-		
+
 		int inGroup = studentService.groupCheck(user_no, sg_no);
-		
+
 		  if (inGroup > 0) {
 	            return false;
 	        } else {
 	            return true;
 	        }
 	}
-	
+
 
 }

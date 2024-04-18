@@ -24,15 +24,15 @@ public class UserServiceImpl implements UserService {
 		return userMapper.buttonIdCheck(id);
 	}
 
-	 
+
 	 // 회원 정보 수정
-	  
-	 @Override 
-	 public int modify(UserVO vo) { 
-		 System.out.println("임플먼트 vo 값 :" +vo.toString()); 
-		 
-		 return userMapper.modify(vo); 
-		 
+
+	 @Override
+	 public int modify(UserVO vo) {
+		 System.out.println("임플먼트 vo 값 :" +vo.toString());
+
+		 return userMapper.modify(vo);
+
 	 }
 
 }

@@ -14,7 +14,7 @@ public class Criteria {
 	private String levelSelect; //컨텐츠 레벨
 	private String searchType;
 	private String searchCategory;
-	
+
 	public Criteria() {
 		this.page = 1;
 		this.amount = 4;
@@ -25,7 +25,7 @@ public class Criteria {
 		this.page = page;
 		this.amount = amount;
 	}
-	
+
 	//sql에 전달될 페이지start getter
 	public int getPageStart() {
 		return (page - 1) * amount;

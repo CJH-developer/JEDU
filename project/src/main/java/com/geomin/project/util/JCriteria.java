@@ -16,7 +16,7 @@ public class JCriteria {
 	private String searchNa;
 	private String searchtitle;
 	private String search_product;
-	
+
 	/////////검색관련 변수를 쓰면 좋을것 같아요
 
 
@@ -24,7 +24,7 @@ public JCriteria() {
 	this.JPage=1;
 	this.JAmount = 10;
 
-	
+
 }
 
 

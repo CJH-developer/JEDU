@@ -11,11 +11,11 @@ import com.geomin.project.util.JTwoCriteria;
 
 @Service("userServiceTwo")
 public class UserServiceTwoImpl implements UserServiceTwo {
-	
+
 	@Autowired
 	@Qualifier("userServiceTwoMapper")
 	private UserServiceTwoMapper userServiceTwoMapper;
-	
+
 	@Override
 	public ArrayList<GameContentVO> MyList(JTwoCriteria JTwo) {
 		// TODO Auto-generated method stub
@@ -28,9 +28,10 @@ public class UserServiceTwoImpl implements UserServiceTwo {
 		return userServiceTwoMapper.JTwoTotal(JTwo);
 	}
 
-	
-	
-	
-	
-	
+
+
+
+
+
+
 }

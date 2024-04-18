@@ -10,7 +10,7 @@ import com.geomin.project.util.JCriteria;
 @Service("commandService")
 public class CommandServiceImpl implements CommandService {
 	//민상이 한거
-	
+
 	@Autowired
 	private CommandMapper commandMapper;
 	@Override

@@ -10,5 +10,5 @@ import com.geomin.project.util.JTwoCriteria;
 @Mapper
 public interface UserServiceTwoMapper {
 	public ArrayList<GameContentVO> MyList(JTwoCriteria JTwo);
-	public int JTwoTotal(JTwoCriteria JTwo); 
+	public int JTwoTotal(JTwoCriteria JTwo);
 }

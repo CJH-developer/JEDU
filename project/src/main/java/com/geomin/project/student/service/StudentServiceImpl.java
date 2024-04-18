@@ -6,14 +6,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.geomin.project.command.HomeWorkVO;
-import com.geomin.project.command.learnGroupVO;
 
 @Service
 public class StudentServiceImpl implements StudentService{
 
 	@Autowired
 	StudentMapper studentMapper;
-	
+
 	@Override
 	public int groupApply(int user_no, int sg_no, int sg_level) {
 		return studentMapper.groupApply(user_no, sg_no, sg_level);
@@ -36,6 +35,6 @@ public class StudentServiceImpl implements StudentService{
 
 
 
-	
-	
+
+
 }

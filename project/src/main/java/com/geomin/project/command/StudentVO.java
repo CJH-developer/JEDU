@@ -10,10 +10,10 @@ import lombok.NoArgsConstructor;
 public class StudentVO {
 
 	private int user_no;
-	
-	
+
+
 	//그룹 신청
 	private int sg_no;
 	private int sg_level;
-	
+
 }

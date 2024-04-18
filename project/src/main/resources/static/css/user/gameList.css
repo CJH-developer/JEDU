@@ -30,7 +30,7 @@
 #game__content__page{width: 100%; display: flex;  flex-direction:row;  align-items: center; /*페이지 네이션 바를 중앙 쪽으로 두어보는건 어떤가요??*/justify-content: center; }
 /*프래그먼트를 하니까 높이가 걸치적거려서 지웠습니다*/
 /*이동 아이콘을 위해 추가한 것*/
-.JPageVO_JNext{width:30px; height:30px; display: flex; justify-content: center; align-items: center; border:1px solid rgb(206, 205, 205); margin:  5px  5px  0 5px;}
+.sJPageVO_JNext{width:30px; height:30px; display: flex; justify-content: center; align-items: center; border:1px solid rgb(206, 205, 205); margin:  5px  5px  0 5px;}
 /*여기까지*/
 
 

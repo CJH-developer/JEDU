@@ -13,29 +13,29 @@ public class MenuController {
 	public String service() {
 		return "menu/service";
 	}
-	
+
 	// 메뉴 - 게임
 	@GetMapping("/game")
 	public String game() {
 		return "menu/game";
 	}
-	
+
 	// 메뉴 - 교육영상
 	@GetMapping("/eduVideo")
 	public String eduVideo() {
 		return "menu/eduVideo";
 	}
-	
+
 	// 메뉴 - 센터
 	@GetMapping("/center")
 	public String center() {
 		return "menu/center";
 	}
-	
+
 	// 메뉴 - 사이트맵
 	@GetMapping("/sitemap")
 	public String sitemap() {
 		return "menu/sitemap";
 	}
-	
+
 }

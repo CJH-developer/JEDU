@@ -1,19 +1,14 @@
 package com.geomin.project.util;
 
 
-import java.sql.Timestamp;
-import java.text.SimpleDateFormat;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
 import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Data;
 
 @Data
 @AllArgsConstructor
-
 
  // 여기는 페이지하고 페이지에 나오는 리스트 량을 설정하는 클래스
 public class JTwoCriteria {
@@ -30,30 +25,30 @@ public class JTwoCriteria {
     private String searchtitle;
     private String search_product;
     private String startDate;
-    private String endDate; 
+    private String endDate;
 
-   
-    private int good = (JTwoPage - 1) * JTwoAmount; 
-    
 
-    
-   
+
+
+    private int good=(JTwoPage - 1) * JTwoAmount;
+
+
     // 기본 생성자를 통한 초기화
     public JTwoCriteria() {
-    
+
         this.JTwoPage = 1;
         this.JTwoAmount = 4; // 예시로 10으로 설정
-       
+
     }
 
     // 페이지와 리스트 량을 설정하는 생성자
-    public JTwoCriteria(int JTwoPage, int JTwoAmount,String startDate,  String endDate ) {
+    public JTwoCriteria(int JTwoPage, int JTwoAmount,String startDate,  String endDate ,int good) {
         this(); // 기본 생성자 호출로 중복 코드 제거
         this.JTwoPage = JTwoPage;
         this.JTwoAmount = JTwoAmount;
         this.endDate=endDate;
         this.startDate=startDate;
-   
+
     }
     public LocalDate getStartDates() {
         if (startDate != null) {
@@ -77,7 +72,7 @@ public class JTwoCriteria {
     public int getJTwoAmount() {
         return JTwoAmount;
     }
-    
-    
+
+
 }
 

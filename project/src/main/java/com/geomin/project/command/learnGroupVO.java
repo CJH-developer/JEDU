@@ -1,9 +1,5 @@
 package com.geomin.project.command;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -27,8 +23,8 @@ public class learnGroupVO {
 	private String sg_plus;
 	private String sg_grouplimit;
 	private String sgj_pro;
-	
-	
+
+
 	// gameContent 가져옴
 	private String game_title;
 	private Integer game_target_level;
@@ -38,7 +34,7 @@ public class learnGroupVO {
 	private Integer game_count;
 	private String game_sub_startDate;
 	private String game_sub_endDate;
-	
+
 	// USER 가져옴
 	private String user_id;
 	private String user_name;
@@ -48,9 +44,9 @@ public class learnGroupVO {
 	private String user_birth;
 	private String user_address;
 	private String user_gender;
-	
+
 	private String user_regdate;
-	
+
 	// 얘 하면 값이 안 불러와짐;;
     // 사용자 등록일을 yyyy년 MM월 dd일 형식으로 반환하는 메서드
 //    public String getUserRegDate() {
@@ -66,7 +62,7 @@ public class learnGroupVO {
 //            return null;
 //        }
 //    }
-	
-	
-	
+
+
+
 }
