@@ -6,9 +6,11 @@ import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 
+import com.geomin.project.command.QnaVO;
 import com.geomin.project.command.UserVO;
 import com.geomin.project.util.Criteria;
 import com.geomin.project.util.CriteriaMember;
+import com.geomin.project.util.CriteriaQuestion;
 
 @Mapper
 public interface UserMapper {
@@ -31,5 +33,14 @@ public interface UserMapper {
 	
 	// 선택한 회원 조회
 	public UserVO findUser(int user_no);
-
+	
+	//qna 조회
+	public ArrayList<QnaVO> getQnaList(@Param("user_no") int user_no, @Param("criteria") CriteriaQuestion criteria);
+	public int getQnaTotal(int user_no);
+	
+	// 문의사항 등록
+	public int qnaRegist(QnaVO vo);
+	
+	// 내 문의사항 삭제
+	public int qnaDelete(int qna_no);
 }

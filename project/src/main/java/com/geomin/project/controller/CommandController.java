@@ -1,11 +1,8 @@
 package com.geomin.project.controller;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Date;
 
-import javax.servlet.ServletRequest;
+import java.util.ArrayList;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -16,15 +13,21 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.geomin.project.cart.service.CartService;
 import com.geomin.project.command.CartVO;
 import com.geomin.project.command.GameContentVO;
 import com.geomin.project.command.PageVO;
+import com.geomin.project.command.PageVOmember;
+import com.geomin.project.command.PageVOquestion;
 import com.geomin.project.command.PurchaseVO;
+import com.geomin.project.command.QnaVO;
 import com.geomin.project.command.UserVO;
 import com.geomin.project.gameContentService.GameContentService;
+import com.geomin.project.user.service.UserService;
 import com.geomin.project.util.Criteria;
+import com.geomin.project.util.CriteriaQuestion;
 
 @Controller
 @RequestMapping("/command")
@@ -36,6 +39,9 @@ public class CommandController {
 	@Autowired
 	private GameContentService gameContentService;
 
+	@Autowired
+	private UserService userService;
+	
 	private HttpSession httpSession;
 
 	// 회원 정보 수정
@@ -137,6 +143,46 @@ public class CommandController {
 		}
 
 		return "command/payment";
+	}
+	
+	@GetMapping("/question")
+	public String question(Model model, CriteriaQuestion criteria, HttpServletRequest request) {
+		
+		HttpSession session = request.getSession();
+		UserVO userVO = (UserVO) session.getAttribute("vo");
+		int user_no = Integer.parseInt(userVO.getUser_no());
+		model.addAttribute("userVO", userVO);
+		
+		
+		ArrayList<QnaVO> list = userService.getQnaList(user_no, criteria);
+		int total = userService.getQnaTotal(user_no);
+		PageVOquestion vo = new PageVOquestion(criteria, total);
+		
+		
+		model.addAttribute("Qnalist", list);
+		model.addAttribute("pageVO", vo);
+		
+		return "command/question";
+	}
+	
+	@GetMapping("/qnaRegist")
+	public String qnaRegist(QnaVO vo, RedirectAttributes ra) {
+		
+		int result = userService.qnaRegist(vo);
+		if(result == 1) {
+			ra.addFlashAttribute("msg", "정상적으로 처리되었습니다."); //리다이렉트시 1회성
+		}else { //실패
+			ra.addFlashAttribute("msg", "등록에 실패했습니다. 관리자에게 문의하세요. 8282-8282");
+		}
+		
+		return "redirect:/command/question";
+	}
+	
+	@GetMapping("/qnaDelete")
+	public String qnaDelete(@RequestParam("qna_no") int qna_no) {
+		System.out.println("삭제 기능 :: " + qna_no);
+		userService.qnaDelete(qna_no);
+		return "redirect:/command/question";
 	}
 
 }

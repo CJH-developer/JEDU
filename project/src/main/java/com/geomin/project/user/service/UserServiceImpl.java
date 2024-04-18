@@ -5,9 +5,11 @@ import java.util.ArrayList;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.geomin.project.command.QnaVO;
 import com.geomin.project.command.UserVO;
 import com.geomin.project.util.Criteria;
 import com.geomin.project.util.CriteriaMember;
+import com.geomin.project.util.CriteriaQuestion;
 
 @Service
 public class UserServiceImpl implements UserService {
@@ -55,6 +57,30 @@ public class UserServiceImpl implements UserService {
 	public UserVO findUser(int user_no) {
 		
 		return userMapper.findUser(user_no);
+	}
+
+	@Override
+	public ArrayList<QnaVO> getQnaList(int user_no,CriteriaQuestion criteria ) {
+		
+		return userMapper.getQnaList(user_no, criteria );
+	}
+
+	@Override
+	public int getQnaTotal(int user_no) {
+		
+		return userMapper.getQnaTotal(user_no);
+	}
+
+	@Override
+	public int qnaRegist(QnaVO vo) {
+		
+		return userMapper.qnaRegist(vo);
+	}
+
+	@Override
+	public int qnaDelete(int qna_no) {
+		
+		return userMapper.qnaDelete(qna_no);
 	}
 
 }

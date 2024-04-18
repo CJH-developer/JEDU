@@ -5,7 +5,7 @@
 
 <div class="wrap">
 <link rel="stylesheet" href="/css/frame/member.css">
-   
+<script src="/js/frame/member.js" defer></script>
    <div class="m_wrap">
   
    
@@ -46,7 +46,7 @@
              <div class="mb__tbody__three" th:text="${UserList.user_role}">회원 유형</div>
              <div class="mb__tbody__four" th:text="${UserList.user_phone}">회원 연락처</div>
              <div class="mb__tbody__five">
-               <a th:href="@{/admin/userSelect(user_no = ${UserList.user_no})}">상세보기</a>
+               <button class="memberLookUp" th:value="${UserList.user_no}">상세보기</button>
              </div>
            </div>
 
@@ -67,29 +67,34 @@
                
                <div class="item__first">
                  <span>회원명</span>
-                 <input type="text" name="" value="" readonly>
-                 <div>권한</div>
-                 <div>성별</div>
+                 <input type="text" name="" value="" readonly="readonly" id="item__first__name"></input>
+                 <input type="text" readonly="readonly" id="item__first__role"></input>
+                 <input type="text" readonly="readonly" id="item__first__gender"></input>
                </div>
 
                <div class="item__second">
                  <span>연락처</span>
-                 <input type="text" name="" value="" readonly>
+                 <input type="text" name="" value="" id="item__second__phone" readonly>
                </div>
 
                <div class="item__second">
                  <span>이메일</span>
-                 <input type="text" name="" value="" readonly>
+                 <input type="text" name="" value="" id="item__second__email" readonly>
                </div>
 
                <div class="item__third">
+                <span>생일</span>
+                <input type="text" name="" value="" id="item__third__birth" readonly>
+              </div>
+
+               <div class="item__third">
                  <span>주소</span>
-                 <input type="text" name="" value="" readonly>
+                 <input type="text" name="" value="" id="item__third__address" readonly>
                </div>
 
                <div class="item__second">
                  <span>가입일자</span>
-                 <input type="text" name="" value="" readonly>
+                 <input type="text" name="" value="" id="item__second__regDate" readonly>
                </div>
 
              </div>

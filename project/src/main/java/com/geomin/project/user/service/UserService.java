@@ -4,9 +4,11 @@ import java.util.ArrayList;
 
 import org.apache.ibatis.annotations.Param;
 
+import com.geomin.project.command.QnaVO;
 import com.geomin.project.command.UserVO;
 import com.geomin.project.util.Criteria;
 import com.geomin.project.util.CriteriaMember;
+import com.geomin.project.util.CriteriaQuestion;
 
 public interface UserService {
 	
@@ -23,4 +25,14 @@ public interface UserService {
 	
 	// 선택한 회원 조회
 	public UserVO findUser(int user_no);
+	
+	//qna 조회
+	public ArrayList<QnaVO> getQnaList(int user_no,@Param("criteria") CriteriaQuestion criteria );
+	public int getQnaTotal(int user_no);
+	
+	// 문의사항 등록
+	public int qnaRegist(QnaVO vo);
+	
+	// 내 문의사항 삭제
+	public int qnaDelete(int qna_no);
 }
