@@ -1,118 +1,130 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<head >
-    <link rel="stylesheet" href="/css/frame/learnGroupLook.css">
-    <script src="/js/frame/learnGroupLook.js" defer></script>
-    <script src="/js/student/groupStudyList.js" defer></script>
+<head>
+<link rel="stylesheet" href="/css/frame/learnGroupLook.css">
+<script src="/js/frame/learnGroupLook.js" defer></script>
+<script src="/js/student/groupStudyList.js" defer></script>
 </head>
 <body class="body">
-<style>
-  .loading-wrap {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-    }
-    .loading-spinner {
-        width: 40px;
-        height: 40px;
-        border: 5px solid #3498db;
-        border-top: 5px solid transparent;
-        border-radius: 50%;
-        animation: rotate 1s linear infinite;
-    }
-    .loadingMessage{
-    	font-weight:bold;
-    	position:relative;
-    	top:55%;
-    	left:25%;
-    }
-    .loadMsg{
-    	position:absolute;
-    	width:300px;
-    	length:300px;
-    }
-	.loading-postion{
-		position: fixed;
-        top:50%;
-        left:50%;
-	}
-    @keyframes rotate {
-        from { transform: rotate(0deg); }
-        to { transform: rotate(360deg); }
-    }
-      .ex-box {
-        padding: 10px;
-        border: 1px solid black;
-      }
+	<style>
+.loading-wrap {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+}
+
+.loading-spinner {
+	width: 40px;
+	height: 40px;
+	border: 5px solid #3498db;
+	border-top: 5px solid transparent;
+	border-radius: 50%;
+	animation: rotate 1s linear infinite;
+}
+
+.loadingMessage {
+	font-weight: bold;
+	position: relative;
+	top: 55%;
+	left: 25%;
+}
+
+.loadMsg {
+	position: absolute;
+	width: 300px;
+	length: 300px;
+}
+
+.loading-postion {
+	position: fixed;
+	top: 50%;
+	left: 50%;
+}
+
+@
+keyframes rotate {from { transform:rotate(0deg);
+	
+}
+
+to {
+	transform: rotate(360deg);
+}
+
+}
+.ex-box {
+	padding: 10px;
+	border: 1px solid black;
+}
 </style>
-<th:block th:replace="~{./baseLayout/base_f :: setContent( ~{ :: .wrap} ) }">
-    <link rel="stylesheet" href="/css/student/groupStudyList.css">
-    <div class="wrap">
-        <div class="wrap__content">
-            <div class="look__wrap">
-                <div class="looks__wrap__header">
-                    <div class="looks__header__title">
-                        <span>학습 그룹 조회</span>
-                        <div class="looks__header__search">
-                            <input type="text" placeholder="학습그룹명을 입력하세요.">
-                            <button class="search_btn">검색</button>
-                        </div>
-                        <button class="ai_btn">AI 찬스</button>
-                    </div>
-                    
-                 <div class="loading-wrap loading-wrap--js" style="display: none">
-					<div class="loading-postion">
-						<div class="loading-spinner loading-spinner--js"></div>
-						<div class="loadMsg">
-							<p id="loadingMessage"></p>
+	<th:block
+		th:replace="~{./baseLayout/base_f :: setContent( ~{ :: .wrap} ) }">
+		<link rel="stylesheet" href="/css/student/groupStudyList.css">
+		<div class="wrap">
+			<div class="wrap__content">
+				<div class="look__wrap">
+					<div class="looks__wrap__header">
+						<div class="looks__header__title">
+							<span>학습 그룹 조회</span>
+							<div class="looks__header__search">
+								<input type="text" placeholder="학습그룹명을 입력하세요.">
+								<button class="search_btn">검색</button>
+							</div>
+							<button class="ai_btn">AI 찬스</button>
+						</div>
+
+						<div class="loading-wrap loading-wrap--js" style="display: none">
+							<div class="loading-postion">
+								<div class="loading-spinner loading-spinner--js"></div>
+								<div class="loadMsg">
+									<p id="loadingMessage"></p>
+								</div>
+							</div>
+						</div>
+
+						<div class="looks__header__submit">
+							<select name="" id="">
+								<option value="none">정렬</option>
+								<option value="가나다순">가나다순</option>
+								<option value="등록일순">등록일순</option>
+								<option value="인원순">인원순</option>
+							</select>
 						</div>
 					</div>
-				</div>
-                   	
-                    <div class="looks__header__submit">
-                        <select name="" id="">
-                            <option value="none">정렬</option>
-                            <option value="가나다순">가나다순</option>
-                            <option value="등록일순">등록일순</option>
-                            <option value="인원순">인원순</option>
-                        </select>
-                    </div>
-                </div>
-                <div class="looks__wrap__body">
-                    <div id="looks__thead">
-                        <button id="looks__thead__first"></button>
-                        <button id="looks__thead__second">학습그룹명</button>
-                        <button id="looks__thead__third">게임컨텐츠명</button>
-                        <button id="looks__thead__fourth">그룹T/O</button>
-                        <button id="looks__thead__fifth">구독기간</button>
-                        <button id="looks__thead__sixth">달성레벨</button>
-                        <button id="looks__thead__seventh">가입학생수</button>
-                    </div>
-                    <div class="looks__tbody">
-                        <div class="looks__tbody__content" th:each="list : ${list}">
-                            <div id="looks__tbody__first" th:text="${listStat.count}"></div>
-                            <a th:href="@{/student/groupApplyList(sg_no=${list.sg_no})}" id="looks__tbody__second">[[${list.sg_name}]]</a>
-                            <div id="looks__tbody__third">[[${list.game_no}]]</div>
-                            <div id="looks__tbody__fourth"> [[${list.sg_capa}]]명 / [[${list.sg_grouplimit} + '명']]</div>
-                            <div id="looks__tbody__fifth">[[${list.sg_regdate} + ' ~ ' + ${list.sg_enddate}]]</div>
-                            <div id="looks__tbody__sixth">[[${list.sg_level} + '레벨']]</div>
-                            <div id="looks__tbody__seventh">[[${list.sg_capa} + '명']]</div>
-                        </div>
-                    </div>
-                    
-                    <div id="studyGroupList"></div>
-                     <script>
-						
-                     
+					<div class="looks__wrap__body">
+						<div id="looks__thead">
+							<button id="looks__thead__first"></button>
+							<button id="looks__thead__second">학습그룹명</button>
+							<button id="looks__thead__third">게임컨텐츠명</button>
+							<button id="looks__thead__fourth">그룹T/O</button>
+							<button id="looks__thead__fifth">구독기간</button>
+							<button id="looks__thead__sixth">달성레벨</button>
+							<button id="looks__thead__seventh">가입학생수</button>
+						</div>
+						<div class="looks__tbody">
+							<div class="looks__tbody__content" th:each="list : ${list}">
+								<div id="looks__tbody__first" th:text="${listStat.count}"></div>
+								<a th:href="@{/student/groupApplyList(sg_no=${list.sg_no})}"
+									id="looks__tbody__second">[[${list.sg_name}]]</a>
+								<div id="looks__tbody__third">[[${list.game_no}]]</div>
+								<div id="looks__tbody__fourth">[[${list.sg_capa}]]명 /
+									[[${list.sg_grouplimit} + '명']]</div>
+								<div id="looks__tbody__fifth">[[${list.sg_regdate} + ' ~ '
+									+ ${list.sg_enddate}]]</div>
+								<div id="looks__tbody__sixth">[[${list.sg_level} + '레벨']]</div>
+								<div id="looks__tbody__seventh">[[${list.sg_capa} + '명']]</div>
+							</div>
+						</div>
 
-					</script>
-                </div>
-                <th:block th:replace="~{./baseLayout/page_studyGroup :: pageNation(${pageVOstudyGroup})}"></th:block>
-            </div>
-        </div>
-    </div>
-</th:block>
+						<div id="studyGroupList"></div>
+
+					</div>
+					<th:block
+						th:replace="~{./baseLayout/page_studyGroup :: pageNation(${pageVOstudyGroup})}"></th:block>
+				</div>
+			</div>
+		</div>
+	</th:block>
 
 </body>
 </html>
