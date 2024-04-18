@@ -21,19 +21,20 @@
             <option value="강남 초급반">강남 초급반</option>
             <option value="강남 초급반">강남 초급반</option>
           </select>
-
+		
         </div>
         <div class="grl__header__btn">
-          <button type="submit" id="groupApply" >가입신청</button>
+          <button type="submit" id="groupApply" th:if="${auth == '0'}">가입신청</button>
+          <button type="submit" id="groupApply" th:if="${auth == null}">가입신청</button>
+          <div id="approvedMes" class="approved-mege" th:if="${auth == '1'}">이미 가입을 완료 하셨습니다.</div>
         </div>
-        <div id="approvedMessage" class="approved-message">이미 가입을 완료 하셨습니다.</div>
         <div id="applyMessage" class="apply-message">그룹 스터디에 신청되었습니다.</div>
 		<div id="processMessage" class="process-message">승인 절차가 진행 중입니다.</div>
 		<input type="hidden" id="hiddenSg_No" th:value="${group.sg_no}" name="sg_no">
 		<input type="hidden" id="hiddenUser_No" th:value="${session.vo.user_no}" name="user_no">
 		<input type="hidden" id="hiddenSg_Level" th:value="${group.sg_level}" name="user_no">
 		
-
+		
       </div>
       <div class="grl__body">
         <div class="grl__body__header">

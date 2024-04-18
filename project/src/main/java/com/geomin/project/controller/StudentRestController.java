@@ -24,7 +24,7 @@ public class StudentRestController {
 	public int groupApply(@RequestParam("user_no") int user_no,
 						   @RequestParam("sg_no") int sg_no,
 						   @RequestParam("sg_level") int sg_level) {
-
+	
 		return studentService.groupApply(user_no, sg_no, sg_level);
 	}
 	

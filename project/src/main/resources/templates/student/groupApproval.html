@@ -6,8 +6,6 @@
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/css/student/homeworkTable.css">
-<link rel="stylesheet" href="/css/frame/learnGroupLook.css">
-<link rel="stylesheet" href="/css/frame/groupRegistLook.css">
 <script src="/js/student/groupRegistList.js" defer></script>
 
 <th:block th:replace="~{./baseLayout/base_f :: setContent( ~{ :: .wrap} ) }">
@@ -35,7 +33,7 @@
 		        <td th:text="${list.sg_plus}" ></td>
 		        <td th:text="${list.sg_level}" ></td>
 		        <td th:if="${list.sgj_auth == '1'}" >
-		        	<h6><span class="badge badge-primary">가입 완료</span></h6>
+		        	<h6><span class="badge badge-primary">승인 완료</span></h6>
 		        </td>
 		        <td th:if="${list.sgj_auth == '0'}" >
 		        	<h6><span class="badge badge-pill badge-danger">승인 대기 중</span></h6>	       

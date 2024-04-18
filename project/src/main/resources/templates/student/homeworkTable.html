@@ -23,10 +23,12 @@
 		        <th>내용</th>
 		        <th>제출 날짜</th>
 		        <th>숙제 제출</th>
+		        <th>평가 현황</th>
 		      </tr>
 		    </thead>
-		    <tbody>
-		      <tr th:each="hw : ${hwList}" th:data-url="@{/student/homeworkList(user_no=${hw.user_no})}">
+		    <tbody th:each="hw : ${hwList}" >
+		    
+		      <tr th:if="${hw.teach_grade >= 2}" th:data-url="@{/student/homeworkPass}">
 		        <td th:text="${hwStat.count}"></td>
 		        <td th:text="${hw.homework_no}"></td>
 		        <td th:text="${hw.homework_name}"></td>
@@ -38,7 +40,58 @@
 		        <td th:if="${hw.stu_content == null}">
 		        	<h6><span class="badge badge-pill badge-danger" th:text=" '제출 D-' + ${hw.hwDuedate()}"></span></h6>	 
 		        </td>
+		        
+		         <td th:if="${hw.teach_grade != null}">
+		        	<h6><span class="badge badge-success">평가 완료</span></h6>
+		        </td>
+		        <td th:if="${hw.teach_grade == null}">
+		        	<h6><span class="badge badge-warning">평가 중</span></h6>	 
+		        </td>
+		        
 		      </tr>
+		      
+		      <tr th:if="${hw.teach_grade < 2}" th:data-url="@{/student/homeworkList(user_no=${hw.user_no})}">
+		        <td th:text="${hwStat.count}"></td>
+		        <td th:text="${hw.homework_no}"></td>
+		        <td th:text="${hw.homework_name}"></td>
+		        <td th:text="${hw.homework_content}"></td>
+		        <td th:text="${hw.homework_duedate}"></td>
+		        <td th:if="${hw.stu_content != null}">
+		        	<h6><span class="badge badge-primary">제출 완료</span></h6>
+		        </td>
+		        <td th:if="${hw.stu_content == null}">
+		        	<h6><span class="badge badge-pill badge-danger" th:text=" '제출 D-' + ${hw.hwDuedate()}"></span></h6>	 
+		        </td>
+		        
+		         <td th:if="${hw.teach_grade != null}">
+		        	<h6><span class="badge badge-success">평가 완료</span></h6>
+		        </td>
+		        <td th:if="${hw.teach_grade == null}">
+		        	<h6><span class="badge badge-warning">평가 중</span></h6>	 
+		        </td>
+		        
+		      </tr>
+		      
+		      <tr th:if="${hw.teach_grade == null}" th:data-url="@{/student/homeworkList(user_no=${hw.user_no})}">
+		        <td th:text="${hwStat.count}"></td>
+		        <td th:text="${hw.homework_no}"></td>
+		        <td th:text="${hw.homework_name}"></td>
+		        <td th:text="${hw.homework_content}"></td>
+		        <td th:text="${hw.homework_duedate}"></td>
+		        <td th:if="${hw.stu_content != null}">
+		        	<h6><span class="badge badge-primary">제출 완료</span></h6>
+		        </td>
+		        <td th:if="${hw.stu_content == null}">
+		        	<h6><span class="badge badge-pill badge-danger" th:text=" '제출 D-' + ${hw.hwDuedate()}"></span></h6>	 
+		        </td>
+		        
+		        <td th:if="${hw.teach_grade == null}">
+		        	<h6><span class="badge badge-warning">평가 중</span></h6>	 
+		        </td>
+		        
+		      </tr>
+		      
+		      
 		    </tbody>
 		  </table>
 		</div>

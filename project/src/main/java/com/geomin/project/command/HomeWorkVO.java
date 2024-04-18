@@ -33,6 +33,8 @@ public class HomeWorkVO {
 	private String stu_content;
 	private String stu_q;
 	private String teach_assigndate;
+	private Integer teach_grade;
+	private String teach_answer;
 	
 	
 	public int leftDays() throws Exception {

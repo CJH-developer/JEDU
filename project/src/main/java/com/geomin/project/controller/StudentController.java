@@ -1,6 +1,8 @@
 package com.geomin.project.controller;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -73,25 +75,44 @@ public class StudentController {
 		int user_no = Integer.parseInt(vo.user_no);
 		ArrayList<HomeWorkVO> hwList = studentService.getHomeworkList(user_no);
 		
+		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+		Date currentTime = new Date();
+		String date = format.format(currentTime);
+		
+		
 		model.addAttribute("user_name", vo.user_name);
 		model.addAttribute("hwList", hwList);
-	
+		model.addAttribute("date", date);
+		
+		
 		return "student/homeworkList";
 	}
 	
 	// 그룹 가입 상세 조회
 	@GetMapping("/groupApplyList")
 	public String groupRegistLook(Model model,
+								  HttpServletRequest request,
 								  @RequestParam("sg_no") int sg_no) {
-		/*
-		 * int inGroup = studentService.groupCheck(user_no, sg_no);
-		 * 
-		 * if (inGroup > 0) { System.out.println("신청한 내용 있음"); } else {
-		 * System.out.println("신청한 내용 없음"); }
-		 */
+		
+		HttpSession session = request.getSession();
+		UserVO Uservo = (UserVO) session.getAttribute("vo");
+		int user_no = Integer.parseInt(Uservo.user_no);
+		
+		ArrayList<StudyGroupVO> list = studentService.groupList(user_no, sg_no);
+		
+		System.out.println(list.size());
+		
 		learnGroupVO vo = teacherService.groupDetail(sg_no);
 		model.addAttribute("group", vo);
-
+		
+		if(!list.isEmpty()) {		
+			String auth = (String) list.get(0).sgj_auth;
+			System.out.println(auth);
+			model.addAttribute("auth", auth);
+			model.addAttribute("list", list);
+		}
+		
+		
 		return "student/groupApplyList";
 	}
 	
@@ -110,6 +131,16 @@ public class StudentController {
 		return "student/groupApproval";
 	}
 	
+	//나의 그룹
+	@GetMapping("/myGroupList")
+	public String myGroupList(Model model, HttpServletRequest request) {
+		
+		
+		
+		return "student/myGroupList";
+	}
+	
+	
 	//숙제 내역 조회
 	@GetMapping("/homeworkTable")
 	public String homeworkTable(Model model, HttpServletRequest request) {
@@ -122,6 +153,8 @@ public class StudentController {
 		model.addAttribute("user_name", vo.user_name);
 		model.addAttribute("hwList", hwList);	
 		
+		System.out.println(hwList.toString());
+		
 		return "student/homeworkTable";
 	};
 	
@@ -129,7 +162,17 @@ public class StudentController {
 	@GetMapping("/submission")
 	public String submission(HomeWorkVO hwVO) {
 		studentService.homeworkSubmission(hwVO);
-		return "redirect:/student/main";
+		return "redirect:/student/homeworkTable";
 	}
+	
+	@GetMapping("/homeworkPass")
+	public String homeworkPass() {
+		
+		
+		return "student/homeworkPass";
+	}
+	
+	
+	
 	
 }

@@ -7,15 +7,11 @@
 </head>
 <body class="body">
 <style>
-<style>
   .loading-wrap {
         display: flex;
         flex-direction: column;
         align-items: center;
         justify-content: center;
-        width: 100%;
-        height: 300px;
-        background-color: #0002;
     }
     .loading-spinner {
         width: 40px;
@@ -25,7 +21,22 @@
         border-radius: 50%;
         animation: rotate 1s linear infinite;
     }
-
+    .loadingMessage{
+    	font-weight:bold;
+    	position:relative;
+    	top:55%;
+    	left:25%;
+    }
+    .loadMsg{
+    	position:absolute;
+    	width:300px;
+    	length:300px;
+    }
+	.loading-postion{
+		position: fixed;
+        top:50%;
+        left:50%;
+	}
     @keyframes rotate {
         from { transform: rotate(0deg); }
         to { transform: rotate(360deg); }
@@ -34,7 +45,6 @@
         padding: 10px;
         border: 1px solid black;
       }
-</style>
 </style>
 <th:block th:replace="~{./baseLayout/base_f :: setContent( ~{ :: .wrap} ) }">
     <link rel="stylesheet" href="/css/student/groupStudyList.css">
@@ -52,14 +62,13 @@
                     </div>
                     
                  <div class="loading-wrap loading-wrap--js" style="display: none">
-					<div class="loading-spinner loading-spinner--js"></div>
-					<p id="loadingMessage"></p>
+					<div class="loading-postion">
+						<div class="loading-spinner loading-spinner--js"></div>
+						<div class="loadMsg">
+							<p id="loadingMessage"></p>
+						</div>
+					</div>
 				</div>
-
-		
-					
-					</script>
-                   	
                    	
                     <div class="looks__header__submit">
                         <select name="" id="">
