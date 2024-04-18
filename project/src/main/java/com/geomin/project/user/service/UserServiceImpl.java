@@ -1,9 +1,13 @@
 package com.geomin.project.user.service;
 
+import java.util.ArrayList;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.geomin.project.command.UserVO;
+import com.geomin.project.util.Criteria;
+import com.geomin.project.util.CriteriaMember;
 
 @Service
 public class UserServiceImpl implements UserService {
@@ -34,5 +38,23 @@ public class UserServiceImpl implements UserService {
 		 return userMapper.modify(vo);
 
 	 }
+
+	 
+	@Override
+	public ArrayList<UserVO> getList(CriteriaMember criteria) {
+		
+		return userMapper.getList(criteria);
+	}
+
+	@Override
+	public int getTotal() {
+		return userMapper.getTotal();
+	}
+
+	@Override
+	public UserVO findUser(int user_no) {
+		
+		return userMapper.findUser(user_no);
+	}
 
 }

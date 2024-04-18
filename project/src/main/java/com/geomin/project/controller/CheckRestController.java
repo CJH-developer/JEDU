@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.geomin.project.command.HomeworkHistoryVO;
 import com.geomin.project.command.learnGroupVO;
 import com.geomin.project.teacher.service.TeacherService;
 import com.geomin.project.user.service.UserService;
@@ -128,10 +129,38 @@ public class CheckRestController {
 		return 0;
 	}
 
-
-
-
-
-
+	
+	// 숙제 제출내역 가져오기(제출한 것들만)
+	@GetMapping("/homeworkReceive/{homework_no}")
+	public ArrayList<HomeworkHistoryVO> homeworkReceive(@PathVariable("homework_no") int homework_no) {
+		
+		
+		return teacherService.homeworkReceive(homework_no);
+	}
+	
+	// 숙제 평가하고 저장버튼 눌렀을 때
+	@GetMapping("/homeworkGrade/{homework_no}/{user_no}/{selectedGrade}")
+	public int homeworkGrade(@PathVariable("selectedGrade") String selectedGrade,
+							 @PathVariable("homework_no") String homework_no,
+							 @PathVariable("user_no") String user_no) {
+		
+		Map<String, Object> map = new HashMap<>();
+		map.put("selectedGrade", selectedGrade);
+		map.put("homework_no", homework_no);
+		map.put("user_no", user_no);
+		
+		teacherService.homeworkGrade(map);
+		
+		System.out.println(map);
+		
+		
+		return 0;
+	}
+	
+	
+	
+	
+	
+	
 
 }

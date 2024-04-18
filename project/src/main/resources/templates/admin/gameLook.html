@@ -62,7 +62,7 @@
 	              <div class="gl__tbody_six" th:text="${gameContent.game_regdate}">기간</div>
 	              <div class="gl__tbody_seven" th:text="${gameContent.game_discount_price} + 원">판매가</div>
 	              <div class="gl__tbody_eight">
-	              	<button id="gl__modify">수정</button>
+	              	<a th:href="@{/admin/gameModify(game_no = ${gameContent.game_no})}" id="gl__modify">수정</a>
 	              	<button type="button" class="gl__delete" >삭제</button>
 	              </div>
 	            </div>

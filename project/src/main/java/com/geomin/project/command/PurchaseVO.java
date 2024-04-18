@@ -23,5 +23,6 @@ public class PurchaseVO {
 	private String filepath;
 	private String uuid;
 	
-	
+
 }
+

@@ -1,6 +1,14 @@
 package com.geomin.project.user.service;
 
+
+import java.util.ArrayList;
+
+import org.apache.ibatis.annotations.Param;
+
+>>>>>>> 327c1c76d4f492d5d1828d790975ccb3ef2aab52
 import com.geomin.project.command.UserVO;
+import com.geomin.project.util.Criteria;
+import com.geomin.project.util.CriteriaMember;
 
 public interface UserService {
 
@@ -11,5 +19,10 @@ public interface UserService {
 
 	public int modify(UserVO vo);
 
-
+	// 회원정보 조회
+	public ArrayList<UserVO> getList(@Param("criteria") CriteriaMember criteria);
+	public int getTotal();
+	
+	// 선택한 회원 조회
+	public UserVO findUser(int user_no);
 }

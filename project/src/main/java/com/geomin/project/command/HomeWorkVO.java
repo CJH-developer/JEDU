@@ -28,6 +28,19 @@ public class HomeWorkVO {
 	private String sg_level;
 
 
+	
+	
+	// 학습그룹 이름, 레벨, 기한 들고옴
+	private String sg_name;
+	private String sg_level;
+	private String user_name;
+	
+	//Homework_History
+	private String stu_content;
+	private String stu_q;
+	private String teach_assigndate;
+	
+	
 	public int leftDays() throws Exception {
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
         Date regDate = sdf.parse(this.homework_regdate);
@@ -37,4 +50,15 @@ public class HomeWorkVO {
         return (int) (diff / (24 * 60 * 60 * 1000));
 	}
 
+
+	
+	public int hwDuedate() throws Exception {
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        Date regDate = sdf.parse(this.teach_assigndate);
+        Date dueDate = sdf.parse(this.homework_duedate);
+        long diff = dueDate.getTime() - regDate.getTime();
+		
+        return (int) (diff / (24 * 60 * 60 * 1000));
+	}
+	
 }

@@ -28,7 +28,7 @@
 .item-container {
   flex-grow: 1;
   display: flex;
-  justify-content: space-between; /* Spreads the image and details apart */
+  justify-content: space-between; 
 }
 .item-image img {
     width: 80px;
@@ -38,8 +38,8 @@
 }
 .item-details {
     text-align: right;
-    flex-grow: 1; /* Allows the details section to grow */
-  position: relative; /* Relative position for absolute placement of button */
+    flex-grow: 1; 
+  position: relative; 
 }
 .cart-container {
     display: flex;

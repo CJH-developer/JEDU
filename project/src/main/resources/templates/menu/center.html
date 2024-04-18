@@ -21,117 +21,27 @@
         </div>
 
         <!-- 공지사항 -->
-        <div class="center__below__notice">
-
-          <button type="button" class="section__sub__menu"><i class="fa-solid fa-plus"></i> 공지사항1</button>
-          <div class="sub__menu__content"><div>내용1</div></div>
-          <button type="button" class="section__sub__menu"><i class="fa-solid fa-plus"></i> 공지사항2</button>
-          <div class="sub__menu__content"><div>내용2</div></div>
-          <button type="button" class="section__sub__menu"><i class="fa-solid fa-plus"></i>공지사항3</button>
-          <div class="sub__menu__content"><div>내용3</div></div>
-          <button type="button" class="section__sub__menu"><i class="fa-solid fa-plus"></i>공지사항4</button>
-          <div class="sub__menu__content"><div>내용4</div></div>
-          <button type="button" class="section__sub__menu"><i class="fa-solid fa-plus"></i>공지사항5</button>
-          <div class="sub__menu__content"><div>내용1</div></div>
-          <button type="button" class="section__sub__menu"><i class="fa-solid fa-plus"></i>공지사항6</button>
-          <div class="sub__menu__content"><div>내용2</div></div>
-          <button type="button" class="section__sub__menu"><i class="fa-solid fa-plus"></i>공지사항7</button>
-          <div class="sub__menu__content"><div>내용3</div></div>
-          <button type="button" class="section__sub__menu"><i class="fa-solid fa-plus"></i>공지사항8</button>
-          <div class="sub__menu__content"><div>내용4</div></div>
-          <button type="button" class="section__sub__menu"><i class="fa-solid fa-plus"></i> 공지사항1</button>
-          <div class="sub__menu__content"><div>내용1</div></div>
-          <button type="button" class="section__sub__menu"><i class="fa-solid fa-plus"></i> 공지사항2</button>
-          <div class="sub__menu__content"><div>내용2</div></div>
-          <button type="button" class="section__sub__menu"><i class="fa-solid fa-plus"></i>공지사항3</button>
-          <div class="sub__menu__content"><div>내용3</div></div>
-          <button type="button" class="section__sub__menu"><i class="fa-solid fa-plus"></i>공지사항4</button>
-          <div class="sub__menu__content"><div>내용4</div></div>
-          <button type="button" class="section__sub__menu"><i class="fa-solid fa-plus"></i>공지사항5</button>
-          <div class="sub__menu__content"><div>내용1</div></div>
-          <button type="button" class="section__sub__menu"><i class="fa-solid fa-plus"></i>공지사항6</button>
-          <div class="sub__menu__content"><div>내용2</div></div>
-          <button type="button" class="section__sub__menu"><i class="fa-solid fa-plus"></i>공지사항7</button>
-          <div class="sub__menu__content"><div>내용3</div></div>
-          <button type="button" class="section__sub__menu"><i class="fa-solid fa-plus"></i>공지사항8</button>
-          <div class="sub__menu__content"><div>내용4</div></div>
-        
+        <div class="center__below__notice" >
+        <th:block th:each="noticeVo:${noticeVo}">
+          <button type="button" class="section__sub__menu"><i class="fa-solid fa-plus"></i><span th:text="${noticeVo.notice_title}">1</span></button>
+          <div class="sub__menu__content"><div th:text="${noticeVo.notice_content}">내용1</div></div>
+        </th:block>
         </div>
 
         <!-- 자주묻는질문 -->
-        <div class="center__below__faq">
-
-          <button type="button" class="section__sub__menu"><i class="fa-solid fa-plus"></i> 자주묻는질문</button>
-          <div class="sub__menu__content"><div>내용1</div></div>
-          <button type="button" class="section__sub__menu"><i class="fa-solid fa-plus"></i> 자주묻는질문</button>
-          <div class="sub__menu__content"><div>내용2</div></div>
-          <button type="button" class="section__sub__menu"><i class="fa-solid fa-plus"></i>자주묻는질문</button>
-          <div class="sub__menu__content"><div>내용3</div></div>
-          <button type="button" class="section__sub__menu"><i class="fa-solid fa-plus"></i>자주묻는질문</button>
-          <div class="sub__menu__content"><div>내용4</div></div>
-          <button type="button" class="section__sub__menu"><i class="fa-solid fa-plus"></i>자주묻는질문</button>
-          <div class="sub__menu__content"><div>내용1</div></div>
-          <button type="button" class="section__sub__menu"><i class="fa-solid fa-plus"></i>자주묻는질문</button>
-          <div class="sub__menu__content"><div>내용2</div></div>
-          <button type="button" class="section__sub__menu"><i class="fa-solid fa-plus"></i>자주묻는질문</button>
-          <div class="sub__menu__content"><div>내용3</div></div>
-          <button type="button" class="section__sub__menu"><i class="fa-solid fa-plus"></i>자주묻는질문</button>
-          <div class="sub__menu__content"><div>내용4</div></div>
-          <button type="button" class="section__sub__menu"><i class="fa-solid fa-plus"></i> 자주묻는질문</button>
-          <div class="sub__menu__content"><div>내용1</div></div>
-          <button type="button" class="section__sub__menu"><i class="fa-solid fa-plus"></i> 자주묻는질문</button>
-          <div class="sub__menu__content"><div>내용2</div></div>
-          <button type="button" class="section__sub__menu"><i class="fa-solid fa-plus"></i>자주묻는질문</button>
-          <div class="sub__menu__content"><div>내용3</div></div>
-          <button type="button" class="section__sub__menu"><i class="fa-solid fa-plus"></i>자주묻는질문</button>
-          <div class="sub__menu__content"><div>내용4</div></div>
-          <button type="button" class="section__sub__menu"><i class="fa-solid fa-plus"></i>자주묻는질문</button>
-          <div class="sub__menu__content"><div>내용1</div></div>
-          <button type="button" class="section__sub__menu"><i class="fa-solid fa-plus"></i>자주묻는질문</button>
-          <div class="sub__menu__content"><div>내용2</div></div>
-          <button type="button" class="section__sub__menu"><i class="fa-solid fa-plus"></i>자주묻는질문</button>
-          <div class="sub__menu__content"><div>내용3</div></div>
-          <button type="button" class="section__sub__menu"><i class="fa-solid fa-plus"></i>자주묻는질문</button>
-          <div class="sub__menu__content"><div>내용4</div></div>
-        
+        <div class="center__below__faq" >
+        <th:block th:each="faqVo:${faqVo}">
+          <button type="button" class="section__sub__menu"><i class="fa-solid fa-plus"></i><span th:text="${faqVo.faq_question}"></span></button>
+          <div class="sub__menu__content"><div th:text="${faqVo.faq_answer}">내용1</div></div>
+        </th:block>  
         </div>
 
         <!-- Q&A -->
         <div class="center__below__qna">
-
-          <button type="button" class="section__sub__menu"><i class="fa-solid fa-plus"></i> 문의사항</button>
-          <div class="sub__menu__content"><div>답변</div></div>
-          <button type="button" class="section__sub__menu"><i class="fa-solid fa-plus"></i> 문의사항</button>
-          <div class="sub__menu__content"><div>답변</div></div>
-          <button type="button" class="section__sub__menu"><i class="fa-solid fa-plus"></i>문의사항</button>
-          <div class="sub__menu__content"><div>답변</div></div>
-          <button type="button" class="section__sub__menu"><i class="fa-solid fa-plus"></i>문의사항</button>
-          <div class="sub__menu__content"><div>답변</div></div>
-          <button type="button" class="section__sub__menu"><i class="fa-solid fa-plus"></i>문의사항</button>
-          <div class="sub__menu__content"><div>답변</div></div>
-          <button type="button" class="section__sub__menu"><i class="fa-solid fa-plus"></i>문의사항</button>
-          <div class="sub__menu__content"><div>답변</div></div>
-          <button type="button" class="section__sub__menu"><i class="fa-solid fa-plus"></i>문의사항</button>
-          <div class="sub__menu__content"><div>답변</div></div>
-          <button type="button" class="section__sub__menu"><i class="fa-solid fa-plus"></i>문의사항</button>
-          <div class="sub__menu__content"><div>답변</div></div>
-          <button type="button" class="section__sub__menu"><i class="fa-solid fa-plus"></i> 문의사항</button>
-          <div class="sub__menu__content"><div>답변</div></div>
-          <button type="button" class="section__sub__menu"><i class="fa-solid fa-plus"></i> 문의사항</button>
-          <div class="sub__menu__content"><div>답변</div></div>
-          <button type="button" class="section__sub__menu"><i class="fa-solid fa-plus"></i>문의사항</button>
-          <div class="sub__menu__content"><div>답변</div></div>
-          <button type="button" class="section__sub__menu"><i class="fa-solid fa-plus"></i>문의사항</button>
-          <div class="sub__menu__content"><div>답변</div></div>
-          <button type="button" class="section__sub__menu"><i class="fa-solid fa-plus"></i>문의사항</button>
-          <div class="sub__menu__content"><div>답변</div></div>
-          <button type="button" class="section__sub__menu"><i class="fa-solid fa-plus"></i>문의사항</button>
-          <div class="sub__menu__content"><div>답변</div></div>
-          <button type="button" class="section__sub__menu"><i class="fa-solid fa-plus"></i>문의사항</button>
-          <div class="sub__menu__content"><div>답변</div></div>
-          <button type="button" class="section__sub__menu"><i class="fa-solid fa-plus"></i>문의사항</button>
-          <div class="sub__menu__content"><div>답변</div></div>
-        
+        <th:block th:each="qnaVo:${qnaVo}">
+          <button type="button" class="section__sub__menu"><i class="fa-solid fa-plus"></i><span th:text="${qnaVo.qna_title}"></span></button>
+          <div class="sub__menu__content"><div th:text="${qnaVo.qna_content}">답변</div></div>
+        </th:block>
         </div>
 
       </div>

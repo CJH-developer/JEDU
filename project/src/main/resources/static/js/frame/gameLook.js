@@ -72,9 +72,9 @@ $(document).ready(function() {
 });
 
 var search__level__Btn = document.getElementById("search__level__Btn");
-		search__level__Btn.addEventListener('click', function() {
+	search__level__Btn.addEventListener('click', function() {
 			
-			event.preventDefault(); //고유 이벤트 중지
-			document.gameLook.submit(); // form submit
+	event.preventDefault(); //고유 이벤트 중지
+	document.gameLook.submit(); // form submit
 			
-		})
+})

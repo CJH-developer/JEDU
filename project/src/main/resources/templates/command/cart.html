@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
+<script src="/static/js/order/deleteCart.js" defer></script>
 <!-- Bootstrap CSS -->
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/css/bootstrap.min.css">
 <link rel="stylesheet" href="/css/frame/cart.css">
@@ -67,6 +68,7 @@
 			 .done(function(data){
 				 console.log("successfully deleted")
 				 e.target.parentElement.style.display="none";
+				 window.location.href="/command/cart"
 			 })
 			 .fail(function(error){
 				 console.log("fail to delete");

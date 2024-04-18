@@ -1,6 +1,11 @@
 
 .lookup__header{width: 100%; height: 10%; display: flex; align-items: center; justify-content: space-between;}
 
+a{text-decoration:none;}
+
+
+.lookup__header{width: 100%; height: 10%; display: flex; align-items: center; justify-content: space-between; padding:12px;}
+
 .lookup__header__title{width: 10.5%; height: 100%; display: flex; align-items: center;}
 .lookup__header__title span{font-size: 20px; font-weight: bold;}
 
@@ -23,19 +28,16 @@
 #add__basket{background-color: rgb(15, 172, 15); width: 85px; height: 30px; border-radius: 0; font-size: 12px; font-weight: bold;}
 #add__basket:hover{background-color: rgb(30, 218, 30); }
 
-
-
-
 .lookup__detail__right{width: 20%; height: 100%; display: flex; align-items: center; justify-content: center;}
 .lookup__detail__right select{border: none; border-bottom: 1px solid rgb(206, 205, 205); padding-bottom: 5px; &:focus{outline: none;}}
 .lookup__detail__right img{width: 20px; height: 20px;}
 
-.lookup__body{width: 100%; height: 90%; display: flex; align-items: center;}
+.lookup__body{width: 100%; height: 90%; display: flex; flex-direction:column; align-items: center;}
 .lookup__table{width: 100%; height: 100%; display: flex; flex-direction: column;}
 
 .table__thead{width: 96%; height: 7%; display: flex; align-items: center; justify-content: center; background-color: rgb(36, 86, 224);}
-.table__tbody{width: 96%; height: 88%; border: 1px solid rgb(202, 200, 200);}
-.table__page{width: 96%; height: 5%;}
+.table__tbody{width: 96%; height: 85%; border: 1px solid rgb(202, 200, 200);}
+.table__page{width: 96%; height: 8%; }
 
 .thead__check{width: 6%; height: 100%; display: flex; align-items: center; justify-content: center; font-size: 12px; color: white; border-right: 1px solid rgb(23, 112, 228);}
 .thead__image{width: 20%; height: 100%; display: flex; align-items: center; justify-content: center; color: white; font-size: 12px; border-right: 1px solid rgb(23, 112, 228);}
@@ -49,14 +51,19 @@
 .tbody__item{width: 100%; height: 25%; border-bottom: 1px solid rgb(209, 209, 209); display: flex; align-items: center; justify-content:center; }
 .tbody__check{width: 6%; height: 100%; display: flex; align-items: center; justify-content: center; font-size: 12px; color: black; border-right: 1px solid rgb(214, 214, 214);}
 .tbody__image{width: 20%; height: 100%; display: flex; align-items: center; justify-content: center; color: black; font-size: 12px; border-right: 1px solid rgb(214, 214, 214);}
+.tbody__image img{width: 100%; height: 100%;}
 .tbody__title{width: 20%; height: 100%; display: flex; align-items: center; justify-content: center; color: black; font-size: 12px; border-right: 1px solid rgb(214, 214, 214);}
 .tbody__subscribe{width: 20%; height: 100%; display: flex; flex-direction: column; align-items: center; justify-content: center; color: black; font-size: 12px; border-right: 1px solid rgb(214, 214, 214);}
 .tbody__introduce{width: 24%; height: 100%; display: flex; align-items: center; justify-content: center; color: black; font-size: 12px; border-right: 1px solid rgb(214, 214, 214);}
+
 .tbody__pay{width: 10%; height: 100%; display: flex; align-items: center; justify-content:space-between;}
+
 
 .tbody__pay button{width: 60px; height: 25px; margin: 0px 5px; font-size: 12px; border: 1px solid rgb(184, 182, 182); font-weight: bold;}
 
 .tbody__pay button{width: 100px; height: 25px; margin: 0px 5px; font-size: 12px; border: 1px solid rgb(184, 182, 182); font-weight: bold;}
+
+.tbody__pay button{width: 80px; height: 25px; margin: 0px 5px; font-size: 12px; border: 1px solid rgb(184, 182, 182); font-weight: bold;}
 .tbody__pay a{line-height:25px; text-align: center; width: 70px; height: 25px; margin: 0px 5px; font-size: 12px; border: 1px solid rgb(184, 182, 182); font-weight: bold;}
 
 
@@ -146,6 +153,7 @@
   opacity: 0;
   transition: opacity 0.5s ease-in-out;
   pointer-events: none; 
+  z-index: 100;
 }
 .alert-message {
   background-color: #f8d7da;
@@ -162,6 +170,7 @@
   opacity: 0;
   transition: opacity 0.5s ease-in-out;
   pointer-events: none; 
+  z-index: 10;
 }
 .paid-message {
   background-color: #4CAF50;
@@ -178,6 +187,11 @@
   opacity: 0;
   transition: opacity 0.5s ease-in-out;
   pointer-events: none; 
+  z-index: 50;
 }
+
+
+/* 페이지네이션 */
+
 
 .tbody__sub__date{width: 24%; height: 100%; display: flex; align-items: center; justify-content: center; color: rgb(8, 8, 8); font-size: 16px;border-right: 1px solid rgb(205, 208, 212);}

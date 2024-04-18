@@ -28,9 +28,17 @@ public interface GameContentService {
 
 	public int getNoTotal();
 
+
 	// 게임 수정
 	public GameContentVO gameList(int game_no);
 
 	public int gameUpdate(GameContentVO vo, List<MultipartFile> list);
 
+
+
+
+	
+	
+	
 }
+

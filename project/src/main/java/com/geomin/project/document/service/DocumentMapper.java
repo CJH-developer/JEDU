@@ -7,6 +7,8 @@ import org.apache.ibatis.annotations.Param;
 
 import com.geomin.project.command.DocumentUploadVO;
 import com.geomin.project.command.DocumentVO;
+import com.geomin.project.command.GameContentVO;
+import com.geomin.project.command.UploadVO;
 import com.geomin.project.util.Criteria;
 
 
@@ -28,4 +30,9 @@ public interface DocumentMapper {
 	// 학습 - 학습 자료 조회 - 내용
 	public ArrayList<DocumentVO> delList(@Param("criteria") Criteria criteria);
 	public int getNoTotal();
+	
+	// 학습 수정
+	public DocumentVO docuList(int docu_no);
+	public int docuUpdate(DocumentVO vo);
+	public void updateFile(DocumentUploadVO vo);
 }

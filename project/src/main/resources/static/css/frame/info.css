@@ -48,27 +48,28 @@
 .wrap__below__notice{width: 33%; height: 95%;}
 .below__notice__content{width: 95%; height: 100%; background-color: rgb(247, 247, 247); }
 
-h3{font-size: 25px;color: rgb(255, 255, 255);text-transform: uppercase;font-weight: 300;text-align: center;padding: 10px 0px;background :linear-gradient(36.41deg, #95a9e2 7.04%, #3663df 100%);border-top-left-radius: 25px; border-top-right-radius: 25px;}
+h3{font-size: 25px;color: rgb(255, 255, 255);text-transform: uppercase;font-weight: bold;text-align: center;padding: 10px 0px;background :linear-gradient(36.41deg, #95a9e2 7.04%, #3663df 100%);border-top-left-radius: 25px; border-top-right-radius: 25px;}
 table{width:100%;table-layout: fixed;}
 .tbl-header{background-color: rgba(75, 110, 228, 0.3);}
-.tbl-content{height:70%;overflow-x:auto;margin-top: 0px;border: 1px solid rgba(255,255,255,0.3);}
-th{padding: 20px 15px;text-align: left;font-weight: 500;font-size: 12px;color: black;text-transform: uppercase;}
+.tbl-content{height:70%;overflow-x:auto;margin-top: 0px;border: 1px solid rgba(255,255,255,0.3); border-right: 1px solid rgb(192, 191, 191); border-left: 1px solid rgb(192, 191, 191); border-bottom: 1px solid rgb(192, 191, 191);}
+th{padding: 10px 15px;text-align: left;font-weight: 500;font-size: 12px;color: black;text-transform: uppercase;}
 td{padding: 15px;text-align: left;vertical-align:middle;font-weight: 300;font-size: 12px;color: black;border-bottom: solid 1px rgba(104, 104, 104, 0.1);}
-.th-1{width: 13%; text-align: center;}
-.th-2{width: 45%; text-align: center;}
-.th-3{width: 20%; text-align: center;}
-.th-4{width: 20%; text-align: center;}
+.th-1{width: 13%; height: 15px; text-align: center;}
+.th-2{width: 45%; height: 15px; text-align: center;}
+.th-3{width: 20%; height: 15px; text-align: center;}
+.th-4{width: 20%; height: 15px; text-align: center;}
+.notice__Bb__title{width: 100%; height: 55px; font-size: 25px; border-top-left-radius: 20px; border-top-right-radius: 20px;  color: white; font-weight: 300;  display: flex; align-items: center; justify-content: center; background :linear-gradient(36.41deg, #3663df 7.04%, #7993db 100%);}
 
 .wrap__below__game{width: 67%; height: 95%;}
 .below__game__content{width: 97%; height: 100%; display: flex; flex-direction: column;}
-.below__game__header{width: 100%; height: 15%; display: flex; align-items: center; justify-content: space-between; border-top-left-radius: 25px; border-top-right-radius: 25px; background :linear-gradient(36.41deg, #3663df 7.04%, #95a9e2 100%);}
-.game__header__title{padding-left: 30px; }
+.below__game__header{width: 100%; height: 15%; display: flex; align-items: center; justify-content: space-between; border-right: 1px solid rgb(192, 191, 191); border-top-left-radius: 25px; border-top-right-radius: 25px; background :linear-gradient(36.41deg, #3663df 7.04%, #95a9e2 100%);}
+.game__header__title{padding-left: 30px;  }
 .game__header__title span{color: white; font-weight: 300;  font-size: 25px;}
 .game__header__more{padding-right: 30px; color: rgb(226, 224, 224); font-size: 15px; }
 .game__header__more:hover{color: rgb(212, 209, 209);}
 
 
-.below__game__body{width: 100%; height: 85%; border: 1px solid rgb(236, 236, 236); border-bottom-left-radius: 25px; border-bottom-right-radius: 25px;}
+.below__game__body{width: 99.7%; height: 80%; border: 1px solid rgb(236, 236, 236); border-bottom-left-radius: 25px; border-bottom: 1px solid rgb(192, 191, 191); border-bottom-right-radius: 25px; border-left: 1px solid rgb(192, 191, 191); border-right: 1px solid rgb(192, 191, 191);}
 .swiper {
   width: 100%;
   height: 90%;
@@ -82,10 +83,14 @@ td{padding: 15px;text-align: left;vertical-align:middle;font-weight: 300;font-si
   justify-content: center;
   align-items: center;
   height: 90%;
-  border: 1px solid gray;
   margin: 0px 10px;
   margin-top: 30px;
+  position: relative;
 }
+
+.swiper-slide img{width:100%; height:250px; position: absolute; left: 0; top: 0;}
+.swiper-slide-title{width:100%; height:50px; position: absolute; bottom: 0px; background-color: #696868;  display: flex; align-items: center; justify-content: center;}
+.swiper-slide-title span{font-size: 13px; font-weight: 300; color: white;}
 
 
 /*---------------------------------------------------------------------------------------------------------*/
@@ -93,3 +98,6 @@ td{padding: 15px;text-align: left;vertical-align:middle;font-weight: 300;font-si
 
 
 
+
+.swiper-button-next{position: absolute; right: 0; }
+.swiper-button-prev{position: absolute; left: 0;}

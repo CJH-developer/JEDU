@@ -15,6 +15,9 @@ public class NoticeVO {
 	private String notice_title;
 	private String notice_dueDate;
 	private String notice_content;
+
 	private String notice_del_check;
 
+	private String notice_delCheck;
+	
 }

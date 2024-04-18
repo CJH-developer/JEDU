@@ -171,5 +171,41 @@
 		WHERE 
 			DEL_CHECK = "N"
     </select>
+    
+      <!-- 게임 컨텐츠 수정 조회 -->
+  	<select id="docuList" resultType="DocumentVO">
+  		SELECT * FROM DOCUMENT WHERE DOCU_NO = #{docu_no}
+  	</select>
+  	
+  	<!-- 게임 수정 폼 -->
+    <update id="docuUpdate">
+    	UPDATE DOCUMENT
+    	SET
+    		DOCU_TYPE = #{docu_type},
+    		DOCU_CATEGORY = #{docu_category},
+    		DOCU_SERVICE = #{docu_service},
+    		DOCU_TITLE = #{docu_title},
+    		DOCU_CONTENT = #{docu_content},
+    		GAME_NO = #{game_no},
+    		DEL_CHECK = #{del_check}
+    	WHERE
+    		DOCU_NO = #{docu_no}
+    </update>
+    
+    <update id="updateFile">
+  	  	<selectKey resultType="int" keyProperty="docu_no" order="BEFORE">
+			SELECT MAX(DOCU_NO) FROM DOCUMENT WHERE DOCU_NO = #{docu_no}
+		</selectKey>
+		
+		UPDATE DOCU_UPLOAD 
+		SET
+			FILENAME = #{fileName},
+			FILEPATH = #{filepath},
+			UUID = #{uuid},
+			DOCU_TITLE = #{docu_title}
+		WHERE
+			DOCU_NO = #{docu_no}
+		
+  	  </update>
   
   </mapper>

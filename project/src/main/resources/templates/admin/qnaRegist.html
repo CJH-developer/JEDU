@@ -5,7 +5,7 @@
 <div class="wrap">
 <script src="/js/frame/qnaRegist.js" defer></script>
    <div class="wrap__content">
-     <form action="" method="get" class="regist__wrap">
+     <form action="/admin/qnaRegistForm" method="post" class="regist__wrap">
 
        <!-- 컨텐츠 등록 -->
        <div class="regist__left">
@@ -22,7 +22,7 @@
            <!-- 구분 선택 -->
            <div class="regist__below__item">
              <span>공지분류</span>
-             <select name="item__select" id="item__select">
+             <select name="qna_type" id="item__select">
                <option value="none">유형을 선택해주세요.</option>
                <option value="1">회원정보</option>
                <option value="2">상품구매</option>
@@ -34,18 +34,18 @@
            <!-- 제목 입력 -->
            <div class="regist__below__item">
              <span>제목</span>
-             <input type="text" id="qna__title" placeholder="제목을 입력하세요.">
+             <input type="text" id="qna__title" name="qna_title" placeholder="제목을 입력하세요.">
            </div>
 
            <!-- 유형 선택 -->
            <div class="regist__item__select">
              <span>답변 알림</span>
              <div class="notice__check">
-               <input type="checkbox" value="1" id="comment__permit" name="comment__permit"> 
+               <input type="checkbox" value="1" id="comment__permit" name="qna_check"> 
                <span>알림 허용</span>
              </div>
              <div class="notice__future">
-               <input type="checkbox" value="2" id="comment__reject" name="comment__reject">
+               <input type="checkbox" value="2" id="comment__reject" name="qna_check">
                <span>알림 거부</span>
              </div>
            </div>
@@ -53,7 +53,7 @@
            <!-- 컨텐츠 설명 -->
            <div class="regist__item__textArea">
              <span>내용</span>
-             <textarea type="text" id="notice__textArea" autocomplete="off" placeholder="패키지 내용을 입력해주세요."></textarea>
+             <textarea id="notice__textArea" name="qna_content" placeholder="패키지 내용을 입력해주세요."></textarea>
            </div>
            
            <!-- 구독 가능 인원 -->
@@ -67,7 +67,7 @@
 
            </div>
            
-           
+           <input type="hidden" value="Y" name="qna_delCheck">
 
          </div>
 

@@ -15,9 +15,15 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+
+import com.geomin.project.cart.service.CartService;
+import com.geomin.project.command.GameContentVO;
 import com.geomin.project.command.HomeWorkVO;
+import com.geomin.project.command.PageVO;
+import com.geomin.project.command.PurchaseVO;
 import com.geomin.project.command.UserVO;
 import com.geomin.project.command.learnGroupVO;
+import com.geomin.project.gameContentService.GameContentService;
 import com.geomin.project.teacher.service.TeacherService;
 
 
@@ -27,6 +33,12 @@ public class TeacherController {
 
 	@Autowired
 	TeacherService teacherService;
+	
+	@Autowired
+	private CartService cartService;
+	
+	@Autowired
+	private GameContentService gameContentService;
 
 	// 메인 화면
 	@GetMapping("/main")
@@ -66,7 +78,21 @@ public class TeacherController {
 
 	// 숙제 제출 조회
 	@GetMapping("/homeWorkScore")
-	public String homeWorkScore() {
+	public String homeWorkScore(HttpServletRequest request,
+								Model model) {
+		
+		// 세션값 받아오기
+		HttpSession session = request.getSession();
+		UserVO vo = (UserVO)session.getAttribute("vo");
+		
+		// 내가 만든 숙제 조회
+		ArrayList<HomeWorkVO> list = teacherService.getMyHomework(vo.user_no);
+		model.addAttribute("homework", list);
+		
+		// 숙제 제출한 사람들 가져오기
+		
+		
+		
 		return "teacher/homeWorkScore";
 	}
 
@@ -76,12 +102,13 @@ public class TeacherController {
 		return "teacher/myproduct";
 	}
 
+
+	
+	
 	// 학습 그룹 등록 페이지
 	@GetMapping("/learnGroupRegist")
 	public String learnGroupRegist() {
-
-
-
+		
 		return "teacher/learnGroupRegist";
 	}
 
@@ -106,6 +133,7 @@ public class TeacherController {
 		model.addAttribute("list", list);
 
 		System.out.println("Tㅇㄴㅁㄴㅇㄻㄴㅇㄹㄹㅇㄴ ㄹㄴㅇ ㄹㄴ 123 21ㄷㅁㄴ ㄹㄴㅇㄹ ㄴㅇ ㄹ");
+
 		System.out.println(list);
 
 		return "teacher/learnGroupLook";
@@ -122,7 +150,7 @@ public class TeacherController {
 	}
 
 	// 그룹 가입 상세 조회
-	@GetMapping("groupRegistLook")
+	@GetMapping("/groupRegistLook")
 	public String groupRegistLook(Model model,
 								  @RequestParam("sg_no") int sg_no) {
 
@@ -140,18 +168,38 @@ public class TeacherController {
 	}
 
 	// 학습 그룹 승인
-	@GetMapping("groupRegistApprove")
+	@GetMapping("/groupRegistApprove")
 	public String groupRegistApprove() {
 
 		return "teacher/groupRegistApprove";
 	}
 
 
-	@GetMapping("detailStudentLook")
+
+
+
+	
+	@GetMapping("/detailStudentLook")
 	public String detailStudentLook() {
 
 		return "teacher/detailStudentLook";
 	}
 
+	
+	@GetMapping("/myproductPopup")
+	public String myproductPopup(HttpServletRequest request, Model model) {
+		
+		HttpSession session = request.getSession();
+		UserVO vo =(UserVO) session.getAttribute("vo");
+		int user_no = Integer.parseInt(vo.user_no);
+		
+		ArrayList<PurchaseVO> purList = cartService.purchaseHistory(user_no);
+		model.addAttribute("purList", purList);
+		
+		
+		
+		return "teacher/myproductPopup";
+	}
+	
 
 }

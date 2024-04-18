@@ -77,23 +77,24 @@
 	</resultMap>
 
 	<!-- Select Query -->
-	<select id="getList" resultMap="gameResultMap">
-		SELECT
-		G.*,
-		U.FILENAME,
-		U.FILEPATH,
-		U.UUID,
-		G.DEL_CHECK
-		FROM
-		GAME_CONTENT AS G
-		LEFT JOIN
-		UPLOAD U
-		ON
-		G.GAME_NO = U.GAME_NO
-		WHERE
-		U.FILENAME IS NOT NULL
-		AND
-		G.DEL_CHECK = "Y"
+    <!-- Select Query -->
+    <select id="getList" resultMap="gameResultMap">
+        SELECT 
+        	G.*, 
+            U.FILENAME, 
+            U.FILEPATH, 
+            U.UUID,
+            G.DEL_CHECK
+        FROM 
+            GAME_CONTENT AS G
+        LEFT JOIN 
+            UPLOAD U
+        ON 
+            G.GAME_NO = U.GAME_NO
+        WHERE 
+    		U.FILENAME IS NOT NULL
+     	AND
+			G.DEL_CHECK = "Y"
 		<if test="criteria.levelSelect == 1">
 			AND
 			GAME_TARGET_LEVEL = 1
@@ -227,4 +228,78 @@
 
 
 
-</mapper>
+  
+    
+    <!-- Select Query -->
+    <select id="getNoTotal" resultType="int">
+        SELECT 
+        	COUNT(*) AS TOTAL
+		FROM 
+			GAME_CONTENT 
+		WHERE 
+			DEL_CHECK = "N"
+    </select>
+    
+    
+    <!-- 게임컨텐츠 조회 - 삭제 -->
+    <update id="gameContentDelete">
+    	UPDATE 
+    		GAME_CONTENT 
+    	SET 
+    		DEL_CHECK = "N"
+    	WHERE
+    		GAME_NO = #{game_no}
+    </update>
+    
+  
+  	<!-- 게임 컨텐츠 수정 조회 -->
+  	<select id="gameList" resultType="GameContentVO">
+  	
+  	SELECT * FROM GAME_CONTENT WHERE GAME_NO = #{game_no}
+  	
+  	</select>
+    
+    <!-- 게임 수정 폼 -->
+    <update id="gameUpdate">
+    	UPDATE GAME_CONTENT
+    	SET
+    		GAME_TITLE = #{game_title},
+    		GAME_TARGET_LEVEL = #{game_target_level},
+    		GAME_PRICE = #{game_price},
+    		GAME_DISCOUNT_PRICE = #{game_discount_price},
+    		GAME_CONTENT = #{game_content},
+    		GAME_COUNT = #{game_count},
+    		GAME_SUB_REGDATE = #{game_sub_startDate},
+    		GAME_SUB_ENDDATE = #{game_sub_endDate},
+    		DEL_CHECK = #{del_check}
+    	WHERE
+    		GAME_NO = #{game_no}
+    </update>
+    
+    <update id="updateFile">
+  	  	<selectKey resultType="int" keyProperty="game_no" order="BEFORE">
+			SELECT MAX(GAME_NO) FROM GAME_CONTENT WHERE GAME_NO = #{game_no}
+		</selectKey>
+		
+		UPDATE UPLOAD 
+		SET
+			FILENAME = #{fileName},
+			FILEPATH = #{filepath},
+			UUID = #{uuid},
+			GAME_TITLE = #{game_title}
+		WHERE
+			GAME_NO = #{game_no}
+		
+  	  </update>
+  	  
+  	  
+  	
+  	
+  	
+  	
+  	
+  	
+  	
+  	
+  
+  </mapper>

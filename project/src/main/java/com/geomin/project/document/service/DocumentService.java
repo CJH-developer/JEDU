@@ -6,6 +6,7 @@ import java.util.List;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.geomin.project.command.DocumentVO;
+import com.geomin.project.command.GameContentVO;
 import com.geomin.project.util.Criteria;
 
 public interface DocumentService {
@@ -22,4 +23,8 @@ public interface DocumentService {
 	// 학습 - 학습 자료 조회 - 내용
 	public ArrayList<DocumentVO> delList(Criteria criteria);
 	public int getNoTotal();
+	
+	// 학습 수정
+	public DocumentVO docuList(int docu_no);
+	public int docuUpdate(DocumentVO vo, List<MultipartFile> list);
 }
