@@ -95,8 +95,7 @@ public class StudentController {
 
 
 
-		learnGroupVO vo = teacherService.groupDetail(sg_no);
-		model.addAttribute("group", vo);
+
 
 
 		return "student/groupApplyList";
@@ -115,7 +114,6 @@ public class StudentController {
 	}
 
 
-=======
 	public String groupApprove(HttpServletRequest request, Model model) {
 		
 		HttpSession session = request.getSession();

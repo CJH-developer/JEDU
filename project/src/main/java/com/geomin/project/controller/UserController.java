@@ -47,6 +47,13 @@ public class UserController {
 	public String SubScribe() {
 		return "user/study_fun";
 	}
+	
+	
+	
+	@GetMapping("/study_fun2")
+	public String SubScribe2() {
+		return "user/study_fun2";
+	}
 
 	@GetMapping("/User_myproduct")
 	public String Usermyproduct(Model model, JTwoCriteria JTwo) {

@@ -59,10 +59,6 @@ public class CartServiceImpl implements CartService {
 	}
 
 
-	// 구매 이력 리스트
-	@Override
-	public ArrayList<PurchaseVO> purchaseHistory(int user_no) {
-		return cartMapper.purchaseHistory(user_no);
-	}
+
 
 }

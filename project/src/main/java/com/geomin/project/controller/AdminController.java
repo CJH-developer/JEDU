@@ -52,7 +52,7 @@ public class AdminController {
 
 	@Autowired
 	@Qualifier("BoardService")
-	private BoardService boardService;
+
 
 	private BoardRepository boardService;
 	

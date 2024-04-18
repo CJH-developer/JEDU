@@ -4,10 +4,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
-<<<<<<< HEAD
 import java.util.List;
-=======
->>>>>>> 327c1c76d4f492d5d1828d790975ccb3ef2aab52
 
 import javax.servlet.ServletRequest;
 import javax.servlet.http.HttpServletRequest;
@@ -28,13 +25,10 @@ import com.geomin.project.command.PageVO;
 import com.geomin.project.command.PurchaseVO;
 import com.geomin.project.command.UserVO;
 import com.geomin.project.gameContentService.GameContentService;
-<<<<<<< HEAD
 import com.geomin.project.service.command.CommandService;
 import com.geomin.project.util.Criteria;
 import com.geomin.project.util.JCriteria;
 import com.geomin.project.util.JPageVO;
-import com.geomin.project.util.Criteria;
-
 
 @Controller
 @RequestMapping("/command")
@@ -48,9 +42,6 @@ public class CommandController {
 	
 	@Autowired
 	private CommandService commandService;
-	
-	
-
 	private HttpSession httpSession;
 
 	// 회원 정보 수정
@@ -76,8 +67,6 @@ public class CommandController {
 
 		return "command/gameList";
 	}
-	
-	//안전제일 만약에 한 페이지당 리스트 수가 정해져있는데 그거 이하여도 출력을 시켜줍니다.
 	public static List<GameContentVO> safeList(List<GameContentVO> list, int fromIndex, int toIndex) {
 		int actualToIndex = Math.min(list.size(), toIndex);
 		if (fromIndex >= list.size()) {
@@ -86,7 +75,6 @@ public class CommandController {
 		}
 		return list.subList(fromIndex, actualToIndex);
 	}
-
 
 	// 게임 컨텐츠 목록 - 일반 사용자 / 선생님
 	@GetMapping("/lookup")
@@ -99,16 +87,11 @@ public class CommandController {
 		 * model.addAttribute("vo", vo); model.addAttribute("cartList", cartList);
 		 */
 
-
 		ArrayList<GameContentVO> list = gameContentService.getList(criteria);
 		int total = gameContentService.getTotal();
 		PageVO vo = new PageVO(criteria, total);
 		model.addAttribute("gameContent", list);
 		model.addAttribute("pageVO", vo);
-
-
-		System.out.println(list.toString());
-
 
 		return "command/lookup";
 	}
@@ -116,15 +99,6 @@ public class CommandController {
 	// 나의 구독 조회
 	@GetMapping("/myproduct")
 	public String myproduct(HttpServletRequest request, Model model) {
-
-		HttpSession session = request.getSession();
-		UserVO vo = (UserVO) session.getAttribute("vo");
-		int user_no = Integer.parseInt(vo.user_no);
-
-		ArrayList<PurchaseVO> purList = cartService.purchaseHistory(user_no);
-		model.addAttribute("purList", purList);
-
-
 		
 		HttpSession session = request.getSession();
 		UserVO vo =(UserVO) session.getAttribute("vo");
@@ -134,7 +108,6 @@ public class CommandController {
 		model.addAttribute("purList", purList);
 				
 		
-
 		return "command/myproduct";
 	}
 
@@ -192,8 +165,5 @@ public class CommandController {
 		return "command/payment";
 	}
 
-
 }
-
-
 

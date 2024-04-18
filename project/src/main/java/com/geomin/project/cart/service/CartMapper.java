@@ -37,8 +37,6 @@ public interface CartMapper {
 	
 
 	
-	//구매 리스트
-	public ArrayList<PurchaseVO> purchaseHistory (@Param("user_no") int user_no);
-	
+
 	
 }
