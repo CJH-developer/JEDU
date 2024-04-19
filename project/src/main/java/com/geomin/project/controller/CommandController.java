@@ -2,6 +2,7 @@ package com.geomin.project.controller;
 
 
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -25,9 +26,12 @@ import com.geomin.project.command.PurchaseVO;
 import com.geomin.project.command.QnaVO;
 import com.geomin.project.command.UserVO;
 import com.geomin.project.gameContentService.GameContentService;
+import com.geomin.project.service.command.CommandService;
 import com.geomin.project.user.service.UserService;
 import com.geomin.project.util.Criteria;
 import com.geomin.project.util.CriteriaQuestion;
+import com.geomin.project.util.JCriteria;
+import com.geomin.project.util.JPageVO;
 
 @Controller
 @RequestMapping("/command")
@@ -38,7 +42,10 @@ public class CommandController {
 
 	@Autowired
 	private GameContentService gameContentService;
-
+	
+	@Autowired
+	private CommandService commandService;
+	
 	@Autowired
 	private UserService userService;
 	
@@ -51,9 +58,28 @@ public class CommandController {
 	}
 
 	// 게임 컨텐츠 목록 - 일반 사용자 / 선생님
-	@GetMapping("gameList")
-	public String gameList() {
+	@GetMapping("/gameList")
+	public String gameList(Model model, JCriteria JCri) {
+		ArrayList<GameContentVO> list = commandService.getList(JCri);
+		List<GameContentVO> pagesubList = safeList(list, 0, 5);
+
+		List<GameContentVO> pagesubListTwo = safeList(list, 5, 10);
+		int total = commandService.getTotal(JCri);
+		JPageVO JPageVO = new JPageVO(JCri, total);
+
+		model.addAttribute("JPageVO", JPageVO);
+		model.addAttribute("pagesubList", pagesubList);
+		model.addAttribute("pagesubListTwo", pagesubListTwo);
+	
 		return "command/gameList";
+	}
+	public static List<GameContentVO> safeList(List<GameContentVO> list, int fromIndex, int toIndex) {
+		int actualToIndex = Math.min(list.size(), toIndex);
+		if (fromIndex >= list.size()) {
+			return new ArrayList<>();
+
+		}
+		return list.subList(fromIndex, actualToIndex);
 	}
 
 	// 게임 컨텐츠 목록 - 일반 사용자 / 선생님
