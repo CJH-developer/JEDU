@@ -59,30 +59,35 @@
 		          </div>
 		          
 		          <div class="frame__left__body">
-		
-		            <!-- 일반 사용자 권한 불러올 메뉴 -->
+		  <!-- 일반 사용자 권한 불러올 메뉴 -->
        				<div th:if="${#authentication.principal.user_role == 'ROLE_GEN'}" sec:authorized="isAuthenticated()">
 			            <div class="section__left__menu__default__user">
 			              <button type="button" class="section__sub__menu" value="일반수강생"> <img src="/img/icon1.png" alt="마이페이지 아이콘"> MY PAGE</button>
 			              <div class="sub__menu__list">
 			                <a href="/user/main" class="small__menu" data-title="MY PAGE">MY PAGE</a>
 			                <a href="/command/modify" class="small__menu" data-title="회원정보수정">회원정보수정</a>
-			                <a href="/command/question" class="small__menu" data-title="문의하기">문의하기</a>
 			              </div>
 			
 			              <button type="button" class="section__sub__menu" value="GAME"><img src="/img/mouse_icon.png" alt="마우스아이콘"> GAME</button>
 			              <div class="sub__menu__list">
 			                <a href="/command/lookup" class="small__menu" data-title="게임 컨텐츠 조회" >게임 컨텐츠 조회</a>
-			                 <a href="/user/game" class="small__menu" data-title="학습하기">학습하기</a>
+			           		<a href="/command/gameList" class="small__menu" data-title="게임 컨텐츠 조회" >게임 컨텐츠 조회</a>
+			                     <a href="/user/study_fun2" class="small__menu" data-title="학습하기">GAME2</a>
+			                 <a href="/user/study_fun" class="small__menu" data-title="학습하기">GAME</a>
 			              </div>
 			
 			              <button type="button" class="section__sub__menu" value="구독"><img src="/img/vegas.png" alt="화살표"> SUBSCRIBE</button>
 			              <div class="sub__menu__list">
-			                <a href="/user/myproduct" class="small__menu" data-title="내 구독 상품 조회">내 구독 상품 조회</a>
-			                <a href="" class="small__menu" data-title="학습상태">학습상태</a>
+			                <a href="/user/User_myproduct" class="small__menu" data-title="내 구독 상품 조회">내 구독 상품 조회</a>
+			              
 			              </div>
-						  
+						   <button class="section__sub__menu" value="장바구니">장바구니</button>
+			              <div class="sub__menu__list">
+			                <a href="/command/cart" class="small__menu" data-title="장바구니 조회">장바구니 조회</a>
+			              </div>
+			              
 			            </div>
+			            
 		            	</div>
 		
 		            <!-- 학생 권한 불러올 메뉴 -->
