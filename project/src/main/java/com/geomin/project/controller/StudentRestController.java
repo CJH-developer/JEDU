@@ -6,12 +6,15 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.geomin.project.command.StudyGroupVO;
 import com.geomin.project.command.UserVO;
+import com.geomin.project.student.service.StudentMapper;
 import com.geomin.project.student.service.StudentService;
 
 @RestController
@@ -32,12 +35,43 @@ public class StudentRestController {
 	public boolean groupCheck(@RequestParam("user_no") int user_no,
 						  @RequestParam("sg_no") int sg_no) {
 		
+		
+		
 		int inGroup = studentService.groupCheck(user_no, sg_no);
 		  if (inGroup > 0) {
-	            return false;
-	        } else {
 	            return true;
+	        } else {
+	            return false;
 	        }
+	}
+	@GetMapping("reject/group")
+	public ResponseEntity<Boolean> rejectCheck(@RequestParam("user_no") int user_no, @RequestParam("sg_no") int sg_no) {
+	    try {
+	        
+	        ArrayList<StudyGroupVO> list = studentService.rejectCheck(user_no, sg_no);
+	        
+	        if (!list.isEmpty()) {
+	            int sgj_auth;
+	            try {
+	                sgj_auth = Integer.parseInt(list.get(0).getSgj_auth()); 
+	            } catch (NumberFormatException e) {
+	                System.err.println("Failed to parse sgj_auth: " + e.getMessage());
+	                return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(false); 
+	            }
+	            
+	            if (sgj_auth == 2) {
+	                return ResponseEntity.ok(true);
+	            } else {
+	                return ResponseEntity.ok(false);
+	            }
+	        } else {
+	            System.err.println("No entries found for user_no=" + user_no + ", sg_no=" + sg_no);
+	            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(false); 
+	        }
+	    } catch (Exception e) {
+	        System.err.println("Error during reject check: " + e.getMessage());
+	        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null); 
+	    }
 	}
 	
 	@GetMapping("approve/group")
@@ -53,6 +87,15 @@ public class StudentRestController {
 			return true;
 		}
 		
+	}
+	
+	@GetMapping("reapply/group")
+	public int reapply(@RequestParam("user_no") int user_no,
+						@RequestParam("sg_no") int sg_no) {
+		
+		int a = studentService.reapplyGroup(user_no, sg_no);
+		System.out.println(a);
+		return a;
 	}
 	
 	@GetMapping("/check/ai")

@@ -201,10 +201,16 @@ public class StudentController {
 		UserVO vo = (UserVO) session.getAttribute("vo");
 		int user_no = Integer.parseInt(vo.user_no);
 		ArrayList<HomeWorkVO> hwList = studentService.getHomeworkList(user_no);
-		
+		System.out.println(hwList.toString());
 		if(hwList != null) {
 			model.addAttribute("user_name", vo.user_name);
-			model.addAttribute("hwList", hwList);	
+			model.addAttribute("hwList", hwList);
+		}
+		
+		for(int i=0; i<hwList.size(); i++) {
+			if( hwList.get(i).getTeach_grade() >= 2 ) {
+				
+			}
 		}
 		
 		return "student/homeworkTable";
@@ -214,6 +220,7 @@ public class StudentController {
 	@GetMapping("/submission")
 	public String submission(HomeWorkVO hwVO) {
 		studentService.homeworkSubmission(hwVO);
+		System.out.println(hwVO.toString());
 		return "redirect:/student/homeworkTable";
 	}
 	

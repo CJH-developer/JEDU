@@ -13,7 +13,8 @@ h4{margin:0 auto; margin-top: 100px;}
 h5{margin:0 auto; margin-top: 105px;}
 .table{position:absolute; top:120px; left:0;}
 .thead-color {background-color: #88ABE3; color: white;}
-#myBtn{width:60px; height:20px; border-radius:5px; border:none; font-weight:bold; text-align:center;  color:white; background-color:black; padding:0; margin:0 auto; font-size:12px}
+.modal-button-fail{width:60px; height:20px; border-radius:5px; border:none; font-weight:bold; text-align:center;  color:white; background-color:black; padding:0; margin:0 auto; font-size:12px}
+.modal-button{width:60px; height:20px; border-radius:5px; border:none; font-weight:bold; text-align:center;  color:white; background-color:black; padding:0; margin:0 auto; font-size:12px}
 .modal {
     display: none; 
     position: fixed; 

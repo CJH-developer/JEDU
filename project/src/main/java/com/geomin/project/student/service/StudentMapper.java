@@ -27,6 +27,12 @@ public interface StudentMapper {
 	//그룹 신청 승인 여부 
 	public ArrayList<StudyGroupVO> groupApplyList (int user_no);
 	
+	//스터디 그룹 거절 조회
+	public ArrayList<StudyGroupVO> rejectCheck (@Param("user_no") int user_no, @Param("sg_no") int sg_no);
+	
+	//그룹 재가입 신청
+	public int reapplyGroup (@Param("user_no") int user_no, @Param("sg_no") int sg_no);
+	
 	//그룹 승인 완료시 조회 안하기
 	public int groupCheckingList (int user_no);
 
@@ -52,6 +58,8 @@ public interface StudentMapper {
 	//ai 체크
 	public ArrayList<StudyGroupVO> aiList(@Param("user_no") int user_no, @Param("user_level") int user_level);
 	
+	//숙제 포인트 +1
+    public void addPoint();
 	
 	
 	
