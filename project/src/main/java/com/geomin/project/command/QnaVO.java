@@ -15,4 +15,7 @@ public class QnaVO {
 	private String qna_content;
 	private String qna_regDate;
 	private String qna_delCheck;
+	private String alarm;
+	
+	private int user_no;
 }
