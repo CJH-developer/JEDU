@@ -27,4 +27,8 @@ public class GameContentVO {
 	private String filename;  // 작성자가 업로드한 파일명
 	private String filepath;
 	private String uuid;
+	
+	private String purchase_date;
+	private int cnt;
+	private String price_sum;
 }

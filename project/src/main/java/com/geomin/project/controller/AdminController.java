@@ -30,6 +30,8 @@ import com.geomin.project.command.NoticeVO;
 import com.geomin.project.command.PageVO;
 import com.geomin.project.command.PageVOinqury;
 import com.geomin.project.command.PageVOmember;
+import com.geomin.project.command.PageVOprice;
+import com.geomin.project.command.PageVOsleep;
 import com.geomin.project.command.QnaVO;
 import com.geomin.project.command.UserVO;
 import com.geomin.project.document.service.DocumentService;
@@ -38,6 +40,8 @@ import com.geomin.project.user.service.UserService;
 import com.geomin.project.util.Criteria;
 import com.geomin.project.util.CriteriaInqury;
 import com.geomin.project.util.CriteriaMember;
+import com.geomin.project.util.CriteriaPrice;
+import com.geomin.project.util.CriteriaSleep;
 
 
 
@@ -468,6 +472,7 @@ public class AdminController {
 	
 	///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+	// 문의사항 조회
 	@GetMapping("/inqury")
 	public String inqury(Model model, CriteriaInqury criteria) {
 
@@ -480,4 +485,46 @@ public class AdminController {
 		
 		return "admin/inqury";
 	}
+	
+	// 휴먼 계정 전환
+	@GetMapping("/userSleep")
+	public String userSleep(@RequestParam("userSleepNo") String userSleepNo) {
+		
+		int user_no = Integer.parseInt(userSleepNo);
+		
+		userService.userSleep(user_no);
+		
+		return "redirect:/admin/member";
+	}
+	
+	// 휴먼 계정 조회
+	@GetMapping("/memberSleep")
+	public String memberSleep(Model model, CriteriaSleep criteria) {
+		
+		ArrayList<UserVO> memberSleepList = userService.getSleepList(criteria);
+		int total = userService.getSleepTotal();
+		PageVOsleep vo = new PageVOsleep(criteria, total);
+		
+		model.addAttribute("memberSleepList",memberSleepList);
+		model.addAttribute("pageVO", vo);
+		
+		return "admin/memberSleep";
+	}
+	
+	///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+	// 매출조회
+	@GetMapping("/priceLook")
+	public String priceLook(Model model, CriteriaPrice criteria) {
+		
+		ArrayList<GameContentVO> list = userService.getPurchaseList(criteria);
+		int total = userService.getPriceTotal();
+		PageVOprice vo = new PageVOprice(criteria, total);
+		
+		model.addAttribute("list",list);
+		model.addAttribute("pageVO", vo);
+		
+		return "admin/priceLook";
+	}
+	
 }

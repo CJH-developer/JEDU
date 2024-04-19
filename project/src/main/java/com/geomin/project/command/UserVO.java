@@ -24,7 +24,8 @@ public class UserVO {
 		public String user_sns_check;
 		public String user_email_check;
 		public String user_regDate;
-		
+		public String user_sleep;
+		public String user_sleep_date;
 		
 	
 }
