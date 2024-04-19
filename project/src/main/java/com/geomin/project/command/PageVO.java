@@ -5,6 +5,7 @@ import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 import com.geomin.project.util.Criteria;
+import com.geomin.project.util.StudyGroupCriteria;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -25,6 +26,7 @@ public class PageVO {
 	private int realEnd; //진짜 끝번호
 	
 	private Criteria criteria; //페이지기준
+	private StudyGroupCriteria SGcri;
 	private List<Integer> pageList; //페이지 시작~끝 item
 	
 	public PageVO(Criteria criteria, int total) {
@@ -67,6 +69,35 @@ public class PageVO {
 		this.next = this.realEnd > this.end; // 
 		
 		//타임리프는 향상된 for문밖에 지원이 안되서, 페이지번호를 들고 있는 item을 생성
+		this.pageList = IntStream.rangeClosed(this.start, this.end)
+						.boxed()
+						.collect(Collectors.toList());
+		
+	}
+	public PageVO(StudyGroupCriteria SGcri , int total) {
+		this.page = SGcri.getPage();
+		this.amount = SGcri.getAmount();
+		this.total = total;
+		this.SGcri = SGcri;
+		
+
+		this.end = (int)(Math.ceil(this.page/10.0)) * 10 ;
+		
+
+		this.start = this.end - 10 + 1 ;
+		
+
+		this.realEnd = (int)(Math.ceil(this.total / (double) this.amount));
+		
+
+		if(this.end > this.realEnd ) {
+			this.end = this.realEnd; //
+		}
+
+		this.prev = this.start > 1; //1보다 크면 true
+		
+		this.next = this.realEnd > this.end; // 
+		
 		this.pageList = IntStream.rangeClosed(this.start, this.end)
 						.boxed()
 						.collect(Collectors.toList());

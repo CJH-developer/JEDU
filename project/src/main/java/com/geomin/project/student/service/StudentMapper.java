@@ -8,6 +8,7 @@ import org.apache.ibatis.annotations.Param;
 import com.geomin.project.command.HomeWorkVO;
 import com.geomin.project.command.StudyGroupVO;
 import com.geomin.project.command.learnGroupVO;
+import com.geomin.project.util.StudyGroupCriteria;
 
 @Mapper
 public interface StudentMapper {
@@ -32,13 +33,25 @@ public interface StudentMapper {
 	//그룹 신청 승인 여부
 	public int groupApproval ();
 	
-	//숙제 조회
+	//숙제 리스트 조회
 	public ArrayList<HomeWorkVO> getHomeworkList (int user_no);
+	
+	//숙제 디테일 조회
+	public ArrayList<HomeWorkVO> getHomeworkDetail (@Param("user_no") int user_no , @Param("homework_no")int homework_no);
 	
 	//숙제 제출
 	public int homeworkSubmission(HomeWorkVO hwVO);
 	
 	//승인 조회
+	
+	
+	//그룹 스터디 조회
+	public ArrayList<StudyGroupVO> getList(StudyGroupCriteria cri);
+	public int getTotal();
+	
+	//ai 체크
+	public ArrayList<StudyGroupVO> aiList(@Param("user_no") int user_no, @Param("user_level") int user_level);
+	
 	
 	
 	

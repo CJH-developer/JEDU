@@ -8,19 +8,13 @@ const hiddenSg_No = document.getElementById("hiddenSg_No");
 console.log($("#hiddenSg_No").val());
 
 
-	groupApply.onclick = function() {
+	groupApplyBtn.onclick = function() {
 		
 		const sg_no = $("#hiddenSg_No").val();
         const user_no = $("#hiddenUser_No").val();
         const sg_level = $("#hiddenSg_Level").val();
         
-         
-        $.get('/approve/group', {user_no: user_no, sg_no: sg_no})
-         .done(function(approveData){
-			 if(approveData === false){
-				 displayMessage(approvedMessage)
-			 } else {
-				 $.get('/check/group', {user_no: user_no, sg_no: sg_no})
+		 $.get('/check/group', {user_no: user_no, sg_no: sg_no})
 				  .done(function(checkData) {
 		             if(checkData === false) { 
 		                 displayMessage(processMessage); 
@@ -32,17 +26,25 @@ console.log($("#hiddenSg_No").val());
 		                  .fail(function(error) {
 		                      console.log("Apply to group failed");
 		                  });
-		             }
+		             } 
 		         })
 		         .fail(function(error) {
 		             console.log("Group check failed");
 		         });
+        
+/*        
+        $.get('/approve/group', {user_no: user_no, sg_no: sg_no})
+         .done(function(approveData){
+			 if(approveData === false){
+				 displayMessage(approvedMessage)
+			 } else {
+				
 			 }
 		 })
 		 .fail(function(error){
 			 console.log(2222222);
 		 });
-        
+*/        
         
     };
 
