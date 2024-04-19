@@ -35,6 +35,7 @@ public class HomeWorkVO {
 	private String teach_assigndate;
 	private Integer teach_grade;
 	private String teach_answer;
+	private String homework_submit;
 	
 	
 	public int leftDays() throws Exception {

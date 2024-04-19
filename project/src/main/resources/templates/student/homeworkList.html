@@ -1,93 +1,54 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js" defer></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" defer></script>
+<script src="/js/student/homeworkTable.js" defer></script>
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="/css/student/homeworkList.css">
+<link rel="stylesheet" href="/css/student/homeworkTable.css">
+<script src="/js/student/groupRegistList.js" defer></script>
+
 <th:block th:replace="~{./baseLayout/base_f :: setContent( ~{ :: .wrap} ) }">
-<link rel="stylesheet" href="/css/frame/learnGroupLook.css">
-<script src="/js/frame/learnGroupLook.js" defer></script>
-   	<div class="wrap">
-   	
-   	 <div class="hw-container" th:each="hwList : ${hwList}">
-	    <div class="user_name">
-	     <h2 th:if="${hwList.teach_grade >= 2}">[[${user_name + '님의 숙제 페이지'}]]</h2>
-	     <h2 th:if="${hwList.teach_grade < 2}">FAIL!!!$</h2>
-	    </div>
-   		<form action="/student/submission" method="get">
-		  <div class="container">
-		    <div class="flex-form-container">
-		      <div class="d-flex">
-		        
-		        <div class="left-section">
-		          <h5 class="sec-title">숙제 내용</h5>
-		          <div class="form-group">
-		            <label class="Homework-info">게임 콘텐츠:</label> <br>
-		            <p>[[${hwList.homework_content}]]</p>
-		          </div>
-		          <div class="form-group">
-		            <label class="Homework-info">교육자: </label>
-		            <p>[[${hwList.user_name}]]</p>
-		          </div>
-		          <div class="form-group">
-		            <label class="Homework-info">숙제명:</label>
-		            <p>[[${hwList.homework_name}]]</p>
-		          </div>
-		          <div class="form-group">
-		            <label class="Homework-info">숙제내용:</label>
-		            <p>[[${hwList.homework_content}]]</p>
-		          </div>
-		          <div class="form-group">
-		            <label class="Homework-info">학습레벨:</label>
-		            <p>[[${hwList.homework_level}]]</p>
-		          </div>
-		          <div class="form-group">
-		            <label class="Homework-info">제출기한:</label>
-		            <p>[[${hwList.homework_duedate}]]</p>
-		          </div>
-		        </div>
-		        
-		        <div class="right-section">
-		          <h5 class="sec-title">제출 내용</h5>
-		          <div class="form-group">
-		            <label for="inputField3">금일 학습 내용:</label>
-		            <textarea type="text" class="form-control" th:value=${hwList.stu_content} th:text=${hwList.stu_content} id="inputField3" placeholder="답변을 입력해주세요" name="stu_content"></textarea>
-		          </div>
-		          <div class="form-group">
-		            <label for="textareaField">질문:</label>
-		            <textarea class="form-control" id="textareaField" th:value=${hwList.stu_q} th:text=${hwList.stu_q} placeholder="자세한 내용을 입력해주세요" name="stu_q"></textarea>
-		          </div>
-		        </div>
-		      </div>
-		    </div>
-		    <input type="hidden" th:value=${hwList.user_no} name="user_no">
-		    <input type="hidden" th:value=${hwList.homework_no} name="homework_no">
-		    <!-- 제줄 버튼 -->
-		    <div class="button-place">
-		      <div class="d-flex submit-buttons">
-		        <button type="submit" class="btn-submit btn-primary" th:if="${hwList.homework_duedate > date}">숙제 제출</button>
-		        <span type="submit" class="btn-submit btn-primary gameover" th:if="${hwList.homework_duedate < date}">숙제 제출</span>
-		        <button th:if="${hwList.teach_grade < 2}" type="submit" class="btn-submit btn-primary">다시 제출</button>
-		      </div>
-		    </div>
-		  	
-		  	<script>
-		        $(document).ready(function() {
-		            $(".gameover").click(function() {
-		                $(this).text("힝 속았지? 숙제 마감했어");
-		            });
-		        });
-		  	</script>
-		  	
-		  	
-		  </div>
-		  
-		</form>
-		
+
+<div class="wrap">
+
+  		<div class="container">
+		  <h2>나의 숙제 리스트</h2>
+		  <table class="table">
+		    <thead class="thead-color">
+		      <tr>
+		        <th>번호</th>
+		        <th>homework_no</th>
+		        <th>학습 그룹명</th>
+		        <th>내용</th>
+		        <th>레벨</th>
+		      </tr>
+		    </thead>
+		    <tbody th:each="hw : ${hwList}">
+					<tr th:data-url="@{/student/homeworkDetail(user_no=${hw.user_no}, homework_no=${hw.homework_no})}">
+						<td th:text="${hwStat.count}"></td>
+						<td th:text="${hw.homework_no}"></td>
+						<td th:text="${hw.homework_name}"></td>
+						<td th:text="${hw.homework_content}"></td>
+						<td th:text="${hw.homework_duedate}"></td>
+					</tr>
+		    </tbody>
+		  </table>
 		</div>
-    </div>
+		
+<script>
+const rows = document.querySelectorAll("tbody tr");
+
+rows.forEach(row => {
+    row.addEventListener('click', function() {
+        const url = this.getAttribute('data-url'); 
+        window.location.href = url;
+    });
+    row.style.cursor = "pointer";
+});
+
+</script>
+</div>
 
 </th:block>
 </html>

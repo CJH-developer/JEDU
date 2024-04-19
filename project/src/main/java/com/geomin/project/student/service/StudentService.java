@@ -2,6 +2,8 @@ package com.geomin.project.student.service;
 
 import java.util.ArrayList;
 
+import org.apache.ibatis.annotations.Param;
+
 import com.geomin.project.command.HomeWorkVO;
 import com.geomin.project.command.StudyGroupVO;
 import com.geomin.project.command.learnGroupVO;
@@ -27,6 +29,9 @@ public interface StudentService {
 	//숙제 조회
 	public ArrayList<HomeWorkVO> getHomeworkList (int user_no);
 	
+	//숙제 디테일 조회
+	public  ArrayList<HomeWorkVO> getHomeworkDetail (int user_no , int homework_no);
+
 	//숙제 제출
     public int homeworkSubmission(HomeWorkVO hwVO);
 	

@@ -25,6 +25,7 @@
     <th:block th:replace="~{./baseLayout/base_f :: setContent( ~{ :: .wrap} ) }">
     <div class="wrap">
         <div class="container">
+        	<h2>나의 학습 그룹</h2>
             <div class="table-responsive">
                 <table class="table">
                     <thead class="thead-color">
@@ -34,16 +35,18 @@
                             <th>진도율</th>
                         </tr>
                     </thead>
-                    <tbody>
+                    <tbody th:each="sgList : ${sgList}" th:if="${sgList.sgj_auth == '1'}">
                         <tr>
-                            <td ></td>
-                            <td ></td>
+                            <tr  th:data-url="@{/student/myGroupDetail(sg_no=${sgList.sg_no})}">
+                            <td th:text=${sgList.sg_name}></td>
+                            <td th:text=${sgList.sg_plus}></td>
                             <td>
                                 <div class="progress-bar">
                                     <div class="progress-fill" ></div>
-                                    <progress value="70" max="100">70 %</progress>
+                                    <progress value="100" max="100">70 %</progress>
                                 </div>
                             </td>
+                        </tr>
                         </tr>
                     </tbody>
                 </table>
@@ -55,6 +58,17 @@
 </html>
 
 </div>
+<script>
+const rows = document.querySelectorAll("tbody tr");
 
+rows.forEach(row => {
+    row.addEventListener('click', function() {
+        const url = this.getAttribute('data-url'); 
+        window.location.href = url;
+    });
+    row.style.cursor = "pointer";
+});
+
+</script>
 </th:block>
 </html>

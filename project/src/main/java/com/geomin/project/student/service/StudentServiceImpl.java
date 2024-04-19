@@ -2,6 +2,7 @@ package com.geomin.project.student.service;
 
 import java.util.ArrayList;
 
+import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -42,6 +43,11 @@ public class StudentServiceImpl implements StudentService{
 	@Override
 	public ArrayList<HomeWorkVO> getHomeworkList(int user_no) {
 		return studentMapper.getHomeworkList(user_no);
+	}
+	
+	//숙제 디테일 조회
+	public  ArrayList<HomeWorkVO> getHomeworkDetail (int user_no , int homework_no) {
+		return studentMapper.getHomeworkDetail(user_no, homework_no);
 	}
 
 	@Override

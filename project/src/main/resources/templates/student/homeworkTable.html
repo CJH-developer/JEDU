@@ -72,7 +72,7 @@
 								<span class="close">&times;</span>
 								<h1>축하합니다!!</h1>
 								<h4
-									th:text="${hw.teach_grade == 2} ? '당신은 보통을 받으셨습니다' : '당신은 ' + ${hw.teach_grade} + '를 받으셨습니다!!'"></h4>
+									th:text="${hw.teach_grade == 2} ? '당신은 보통을 받으셨습니다' : '당신은 우수를 받으셨습니다!!'"></h4>
 								<h5>다음 레벨을 향해 계속 도전하세요!</h5>
 								<canvas id="confeti" width="300" height="300" class="active">
 								</canvas>
@@ -144,19 +144,30 @@
 								<span class="badge badge-primary">제출 완료</span>
 							</h6>
 						</td>
-						<td th:if="${hw.stu_content == null}">
+						<td th:if="${hw.stu_content == null && hw.hwDuedate() > 0}">
 							<h6>
 								<span class="badge badge-pill badge-danger"
 									th:text=" '제출 D-' + ${hw.hwDuedate()}"></span>
 							</h6>
 						</td>
+						<td th:if="${hw.stu_content == null && hw.hwDuedate() < 0}">
+							<h6>
+								<span class="badge badge-pill badge-warning"
+									th:text=" '제출 D+' + ${hw.hwDuedate()*-1}"></span>
+							</h6>
+						</td>
+						
 
 						<td>
 							<h6>
 								<span class="badge badge-warning">평가 중</span>
 							</h6>
 						</td>
-
+						<td>
+							<h6>
+								<span class="badge badge-warning">평가 중</span>
+							</h6>
+						</td>
 					</tr>
 
 

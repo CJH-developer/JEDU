@@ -40,6 +40,19 @@
 			WHERE HW_HIS.USER_NO = #{user_no}
 		</select>
 		
+			<!-- 숙제 조회 -->
+		<select id="getHomeworkDetail" resultType="HomeWorkVO">
+			SELECT HW_HIS.*, HW.*, U.USER_NAME 
+			FROM HOMEWORK_HISTORY HW_HIS 
+			LEFT JOIN HOMEWORK HW
+			ON HW.HOMEWORK_NO = HW_HIS.HOMEWORK_NO
+			LEFT JOIN USER U
+			ON HW.USER_NO = U.USER_NO
+			WHERE HW_HIS.USER_NO = #{user_no} 
+				  AND HW_HIS.HOMEWORK_NO = #{homework_no}
+		</select>
+		
+		
 		<!-- 숙제 제출 -->
 		<update id="homeworkSubmission">
 			UPDATE HOMEWORK_HISTORY SET STU_CONTENT = #{stu_content},
