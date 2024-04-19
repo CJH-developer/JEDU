@@ -143,6 +143,8 @@ public class TeacherController {
 	public String groupRegistLook(Model model,
 								  @RequestParam("sg_no") int sg_no) {
 		
+		System.out.println("그룹상세조회, sg_no 넘어옴" + sg_no);
+		
 		learnGroupVO vo = teacherService.groupDetail(sg_no);
 		
 		model.addAttribute("group", vo);

@@ -71,11 +71,11 @@ public class CheckRestController {
 	}
 	
 	// 그룹 가입 승인
-	@GetMapping("/approve/{user_no}")
-	public int approve(@PathVariable("user_no") int user_no) {
+	@GetMapping("/approve/{sg_no}/{user_no}")
+	public int approve(@PathVariable("user_no") int user_no,
+	 		  		   @PathVariable("sg_no") int sg_no) {
 		
-		int result =teacherService.approve(user_no);
-		System.out.println(result);
+		int result = teacherService.approve(sg_no, user_no);
 		
 		return result;
 	}
@@ -83,13 +83,21 @@ public class CheckRestController {
 	// 그룹 가입 승인 시, capacity + 1
 	@GetMapping("/groupcapa/{sg_no}")
 	public int groupcapa(@PathVariable("sg_no") int sg_no) {
+		
+		
 		return teacherService.capacity(sg_no);
 	}
 	
 	// 그룹 가입 거절
-	@GetMapping("/reject/{sg_no}")
-	public int reject(@PathVariable("sg_no") int sg_no) {
-		return teacherService.reject(sg_no);
+	@GetMapping("/reject/{sg_no}/{user_no}")
+	public int reject(@PathVariable("user_no") int user_no,
+			 		  @PathVariable("sg_no") int sg_no) {
+		
+		
+		System.out.println("유저넘버: " + user_no);
+		System.out.println("그룹넘버: " + sg_no);
+		
+		return teacherService.reject(sg_no, user_no);
 	}
 	
 //	// 그룹 가입 거절 시 인구수 -1
@@ -154,6 +162,20 @@ public class CheckRestController {
 		
 		
 		return 0;
+	}
+	
+	public int homeworkProgressInsert (@PathVariable("selectedGrade") String selectedGrade,
+	 @PathVariable("homework_no") String homework_no,
+	 @PathVariable("user_no") String user_no)  {
+		
+		Map<String, Object> map = new HashMap<>();
+		
+		map.put("selectedGrade", selectedGrade);
+		map.put("homework_no", homework_no);
+		map.put("user_no", user_no);
+		
+		return 0;
+		
 	}
 	
 	

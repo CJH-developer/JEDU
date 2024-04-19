@@ -33,6 +33,9 @@ public interface CartService {
 	//구매 이력 리스트
 	public ArrayList<PurchaseVO> purchaseHistory (int user_no);
 	
+	// 구매 이력 리스트인데, 이미지 추가버전
+	public ArrayList<PurchaseVO> purchaseHistoryWithImg (int user_no);
+	
 	
 	
 	

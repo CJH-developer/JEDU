@@ -59,6 +59,12 @@ public class CartServiceImpl implements CartService{
 		return cartMapper.purchaseHistory(user_no);
 	}
 
+	@Override
+	public ArrayList<PurchaseVO> purchaseHistoryWithImg(int user_no) {
+		
+		return cartMapper.purchaseHistoryWithImg(user_no);
+	}
+
 
 
 

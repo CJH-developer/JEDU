@@ -74,6 +74,19 @@ $("#save").click(function() {
 	                if (completedRequests === 1) {
 	                    alert("성공적으로 평가가 완료되었습니다");
 	                }
+	                
+/*	                if(selectedGrade <= 2) {
+						$.ajax({
+							url: "/homeworkProgressInsert/" + homeworkNo + "/" + userNo + "/" + selectedGrade + "/",
+							method: "GET",
+							success: function(data) {
+								alert("hw_prog도 성공")
+								
+								
+							}
+						})
+					}*/
+	                
 				}
 				
 			})

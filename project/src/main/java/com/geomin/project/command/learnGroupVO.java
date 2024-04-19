@@ -27,6 +27,7 @@ public class learnGroupVO {
 	private String sg_plus;
 	private String sg_grouplimit;
 	private String sgj_pro;
+	private String sg_class;
 	
 	
 	// gameContent 가져옴
@@ -51,21 +52,11 @@ public class learnGroupVO {
 	
 	private String user_regdate;
 	
-	// 얘 하면 값이 안 불러와짐;;
-    // 사용자 등록일을 yyyy년 MM월 dd일 형식으로 반환하는 메서드
-//    public String getUserRegDate() {
-//        SimpleDateFormat inputFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-//        SimpleDateFormat outputFormat = new SimpleDateFormat("yyyy년 MM월 dd일");
-//
-//        try {
-//            Date date = inputFormat.parse(user_regdate);
-//            return outputFormat.format(date);
-//        } catch (ParseException e) {
-//            e.printStackTrace();
-//            // 처리 중 예외 발생 시 null 반환 또는 적절한 오류 처리
-//            return null;
-//        }
-//    }
+	//게임 사진
+	private String filename;
+	private String filepath;
+	private String uuid;
+	
 	
 	
 	
