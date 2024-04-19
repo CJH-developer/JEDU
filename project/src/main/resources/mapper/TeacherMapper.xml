@@ -15,7 +15,8 @@
 		    SG_CAPA,
 		    SG_LEVEL,
 		    SG_PLUS,
-		    SG_GROUPLIMIT
+		    SG_GROUPLIMIT,
+		    SG_CLASS
 		) VALUES (
 			#{user_no},
 			#{game_no},
@@ -25,7 +26,8 @@
 			0,
 			#{sg_level},
 			#{sg_plus},
-			#{sg_grouplimit}
+			#{sg_grouplimit},
+			#{sg_class}
 		)
   	</insert>
 

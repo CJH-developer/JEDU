@@ -164,6 +164,20 @@ public class CheckRestController {
 		return 0;
 	}
 	
+	public int homeworkProgressInsert (@PathVariable("selectedGrade") String selectedGrade,
+	 @PathVariable("homework_no") String homework_no,
+	 @PathVariable("user_no") String user_no)  {
+		
+		Map<String, Object> map = new HashMap<>();
+		
+		map.put("selectedGrade", selectedGrade);
+		map.put("homework_no", homework_no);
+		map.put("user_no", user_no);
+		
+		return 0;
+		
+	}
+	
 	
 	
 	
