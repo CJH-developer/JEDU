@@ -3,7 +3,9 @@ package com.geomin.project.controller;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -15,14 +17,19 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.geomin.project.board.service.BoardService;
+import com.geomin.project.command.GameContentVO;
 import com.geomin.project.command.HomeWorkVO;
 import com.geomin.project.command.PageVO;
+import com.geomin.project.command.QnaVO;
 import com.geomin.project.command.StudyGroupVO;
 import com.geomin.project.command.UserVO;
 import com.geomin.project.command.learnGroupVO;
+import com.geomin.project.gameContentService.GameContentService;
 import com.geomin.project.student.service.StudentMapper;
 import com.geomin.project.student.service.StudentService;
 import com.geomin.project.teacher.service.TeacherService;
+import com.geomin.project.util.Criteria;
 import com.geomin.project.util.StudyGroupCriteria;
 
 @Controller
@@ -35,8 +42,20 @@ public class StudentController {
 	@Autowired
 	StudentService studentService;
 	
+	@Autowired
+	BoardService boardService;
+	
+	@Autowired
+	GameContentService gameContentService;
+	
 	@GetMapping("/main")
-	public String main() {
+	public String main(Model model, Criteria criteria) {
+		
+		ArrayList<QnaVO> qnaList = boardService.getQna();
+		model.addAttribute("qnaList", qnaList);
+		
+		ArrayList<GameContentVO> list = gameContentService.getList(criteria);
+		model.addAttribute("gameContent", list);
 		
 		return "student/main";
 	}
@@ -125,7 +144,12 @@ public class StudentController {
 		System.out.println(list.size());
 		
 		learnGroupVO vo = teacherService.groupDetail(sg_no);
+		
 		model.addAttribute("group", vo);
+		
+		Map<String, Object> map = new HashMap<>();
+		map.put("groupdetail", teacherService.groupDetail(sg_no));
+		model.addAttribute("info", map);
 		
 		if(!list.isEmpty()) {		
 			String auth = (String) list.get(0).sgj_auth;
@@ -178,11 +202,11 @@ public class StudentController {
 		int user_no = Integer.parseInt(vo.user_no);
 		ArrayList<HomeWorkVO> hwList = studentService.getHomeworkList(user_no);
 		
-		model.addAttribute("user_name", vo.user_name);
-		model.addAttribute("hwList", hwList);	
+		if(hwList != null) {
+			model.addAttribute("user_name", vo.user_name);
+			model.addAttribute("hwList", hwList);	
+		}
 		
-		System.out.println(hwList.toString());
-		System.out.println(hwList.get(1).hwDuedate() < 0);
 		return "student/homeworkTable";
 	};
 	
