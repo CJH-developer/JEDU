@@ -7,7 +7,6 @@ import org.springframework.stereotype.Service;
 
 import com.geomin.project.command.GameContentVO;
 import com.geomin.project.util.JCriteria;
-import com.mysql.cj.x.protobuf.MysqlxCrud.DataModel;
 @Service("commandService")
 public class CommandServiceImpl implements CommandService {
 	//민상이 한거
