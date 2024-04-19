@@ -77,7 +77,10 @@
                   <span th:if="${Document.docu_service == 1}">유료</span>
 				        </div>
 	              <div class="ll__tbody_seven" th:text="${Document.docu_path}">등록일</div>
-	              <div class="ll__tbody_eight"><button id="ll__modify">수정</button><button class="ll__delete">삭제</button></div>
+	              <div class="ll__tbody_eight">
+	              	<a th:href="@{/admin/learnModify(docu_no = ${Document.docu_no})}" id="ll__modify">수정</a>
+	              	<button class="ll__delete">삭제</button>
+	              </div>
 	            </div>
           	</th:block>
 			

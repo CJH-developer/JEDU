@@ -1,12 +1,14 @@
 package com.geomin.project.teacher.service;
 
 import java.util.ArrayList;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.geomin.project.command.GameContentVO;
 import com.geomin.project.command.HomeWorkVO;
+import com.geomin.project.command.HomeworkHistoryVO;
 import com.geomin.project.command.learnGroupVO;
 
 @Service
@@ -80,6 +82,30 @@ public class TeacherServiceImpl implements TeacherService{
 	public ArrayList<HomeWorkVO> getMyHomework(String user_no) {
 		
 		return teacherMapper.getMyHomework(user_no);
+	}
+
+	@Override
+	public ArrayList<learnGroupVO> mygroupguys(int sg_no) {
+		
+		return teacherMapper.mygroupguys(sg_no);
+	}
+
+	@Override
+	public int homeworkSend(Map<String, Object> homework) {
+		
+		return teacherMapper.homeworkSend(homework);
+	}
+
+	@Override
+	public ArrayList<HomeworkHistoryVO> homeworkReceive(int homework_no) {
+		
+		return teacherMapper.homeworkReceive(homework_no);
+	}
+
+	@Override
+	public int homeworkGrade(Map<String, Object> homework) {
+		
+		return teacherMapper.homeworkGrade(homework);
 	}
 
 //	@Override

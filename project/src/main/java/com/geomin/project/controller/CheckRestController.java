@@ -9,9 +9,11 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.geomin.project.command.HomeworkHistoryVO;
 import com.geomin.project.command.learnGroupVO;
 import com.geomin.project.teacher.service.TeacherService;
 import com.geomin.project.user.service.UserService;
+
 
 @RestController
 public class CheckRestController {
@@ -34,7 +36,6 @@ public class CheckRestController {
 	@GetMapping("/mygroup/{user_no}")
 	public ArrayList<learnGroupVO> myGroupList(@PathVariable("user_no") int user_no) {
 		
-		System.out.println(user_no);
 		
 		return teacherService.myGroupList(user_no);
 	}
@@ -45,7 +46,9 @@ public class CheckRestController {
 		
 		Map<String, Object> map = new HashMap<>();
 		
+		// 그룹 데이터
 		map.put("um1", teacherService.groupDetail(sg_no));
+		// 그룹 속 학생데이터
 		map.put("um", teacherService.groupDetail2(sg_no));
 		
 
@@ -59,7 +62,9 @@ public class CheckRestController {
 		
 		Map<String, Object> map = new HashMap<>();
 		
+		// 그룹 가져오기
 		map.put("groupdetail", teacherService.groupDetail(sg_no));
+		// 그룹에 신청한 학생들 가져오기
 		map.put("boys", teacherService.groupDetail2(sg_no));
 		
 		return map;
@@ -94,6 +99,67 @@ public class CheckRestController {
 //		return teacherService.capaMinus(sg_no);
 //	}
 //	
+	
+	// 승인된 그룹자들 가져오기
+	@GetMapping("/mygroupguys/{sg_no}")
+	public ArrayList<learnGroupVO> mygroupguys(@PathVariable("sg_no") int sg_no) {
+		
+		
+		return teacherService.mygroupguys(sg_no);
+	}
+	
+	// 숙제 내주기
+	@GetMapping("/homeworkSend/{homework_no}/{user_no}")
+	public int homeworkSend(@PathVariable("homework_no") String homework_no,
+								@PathVariable("user_no") String user_no) {
+		
+		
+		System.out.println("숙제번호: " + homework_no);
+		System.out.println("유저번호: " + user_no);
+		
+		Map<String, Object> map = new HashMap<>();
+		map.put("homework_no", homework_no);
+		map.put("user_no", user_no);
+		
+		System.out.println(map);
+		
+		teacherService.homeworkSend(map);
+		
+		
+		return 0;
+	}
+	
+	// 숙제 제출내역 가져오기(제출한 것들만)
+	@GetMapping("/homeworkReceive/{homework_no}")
+	public ArrayList<HomeworkHistoryVO> homeworkReceive(@PathVariable("homework_no") int homework_no) {
+		
+		
+		return teacherService.homeworkReceive(homework_no);
+	}
+	
+	// 숙제 평가하고 저장버튼 눌렀을 때
+	@GetMapping("/homeworkGrade/{homework_no}/{user_no}/{selectedGrade}")
+	public int homeworkGrade(@PathVariable("selectedGrade") String selectedGrade,
+							 @PathVariable("homework_no") String homework_no,
+							 @PathVariable("user_no") String user_no) {
+		
+		Map<String, Object> map = new HashMap<>();
+		map.put("selectedGrade", selectedGrade);
+		map.put("homework_no", homework_no);
+		map.put("user_no", user_no);
+		
+		teacherService.homeworkGrade(map);
+		
+		System.out.println(map);
+		
+		
+		return 0;
+	}
+	
+	
+	
+	
+	
 	
 
 }

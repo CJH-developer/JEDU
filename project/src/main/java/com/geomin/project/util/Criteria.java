@@ -1,5 +1,6 @@
 package com.geomin.project.util;
 
+
 import lombok.Data;
 
 @Data
@@ -13,6 +14,7 @@ public class Criteria {
 	private String levelSelect; //컨텐츠 레벨
 	private String searchType;
 	private String searchCategory;
+	
 	
 	public Criteria() {
 		this.page = 1;

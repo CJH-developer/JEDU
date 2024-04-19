@@ -1,159 +1,80 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/css/student/homeworkList.css">
 <th:block th:replace="~{./baseLayout/base_f :: setContent( ~{ :: .wrap} ) }">
-
-		<div class="wrap">
-    <link rel="stylesheet" href="/css/frame/learnGroupLook.css">
-    <script src="/js/frame/learnGroupLook.js" defer></script>
-      <div class="wrap__content">
-
-        <div class="look__wrap">
-
-          <div class="looks__wrap__header">
-
-            <div class="looks__header__title">
-              <span>학습 그룹 조회</span>
-              <div class="looks__header__search">
-                <input type="text" placeholder="학습그룹명을 입력하세요.">
-                <button>검색</button>
-              </div>
-            </div>
-
-            <div class="looks__header__submit">
-              <button>상세보기</button>
-              <button>변경</button>
-              <button>삭제</button>
-
-              <select name="" id="">
-                <option value="none">정렬</option>
-                <option value="가나다순">가나다순</option>
-                <option value="등록일순">등록일순</option>
-                <option value="인원순">인원순</option>
-              </select>
-            </div>
-
-
-          </div>
-
-
-
-          <div class="looks__wrap__body">
-
-            <div id="looks__thead">
-              <button id="looks__thead__first"><input type="checkbox"></button>
-              <button id="looks__thead__second">학습그룹명</button>
-              <button id="looks__thead__third">게임컨텐츠명</button>
-              <button id="looks__thead__fourth">그룹T/O</button>
-              <button id="looks__thead__fifth">구독기간</button>
-              <button id="looks__thead__sixth">달성레벨</button>
-              <button id="looks__thead__seventh">가입학생수</button>
-            </div>
-
-
-
-            <div class="looks__tbody">
-
-              <div class="looks__tbody__content">
-                <div id="looks__tbody__first"><input type="checkbox"></div>
-                <div id="looks__tbody__second">나의 학습 그룹의 이름</div>
-                <div id="looks__tbody__third">내가 구매한 게임컨텐츠 이름</div>
-                <div id="looks__tbody__fourth"> 9명 / 30명</div>
-                <div id="looks__tbody__fifth">2024-12-20 ~ 2025-03-20 </div>
-                <div id="looks__tbody__sixth">30레벨</div>
-                <div id="looks__tbody__seventh">9명</div>
-              </div>
-            
-              <div class="looks__tbody__content">
-                <div id="looks__tbody__first"><input type="checkbox"></div>
-                <div id="looks__tbody__second">나의 학습 그룹의 이름</div>
-                <div id="looks__tbody__third">내가 구매한 게임컨텐츠 이름</div>
-                <div id="looks__tbody__fourth"> 9명 / 30명</div>
-                <div id="looks__tbody__fifth">2024-12-20 ~ 2025-03-20 </div>
-                <div id="looks__tbody__sixth">30레벨</div>
-                <div id="looks__tbody__seventh">9명</div>
-              </div>
-
-              <div class="looks__tbody__content">
-                <div id="looks__tbody__first"><input type="checkbox"></div>
-                <div id="looks__tbody__second">나의 학습 그룹의 이름</div>
-                <div id="looks__tbody__third">내가 구매한 게임컨텐츠 이름</div>
-                <div id="looks__tbody__fourth"> 9명 / 30명</div>
-                <div id="looks__tbody__fifth">2024-12-20 ~ 2025-03-20 </div>
-                <div id="looks__tbody__sixth">30레벨</div>
-                <div id="looks__tbody__seventh">9명</div>
-              </div>
-
-              <div class="looks__tbody__content">
-                <div id="looks__tbody__first"><input type="checkbox"></div>
-                <div id="looks__tbody__second">나의 학습 그룹의 이름</div>
-                <div id="looks__tbody__third">내가 구매한 게임컨텐츠 이름</div>
-                <div id="looks__tbody__fourth"> 9명 / 30명</div>
-                <div id="looks__tbody__fifth">2024-12-20 ~ 2025-03-20 </div>
-                <div id="looks__tbody__sixth">30레벨</div>
-                <div id="looks__tbody__seventh">9명</div>
-              </div>
-
-              <div class="looks__tbody__content">
-                <div id="looks__tbody__first"><input type="checkbox"></div>
-                <div id="looks__tbody__second">나의 학습 그룹의 이름</div>
-                <div id="looks__tbody__third">내가 구매한 게임컨텐츠 이름</div>
-                <div id="looks__tbody__fourth"> 9명 / 30명</div>
-                <div id="looks__tbody__fifth">2024-12-20 ~ 2025-03-20 </div>
-                <div id="looks__tbody__sixth">30레벨</div>
-                <div id="looks__tbody__seventh">9명</div>
-              </div>
-
-              <div class="looks__tbody__content">
-                <div id="looks__tbody__first"><input type="checkbox"></div>
-                <div id="looks__tbody__second">나의 학습 그룹의 이름</div>
-                <div id="looks__tbody__third">내가 구매한 게임컨텐츠 이름</div>
-                <div id="looks__tbody__fourth"> 9명 / 30명</div>
-                <div id="looks__tbody__fifth">2024-12-20 ~ 2025-03-20 </div>
-                <div id="looks__tbody__sixth">30레벨</div>
-                <div id="looks__tbody__seventh">9명</div>
-              </div>
-
-              <div class="looks__tbody__content">
-                <div id="looks__tbody__first"><input type="checkbox"></div>
-                <div id="looks__tbody__second">나의 학습 그룹의 이름</div>
-                <div id="looks__tbody__third">내가 구매한 게임컨텐츠 이름</div>
-                <div id="looks__tbody__fourth"> 9명 / 30명</div>
-                <div id="looks__tbody__fifth">2024-12-20 ~ 2025-03-20 </div>
-                <div id="looks__tbody__sixth">30레벨</div>
-                <div id="looks__tbody__seventh">9명</div>
-              </div>
-
-              <div class="looks__tbody__content">
-                <div id="looks__tbody__first"><input type="checkbox"></div>
-                <div id="looks__tbody__second">나의 학습 그룹의 이름</div>
-                <div id="looks__tbody__third">내가 구매한 게임컨텐츠 이름</div>
-                <div id="looks__tbody__fourth"> 9명 / 30명</div>
-                <div id="looks__tbody__fifth">2024-12-20 ~ 2025-03-20 </div>
-                <div id="looks__tbody__sixth">30레벨</div>
-                <div id="looks__tbody__seventh">9명</div>
-              </div>
-            </div>
-
-          </div>
-
-
-          <div class="looks__wrap__footer">
-            <button id="looks__page">1</button>
-            <button id="looks__page">2</button>
-            <button id="looks__page">3</button>
-            <button id="looks__page">4</button>
-            <button id="looks__page">5</button>
-            <button id="looks__page">6</button>
-            <button id="looks__page">7</button>
-            <button id="looks__page">8</button>
-            <button id="looks__page">9</button>
-            <button id="looks__page">10</button>
-          </div>
-
-        </div>
-
-
-      </div>
+<link rel="stylesheet" href="/css/frame/learnGroupLook.css">
+<script src="/js/frame/learnGroupLook.js" defer></script>
+   	<div class="wrap">
+   	
+   	 <div class="hw-container" th:each="hwList : ${hwList}">
+	    <div class="user_name">
+	     <label>[[${user_name + '님의 숙제 페이지'}]]</label>
+	    </div>
+   		<form action="/student/submission" method="get">
+		  <div class="container">
+		    <div class="flex-form-container">
+		      <div class="d-flex">
+		        
+		        <div class="left-section">
+		          <h5 class="sec-title">숙제 내용</h5>
+		          <div class="form-group">
+		            <label class="Homework-info">게임 콘텐츠:</label> <br>
+		            <p>[[${hwList.homework_content}]]</p>
+		          </div>
+		          <div class="form-group">
+		            <label class="Homework-info">교육자: </label>
+		            <p>[[${hwList.user_name}]]</p>
+		          </div>
+		          <div class="form-group">
+		            <label class="Homework-info">숙제명:</label>
+		            <p>[[${hwList.homework_name}]]</p>
+		          </div>
+		          <div class="form-group">
+		            <label class="Homework-info">숙제내용:</label>
+		            <p>[[${hwList.homework_content}]]</p>
+		          </div>
+		          <div class="form-group">
+		            <label class="Homework-info">학습레벨:</label>
+		            <p>[[${hwList.homework_level}]]</p>
+		          </div>
+		          <div class="form-group">
+		            <label class="Homework-info">제출기한:</label>
+		            <p>[[${hwList.homework_duedate}]]</p>
+		          </div>
+		        </div>
+		        
+		        <div class="right-section">
+		          <h5 class="sec-title">제출 내용</h5>
+		          <div class="form-group">
+		            <label for="inputField3">금일 학습 내용:</label>
+		            <textarea type="text" class="form-control" th:value=${hwList.stu_content} id="inputField3" placeholder="답변을 입력해주세요" name="stu_content"></textarea>
+		          </div>
+		          <div class="form-group">
+		            <label for="textareaField">질문:</label>
+		            <textarea class="form-control" id="textareaField" th:value=${hwList.stu_q} placeholder="자세한 내용을 입력해주세요" name="stu_q"></textarea>
+		          </div>
+		        </div>
+		      </div>
+		    </div>
+		    <input type="hidden" th:value=${hwList.user_no} name="user_no">
+		    <input type="hidden" th:value=${hwList.homework_no} name="homework_no">
+		    <!-- 제줄 버튼 -->
+		    <div class="button-place">
+		      <div class="d-flex submit-buttons">
+		        <button type="submit" class="btn-submit btn-primary">숙제 제출</button>
+		      </div>
+		    </div>
+		  
+		  </div>
+		  
+		</form>
+		
+		</div>
     </div>
 
 </th:block>

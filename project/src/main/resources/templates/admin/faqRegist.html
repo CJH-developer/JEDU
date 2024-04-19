@@ -5,7 +5,7 @@
 <div class="wrap">
 <script src="/js/frame/faqRegist.js" defer></script>
   <div class="wrap__content">
-    <form action="" method="get" class="regist__wrap">
+    <form action="/admin/faqRegistForm" method="post" class="regist__wrap">
 
       <!-- 컨텐츠 등록 -->
       <div class="regist__left">
@@ -22,7 +22,7 @@
           <!-- 구분 선택 -->
           <div class="regist__below__item">
             <span>FAQ 유형</span>
-            <select name="item__select" id="item__select">
+            <select name="faq_type" id="item__select">
               <option value="none">유형을 선택해주세요.</option>
               <option value="1">상품결제</option>
               <option value="2">상품관리</option>
@@ -31,22 +31,17 @@
             </select>
           </div>
 
-          <!-- 제목 입력 -->
-          <div class="regist__below__item">
-            <span>제목</span>
-            <input type="text" id="faq__title" placeholder="제목을 입력하세요.">
-          </div>
 
           <!-- 제목 입력 -->
           <div class="regist__below__item">
             <span>질의</span>
-            <input type="text" id="faq__question" placeholder="질의를 입력하세요.">
+            <input type="text" id="faq__question" name="faq_question" placeholder="질의를 입력하세요.">
           </div>
 
           <!-- 제목 입력 -->
           <div class="regist__below__item">
             <span>답변</span>
-            <input type="text" id="faq__answer" placeholder="답변을 입력하세요.">
+            <input type="text" id="faq__answer" name="faq_answer" placeholder="답변을 입력하세요.">
           </div>
           
           
@@ -61,6 +56,7 @@
 
           </div>
           
+          <input type="hidden" value="Y" name="faq_delCheck" >
           
 
         </div>

@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import org.apache.ibatis.annotations.Param;
 
 import com.geomin.project.command.CartVO;
+import com.geomin.project.command.PurchaseVO;
 
 public interface CartService {
 	
@@ -23,6 +24,16 @@ public interface CartService {
 	//장바구니 삭제
 	public int delCart(int user_no, int game_no);
 
+	//결제 내역 추가
+	public int gamePurchase(int user_no, int game_no);
+	
+	//결재 내용 체크
+	public int checkPurchase(int user_no, int game_no);
+	
+	//구매 이력 리스트
+	public ArrayList<PurchaseVO> purchaseHistory (int user_no);
+	
+	
 	
 	
 }

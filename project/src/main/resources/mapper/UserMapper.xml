@@ -52,4 +52,48 @@
   		where user_id = #{user_id}
   	</update>
   	
+  	
+  	<select id="getList" resultType="UserVO">
+  		SELECT * 
+  		FROM 
+  			USER 
+  		WHERE 
+  			USER_ROLE IS NOT NULL
+  		<if test="criteria.memberRole == 1">
+			AND 
+				USER_ROLE = "ROLE_TEA"
+		</if>
+		<if test="criteria.memberRole == 2">
+			AND 
+				USER_ROLE = "ROLE_STU"
+		</if>
+		<if test="criteria.memberRole == 3">
+			AND 
+				USER_ROLE = "ROLE_GEN"
+		</if>
+		<if test="criteria.memberRole == 100">
+			
+		</if>
+  		limit #{criteria.pageStart}, #{criteria.amount}
+  	</select>
+  	
+  	<select id="getTotal" resultType="int">
+        SELECT 
+        	COUNT(*) AS TOTAL
+		FROM 
+			USER
+		WHERE 
+			USER_ROLE IS NOT NULL
+    </select>
+    
+    
+    <select id="findUser" resultType="UserVO">
+    	SELECT * 
+    	FROM 
+    		USER
+    	WHERE
+    		USER_NO = #{user_no}
+    </select>
+    
+  	
   </mapper>

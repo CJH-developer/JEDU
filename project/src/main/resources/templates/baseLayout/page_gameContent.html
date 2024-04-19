@@ -7,9 +7,7 @@
 	<link rel="stylesheet" href="/css/baseLayout/page.css">
 	<ul>
 		<li th:if="${pageVO.total != 0}">
-			<a th:href="@{gameLook(page=1, 
-						  			  amount=${pageVO.amount}
-						  			  )}">
+			<a th:href="@{gameLook(page=1,amount=${pageVO.amount})}">
 				<i class="fa fa-angle-double-left"aria-hidden="true"></i>
 			</a>
 		</li>

@@ -6,11 +6,13 @@ import java.util.stream.IntStream;
 
 import com.geomin.project.util.Criteria;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Data
 public class PageVO {
-
 	private int start; //페이지네이션 시작번호
 	private int end; //페이지네이션 끝번호
 	private boolean prev; //이전버튼 활성화여부

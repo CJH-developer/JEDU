@@ -5,6 +5,11 @@ var center__below__notice = document.querySelector(".center__below__notice");
 var center__below__faq = document.querySelector(".center__below__faq");
 var center__below__qna = document.querySelector(".center__below__qna");
 
+notice.style.borderTop = "1px solid rgb(224, 224, 224)";
+notice.style.borderLeft = "1px solid rgb(224, 224, 224)";
+notice.style.borderRight = "1px solid rgb(224, 224, 224)";
+notice.style.color = "rgb(243, 138, 19)";
+center__below__notice.style.display = "block";
 center__below__faq.style.display = "none";
 center__below__qna.style.display = "none";
 

@@ -32,11 +32,6 @@ $drop.ondragleave = (e) => {
 }
 
 
-document.getElementById("faq__title").oninput = function() {
-  // 입력된 값을 가져와서 output 요소에 출력
-  var faq__title = document.getElementById("faq__title").value;
-  document.getElementById("board__title").innerHTML = faq__title;
-};
 
 document.getElementById("item__select").onchange = function() {
   // 선택된 값을 가져와서 output 요소에 출력
