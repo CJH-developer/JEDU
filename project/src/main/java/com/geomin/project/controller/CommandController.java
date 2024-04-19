@@ -80,7 +80,10 @@ public class CommandController {
 		
 		ArrayList<PurchaseVO> purList = cartService.purchaseHistory(user_no);
 		model.addAttribute("purList", purList);
-				
+		
+		// 이미지 포함
+		ArrayList<PurchaseVO> purListWithImg = cartService.purchaseHistoryWithImg(user_no);
+		model.addAttribute("listWithImg" , purListWithImg);
 		
 		return "command/myproduct";
 	}

@@ -77,8 +77,8 @@
   	
   	<!-- 그룹 상세정보 -->
    	<select id="groupDetail" resultType="learnGroupVO">
-	  	SELECT * FROM GAME_CONTENT GC
-		LEFT JOIN STUDY_GROUP SG ON SG.GAME_NO = GC.GAME_NO WHERE SG_NO = #{sg_no};
+		SELECT * FROM GAME_CONTENT GC
+		LEFT JOIN STUDY_GROUP SG ON SG.GAME_NO = GC.GAME_NO LEFT JOIN UPLOAD U ON SG.GAME_NO = U.GAME_NO WHERE SG.SG_NO = #{sg_no};
   	</select>
   	
   	<!-- 그룹 상세정보(승인 요청 포함) -->
@@ -94,7 +94,7 @@
   	
   	<!-- 그룹 승인 -->
   	<update id="approve">
-  		UPDATE STUDY_GROUP_JOIN SET SGJ_AUTH = 1 WHERE USER_NO = #{user_no}
+  		UPDATE STUDY_GROUP_JOIN SET SGJ_AUTH = 1 WHERE USER_NO = #{user_no} AND SG_NO = #{sg_no}
   	</update>
   	
   	<!-- 그룹 승인 됐을 때 capacity 1 증가  -->
@@ -103,9 +103,9 @@
   	</update>
   	
   	<!-- 그룹 가입 거절 -->
-  	<delete id="reject">
-  		DELETE FROM STUDY_GROUP_JOIN WHERE USER_NO = #{user_no}
-  	</delete>
+  	<update id="reject">
+		UPDATE STUDY_GROUP_JOIN SET SGJ_AUTH = 2 WHERE USER_NO = #{user_no} AND SG_NO = #{sg_no};
+  	</update>
   	
   	  	
 <!--   	<update id="capaMinus">

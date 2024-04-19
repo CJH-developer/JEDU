@@ -32,13 +32,13 @@ public interface TeacherService {
 	public ArrayList<learnGroupVO> groupDetail2(int sg_no);
 	
 	// 그룹 가입 승인
-	public int approve(int user_no);
+	public int approve(int sg_no, int user_no);
 	
 	// 그룹 가입 승인 시 capacity + 1
 	public int capacity(int sg_no);
 	
 	// 그룹 가입 거절
-	public int reject(int user_no);
+	public int reject(int sg_no, int user_no);
 	
 	// 그룹 가입 거절 시 capacity - 1
 //	public int capaMinus(int sg_no);

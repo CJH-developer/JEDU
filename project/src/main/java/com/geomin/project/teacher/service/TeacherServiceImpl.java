@@ -61,9 +61,9 @@ public class TeacherServiceImpl implements TeacherService{
 	}
 
 	@Override
-	public int approve(int user_no) {
+	public int approve(int sg_no, int user_no) {
 		
-		return teacherMapper.approve(user_no);
+		return teacherMapper.approve(user_no, sg_no);
 	}
 
 	@Override
@@ -73,9 +73,9 @@ public class TeacherServiceImpl implements TeacherService{
 	}
 
 	@Override
-	public int reject(int user_no) {
+	public int reject(int sg_no, int user_no) {
 		
-		return teacherMapper.reject(user_no);
+		return teacherMapper.reject(user_no, sg_no);
 	}
 
 	@Override

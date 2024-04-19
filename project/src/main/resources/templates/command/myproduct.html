@@ -53,7 +53,7 @@ A<!DOCTYPE html>
         <div class="table__tbody">
             
           <!-- 반복하는 곳 -->
-          <div class="tbody__item" th:each="list : ${purList}" >
+          <div class="tbody__item" th:each="list : ${listWithImg}" >S
             <!-- 선택 -->
             <div class="tbody__check">
               <span th:text="${listStat.count}"></span>
@@ -61,7 +61,7 @@ A<!DOCTYPE html>
 
             <!-- 컨텐츠 사진 -->
             <div class="tbody__image">
-              <img src="/img/01_game_main.png" alt="">
+				<img th:src="@{/display/{filepath}/{uuid}/{filename}(filepath=${list.filepath},uuid=${list.uuid},filename=${list.filename})}"  >
             </div>
 
             <!-- 컨텐츠 제목 -->
