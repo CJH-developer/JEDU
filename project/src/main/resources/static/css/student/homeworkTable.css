@@ -56,10 +56,25 @@ h5{margin:0 auto; margin-top: 105px;}
     cursor: pointer;
      z-index:4;
   }
+  
+  
+/* 통고  */
+.o-circle__sign::before, 
+.o-circle__sign::after {
+  content: "";
+  position: absolute;
+  background: inherit;
+}
 
-
-
-
+.o-circle__sign::after {
+  left: 100%; top: 0%;
+  width: 500%; height: 95%; 
+  transform: translateY(4%) rotate(0deg);
+  border-radius: 0;
+  opacity: 0;
+  animation: set-shaddow 0s 1.13s ease-in-out forwards;
+  z-index: -1;
+}
 
 
 

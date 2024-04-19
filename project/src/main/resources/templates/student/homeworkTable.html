@@ -66,22 +66,23 @@
 						</td>
 
 						<div id="myModal" class="modal">
-							
+
 							<div class="modal-content">
-								
+
 								<span class="close">&times;</span>
 								<h1>축하합니다!!</h1>
-								<h4 th:text="${hw.teach_grade == 2} ? '당신은 보통을 받으셨습니다' : '당신은 ' + ${hw.teach_grade} + '를 받으셨습니다!!'"></h4>
+								<h4
+									th:text="${hw.teach_grade == 2} ? '당신은 보통을 받으셨습니다' : '당신은 ' + ${hw.teach_grade} + '를 받으셨습니다!!'"></h4>
 								<h5>다음 레벨을 향해 계속 도전하세요!</h5>
 								<canvas id="confeti" width="300" height="300" class="active">
 								</canvas>
 							</div>
-							
+
 						</div>
-					
+
 					</tr>
 
-					<tr th:if="${hw.teach_grade < 2}"
+					<tr th:if="${hw.teach_grade < 2 && hw.teach_grade != null}"
 						th:data-url="@{/student/homeworkList(user_no=${hw.user_no})}">
 						<td th:text="${hwStat.count}"></td>
 						<td th:text="${hw.homework_no}"></td>
@@ -105,6 +106,28 @@
 								<span class="badge badge-success">평가 완료</span>
 							</h6>
 						</td>
+
+						<td>
+							<button id="myBtn">점수 확인</button>
+						</td>
+
+						<div id="myModal" class="modal">
+
+							<div class="modal-content">
+
+								<span class="close">&times;</span>
+								<h1>통과하지 못하셨습니다.</h1>
+								<h4>
+									<th:block th:if="${hw.teach_grade < 2}">
+								        당신은 <span style="color: red;">미흡</span>을 받으셨습니다.
+								    </th:block>
+								</h4>
+								<h5>계속해서 도전해 보세요!</h5>
+
+							</div>
+
+						</div>
+
 
 
 					</tr>
@@ -140,7 +163,7 @@
 				</tbody>
 			</table>
 		</div>
-		
+
 	</div>
 
 </th:block>
