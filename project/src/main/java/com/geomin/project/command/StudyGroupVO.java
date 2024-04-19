@@ -24,5 +24,7 @@ public class StudyGroupVO {
 	public String sgj_auth;
 	public String sgj_target_date;
 	
+	//GAME_CONTENT 내용
+	public String game_title;
 	
 }

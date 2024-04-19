@@ -25,12 +25,12 @@
           </div>
 
           <div class="grl__bh__tbody">
-            <div class="grl__bbt__zero">나중에 사진 데이터<img src="/img/05_game_main.png" alt=""></div>
+            <div class="grl__bbt__zero"><img th:src="@{/display/{filepath}/{uuid}/{filename}(filepath=${info.groupdetail.filepath},uuid=${info.groupdetail.uuid},filename=${info.groupdetail.filename})}"  ></div>
             <div class="grl__bbt__one">[[${info.groupdetail.game_title}]]</div>
             <div class="grl__bbt__two">[[${info.groupdetail.game_target_level}]]</div>
-            <div class="grl__bbt__three">[[${info.groupdetail.sg_regdate} + '~' + ${info.groupdetail.game_sub_endDate}]]</div>
-            <div class="grl__bbt__four">[[${info.groupdetail.game_title} + '명']]</div>
-            <div class="grl__bbt__five">[[${info.groupdetail.game_title} + '명']]</div>
+            <div class="grl__bbt__three">[[${info.groupdetail.sg_regdate.substring(0, 10)} + ' ~ ']] <br>  [[${info.groupdetail.game_sub_endDate}]]</div>
+            <div class="grl__bbt__four">[[${info.groupdetail.sg_grouplimit} + '명']]</div>
+            <div class="grl__bbt__five">[[${info.groupdetail.sg_capa} + '명']]</div>
           </div>
 
 
@@ -59,7 +59,7 @@
               <div class="grl_bbtb__four">[[${0 + boys.user_phone}]]</div>
               <div class="grl_bbtb__five">[[${boys.user_email}]]</div>
               <div class="grl_bbtb__six">[[${boys.user_address}]]</div>
-              <div class="grl_bbtb__seven">[[${boys.getUserRegDate()}]]</div>
+              <div class="grl_bbtb__seven">[[${boys.user_regdate.substring(0, 10)}]]</div>
             </div>
 
 

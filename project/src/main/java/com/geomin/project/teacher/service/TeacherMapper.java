@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Map;
 
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 
 import com.geomin.project.command.GameContentVO;
 import com.geomin.project.command.HomeWorkVO;
@@ -35,13 +36,15 @@ public interface TeacherMapper {
 	public ArrayList<learnGroupVO> groupDetail2(int sg_no);
 	
 	// 그룹 가입 승인
-	public int approve(int user_no);
+	public int approve(@Param("sg_no") int sg_no,
+			  		   @Param("user_no") int user_no);
 	
 	// 그룹 가입 승인 시 capacity + 1
 	public int capacity(int sg_no);
 	
 	// 그룹 가입 거절
-	public int reject(int user_no);
+	public int reject(@Param("sg_no") int sg_no,
+					  @Param("user_no") int user_no);
 	
 	// 그룹 가입 거절 시 capacity - 1
 //	public int capaMinus(int sg_no);

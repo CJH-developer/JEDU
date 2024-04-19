@@ -89,9 +89,9 @@
 
               <div class="blb__tContent__wrap" th:each="qnaList:${qnaList}">
                 <div class="blb__tbody__one" th:text="${qnaList.qna_no}">1</div>
-                <div class="blb__tbody__two" th:text="${qnaList.qna_title}">공지사항제목</div>
+                <div class="blb__tbody__two" th:text="${qnaList.qna_title}">qna</div>
                 <div class="blb__tbody__three">
-                  <a th:href="@{/admin/qnaModify(qna_no=${qnaList.qna_no})}" id="blb__notice__modify">수정</a>
+                  <a th:href="@{/admin/qnaModify(qna_no=${qnaList.qna_no})}" id="blb__notice__modify">답변</a>
                   <a th:href="@{/admin/qnaDeleteForm(qna_no=${qnaList.qna_no})}" id="blb__notice__delete">삭제</a>
                 </div>
               </div>

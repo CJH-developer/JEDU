@@ -34,6 +34,12 @@ $("#send").click(function() {
 			method: "GET",
 			success: function(data) {
 				console.log(data);
+				var count = 0;
+				count++;
+				if(count == 1) {
+					alert("숙제 전송 성공")
+				}
+
 			}
 		})
 		

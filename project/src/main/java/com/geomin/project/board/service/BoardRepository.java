@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import com.geomin.project.command.FaqVO;
 import com.geomin.project.command.NoticeVO;
 import com.geomin.project.command.QnaVO;
+import com.geomin.project.util.CriteriaInqury;
 
 @Service("BoardService")
 public class BoardRepository implements BoardService{
@@ -109,6 +110,19 @@ public class BoardRepository implements BoardService{
 	public int qnaModifyUpdate(QnaVO vo) {
 		
 		return boardMapper.qnaModifyUpdate(vo);
+	}
+
+	
+	@Override
+	public ArrayList<QnaVO> getQna2(CriteriaInqury criteria) {
+		
+		return boardMapper.getQna2(criteria);
+	}
+
+	@Override
+	public int getTotal() {
+		// TODO Auto-generated method stub
+		return boardMapper.getTotal();
 	}
 
 	

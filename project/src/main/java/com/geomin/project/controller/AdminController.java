@@ -14,8 +14,10 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -26,14 +28,20 @@ import com.geomin.project.command.FaqVO;
 import com.geomin.project.command.GameContentVO;
 import com.geomin.project.command.NoticeVO;
 import com.geomin.project.command.PageVO;
+import com.geomin.project.command.PageVOinqury;
 import com.geomin.project.command.PageVOmember;
+import com.geomin.project.command.PageVOprice;
+import com.geomin.project.command.PageVOsleep;
 import com.geomin.project.command.QnaVO;
 import com.geomin.project.command.UserVO;
 import com.geomin.project.document.service.DocumentService;
 import com.geomin.project.gameContentService.GameContentService;
 import com.geomin.project.user.service.UserService;
 import com.geomin.project.util.Criteria;
+import com.geomin.project.util.CriteriaInqury;
 import com.geomin.project.util.CriteriaMember;
+import com.geomin.project.util.CriteriaPrice;
+import com.geomin.project.util.CriteriaSleep;
 
 
 
@@ -64,9 +72,11 @@ public class AdminController {
 	@GetMapping("/main")
 	public String main(Model model, Criteria criteria) {
 		
+		//qna
 		ArrayList<QnaVO> qnaList = boardService.getQna();
 		model.addAttribute("qnaList", qnaList);
 		
+		//사진
 		ArrayList<GameContentVO> list = gameContentService.getList(criteria);
 		model.addAttribute("gameContent", list);
 		
@@ -454,11 +464,69 @@ public class AdminController {
 	}
 	
 	@GetMapping("/userSelect")
-	public String userSelect(@RequestParam("user_no") int userNo, Model model) {
-		System.out.println(userNo);
-		UserVO vo = userService.findUser(userNo);
-		model.addAttribute("findUser",vo);
+	@ResponseBody
+	public UserVO userSelect(@RequestParam("user_no") int user_no, Model model) {
+		System.out.println("가져온 번호 : " + user_no);
+		UserVO vo = userService.findUser(user_no);
+		
+		return vo;
+	}
+	
+	///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+	// 문의사항 조회
+	@GetMapping("/inqury")
+	public String inqury(Model model, CriteriaInqury criteria) {
+
+		ArrayList<QnaVO> qnaList = boardService.getQna2(criteria);
+		int total = boardService.getTotal();
+		PageVOinqury vo = new PageVOinqury(criteria, total);
+		
+		model.addAttribute("qnaList",qnaList);
+		model.addAttribute("pageVO", vo);
+		
+		return "admin/inqury";
+	}
+	
+	// 휴먼 계정 전환
+	@GetMapping("/userSleep")
+	public String userSleep(@RequestParam("userSleepNo") String userSleepNo) {
+		
+		int user_no = Integer.parseInt(userSleepNo);
+		
+		userService.userSleep(user_no);
 		
 		return "redirect:/admin/member";
 	}
+	
+	// 휴먼 계정 조회
+	@GetMapping("/memberSleep")
+	public String memberSleep(Model model, CriteriaSleep criteria) {
+		
+		ArrayList<UserVO> memberSleepList = userService.getSleepList(criteria);
+		int total = userService.getSleepTotal();
+		PageVOsleep vo = new PageVOsleep(criteria, total);
+		
+		model.addAttribute("memberSleepList",memberSleepList);
+		model.addAttribute("pageVO", vo);
+		
+		return "admin/memberSleep";
+	}
+	
+	///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+	// 매출조회
+	@GetMapping("/priceLook")
+	public String priceLook(Model model, CriteriaPrice criteria) {
+		
+		ArrayList<GameContentVO> list = userService.getPurchaseList(criteria);
+		int total = userService.getPriceTotal();
+		PageVOprice vo = new PageVOprice(criteria, total);
+		
+		model.addAttribute("list",list);
+		model.addAttribute("pageVO", vo);
+		
+		return "admin/priceLook";
+	}
+	
 }

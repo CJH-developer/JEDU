@@ -21,19 +21,20 @@
             <option value="강남 초급반">강남 초급반</option>
             <option value="강남 초급반">강남 초급반</option>
           </select>
-
+		
         </div>
         <div class="grl__header__btn">
-          <button type="submit" id="groupApply" >가입신청</button>
+          <button type="submit" id="groupApply" th:if="${auth == '0'}">가입신청</button>
+          <button type="submit" id="groupApply" th:if="${auth == null}">가입신청</button>
+          <div id="approvedMes" class="approved-mege" th:if="${auth == '1'}">이미 가입을 완료 하셨습니다.</div>
         </div>
-        <div id="approvedMessage" class="approved-message">이미 가입을 완료 하셨습니다.</div>
         <div id="applyMessage" class="apply-message">그룹 스터디에 신청되었습니다.</div>
 		<div id="processMessage" class="process-message">승인 절차가 진행 중입니다.</div>
 		<input type="hidden" id="hiddenSg_No" th:value="${group.sg_no}" name="sg_no">
 		<input type="hidden" id="hiddenUser_No" th:value="${session.vo.user_no}" name="user_no">
 		<input type="hidden" id="hiddenSg_Level" th:value="${group.sg_level}" name="user_no">
 		
-
+		
       </div>
       <div class="grl__body">
         <div class="grl__body__header">
@@ -47,13 +48,14 @@
             <div class="grl__bht__five">그룹가입 승인 인원</div>
           </div>
 
+        
           <div class="grl__bh__tbody">
-            <div class="grl__bbt__zero">나중에 사진 데이터<img src="/img/05_game_main.png" alt=""></div>
-            <div class="grl__bbt__one">[[${group.game_title}]]</div>
-            <div class="grl__bbt__two">[[${group.sg_level}]]</div>
-            <div class="grl__bbt__three">[[${group.sg_regdate} + '~' + ${group.sg_enddate}]]</div>
-            <div class="grl__bbt__four">[[${group.sg_grouplimit} + '명']]</div>
-            <div class="grl__bbt__five">[[${group.sg_capa} + '명']]</div>
+            <div class="grl__bbt__zero"><img th:src="@{/display/{filepath}/{uuid}/{filename}(filepath=${info.groupdetail.filepath},uuid=${info.groupdetail.uuid},filename=${info.groupdetail.filename})}"  ></div>
+            <div class="grl__bbt__one">[[${info.groupdetail.game_title}]]</div>
+            <div class="grl__bbt__two">[[${info.groupdetail.game_target_level}]]</div>
+            <div class="grl__bbt__three">[[${info.groupdetail.sg_regdate.substring(0, 10)} + ' ~ ' + ${info.groupdetail.game_sub_endDate}]]</div>
+            <div class="grl__bbt__four">[[${info.groupdetail.sg_grouplimit} + '명']]</div>
+            <div class="grl__bbt__five">[[${info.groupdetail.sg_capa} + '명']]</div>
           </div>
 
         </div>

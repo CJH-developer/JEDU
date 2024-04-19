@@ -2,9 +2,12 @@ package com.geomin.project.board.service;
 
 import java.util.ArrayList;
 
+import org.apache.ibatis.annotations.Param;
+
 import com.geomin.project.command.FaqVO;
 import com.geomin.project.command.NoticeVO;
 import com.geomin.project.command.QnaVO;
+import com.geomin.project.util.CriteriaInqury;
 
 public interface BoardService {
 
@@ -40,4 +43,8 @@ public interface BoardService {
 	// qna 수정
 	public QnaVO qnaModify(int qna_no);
 	public int qnaModifyUpdate(QnaVO vo);
+	
+	// qna 조회
+	public ArrayList<QnaVO> getQna2(@Param("criteria") CriteriaInqury criteria);
+	public int getTotal();
 }

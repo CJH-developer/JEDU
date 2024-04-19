@@ -56,6 +56,12 @@
 		ON GPUR.GAME_NO = GCONT.GAME_NO
 		WHERE GPUR.USER_NO = #{user_no}
 	</select>
+	
+	<!-- 구매 리스트 조회, 근데 이제 이미지 추가 -->
+	<select id="purchaseHistoryWithImg" resultType="PurchaseVO">
+		SELECT * FROM GAME_PURCHASE GP LEFT JOIN GAME_CONTENT GC ON GP.GAME_NO = GC.GAME_NO 
+		LEFT JOIN UPLOAD U ON GC.GAME_NO = U.GAME_NO where GP.USER_NO = #{user_no}
+	</select>
   	
   	
   	

@@ -2,12 +2,14 @@ package com.geomin.project.student.service;
 
 import java.util.ArrayList;
 
+import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.geomin.project.command.HomeWorkVO;
 import com.geomin.project.command.StudyGroupVO;
 import com.geomin.project.command.learnGroupVO;
+import com.geomin.project.util.StudyGroupCriteria;
 
 @Service
 public class StudentServiceImpl implements StudentService{
@@ -42,6 +44,11 @@ public class StudentServiceImpl implements StudentService{
 	public ArrayList<HomeWorkVO> getHomeworkList(int user_no) {
 		return studentMapper.getHomeworkList(user_no);
 	}
+	
+	//숙제 디테일 조회
+	public  ArrayList<HomeWorkVO> getHomeworkDetail (int user_no , int homework_no) {
+		return studentMapper.getHomeworkDetail(user_no, homework_no);
+	}
 
 	@Override
 	public int groupCheckingList(int user_no) {
@@ -53,6 +60,21 @@ public class StudentServiceImpl implements StudentService{
 		return studentMapper.homeworkSubmission(hwVO);
 	}
 
+	//그룹 스터디 조회
+	@Override
+	public ArrayList<StudyGroupVO> getList(StudyGroupCriteria cri) {
+		return studentMapper.getList(cri);
+	}
+	@Override
+	public int getTotal() {
+		return studentMapper.getTotal();
+	}
+
+	
+	//ai 체크
+	public ArrayList<StudyGroupVO> aiList(int user_no, int user_level){
+		return studentMapper.aiList(user_no, user_level);
+	};
 
 
 	

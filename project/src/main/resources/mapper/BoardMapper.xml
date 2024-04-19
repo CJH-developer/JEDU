@@ -128,13 +128,46 @@
   </select>
   <update id="qnaModifyUpdate">
   	UPDATE QNA SET
-  		QNA_TYPE = #{qna_type},
-  		QNA_TITLE = #{qna_title},
   		QNA_CONTENT = #{qna_content},
-  		QNA_CHECK = #{qna_check},
-  		QNA_DEL_CHECK = #{qna_delCheck}
+  		ALARM = #{alarm}
   	WHERE
   		QNA_NO = #{qna_no}
   </update>
+  
+  
+  <select id="getQna2" resultType="QnaVO">
+    	SELECT * 
+    	FROM 
+    		QNA
+    	WHERE
+    		QNA_DEL_CHECK ="Y"
+    	<if test="criteria.searchType == 1">
+			AND 
+				QNA_TYPE = 1
+		</if>
+		<if test="criteria.searchType == 2">
+			AND 
+				QNA_TYPE = 2
+		</if>
+		<if test="criteria.searchType == 3">
+			AND 
+				QNA_TYPE = 3
+		</if>
+		<if test="criteria.searchType == 4">
+			AND 
+				QNA_TYPE = 4
+		</if>
+    	limit #{criteria.pageStart}, #{criteria.amount}
+    </select>
+    
+    <select id="getTotal" resultType="int">
+        SELECT 
+        	COUNT(*) AS TOTAL
+		FROM 
+			QNA
+		WHERE
+		    QNA_DEL_CHECK ="Y"
+    </select>
+  
   
   </mapper>
