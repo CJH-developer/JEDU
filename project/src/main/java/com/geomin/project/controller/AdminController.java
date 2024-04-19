@@ -72,9 +72,11 @@ public class AdminController {
 	@GetMapping("/main")
 	public String main(Model model, Criteria criteria) {
 		
+		//qna
 		ArrayList<QnaVO> qnaList = boardService.getQna();
 		model.addAttribute("qnaList", qnaList);
 		
+		//사진
 		ArrayList<GameContentVO> list = gameContentService.getList(criteria);
 		model.addAttribute("gameContent", list);
 		
