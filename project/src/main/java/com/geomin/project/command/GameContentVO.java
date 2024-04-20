@@ -19,10 +19,11 @@ public class GameContentVO {
 	private Integer game_discount_price;
 	private String game_content;
 	private Integer game_count;
-	private String game_sub_startDate;
+	private String game_sub_regDate;
 	private String game_sub_endDate;
 	private String game_regdate;
 	private String del_check;
+	private Integer user_no;
 	
 	private String filename;  // 작성자가 업로드한 파일명
 	private String filepath;
@@ -31,4 +32,5 @@ public class GameContentVO {
 	private String purchase_date;
 	private int cnt;
 	private String price_sum;
+	
 }
