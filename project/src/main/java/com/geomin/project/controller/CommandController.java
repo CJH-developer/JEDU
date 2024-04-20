@@ -117,6 +117,8 @@ public class CommandController {
 		ArrayList<PurchaseVO> purListWithImg = cartService.purchaseHistoryWithImg(user_no);
 		model.addAttribute("listWithImg" , purListWithImg);
 		
+
+		
 		return "command/myproduct";
 	}
 
