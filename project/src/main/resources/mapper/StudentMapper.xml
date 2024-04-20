@@ -108,10 +108,28 @@
 		
 		<!-- 숙제 포인트 등록  -->
 		<insert id="addPoint">
-			INSERT INTO HOMEWORK_HISTORY (HOMEWORK_POINT) VALUES(1)
-			W
-								
+			UPDATE HOMEWORK_HISTORY SET HOMEWORK_POINT = 1
+			WHERE USER_NO = #{user_no}
+			AND HOMEWORK_NO = #{homework_no}
 		</insert>
 		
+		<!-- leftDate 계산 -->
+		<insert id="leftDate">
+			UPDATE HOMEWORK_HISTORY SET HOMEWORK_LEFTDATE = #{homework_leftdate}
+			WHERE USER_NO = #{user_no}
+			AND   HOMEWORK_NO = #{homework_no}
+		</insert>
 		
+		<!-- SG_Progress에 넣기 (진도율 시작점) -->
+		<insert id="studyProgress">
+			INSERT INTO SG_PROGRESS (USER_NO) VALUE (#{user_no});
+		</insert>
+		
+		<select id="sumPoint" resultType="Integer">
+			SELECT SUM(HOMEWORK_POINT) FROM HOMEWORK_HISTORY WHERE USER_NO = #{user_no};
+		</select>
+		
+		<select id="getClassProgress" resultType="Integer">
+			SELECT SG_CLASS FROM STUDY_GROUP WHERE SG_NO = #{sg_no}
+		</select>
 	</mapper>

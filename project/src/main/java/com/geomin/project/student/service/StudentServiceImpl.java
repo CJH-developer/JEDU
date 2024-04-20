@@ -92,13 +92,26 @@ public class StudentServiceImpl implements StudentService{
 	
 	//숙제 포인트 등록
 	@Override
-	public void addPoint(int user_no, int sg_no) {}
+	public void addPoint(int user_no, int homework_no) {
+		studentMapper.addPoint(user_no, homework_no);
+	}
 
+    //남은 날짜 계산하기
+	@Override
+	public void leftDate(long homework_leftdate, int user_no, int homework_no) {
+		studentMapper.leftDate(homework_leftdate, user_no, homework_no);
+	}
 
+	@Override
+	public int sumPoint(int user_no) {
+		return studentMapper.sumPoint(user_no);
+	}
 
+	@Override
+	public int getClassProgress(int sg_no) {
+		return studentMapper.getClassProgress(sg_no);
+	}
 	
-	
-
 	
 
 

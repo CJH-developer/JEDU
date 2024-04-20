@@ -48,9 +48,6 @@ public interface StudentMapper {
 	//숙제 제출
 	public int homeworkSubmission(HomeWorkVO hwVO);
 	
-	//승인 조회
-	
-	
 	//그룹 스터디 조회
 	public ArrayList<StudyGroupVO> getList(StudyGroupCriteria cri);
 	public int getTotal();
@@ -58,8 +55,16 @@ public interface StudentMapper {
 	//ai 체크
 	public ArrayList<StudyGroupVO> aiList(@Param("user_no") int user_no, @Param("user_level") int user_level);
 	
-	//숙제 포인트 +1
-    public void addPoint();
+    //homework_leftdate 계산
+    public void leftDate (@Param("homework_leftdate") long homework_leftdate, @Param("user_no") int user_no, @Param("homework_no") int homework_no);
+    
+    //sg_class 값 불러오기
+    public int getClassProgress (int sg_no);
+    
+	//SG_Progress에 넣기 (진도율 시작점)
+    public int sumPoint(int user_no);
+    
+    public void addPoint(@Param("user_no") int user_no, @Param("homework_no") int homework_no);
 	
 	
 	

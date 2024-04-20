@@ -49,6 +49,17 @@ public interface StudentService {
     public ArrayList<StudyGroupVO> aiList(int user_no, int user_level);
 	
     //숙제 포인트 +1
-    public void addPoint(int user_no, int sg_no);
+    public void addPoint(int user_no, int homework_no);
+    
+    //숙제 포인트 총 합
+    public int sumPoint(int user_no);
+    
+    //sg_class 값 불러오기
+    public int getClassProgress (int sg_no);
+    
+    //homework_leftdate 계산
+    public void leftDate (long homework_leftdate, int user_no, int homework_no);
+    
+
     
 }

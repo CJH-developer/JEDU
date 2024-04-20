@@ -14,16 +14,21 @@ const noapply = $(".no-apply");
     const user_no = $("#hiddenUser_No").val();
     const sg_level = $("#hiddenSg_Level").val();
 
-groupApplyBtn.onclick = function() {
+	console.log(sg_no);
+	console.log(user_no);
+	console.log(sg_level);
 	
-    
+groupApplyBtn.onclick = function() {
+
     $.get('/reject/group', {user_no: user_no, sg_no: sg_no})
      .done(function(rejectData) {
+		 console.log("reject/group 실행됨");
 		 if(rejectData === true) {
 			 displayRejectMessage(rejectMessage);
 		 } else {
 			 $.get('/check/group', {user_no: user_no, sg_no: sg_no})
 			  .done(function(checkData) {
+			 	console.log("/check/group 실행됨");
 	             if(checkData === true) { 
 	                 displayMessage(processMessage); 
 	             } else {
