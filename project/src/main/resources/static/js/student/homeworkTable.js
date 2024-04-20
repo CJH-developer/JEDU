@@ -12,28 +12,41 @@
         });*/
         
 
-var modal = document.getElementById("myModal");
+document.addEventListener('DOMContentLoaded', function() {
+    var modalButtons = document.querySelectorAll('.modal-button, .modal-button-fail');
+    var modals = document.querySelectorAll('.modal');
+    var closeButtons = document.querySelectorAll('.modal .close');
+	
+    modalButtons.forEach(function(button) {
+        button.addEventListener('click', function() {
+            var modalId = button.getAttribute('data-target');
+            var modal = document.getElementById(modalId);
+            var audio = document.getElementById('audio' + modalId);
+  
+            modal.style.display = 'block';
+            if (audio) {
+                audio.play().catch(error => {
+                    console.error("Playback prevented by the browser");
+                });
+            }
+        });
+    });
 
+    closeButtons.forEach(function(button) {
+        button.addEventListener('click', function() {
+            button.closest('.modal').style.display = 'none';
+            
+        });
+    });
 
-var btn = document.getElementById("myBtn");
-
-var span = document.getElementsByClassName("close")[0];
-
-
-btn.onclick = function() {
-  modal.style.display = "block";
-}
-
-span.onclick = function() {
-  modal.style.display = "none";
-}
-
-window.onclick = function(event) {
-  if (event.target == modal) {
-    modal.style.display = "none";
-  }
-}
-
+    window.addEventListener('click', function(event) {
+        modals.forEach(function(modal) {
+            if (event.target === modal) {
+                modal.style.display = 'none';
+            }
+        });
+    });
+});
 
 
 var COLORS, Confetti, NUM_CONFETTI, PI_2, canvas, confetti, context, drawCircle, drawCircle2, drawCircle3, i, range, xpos;
