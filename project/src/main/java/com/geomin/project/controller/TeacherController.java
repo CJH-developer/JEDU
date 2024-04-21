@@ -98,7 +98,17 @@ public class TeacherController {
 	
 	// 학습 그룹 등록 페이지
 	@GetMapping("/learnGroupRegist")
-	public String learnGroupRegist() {
+	public String learnGroupRegist(Model model, HttpServletRequest request) {
+		
+		// 이 작업들은, 내가 구매한 학습컨텐츠 가져오려고 하는거임
+		HttpSession session = request.getSession();
+		UserVO vo =(UserVO) session.getAttribute("vo");
+		int user_no = Integer.parseInt(vo.user_no);
+		
+		// 이미지 포함
+		ArrayList<PurchaseVO> purListWithImg = cartService.purchaseHistoryWithImg(user_no);
+		model.addAttribute("listWithImg" , purListWithImg);
+		
 		
 		return "teacher/learnGroupRegist";
 	}
@@ -108,6 +118,8 @@ public class TeacherController {
 	@PostMapping("/learnGroupRegistForm")
 	public String learnGroupRegistForm(learnGroupVO vo) {
 
+		System.out.println("------------------------------------");
+		System.out.println(vo);
 		teacherService.RegistGroup(vo);
 		return "teacher/main";
 	}
@@ -179,8 +191,9 @@ public class TeacherController {
 		UserVO vo =(UserVO) session.getAttribute("vo");
 		int user_no = Integer.parseInt(vo.user_no);
 		
-		ArrayList<PurchaseVO> purList = cartService.purchaseHistory(user_no);
-		model.addAttribute("purList", purList);
+		// 이미지 포함
+		ArrayList<PurchaseVO> purListWithImg = cartService.purchaseHistoryWithImg(user_no);
+		model.addAttribute("listWithImg" , purListWithImg);
 		
 		
 		

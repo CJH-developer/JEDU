@@ -1,4 +1,4 @@
-A<!DOCTYPE html>
+<!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <th:block th:replace="~{./baseLayout/base_f :: setContent( ~{ :: .wrap} ) }">
 
@@ -53,7 +53,7 @@ A<!DOCTYPE html>
         <div class="table__tbody">
             
           <!-- 반복하는 곳 -->
-          <div class="tbody__item" th:each="list : ${listWithImg}" >S
+          <div class="tbody__item" th:each="list : ${listWithImg}" >
             <!-- 선택 -->
             <div class="tbody__check">
               <span th:text="${listStat.count}"></span>

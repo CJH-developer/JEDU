@@ -6,7 +6,6 @@ import org.apache.ibatis.annotations.Mapper;
 
 import com.geomin.project.command.GameContentVO;
 import com.geomin.project.util.JCriteria;
-import com.mysql.cj.x.protobuf.MysqlxCrud.DataModel;
 
 @Mapper
 public interface CommandMapper {

@@ -4,7 +4,6 @@ import java.util.ArrayList;
 
 import com.geomin.project.command.GameContentVO;
 import com.geomin.project.util.JCriteria;
-import com.mysql.cj.x.protobuf.MysqlxCrud.DataModel;
 
 public interface CommandService {
 	public ArrayList<GameContentVO> getList(JCriteria JCri);
