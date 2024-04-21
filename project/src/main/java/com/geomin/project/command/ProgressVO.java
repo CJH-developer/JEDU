@@ -11,11 +11,9 @@ public class ProgressVO {
 	
 	public String sg_no;
 	public String user_no;
-	public String sg_name;
-	public String sg_level;
-	public Integer sg_class;
+	public Integer homework_total_point;
 
-	//Homework_History
-	private String homework_submit;
+	public Integer progress_percentage;
+
 	
 }

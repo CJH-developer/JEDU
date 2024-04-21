@@ -26,6 +26,7 @@ import com.geomin.project.board.service.BoardService;
 import com.geomin.project.command.GameContentVO;
 import com.geomin.project.command.HomeWorkVO;
 import com.geomin.project.command.PageVO;
+import com.geomin.project.command.ProgressVO;
 import com.geomin.project.command.QnaVO;
 import com.geomin.project.command.StudyGroupVO;
 import com.geomin.project.command.UserVO;
@@ -186,16 +187,26 @@ public class StudentController {
 		int user_no = Integer.parseInt(vo.user_no);
 
 		ArrayList<StudyGroupVO> sgList = studentService.groupApplyList(user_no);
-		if(sgList != null) {
+		System.out.println(sgList.toString());
+		if(!sgList.isEmpty()) {
 			for (StudyGroupVO SGvo : sgList) {
 			    int sg_no = Integer.parseInt(SGvo.getSg_no());
+			    System.out.println("1번 동작함");
 			    int classProgress = studentService.getClassProgress(sg_no);
-			    int sumPoint = studentService.sumPoint(user_no);
+			    System.out.println("2번 동작함");
+		    	
+			    try {
+			    	int homework_total_point = studentService.totalHomeworkPoint(user_no, sg_no);
+			    	double percentage = ((double) homework_total_point / classProgress) * 100; 
+			    	int final_percentage = (int) Math.ceil(percentage);
+			    	System.out.println(final_percentage);
+			    	SGvo.setClass_progress(final_percentage);
+			    	model.addAttribute("sgList", SGvo);
+					
+				} catch (Exception e) {
+					System.err.println("에러남");
+				}
 			    
-			    double percentage = ((double) sumPoint / classProgress) * 100; 
-			    int final_percentage = (int) Math.ceil(percentage);
-			    System.out.println(final_percentage);
-			    SGvo.setClass_progress(final_percentage);
 			    model.addAttribute("sgList", SGvo);
 
 			}		
@@ -229,14 +240,21 @@ public class StudentController {
 			LocalDate dueDate = LocalDate.parse(hw.getHomework_duedate(), formatter);
 			long homework_leftdate = ChronoUnit.DAYS.between(today, dueDate);
 			System.out.println(
-					"Homework No: " + hw.getHomework_no() + ", Days left until due date: " + homework_leftdate);
+					"homework_No: " + hw.getHomework_no() + ", 남은 날짜: " + homework_leftdate);
 			
 			Integer teachGrade = hw.getTeach_grade();
 			int homework_no = Integer.parseInt(hw.getHomework_no());
+			Integer homework_point = hw.getHomework_point();
+			Integer sg_no = Integer.parseInt(hw.getSg_no());
 			
-			if(teachGrade != null && teachGrade >= 2) {
+			if(teachGrade != null && teachGrade >=2 && homework_point == null) {
 				studentService.addPoint(user_no, homework_no);
-			} else if(teachGrade == null) {
+				studentService.insertClassProgress(user_no, sg_no, homework_no);
+				
+			}else if(teachGrade != null && teachGrade >= 2) {
+		    	int sumPoint = studentService.sumPoint(user_no, sg_no);
+		    	
+			}else if(teachGrade == null || homework_point == null || sg_no == null) {
 				System.err.println("에러에러");
 			}
 
@@ -268,20 +286,39 @@ public class StudentController {
 		int user_no = Integer.parseInt(Uservo.user_no);
 
 		ArrayList<StudyGroupVO> list = studentService.groupList(user_no, sg_no);
-
-		System.out.println(list.size() + "~~~~~~~~~~~~~~~~~~~~~~~~~3333333333333333");
-
+		ArrayList<ProgressVO> progressList = studentService.allStudentPointList(sg_no);
+		
+		int classProgress = studentService.getClassProgress(sg_no);
+		model.addAttribute("classProgress", classProgress);
+		
 		learnGroupVO vo = teacherService.groupDetail(sg_no);
 		model.addAttribute("group", vo);
+		
+		System.out.println("list: " + list.toString());
+		System.out.println("progressList: " + progressList.toString());
 
-		System.out.println(vo.toString() + "11111111111~~~~~~~~~~~~~");
-
-		if (!list.isEmpty()) {
+		if (!list.isEmpty() || !progressList.isEmpty()) {
+			
 			String auth = (String) list.get(0).sgj_auth;
-			System.out.println(auth);
+			//System.out.println(auth);
 			model.addAttribute("auth", auth);
 			model.addAttribute("list", list);
+			
+			 List<ProgressVO> updatedProgressList = new ArrayList<>(); // Create a new list to hold updated ProgressVO objects
+			    
+			    for (ProgressVO progress : progressList) {
+			        int total_point = progress.getHomework_total_point();
+			        double percentage = ((double) total_point / classProgress) * 100;
+			        int final_percentage = (int) Math.ceil(percentage);
+
+			        progress.setProgress_percentage(final_percentage);
+
+			        updatedProgressList.add(progress);
+			    }
+			    
+			    model.addAttribute("progressList", updatedProgressList);
 		}
+		
 
 		return "student/myGroupDetail";
 	}

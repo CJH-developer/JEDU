@@ -117,17 +117,20 @@ public class CheckRestController {
 	}
 	
 	// 숙제 내주기
-	@GetMapping("/homeworkSend/{homework_no}/{user_no}")
+	@GetMapping("/homeworkSend/{homework_no}/{user_no}/{sg_no}")
 	public int homeworkSend(@PathVariable("homework_no") String homework_no,
-								@PathVariable("user_no") String user_no) {
+								@PathVariable("user_no") String user_no
+								,@PathVariable("sg_no") String sg_no) {
 		
 		
 		System.out.println("숙제번호: " + homework_no);
 		System.out.println("유저번호: " + user_no);
+		System.out.println("그룹번호: " + sg_no);
 		
 		Map<String, Object> map = new HashMap<>();
 		map.put("homework_no", homework_no);
 		map.put("user_no", user_no);
+		map.put("sg_no", sg_no);
 		
 		System.out.println(map);
 		

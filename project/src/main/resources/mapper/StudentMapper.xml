@@ -54,7 +54,12 @@
 		
 			<!-- 숙제 조회 -->
 		<select id="getHomeworkDetail" resultType="HomeWorkVO">
-			SELECT HW_HIS.*, HW.*, U.USER_NAME 
+			SELECT HW_HIS.*, HW.HOMEWORK_NAME,
+							 HW.HOMEWORK_CONTENT,
+							 HW.HOMEWORK_DUEDATE,
+							 USER_NAME,
+							 HOMEWORK_LEVEL,
+							 U.USER_NAME 
 			FROM HOMEWORK_HISTORY HW_HIS 
 			LEFT JOIN HOMEWORK HW
 			ON HW.HOMEWORK_NO = HW_HIS.HOMEWORK_NO
@@ -126,10 +131,25 @@
 		</insert>
 		
 		<select id="sumPoint" resultType="Integer">
-			SELECT SUM(HOMEWORK_POINT) FROM HOMEWORK_HISTORY WHERE USER_NO = #{user_no};
+			SELECT SUM(HOMEWORK_POINT) FROM HOMEWORK_HISTORY WHERE USER_NO = #{user_no} AND SG_NO = #{sg_no};
 		</select>
+		
+		<insert id="insertClassProgress">
+			INSERT INTO SG_PROGRESS (SG_NO, USER_NO, HOMEWORK_TOTAL_POINT)
+					 		VALUES (#{sg_no}, #{user_no}, #{homework_point})
+		</insert>
 		
 		<select id="getClassProgress" resultType="Integer">
 			SELECT SG_CLASS FROM STUDY_GROUP WHERE SG_NO = #{sg_no}
 		</select>
+		
+		<select id="totalHomeworkPoint" resultType="Integer">
+			SELECT HOMEWORK_TOTAL_POINT FROM SG_PROGRESS 
+			WHERE USER_NO = #{user_no} AND SG_NO = #{sg_no}
+		</select>
+		
+		<select id="allStudentPointList" resultType="ProgressVO">
+			SELECT * FROM SG_PROGRESS WHERE SG_NO = #{sg_no}
+		</select>
+		
 	</mapper>
