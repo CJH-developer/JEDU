@@ -4,62 +4,12 @@
 <link rel="stylesheet" href="/css/frame/learnGroupLook.css">
 <script src="/js/frame/learnGroupLook.js" defer></script>
 <script src="/js/student/groupStudyList.js" defer></script>
+<link rel="stylesheet" href="/css/student/groupStudyList.css">
+
 </head>
 <body class="body">
-	<style>
-.loading-wrap {
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	justify-content: center;
-}
-
-.loading-spinner {
-	width: 40px;
-	height: 40px;
-	border: 5px solid #3498db;
-	border-top: 5px solid transparent;
-	border-radius: 50%;
-	animation: rotate 1s linear infinite;
-}
-
-.loadingMessage {
-	font-weight: bold;
-	position: relative;
-	top: 55%;
-	left: 25%;
-}
-
-.loadMsg {
-	position: absolute;
-	width: 300px;
-	length: 300px;
-}
-
-.loading-postion {
-	position: fixed;
-	top: 50%;
-	left: 50%;
-}
-
-@
-keyframes rotate {from { transform:rotate(0deg);
-	
-}
-
-to {
-	transform: rotate(360deg);
-}
-
-}
-.ex-box {
-	padding: 10px;
-	border: 1px solid black;
-}
-</style>
 	<th:block
 		th:replace="~{./baseLayout/base_f :: setContent( ~{ :: .wrap} ) }">
-		<link rel="stylesheet" href="/css/student/groupStudyList.css">
 		<div class="wrap">
 			<div class="wrap__content">
 				<div class="look__wrap">
@@ -70,25 +20,23 @@ to {
 								<input type="text" placeholder="학습그룹명을 입력하세요.">
 								<button class="search_btn">검색</button>
 							</div>
-							<button class="ai_btn">AI 찬스</button>
+
 						</div>
 
 						<div class="loading-wrap loading-wrap--js" style="display: none">
 							<div class="loading-postion">
 								<div class="loading-spinner loading-spinner--js"></div>
 								<div class="loadMsg">
-									<p id="loadingMessage"></p>
+									<div id="progressbar">
+										<span id="loading"></span>
+										<div id="load"></div>
+									</div>
 								</div>
 							</div>
 						</div>
 
-						<div class="looks__header__submit">
-							<select name="" id="">
-								<option value="none">정렬</option>
-								<option value="가나다순">가나다순</option>
-								<option value="등록일순">등록일순</option>
-								<option value="인원순">인원순</option>
-							</select>
+						<div style='text-align:center;' class="btn-green">
+  							<button class="action-button shadow animate green">AI 찬스</button>
 						</div>
 					</div>
 					<div class="looks__wrap__body">
@@ -119,8 +67,9 @@ to {
 						<div id="studyGroupList"></div>
 
 					</div>
-					<th:block
-						th:replace="~{./baseLayout/page_studyGroup :: pageNation(${pageVOstudyGroup})}"></th:block>
+					<div id="pagination">
+					<th:block th:replace="~{./baseLayout/page_studyGroup :: pageNation(${pageVOstudyGroup})}"></th:block>
+					</div>
 				</div>
 			</div>
 		</div>

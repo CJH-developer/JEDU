@@ -17,6 +17,7 @@
 	     <h2 th:if="${hwList.get(0).teach_grade == null}">[[${user_name + '님의 숙제 페이지'}]]</h2>
 	     <h2 th:if="${hwList.get(0).teach_grade < 2 && hwList.get(0).teach_grade != null}">FAIL!!!$</h2>
 	    </div>
+	    <button onclick="location.href='/student/playGo';" class="action-button shadow animate blue playGo">사활 풀러가기</button>
    		<form action="/student/submission" method="get">
 		  <div class="container">
 		    <div class="flex-form-container">
@@ -78,7 +79,7 @@
 		  	<script>
 		        $(document).ready(function() {
 		            $(".gameover").click(function() {
-		                $(this).text("힝 속았지? 숙제 마감했어");
+		                $(this).text("엄...마 감했어");
 		            });
 		        });
 		  	</script>

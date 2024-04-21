@@ -37,13 +37,13 @@
                     </thead>
                     <tbody th:each="sgList : ${sgList}" th:if="${sgList.sgj_auth == '1'}">
                         <tr>
-                            <tr  th:data-url="@{/student/myGroupDetail(sg_no=${sgList.sg_no})}">
+                            <tr th:data-url="@{/student/myGroupDetail(sg_no=${sgList.sg_no})}">
                             <td th:text=${sgList.sg_name}></td>
                             <td th:text=${sgList.sg_plus}></td>
                             <td>
                                 <div class="progress-bar">
                                     <div class="progress-fill" ></div>
-                                    <progress value="100" max="100">70 %</progress>
+                                    <progress th:value=${sgList.class_progress} max="100">70 %</progress>
                                 </div>
                             </td>
                         </tr>
