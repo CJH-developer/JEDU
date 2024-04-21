@@ -1,6 +1,11 @@
 package com.geomin.project.command;
 
 
+import java.sql.Date;
+import java.text.SimpleDateFormat;
+
+import org.springframework.format.annotation.DateTimeFormat;
+
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -19,7 +24,9 @@ public class GameContentVO {
 	private Integer game_discount_price;
 	private String game_content;
 	private Integer game_count;
-	private String game_sub_regDate;
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
+	private Date game_sub_regDate;
+
 	private String game_sub_endDate;
 	private String game_regdate;
 	private String del_check;
@@ -32,5 +39,8 @@ public class GameContentVO {
 	private String purchase_date;
 	private int cnt;
 	private String price_sum;
-	
+
+
+		
+
 }

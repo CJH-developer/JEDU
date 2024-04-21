@@ -15,7 +15,7 @@ for(var i=0; i<btn.length; i++){
     text02();
    text03();
     text04();
-  
+text05();
     
   });
 
@@ -53,7 +53,7 @@ function text03(){
 
 		
 
-document.getElementById("default__price").textContent="정가 : "+spanText3;
+document.getElementById("default__price").textContent="할인가 : "+spanText3;
 
 }
 
@@ -65,6 +65,12 @@ function text04(){
 	
 	document.getElementById("default__info").textContent="난이도 : "+spanText4;
 }
-
+function text05(){
+		var game=document.querySelector(".game").value;
+	console.log(game);
+	var games=document.querySelector(".games").value;
+	console.log(games);
+	document.getElementById("default__price2").textContent="학습기간 : "+game+" ~ "+games;
+}
   
 }

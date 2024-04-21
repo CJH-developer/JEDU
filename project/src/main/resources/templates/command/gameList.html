@@ -12,7 +12,7 @@
 			<script src="/js/frame/modal.js" defer></script>
 			<script src="/js/frame/gameList.js" defer></script>
 			<script src="/js/user/gameLists.js" defer></script>
-			
+			<script src="/js/user/addCart.js" defer></script>
 
 			<div id="myModal" class="modal">
 
@@ -38,10 +38,10 @@
 										<span id="default__info"></span>
 									</div>
 									<div class="default__info">
-										<span>학습대상 : </span>
+										<span>학습대상 : 일반인 </span>
 									</div>
 									<div class="default__info">
-										<span>구매 혜택 : </span>
+										<span>구매 혜택 : 바둑실력 늘음</span>
 									</div>
 
 									<div class="default__price" >
@@ -51,7 +51,7 @@
 										<span id="default__price" > </span>
 									</div>
 									<div class="default__price" >
-										<span  >학습기간 : </span>
+										<span id="default__price2" >학습기간 : </span>
 									</div>
 
 									<div class="default__button">
@@ -182,7 +182,8 @@
 									<div class="game__thumbnail__price">
 										<span>[[${vo.game_price}]]</span>
 									</div>
-								
+									<input type="hidden" th:value="${vo.game_sub_endDate}" class="game">
+										<input type="hidden" th:value="${vo.game_sub_regDate}" class="games">
 								</div>
 							</div>
 
@@ -208,7 +209,9 @@
 									<div class="game__thumbnail__price">
 										<span class="game_price" th:value="${vo.game_price}">[[${vo.game_price}]]</span>
 									</div>
-										<input type="hidden" th:value="${vo.game_price}" class="game">
+										<input type="hidden" th:value="${vo.game_sub_endDate}" class="game">
+										<input type="hidden" th:value="${vo.game_sub_regDate}" class="games">
+										
 								</div>
 							</div>
 						</div>
