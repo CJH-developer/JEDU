@@ -22,6 +22,7 @@ import com.geomin.project.command.HomeWorkVO;
 import com.geomin.project.command.PageVO;
 import com.geomin.project.command.PurchaseVO;
 import com.geomin.project.command.QnaVO;
+import com.geomin.project.command.StudyGroupVO;
 import com.geomin.project.command.UserVO;
 import com.geomin.project.command.learnGroupVO;
 import com.geomin.project.gameContentService.GameContentService;
@@ -54,6 +55,9 @@ public class TeacherController {
 		System.out.println(vo.toString());
 		ArrayList<QnaVO> qnaList = boardService.getQna();
 		model.addAttribute("qnaList", qnaList);
+		
+		ArrayList<learnGroupVO> groupList = teacherService.mainGroupList(Integer.parseInt(vo.user_no));
+		model.addAttribute("groupList", groupList);
 		
 		return "teacher/main";
 	}

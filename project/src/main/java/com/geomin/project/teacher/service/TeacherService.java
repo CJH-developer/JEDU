@@ -3,9 +3,12 @@ package com.geomin.project.teacher.service;
 import java.util.ArrayList;
 import java.util.Map;
 
+import org.apache.ibatis.annotations.Param;
+
 import com.geomin.project.command.GameContentVO;
 import com.geomin.project.command.HomeWorkVO;
 import com.geomin.project.command.HomeworkHistoryVO;
+import com.geomin.project.command.StudyGroupVO;
 import com.geomin.project.command.learnGroupVO;
 
 public interface TeacherService {
@@ -57,6 +60,9 @@ public interface TeacherService {
 	
 	// 숙제 평가하고 저장 눌렀을 때
 	public int homeworkGrade(Map<String, Object> homework);
+	
+	// 메인페이지에 그룹 리스트
+	public ArrayList<learnGroupVO> mainGroupList(int user_no);
 	
 	
 
