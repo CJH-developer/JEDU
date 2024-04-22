@@ -68,30 +68,16 @@ public class CommandController {
 		ArrayList<GameContentVO> list = commandService.getList(JCri);
 //		cartService.addtoCart(user_no, game_no);
 
-		List<GameContentVO> pagesubList = safeList(list, 0, 1);
-		List<GameContentVO> a1 = safeList(list, 1, 2);
-		List<GameContentVO> a2 = safeList(list, 2, 3);
-		List<GameContentVO> a3 = safeList(list, 3, 4);
-		List<GameContentVO> a4 = safeList(list, 4, 5);
-		List<GameContentVO> pagesubListTwo = safeList(list, 5, 6);
-		List<GameContentVO> b1 = safeList(list, 6, 7);
-		List<GameContentVO> b2 = safeList(list, 7, 8);
-		List<GameContentVO> b3 = safeList(list, 8, 9);
-		List<GameContentVO> b4 = safeList(list, 9, 10);
+		List<GameContentVO> pagesubList = safeList(list, 0, 5);
+		
+		List<GameContentVO> pagesubListTwo = safeList(list, 5, 10);
+	
 		int total = commandService.getTotal(JCri);
 		JPageVO JPageVO = new JPageVO(JCri, total);
 
 		model.addAttribute("JPageVO", JPageVO);
 		model.addAttribute("pagesubList", pagesubList);
 		model.addAttribute("pagesubListTwo", pagesubListTwo);
-		model.addAttribute("a1", a1);
-		model.addAttribute("a2", a2);
-		model.addAttribute("a3", a3);
-		model.addAttribute("a4", a4);
-		model.addAttribute("b1", b1);
-		model.addAttribute("b2", b2);
-		model.addAttribute("b3", b3);
-		model.addAttribute("b4", b4);
 		
 
 		return "command/gameList";
