@@ -1,6 +1,5 @@
 package com.geomin.project.util;
 
-
 import lombok.Data;
 
 @Data
