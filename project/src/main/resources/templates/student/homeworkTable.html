@@ -48,10 +48,16 @@
 								<span class="badge badge-primary">제출 완료</span>
 							</h6>
 						</td>
-						<td th:if="${hw.stu_content == null}">
+						<td th:if="${hw.stu_content == null && hw.homework_leftdate < 0}">
 							<h6>
 								<span class="badge badge-pill badge-danger"
-									th:text=" '제출 D-' + ${hw.hwDuedate()}"></span>
+									th:text=" '제출 D+' + ${hw.homework_leftdate * -1}"></span>
+							</h6>
+						</td>
+						<td th:if="${hw.stu_content == null && hw.homework_leftdate >= 0}">
+							<h6>
+								<span class="badge badge-pill badge-info"
+									th:text=" '제출 D-' + ${hw.homework_leftdate}"></span>
 							</h6>
 						</td>
 
@@ -60,24 +66,20 @@
 								<span class="badge badge-success">평가 완료</span>
 							</h6>
 						</td>
-
 						<td>
-							<button id="myBtn">점수 확인</button>
+							<button class="modal-button"
+								th:data-target="'modalSuccess' + ${hwStat.count}">점수 확인</button>
 						</td>
-
-						<div id="myModal" class="modal">
-
+						
+						<div th:id="'modalSuccess' + ${hwStat.count}" class="modal">
 							<div class="modal-content">
-
-								<span class="close">&times;</span>
 								<h1>축하합니다!!</h1>
-								<h4
-									th:text="${hw.teach_grade == 2} ? '당신은 보통을 받으셨습니다' : '당신은 우수를 받으셨습니다!!'"></h4>
+								<h4 th:text="${hw.teach_grade == 2} ? '당신은 보통을 받으셨습니다' : '당신은 우수를 받으셨습니다!!'"></h4>
 								<h5>다음 레벨을 향해 계속 도전하세요!</h5>
+								<span class="close">&times;</span>
 								<canvas id="confeti" width="300" height="300" class="active">
 								</canvas>
 							</div>
-
 						</div>
 
 					</tr>
@@ -94,13 +96,18 @@
 								<span class="badge badge-primary">제출 완료</span>
 							</h6>
 						</td>
-						<td th:if="${hw.stu_content == null}">
+							<td th:if="${hw.stu_content == null && hw.homework_leftdate < 0}">
 							<h6>
 								<span class="badge badge-pill badge-danger"
-									th:text=" '제출 D-' + ${hw.hwDuedate()}"></span>
+									th:text=" '제출 D+' + ${hw.homework_leftdate * -1}"></span>
 							</h6>
 						</td>
-
+						<td th:if="${hw.stu_content == null && hw.homework_leftdate >= 0}">
+							<h6>
+								<span class="badge badge-pill badge-info"
+									th:text=" '제출 D-' + ${hw.homework_leftdate}"></span>
+							</h6>
+						</td>
 						<td>
 							<h6>
 								<span class="badge badge-success">평가 완료</span>
@@ -108,28 +115,23 @@
 						</td>
 
 						<td>
-							<button id="myBtn">점수 확인</button>
+							<button class="modal-button-fail"
+								th:data-target="'modalFail' + ${hwStat.count}"
+								onclick="document.getElementById('testAudio').play()">점수
+								확인</button>
 						</td>
 
-						<div id="myModal" class="modal">
-
+						<div th:id="'modalFail' + ${hwStat.count}" class="modal">
 							<div class="modal-content">
-
-								<span class="close">&times;</span>
+								<span class="close"
+									onclick="document.getElementById('testAudio').pause(); document.getElementById('testAudio').currentTime=0;">&times;</span>
 								<h1>통과하지 못하셨습니다.</h1>
 								<h4>
-									<th:block th:if="${hw.teach_grade < 2}">
-								        당신은 <span style="color: red;">미흡</span>을 받으셨습니다.
-								    </th:block>
+									당신은 <span style="color: red;">미흡</span>을 받으셨습니다.
 								</h4>
 								<h5>계속해서 도전해 보세요!</h5>
-
 							</div>
-
 						</div>
-
-
-
 					</tr>
 
 					<tr th:if="${hw.teach_grade == null}"
@@ -144,38 +146,38 @@
 								<span class="badge badge-primary">제출 완료</span>
 							</h6>
 						</td>
-						<td th:if="${hw.stu_content == null && hw.hwDuedate() > 0}">
+							<td th:if="${hw.stu_content == null && hw.homework_leftdate < 0}">
 							<h6>
 								<span class="badge badge-pill badge-danger"
-									th:text=" '제출 D-' + ${hw.hwDuedate()}"></span>
+									th:text=" '제출 D+' + ${hw.homework_leftdate * -1}"></span>
 							</h6>
 						</td>
-						<td th:if="${hw.stu_content == null && hw.hwDuedate() < 0}">
+						<td th:if="${hw.stu_content == null && hw.homework_leftdate >= 0}">
 							<h6>
-								<span class="badge badge-pill badge-warning"
-									th:text=" '제출 D+' + ${hw.hwDuedate()*-1}"></span>
+								<span class="badge badge-pill badge-info"
+									th:text=" '제출 D-' + ${hw.homework_leftdate}"></span>
 							</h6>
 						</td>
-						
+						<td>
+							<h6>
+								<span class="badge badge-warning">평가 중</span>
+							</h6>
+						</td>
 
-						<td>
-							<h6>
-								<span class="badge badge-warning">평가 중</span>
-							</h6>
-						</td>
-						<td>
-							<h6>
-								<span class="badge badge-warning">평가 중</span>
-							</h6>
-						</td>
 					</tr>
-
-
+				</tbody>
+				
+				
+				<tbody th:if="${#lists.isEmpty(hwList)}">
+					<tr>
+                    	<td colspan="8">아직 제출한 숙제가 없습니다.</td>
+                	</tr>
 				</tbody>
 			</table>
 		</div>
+		<audio id="testAudio" src="/audio/bgm.mp3" controls
+			style="display: none;"></audio>
 
 	</div>
-
 </th:block>
 </html>

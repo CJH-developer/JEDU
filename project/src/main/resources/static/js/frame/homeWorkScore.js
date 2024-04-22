@@ -26,9 +26,9 @@ $('.homework-checkbox').change(function () {
 		        userInfo.append('<div class="score__tbody2__six">' + 
 		                        '<select name="grade" class="grade-select">' +
 		                        '<option value="none">평가</option>' +
-		                        '<option value="1">우수</option>' +
+		                        '<option value="3">우수</option>' +
 		                        '<option value="2">보통</option>' +
-		                        '<option value="3">미흡</option>' +
+		                        '<option value="1">미흡</option>' +
 		                        '</select>' +
 		                        '</div>');
 		        

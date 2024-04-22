@@ -7,6 +7,7 @@ import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 
 import com.geomin.project.command.GameContentVO;
+import com.geomin.project.command.PurchaseVO;
 import com.geomin.project.command.QnaVO;
 import com.geomin.project.command.UserVO;
 import com.geomin.project.util.Criteria;
@@ -57,4 +58,7 @@ public interface UserMapper {
 	// 매출조회
 	public ArrayList<GameContentVO> getPurchaseList(@Param("criteria") CriteriaPrice criteria);
 	public int getPriceTotal();
+	
+	// 매출 상세 조회
+	public ArrayList<PurchaseVO> getPurchaseDetail(String purchase_date);
 }

@@ -11,25 +11,20 @@
       <div class="grl__header">
 
         <div class="grl__header__title"><span>그룹 가입 상세 조회</span></div>
-        <div class="grl__header__select">
-          <select name="" id="">
-            <option value="none">학습 그룹 선택해주세요.</option>
-            <option value="강남 초급반">강남 초급반</option>
-            <option value="강남 초급반">강남 초급반</option>
-            <option value="강남 초급반">강남 초급반</option>
-            <option value="강남 초급반">강남 초급반</option>
-            <option value="강남 초급반">강남 초급반</option>
-            <option value="강남 초급반">강남 초급반</option>
-          </select>
-		
-        </div>
+
         <div class="grl__header__btn">
           <button type="submit" id="groupApply" th:if="${auth == '0'}">가입신청</button>
           <button type="submit" id="groupApply" th:if="${auth == null}">가입신청</button>
-          <div id="approvedMes" class="approved-mege" th:if="${auth == '1'}">이미 가입을 완료 하셨습니다.</div>
+          <button type="submit" id="groupApply" th:if="${auth == '2'}">가입신청</button>
+          <div id="approvedMes" class="approved-mege" th:if="${auth == '1'}">가입 완료</div>
         </div>
         <div id="applyMessage" class="apply-message">그룹 스터디에 신청되었습니다.</div>
 		<div id="processMessage" class="process-message">승인 절차가 진행 중입니다.</div>
+		<div id="reapplyMessage" class="reapply-message">재가입을 다시 신청하셨습니다!!</div>
+		<div id="rejectMessage" class="reject-message">그룹 승인이 거절되셨습니다. 다시 지원하시겠습니까? 
+			<button type="submit" class="re-apply" onclick=re_apply()>예</button>
+			<button type="submit" class="no-apply" onclick=no_apply()>아니요</button>
+		</div>
 		<input type="hidden" id="hiddenSg_No" th:value="${group.sg_no}" name="sg_no">
 		<input type="hidden" id="hiddenUser_No" th:value="${session.vo.user_no}" name="user_no">
 		<input type="hidden" id="hiddenSg_Level" th:value="${group.sg_level}" name="user_no">

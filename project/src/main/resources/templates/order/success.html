@@ -23,7 +23,7 @@
 			
 			<div class="wrap" th:each="cartList : ${cartList}">
 				<div class="text-center">
-	           			<h3 class="">결재 완료!</h3>
+	           			<h1 class="">결재 완료!</h1>
 	            		<p class="text-gray-600 my-2">JEDU에 컨탠츠를 결재해 주셔서 감사합니다!</p>
 	            		<p> 앞으로 더 많은 이용 부탁 드립니다. </p>
 	            		<div class="">
@@ -43,12 +43,11 @@
 			<script>
 			const purchase = $('.goback_btn');
 
-
 			$('.goback_btn').click(function() {
 			    $.get("/game/purchase", {user_no: user_no, game_no: game_no})
 			     .done(function(result) {
 			            console.log("success");
-			            window.location.href = "/command/main";
+			            window.location.href = "lookup/main";
 			        })
 			     .fail(function(error) {
 			            console.log("fail");

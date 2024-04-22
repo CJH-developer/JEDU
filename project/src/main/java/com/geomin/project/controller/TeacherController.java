@@ -15,11 +15,13 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.geomin.project.board.service.BoardService;
 import com.geomin.project.cart.service.CartService;
 import com.geomin.project.command.GameContentVO;
 import com.geomin.project.command.HomeWorkVO;
 import com.geomin.project.command.PageVO;
 import com.geomin.project.command.PurchaseVO;
+import com.geomin.project.command.QnaVO;
 import com.geomin.project.command.UserVO;
 import com.geomin.project.command.learnGroupVO;
 import com.geomin.project.gameContentService.GameContentService;
@@ -38,10 +40,21 @@ public class TeacherController {
 	
 	@Autowired
 	private GameContentService gameContentService;
+	
+	@Autowired
+	BoardService boardService;
 
 	// 메인 화면
 	@GetMapping("/main")
-	public String main() {
+	public String main(Model model, HttpServletRequest request) {
+		
+		HttpSession session = request.getSession();
+		UserVO vo = (UserVO) session.getAttribute("vo");
+		model.addAttribute("vo", vo);
+		System.out.println(vo.toString());
+		ArrayList<QnaVO> qnaList = boardService.getQna();
+		model.addAttribute("qnaList", qnaList);
+		
 		return "teacher/main";
 	}
 	
@@ -98,7 +111,17 @@ public class TeacherController {
 	
 	// 학습 그룹 등록 페이지
 	@GetMapping("/learnGroupRegist")
-	public String learnGroupRegist() {
+	public String learnGroupRegist(Model model, HttpServletRequest request) {
+		
+		// 이 작업들은, 내가 구매한 학습컨텐츠 가져오려고 하는거임
+		HttpSession session = request.getSession();
+		UserVO vo =(UserVO) session.getAttribute("vo");
+		int user_no = Integer.parseInt(vo.user_no);
+		
+		// 이미지 포함
+		ArrayList<PurchaseVO> purListWithImg = cartService.purchaseHistoryWithImg(user_no);
+		model.addAttribute("listWithImg" , purListWithImg);
+		
 		
 		return "teacher/learnGroupRegist";
 	}
@@ -108,6 +131,8 @@ public class TeacherController {
 	@PostMapping("/learnGroupRegistForm")
 	public String learnGroupRegistForm(learnGroupVO vo) {
 
+		System.out.println("------------------------------------");
+		System.out.println(vo);
 		teacherService.RegistGroup(vo);
 		return "teacher/main";
 	}
@@ -131,6 +156,12 @@ public class TeacherController {
 	// 숙제 등록
 	@PostMapping("/homeWorkRegistForm")
 	public String homeWorkRegistForm(HomeWorkVO vo) {
+		
+		System.out.println("으아아아앙아ㅏ아아아아아아아ㅏㄱ");
+		System.out.println("으아아아앙아ㅏ아아아아아아아ㅏㄱ");
+		System.out.println("으아아아앙아ㅏ아아아아아아아ㅏㄱ");
+		System.out.println("으아아아앙아ㅏ아아아아아아아ㅏㄱ");
+		System.out.println("으아아아앙아ㅏ아아아아아아아ㅏㄱ");
 		
 		System.out.println(vo);
 		teacherService.RegistHomework(vo);
@@ -162,6 +193,8 @@ public class TeacherController {
 	@GetMapping("/groupRegistApprove")
 	public String groupRegistApprove() {
 		
+		
+		
 		return "teacher/groupRegistApprove";
 	}
 	
@@ -179,8 +212,9 @@ public class TeacherController {
 		UserVO vo =(UserVO) session.getAttribute("vo");
 		int user_no = Integer.parseInt(vo.user_no);
 		
-		ArrayList<PurchaseVO> purList = cartService.purchaseHistory(user_no);
-		model.addAttribute("purList", purList);
+		// 이미지 포함
+		ArrayList<PurchaseVO> purListWithImg = cartService.purchaseHistoryWithImg(user_no);
+		model.addAttribute("listWithImg" , purListWithImg);
 		
 		
 		

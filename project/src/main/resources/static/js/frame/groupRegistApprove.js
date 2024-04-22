@@ -47,11 +47,12 @@ $("#searchGroup").click(function() {
         method: "GET",
         success: function(data) {
             console.log(data);
-            
             // 그룹 정보 채우기
+	        var imgSrc = "/display/" + data.filepath + "/" + data.uuid + "/" + data.filename;
+	        $(".grl__bbt__zero img").attr("src", imgSrc);
             $(".grl__bbt__one").text(data.groupdetail.game_title);
             $(".grl__bbt__two").text(data.groupdetail.game_target_level);
-            $(".grl__bbt__three").text("일단 대기");
+            $(".grl__bbt__three").text("Y");
             $(".grl__bbt__four").text(data.groupdetail.sg_capa);
             $(".grl__bbt__five").text(data.groupdetail.sg_grouplimit);
 
@@ -122,7 +123,7 @@ $("#approve").click(function() {
 					            // 그룹 정보 채우기
 					            $(".grl__bbt__one").text(data.groupdetail.game_title);
 					            $(".grl__bbt__two").text(data.groupdetail.game_target_level);
-					            $(".grl__bbt__three").text("일단 대기");
+					            $(".grl__bbt__three").text("Y");
 					            $(".grl__bbt__four").text(data.groupdetail.sg_capa);
 					            $(".grl__bbt__five").text(data.groupdetail.sg_grouplimit);
 					

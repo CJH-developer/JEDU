@@ -21,6 +21,18 @@
 			SELECT COUNT(*) FROM STUDY_GROUP_JOIN WHERE user_no = #{user_no} AND sg_no = #{sg_no}
 		</select>
 		
+		<!-- 그룹 신청 거절 여부 -->
+		<select id="rejectCheck" resultType="StudyGroupVO">
+			SELECT * FROM STUDY_GROUP_JOIN WHERE user_no = #{user_no} AND sg_no = #{sg_no}
+		</select>
+		
+		<!-- 그룹 재가입 신청 -->
+		<update id="reapplyGroup">
+			UPDATE STUDY_GROUP_JOIN SET SGJ_AUTH = 0
+			                        WHERE USER_NO = #{user_no}
+			                        AND SG_NO = #{sg_no}
+		</update>
+		
 		<!-- 그룹 신청 승인 여부 -->
 		<select id="groupApplyList" resultType="StudyGroupVO">
 			SELECT * FROM STUDY_GROUP_JOIN SGJ
@@ -42,7 +54,12 @@
 		
 			<!-- 숙제 조회 -->
 		<select id="getHomeworkDetail" resultType="HomeWorkVO">
-			SELECT HW_HIS.*, HW.*, U.USER_NAME 
+			SELECT HW_HIS.*, HW.HOMEWORK_NAME,
+							 HW.HOMEWORK_CONTENT,
+							 HW.HOMEWORK_DUEDATE,
+							 USER_NAME,
+							 HOMEWORK_LEVEL,
+							 U.USER_NAME 
 			FROM HOMEWORK_HISTORY HW_HIS 
 			LEFT JOIN HOMEWORK HW
 			ON HW.HOMEWORK_NO = HW_HIS.HOMEWORK_NO
@@ -94,5 +111,45 @@
 		  WHERE SG.SG_LEVEL = #{user_level};
 		</select>
 		
+		<!-- 숙제 포인트 등록  -->
+		<insert id="addPoint">
+			UPDATE HOMEWORK_HISTORY SET HOMEWORK_POINT = 1
+			WHERE USER_NO = #{user_no}
+			AND HOMEWORK_NO = #{homework_no}
+		</insert>
+		
+		<!-- leftDate 계산 -->
+		<insert id="leftDate">
+			UPDATE HOMEWORK_HISTORY SET HOMEWORK_LEFTDATE = #{homework_leftdate}
+			WHERE USER_NO = #{user_no}
+			AND   HOMEWORK_NO = #{homework_no}
+		</insert>
+		
+		<!-- SG_Progress에 넣기 (진도율 시작점) -->
+		<insert id="studyProgress">
+			INSERT INTO SG_PROGRESS (USER_NO) VALUE (#{user_no});
+		</insert>
+		
+		<select id="sumPoint" resultType="Integer">
+			SELECT SUM(HOMEWORK_POINT) FROM HOMEWORK_HISTORY WHERE USER_NO = #{user_no} AND SG_NO = #{sg_no};
+		</select>
+		
+		<insert id="insertClassProgress">
+			INSERT INTO SG_PROGRESS (SG_NO, USER_NO, HOMEWORK_TOTAL_POINT)
+					 		VALUES (#{sg_no}, #{user_no}, #{homework_point})
+		</insert>
+		
+		<select id="getClassProgress" resultType="Integer">
+			SELECT SG_CLASS FROM STUDY_GROUP WHERE SG_NO = #{sg_no}
+		</select>
+		
+		<select id="totalHomeworkPoint" resultType="Integer">
+			SELECT HOMEWORK_TOTAL_POINT FROM SG_PROGRESS 
+			WHERE USER_NO = #{user_no} AND SG_NO = #{sg_no}
+		</select>
+		
+		<select id="allStudentPointList" resultType="ProgressVO">
+			SELECT * FROM SG_PROGRESS WHERE SG_NO = #{sg_no}
+		</select>
 		
 	</mapper>

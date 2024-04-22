@@ -6,12 +6,15 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.geomin.project.command.StudyGroupVO;
 import com.geomin.project.command.UserVO;
+import com.geomin.project.student.service.StudentMapper;
 import com.geomin.project.student.service.StudentService;
 
 @RestController
@@ -32,12 +35,29 @@ public class StudentRestController {
 	public boolean groupCheck(@RequestParam("user_no") int user_no,
 						  @RequestParam("sg_no") int sg_no) {
 		
+		
 		int inGroup = studentService.groupCheck(user_no, sg_no);
 		  if (inGroup > 0) {
-	            return false;
-	        } else {
 	            return true;
+	        } else {
+	            return false;
 	        }
+	}
+	@GetMapping("reject/group")
+	public Boolean rejectCheck(@RequestParam("user_no") int user_no, @RequestParam("sg_no") int sg_no) {
+	   
+		ArrayList<StudyGroupVO> list = studentService.rejectCheck(user_no, sg_no);
+		if(!list.isEmpty()) {
+			int auth = Integer.parseInt(list.get(0).getSgj_auth());
+			if(auth == 2) {
+				return true;
+			}else {
+				return false;
+			}
+		}
+		
+		return false;
+	
 	}
 	
 	@GetMapping("approve/group")
@@ -53,6 +73,15 @@ public class StudentRestController {
 			return true;
 		}
 		
+	}
+	
+	@GetMapping("reapply/group")
+	public int reapply(@RequestParam("user_no") int user_no,
+						@RequestParam("sg_no") int sg_no) {
+		
+		int a = studentService.reapplyGroup(user_no, sg_no);
+		System.out.println(a);
+		return a;
 	}
 	
 	@GetMapping("/check/ai")
@@ -72,4 +101,9 @@ public class StudentRestController {
 		return studentService.aiList(user_no, user_level);
 	}
 
+	/*
+	 * @GetMapping("/group/search") 
+	 * public
+	 */
+	
 }
