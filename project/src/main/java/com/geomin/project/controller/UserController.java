@@ -115,10 +115,6 @@ public class UserController {
 		}
 		return list.subList(fromIndex, actualToIndex);
 	}
-	@GetMapping("/buketList")
-	public String buketList() {
-		return "user/buketList";
-	}
-	
+
 	
 }

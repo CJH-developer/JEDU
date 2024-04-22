@@ -52,10 +52,3 @@ for (var i = 0; i < page__num.length; i++) {
   this.className += " page__active";
   });
 }
-
-
-
-
-
-
-

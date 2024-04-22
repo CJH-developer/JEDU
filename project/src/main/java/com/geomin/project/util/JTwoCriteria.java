@@ -26,7 +26,7 @@ public class JTwoCriteria {
     private String search_product;
     private String startDate;
     private String endDate;
-
+    private Integer user_no;
 
 
 

@@ -64,18 +64,3 @@ myProduct__date__btn.onclick=function(e){
 //const dataList = document.querySelectorAll('.table__tbody');
 
 // 데이터가 있으면 리스트에 항목을 추가하고 스타일을 적용합니다.
-if (data.length > 0) {dataList.forEach((datalist) => {
-  datalist.className = 'table__tbody';
-  data.forEach(item => {
-    const li = document.createElement('div');
-    li.textContent = item;
-    datalist.appendChild(li);
- });
-  });
-} else {
-  // 데이터가 없으면 다른 스타일을 적용합니다.
-  dataList.forEach((datalist)=>{datalist.className='non_date_table__tbody'});
-
-
-}
-
