@@ -177,9 +177,10 @@ public class StudentController {
 		int user_no = Integer.parseInt(vo.user_no);
 
 		ArrayList<StudyGroupVO> sgList = studentService.groupApplyList(user_no);
-
+		
 		model.addAttribute("sgList", sgList);
 		System.out.println(sgList.toString());
+		System.out.println(sgList.get(0).sg_enddate);
 		return "student/groupApproval";
 	}
 

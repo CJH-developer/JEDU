@@ -18,20 +18,20 @@
 		    <thead class="thead-color">
 		      <tr>
 		        <th>번호</th>
-		        <th>sg_no</th>
 		        <th>학습 그룹명</th>
 		        <th>내용</th>
 		        <th>레벨</th>
+		        <th>그룹 스터디 종료일</th>
 		        <th>승인 여부</th>
 		      </tr>
 		    </thead>
 		    <tbody>
 		      <tr th:each="list : ${sgList}" th:data-url="@{/student/groupApplyList(sg_no=${list.sg_no})}">
 		        <td th:text="${listStat.count}"></td>
-		        <td th:text="${list.sg_no}"></td>
 		        <td th:text="${list.sg_name}" ></td>
 		        <td th:text="${list.sg_plus}" ></td>
 		        <td th:text="${list.sg_level}" ></td>
+		        <td th:text="${list.sg_enddate}"></td>
 		        <td th:if="${list.sgj_auth == '1'}" >
 		        	<h6><span class="badge badge-primary">승인 완료</span></h6>
 		        </td>
