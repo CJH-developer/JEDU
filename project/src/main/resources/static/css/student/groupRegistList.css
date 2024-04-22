@@ -106,3 +106,15 @@
   border-radius: 5px;
   margin-left: 35px;
 }
+
+.approved-mege{
+  background-color: #45D85D;
+  color: white;
+  padding: 10px;
+  border: 1px solid #84F997;
+  border-radius: 5px;
+  text-align: center;
+  font-weight:bold;
+  width: 150px;
+  margin-left: 200px;
+}

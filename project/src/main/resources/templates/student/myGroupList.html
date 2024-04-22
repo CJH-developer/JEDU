@@ -8,46 +8,48 @@
     <link rel="stylesheet" href="/css/student/homeworkTable.css">
     <link rel="stylesheet" href="/css/frame/groupRegistLook.css">
     <style>
-     
-        /* Style for the progress bar */
         progress {
-            /* Basic dimensions and styles */
-            width: 100%; /* Width of the progress bar */
+            width: 100%; /* Full width */
             height: 20px; /* Height of the progress bar */
-            border: 1px solid #ccc; /* Border around the progress bar */
-            border-radius: 5px; /* Rounded corners */
-            background: linear-gradient(to right, #e0e0e0, #c0c0c0); /* Background gradient */
+            border: 1px solid #ccc; /* Border style */
+            border-radius: 10px; /* Rounded corners */
+            background: #f0f0f0; /* Light gray background */
+            position: relative; /* To position the text within the progress bar */
+            overflow: hidden; /* To ensure the filled portion doesn't overflow */
         }
 
-        /* Customizing the progress value (the progress indicator) */
-        progress::-webkit-progress-bar {
-            /* Base style for the progress bar */
-            background-color: transparent; /* Transparent to show the gradient */
-        }
-
+        /* Style for the filled portion of the progress bar */
         progress::-webkit-progress-value {
-            /* Style for the progress indicator (the "filled" portion) */
-            background: linear-gradient(to right, #4caf50, #81c784); /* Color gradient for the progress indicator */
-            border-radius: 5px; /* Rounded corners */
-            animation: progress-animation 2s linear; /* Animation for smooth progress */
+            background: linear-gradient(to right, #76c7c0, #5a9f9e); /* Vibrant gradient */
+            border-radius: 10px; /* Rounded corners */
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+            animation: fill-animation 1s ease-in-out; /* Smooth animation when filling */
         }
 
-        /* Adding an animation for a smoother progress bar */
-        @keyframes progress-animation {
+        /* Customizing the progress value (unfilled portion) */
+        progress::-webkit-progress-bar {
+            background-color: transparent; /* Transparent for the gradient effect */
+        }
+
+        /* Animation for smooth progress changes */
+        @keyframes fill-animation {
             0% {
-                width: 0%;
+                width: 0%; /* Start from zero */
             }
             100% {
-                width: 100%;
+                width: 100%; /* Fill to the defined progress */
             }
         }
-            .progress-text {
+
+        /* Text overlay for displaying the progress percentage */
+        .progress-text {
             position: absolute; /* Positioned on top of the progress bar */
-            top: 50%; /* Center vertically */
-            left: 50%; /* Center horizontally */
-            transform: translate(-50%, -50%); /* Ensure proper centering */
-            color: #333; /* Text color */
-            font-size: 14px; /* Text size */
+            top: 45%; 
+            left: 80%; 
+            transform: translate(-50%, -50%); /* Centered text */
+            color: #333; /* Dark text color for contrast */
+            font-size: 14px; /* Appropriate font size */
+            font-weight: bold; /* Bold text */
         }
     
     </style>
@@ -72,10 +74,8 @@
                             <td th:text=${sgList.sg_name}></td>
                             <td th:text=${sgList.sg_plus}></td>
                             <td>
-                                    <progress th:value=${sgList.class_progress} max="100">70 %</progress>
-                                    <div class="progress" th:value=${sgList.class_progress}>
-									  <div class="progress-bar progress-bar-striped bg-info" role="progressbar" style="width: 50%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
-									</div>
+                                   <progress th:value=${sgList.class_progress} max="100"></progress>
+                                   <div class="progress-text" th:text=${sgList.class_progress}></div> 
                             </td>
                         </tr>
                         </tr>
