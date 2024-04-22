@@ -6,9 +6,7 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
-import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -21,7 +19,6 @@ import com.geomin.project.cart.service.CartService;
 import com.geomin.project.command.CartVO;
 import com.geomin.project.command.GameContentVO;
 import com.geomin.project.command.PageVO;
-import com.geomin.project.command.PageVOmember;
 import com.geomin.project.command.PageVOquestion;
 import com.geomin.project.command.PurchaseVO;
 import com.geomin.project.command.QnaVO;
@@ -33,8 +30,6 @@ import com.geomin.project.util.Criteria;
 import com.geomin.project.util.CriteriaQuestion;
 import com.geomin.project.util.JCriteria;
 import com.geomin.project.util.JPageVO;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 
 @Controller
 @RequestMapping("/command")
@@ -78,6 +73,11 @@ public class CommandController {
 		model.addAttribute("JPageVO", JPageVO);
 		model.addAttribute("pagesubList", pagesubList);
 		model.addAttribute("pagesubListTwo", pagesubListTwo);
+		
+		System.out.println("여기까지 전달이 되나?");
+		System.out.println(JPageVO);
+		System.out.println(pagesubList);
+		System.out.println(pagesubListTwo);
 		
 
 		return "command/gameList";

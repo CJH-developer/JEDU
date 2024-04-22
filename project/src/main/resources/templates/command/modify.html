@@ -59,12 +59,12 @@
             <div class="modify__bodyRight__Join">
               <span>주소</span>
               <div class="item__addr__one">
-                <input type="text" id="sample4_postcode" placeholder="우편번호" value="session.우편주소">
+                <input type="text" id="sample4_postcode" placeholder="우편번호">
                 <input type="button" id="looking__btn"  onclick="sample4_execDaumPostcode()" value="우편번호 찾기"><br>
               </div>
               <div class="item__addr__detail">
-                <input type="text" id="sample4_roadAddress" placeholder="도로명주소" value="session.도로명주소">
-                <input type="text" id="sample4_jibunAddress" placeholder="지번주소" value="session.지번주소">
+                <input type="text" id="sample4_roadAddress" placeholder="도로명주소">
+                <input type="text" id="sample4_jibunAddress" placeholder="지번주소">
                 <span id="guide" style="color:#999;display:none"></span>
                 <input type="text" id="sample4_detailAddress" name="user_address" placeholder="상세주소" th:value="${session.vo.user_address}">
               </div>

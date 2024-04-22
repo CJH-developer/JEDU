@@ -47,8 +47,11 @@ $("#searchGroup").click(function() {
         method: "GET",
         success: function(data) {
             console.log(data);
+            console.log(data.filepath)
+            console.log(data.uuid)
+            console.log(data.filename)
             // 그룹 정보 채우기
-	        var imgSrc = "/display/" + data.filepath + "/" + data.uuid + "/" + data.filename;
+	        var imgSrc = "/display/" + data.groupdetail.filepath + "/" + data.groupdetail.uuid + "/" + data.groupdetail.filename;
 	        $(".grl__bbt__zero img").attr("src", imgSrc);
             $(".grl__bbt__one").text(data.groupdetail.game_title);
             $(".grl__bbt__two").text(data.groupdetail.game_target_level);

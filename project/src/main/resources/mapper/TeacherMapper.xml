@@ -142,7 +142,9 @@
   		UPDATE HOMEWORK_HISTORY SET TEACH_GRADE = #{selectedGrade} where homework_no = #{homework_no} and user_no = #{user_no}
   	</update>
   	
-  	
+  	<select id="mainGroupList" resultType="learnGroupVO">
+  		SELECT * FROM USER U LEFT JOIN STUDY_GROUP SG ON U.USER_NO = SG.USER_NO where U.user_no = #{user_no};
+  	</select>
   	
   	
   	
