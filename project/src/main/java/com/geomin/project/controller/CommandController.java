@@ -68,7 +68,7 @@ public class CommandController {
 		ArrayList<GameContentVO> list = commandService.getList(JCri);
 //		cartService.addtoCart(user_no, game_no);
 
-		List<GameContentVO> pagesubList = safeList(list, 0, 5);
+		List<GameContentVO> pagesubList = safeList(list, 0, 10);
 		
 		List<GameContentVO> pagesubListTwo = safeList(list, 5, 10);
 	

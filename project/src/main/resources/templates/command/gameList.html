@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-			<link rel="stylesheet"
+<link rel="stylesheet"
 	href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
 <link rel="stylesheet" href="/css/user/gameLists.css">
 <link rel="stylesheet" href="/css/user/modals.css">
@@ -11,20 +11,20 @@
 		<div class="wrap">
 			<script src="/js/frame/modal.js" defer></script>
 			<script src="/js/frame/gameList.js" defer></script>
-<script src="/js/frame/modal.js" defer></script>
-		<script src="/js/frame/gameList.js" defer></script>
-		<script src="/js/user/gameLists.js" defer></script>
-		<script src="/js/user/addCart.js" defer></script>
-		<script src="/js/user/modal.js" defer></script>
-		<script src="/js/user/game01.js" defer></script>
-<script src="/js/user/game2.js" defer></script>
+			<script src="/js/frame/modal.js" defer></script>
+			<script src="/js/frame/gameList.js" defer></script>
+			<script src="/js/user/gameLists.js" defer></script>
+			<script src="/js/user/addCart.js" defer></script>
+			<script src="/js/user/modal2.js" defer></script>
+			<script src="/js/user/game01.js" defer></script>
+			<script src="/js/user/game2.js" defer></script>
 
 
 
 
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-			
+			<script
+				src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
 
 			<div id="myModal" class="modal">
 
@@ -44,39 +44,39 @@
 								<div id="gameContentInfo__form">
 
 									<div class="default__information">
-										<span>바둑게임을 통해서 바둑의 개념을 익히고, 문제를 하나씩 풀어나가는...</span>
+										<span ></span>
 									</div>
 									<div class="default__info">
-										<span>난이도 :[[${game_title}]] </span>
+										<span></span>
 									</div>
 									<div class="default__info">
-										<span>학습대상 : </span>
+										<span>학습대상 :  일반인</span>
 									</div>
 									<div class="default__info">
-										<span>구매 혜택 : </span>
+										<span>구매 혜택 : 할인</span>
 									</div>
 
 									<div class="default__price">
-										<span>정가 :</span>
+										<span></span>
 									</div>
-									<div class="default__price">
-										<span>할인가 : </span>
+									<div class="default__price12">
+										<span></span>
 									</div>
-									<div class="default__price">
+									<div class="default__price2">
 										<span>학습기간 : </span>
 									</div>
 
 									<div class="default__button">
-										<form action="" method="get">
+										<form action="/command/cart" method="get">
 											<button type="submit">1개월 구독</button>
 										</form>
-										<form action="" method="get">
+										<form action="/command/cart" method="get">
 											<button type="submit">3개월 구독</button>
 										</form>
-										<form action="" method="get">
+										<form action="/command/cart" method="get">
 											<button type="submit">6개월 구독</button>
 										</form>
-										<form action="" method="get">
+										<form action="/command/cart" method="get">
 											<button type="submit">12개월 구독</button>
 										</form>
 									</div>
@@ -174,26 +174,32 @@
 
 					<div class="game__body__content">
 
-						<div class="game__content__above">
+						<div class="game__content__above" style="flex-wrap: wrap;">
 
 
 
-							<div class="game__item__wrap"
-								th:each="vo, status : ${pagesubList}" id="myBtn">
+							<div class="game__item__wrap myBtnOpenModal"
+								th:each="vo, status : ${pagesubList}">
 
 								<div class="game__content__item">
 									<div class="game__thumbnail">
 										<img src="/img/05_game_main.png" alt="">
 									</div>
 									<div class="game__thumbnail__title">
-										<span>[[${vo.game_title}]]</span>
+										<span class="game_title">[[${vo.game_title}]]</span>
 									</div>
 									<div class="game__thumbnail__type">
-										<span>[[${vo.game_target_level}]]</span>
+										<span class="game_target_level">[[${vo.game_target_level}]]</span>
 									</div>
 									<div class="game__thumbnail__price">
-										<span>[[${vo.game_price}]]</span>
+										<span class="game_price">[[${vo.game_price}]]</span>
 									</div>
+									<input type="hidden" th:value="${vo.game_sub_regDate}" class="game_sub_regDate">
+									<input type="hidden" th:value="${vo.game_sub_endDate}" class="game_sub_endDate">
+									<input type="hidden" th:value="${vo.game_discount_price}" class="game_discount_price">
+									<input type="hidden" th:value="${vo.game_content}" class="game_content">
+
+
 								</div>
 							</div>
 
@@ -201,28 +207,10 @@
 
 
 						</div>
+						<!-- 
+						
 
-						<div class="game__content__below">
-
-							<div class="game__item__wrap" id="myBtn"
-								th:each="vo, status : ${pagesubListTwo}">
-								<div class="game__content__item">
-									<div class="game__thumbnail">
-										<img src="/img/05_game_main.png" alt="">
-									</div>
-									<div class="game__thumbnail__title">
-										<span>[[${vo.game_title}]]</span>
-									</div>
-									<div class="game__thumbnail__type">
-										<span>[[${vo.game_target_level}]]</span>
-									</div>
-									<div class="game__thumbnail__price">
-										<span>[[${vo.game_price}]]</span>
-									</div>
-								</div>
-							</div>
-						</div>
-
+ -->
 
 
 						<div
