@@ -15,11 +15,13 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.geomin.project.board.service.BoardService;
 import com.geomin.project.cart.service.CartService;
 import com.geomin.project.command.GameContentVO;
 import com.geomin.project.command.HomeWorkVO;
 import com.geomin.project.command.PageVO;
 import com.geomin.project.command.PurchaseVO;
+import com.geomin.project.command.QnaVO;
 import com.geomin.project.command.UserVO;
 import com.geomin.project.command.learnGroupVO;
 import com.geomin.project.gameContentService.GameContentService;
@@ -38,10 +40,21 @@ public class TeacherController {
 	
 	@Autowired
 	private GameContentService gameContentService;
+	
+	@Autowired
+	BoardService boardService;
 
 	// 메인 화면
 	@GetMapping("/main")
-	public String main() {
+	public String main(Model model, HttpServletRequest request) {
+		
+		HttpSession session = request.getSession();
+		UserVO vo = (UserVO) session.getAttribute("vo");
+		model.addAttribute("vo", vo);
+		System.out.println(vo.toString());
+		ArrayList<QnaVO> qnaList = boardService.getQna();
+		model.addAttribute("qnaList", qnaList);
+		
 		return "teacher/main";
 	}
 	
@@ -144,6 +157,12 @@ public class TeacherController {
 	@PostMapping("/homeWorkRegistForm")
 	public String homeWorkRegistForm(HomeWorkVO vo) {
 		
+		System.out.println("으아아아앙아ㅏ아아아아아아아ㅏㄱ");
+		System.out.println("으아아아앙아ㅏ아아아아아아아ㅏㄱ");
+		System.out.println("으아아아앙아ㅏ아아아아아아아ㅏㄱ");
+		System.out.println("으아아아앙아ㅏ아아아아아아아ㅏㄱ");
+		System.out.println("으아아아앙아ㅏ아아아아아아아ㅏㄱ");
+		
 		System.out.println(vo);
 		teacherService.RegistHomework(vo);
 		
@@ -173,6 +192,8 @@ public class TeacherController {
 	// 학습 그룹 승인
 	@GetMapping("/groupRegistApprove")
 	public String groupRegistApprove() {
+		
+		
 		
 		return "teacher/groupRegistApprove";
 	}
