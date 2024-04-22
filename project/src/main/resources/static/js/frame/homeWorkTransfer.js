@@ -6,11 +6,24 @@ $('.homework-checkbox').change(function () {
     }
 });
 
+/// 동민이 만짐
+function getCheckedGroupNumbers() {
+    var checkedGroupNumbers = [];
+    $(".transfer__tbody2.left input[type='checkbox']:checked").each(function() {
+        var sg_no = $(this).data("sg_no");
+        checkedGroupNumbers.push(sg_no);
+    });
+    return checkedGroupNumbers;
+}
+
 // 전송하기 눌렀을 때
 $("#send").click(function() {
 	// 숙제번호 가져오기
 	var homeworkNo = $(".homework-checkbox:checked").closest('.transfer__tbody__content').find('.homeworkNo').val();
 	console.log("숙제번호: " + homeworkNo);
+	
+	//여기 동민이 만짐
+	var checkedGroupNumbers = getCheckedGroupNumbers();
 	
 	// 숙제 선택 안 했을 때 return
 	if(homeworkNo === undefined) {
@@ -28,24 +41,23 @@ $("#send").click(function() {
 	})
 	console.log(checkedStudents);
 	
-	for(var i = 0; i < checkedStudents.length; i++) {
-		$.ajax({
-			url: "/homeworkSend/" + homeworkNo + "/" + checkedStudents[i] + "/",
-			method: "GET",
-			success: function(data) {
-				console.log(data);
-				var count = 0;
-				count++;
-				if(count == 1) {
-					alert("숙제 전송 성공")
+	    checkedGroupNumbers.forEach(function(sg_no) {
+        checkedStudents.forEach(function(studentNo) {
+            $.ajax({
+                url: "/homeworkSend/" + homeworkNo + "/" + studentNo + "/" + sg_no + "/",
+                method: "GET",
+                success: function(data) {
+                    console.log(data);
+					var count = 0;
+					count++;
+					if(count == 1) {
+						alert("숙제 전송 성공")
+					}
 				}
-
-			}
-		})
-		
-	}
-	
-})
+            });
+        });
+    });
+});
 
 // 오른쪽 체크된 애들 user_no
 $(document).on("change", ".transfer__tbody__content2.right input[type='checkbox']", function() {

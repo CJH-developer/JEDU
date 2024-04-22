@@ -74,7 +74,7 @@
 						<div th:id="'modalSuccess' + ${hwStat.count}" class="modal">
 							<div class="modal-content">
 								<h1>축하합니다!!</h1>
-								<h4 th:text="${hw.teach_grade == 2} ? '당신은 보통을 받으셨습니다' : '당신은 ' + ${hw.teach_grade} + '를 받으셨습니다!!'"></h4>
+								<h4 th:text="${hw.teach_grade == 2} ? '당신은 보통을 받으셨습니다' : '당신은 우수를 받으셨습니다!!'"></h4>
 								<h5>다음 레벨을 향해 계속 도전하세요!</h5>
 								<span class="close">&times;</span>
 								<canvas id="confeti" width="300" height="300" class="active">
@@ -170,7 +170,7 @@
 				
 				<tbody th:if="${#lists.isEmpty(hwList)}">
 					<tr>
-                    	<td colspan="8">No homework entries found.</td>
+                    	<td colspan="8">아직 제출한 숙제가 없습니다.</td>
                 	</tr>
 				</tbody>
 			</table>

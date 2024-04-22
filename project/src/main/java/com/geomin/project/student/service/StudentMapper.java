@@ -6,6 +6,7 @@ import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
 import com.geomin.project.command.HomeWorkVO;
+import com.geomin.project.command.ProgressVO;
 import com.geomin.project.command.StudyGroupVO;
 import com.geomin.project.command.learnGroupVO;
 import com.geomin.project.util.StudyGroupCriteria;
@@ -62,10 +63,18 @@ public interface StudentMapper {
     public int getClassProgress (int sg_no);
     
 	//SG_Progress에 넣기 (진도율 시작점)
-    public int sumPoint(int user_no);
+    public int sumPoint(@Param("user_no") int user_no, @Param("sg_no") int sg_no);
     
-    public void addPoint(@Param("user_no") int user_no, @Param("homework_no") int homework_no);
+    //Homework_point 넣기
+    public int addPoint(@Param("user_no") int user_no, @Param("homework_no") int homework_no);
 	
+    //진도율 넣기
+    public void insertClassProgress(@Param("user_no") int user_no, @Param("sg_no") int sg_no, @Param("homework_point") int homework_point);
 	
+    //진도율 불러오기 (전체)
+    public ArrayList<ProgressVO> allStudentPointList(@Param("sg_no") int sg_no);
+    
+    //진도율 불러오기 (개인)
+    public int totalHomeworkPoint(@Param("user_no") int user_no, @Param("sg_no") int sg_no);
 	
 }

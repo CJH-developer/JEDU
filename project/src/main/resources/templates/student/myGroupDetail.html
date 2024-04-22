@@ -40,7 +40,15 @@
 				[[${group.sg_plus}]]
 			</div>
 			
-		<div>헬로</div>	
+		<div>각 학생별 진도율: </div>
+		
+		<div th:each="list : ${progressList}">
+		    <div>user = [[${list.user_no}]]</div>
+    		<div>[[${list.progress_percentage}]]</div>
+			<progress th:value=${list.progress_percentage} max="100"></progress>
+    		
+		</div>
+				
 			
       </div>
     </div>
