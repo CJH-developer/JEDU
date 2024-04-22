@@ -9,9 +9,8 @@
 	<th:block
 		th:replace="~{./baseLayout/base_f :: setContent( ~{ :: .wrap} ) }">
 		<div class="wrap">
-			<script src="/js/frame/modal.js" defer></script>
 			<script src="/js/frame/gameList.js" defer></script>
-			<script src="/js/frame/modal.js" defer></script>
+			<script src="/js/user/modal.js" defer></script>
 			<script src="/js/frame/gameList.js" defer></script>
 			<script src="/js/user/gameLists.js" defer></script>
 			<script src="/js/user/addCart.js" defer></script>
@@ -65,20 +64,12 @@
 									<div class="default__price2">
 										<span>학습기간 : </span>
 									</div>
-
+									
 									<div class="default__button">
-										<form action="/command/cart" method="get">
-											<button type="submit">1개월 구독</button>
-										</form>
-										<form action="/command/cart" method="get">
-											<button type="submit">3개월 구독</button>
-										</form>
-										<form action="/command/cart" method="get">
-											<button type="submit">6개월 구독</button>
-										</form>
-										<form action="/command/cart" method="get">
-											<button type="submit">12개월 구독</button>
-										</form>
+										
+											<a type="submit">장바구니로 이동</a>
+										
+										
 									</div>
 
 								</div>
