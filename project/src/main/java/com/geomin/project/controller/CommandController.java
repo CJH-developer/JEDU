@@ -1,13 +1,14 @@
 package com.geomin.project.controller;
 
-
 import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -32,23 +33,26 @@ import com.geomin.project.util.Criteria;
 import com.geomin.project.util.CriteriaQuestion;
 import com.geomin.project.util.JCriteria;
 import com.geomin.project.util.JPageVO;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 
 @Controller
 @RequestMapping("/command")
 public class CommandController {
 
 	@Autowired
+
 	private CartService cartService;
 
 	@Autowired
 	private GameContentService gameContentService;
-	
+
 	@Autowired
 	private CommandService commandService;
-	
+
 	@Autowired
 	private UserService userService;
-	
+
 	private HttpSession httpSession;
 
 	// 회원 정보 수정
@@ -59,20 +63,40 @@ public class CommandController {
 
 	// 게임 컨텐츠 목록 - 일반 사용자 / 선생님
 	@GetMapping("/gameList")
-	public String gameList(Model model, JCriteria JCri) {
+	public String gameList(HttpServletRequest request, Model model,
+			JCriteria JCri /* @RequestParam("user_no") int user_no, @RequestParam("game_no") int game_no */) {
 		ArrayList<GameContentVO> list = commandService.getList(JCri);
-		List<GameContentVO> pagesubList = safeList(list, 0, 5);
+//		cartService.addtoCart(user_no, game_no);
 
-		List<GameContentVO> pagesubListTwo = safeList(list, 5, 10);
+		List<GameContentVO> pagesubList = safeList(list, 0, 1);
+		List<GameContentVO> a1 = safeList(list, 1, 2);
+		List<GameContentVO> a2 = safeList(list, 2, 3);
+		List<GameContentVO> a3 = safeList(list, 3, 4);
+		List<GameContentVO> a4 = safeList(list, 4, 5);
+		List<GameContentVO> pagesubListTwo = safeList(list, 5, 6);
+		List<GameContentVO> b1 = safeList(list, 6, 7);
+		List<GameContentVO> b2 = safeList(list, 7, 8);
+		List<GameContentVO> b3 = safeList(list, 8, 9);
+		List<GameContentVO> b4 = safeList(list, 9, 10);
 		int total = commandService.getTotal(JCri);
 		JPageVO JPageVO = new JPageVO(JCri, total);
 
 		model.addAttribute("JPageVO", JPageVO);
 		model.addAttribute("pagesubList", pagesubList);
 		model.addAttribute("pagesubListTwo", pagesubListTwo);
-	
+		model.addAttribute("a1", a1);
+		model.addAttribute("a2", a2);
+		model.addAttribute("a3", a3);
+		model.addAttribute("a4", a4);
+		model.addAttribute("b1", b1);
+		model.addAttribute("b2", b2);
+		model.addAttribute("b3", b3);
+		model.addAttribute("b4", b4);
+		
+
 		return "command/gameList";
 	}
+
 	public static List<GameContentVO> safeList(List<GameContentVO> list, int fromIndex, int toIndex) {
 		int actualToIndex = Math.min(list.size(), toIndex);
 		if (fromIndex >= list.size()) {
@@ -105,20 +129,18 @@ public class CommandController {
 	// 나의 구독 조회
 	@GetMapping("/myproduct")
 	public String myproduct(HttpServletRequest request, Model model) {
-		
+
 		HttpSession session = request.getSession();
-		UserVO vo =(UserVO) session.getAttribute("vo");
+		UserVO vo = (UserVO) session.getAttribute("vo");
 		int user_no = Integer.parseInt(vo.user_no);
-		
+
 		ArrayList<PurchaseVO> purList = cartService.purchaseHistory(user_no);
 		model.addAttribute("purList", purList);
-		
+
 		// 이미지 포함
 		ArrayList<PurchaseVO> purListWithImg = cartService.purchaseHistoryWithImg(user_no);
-		model.addAttribute("listWithImg" , purListWithImg);
-		
+		model.addAttribute("listWithImg", purListWithImg);
 
-		
 		return "command/myproduct";
 	}
 
@@ -175,40 +197,38 @@ public class CommandController {
 
 		return "command/payment";
 	}
-	
+
 	@GetMapping("/question")
 	public String question(Model model, CriteriaQuestion criteria, HttpServletRequest request) {
-		
+
 		HttpSession session = request.getSession();
 		UserVO userVO = (UserVO) session.getAttribute("vo");
 		int user_no = Integer.parseInt(userVO.getUser_no());
 		model.addAttribute("userVO", userVO);
-		
-		
+
 		ArrayList<QnaVO> list = userService.getQnaList(user_no, criteria);
 		int total = userService.getQnaTotal(user_no);
 		PageVOquestion vo = new PageVOquestion(criteria, total);
-		
-		
+
 		model.addAttribute("Qnalist", list);
 		model.addAttribute("pageVO", vo);
-		
+
 		return "command/question";
 	}
-	
+
 	@GetMapping("/qnaRegist")
 	public String qnaRegist(QnaVO vo, RedirectAttributes ra) {
-		
+
 		int result = userService.qnaRegist(vo);
-		if(result == 1) {
-			ra.addFlashAttribute("msg", "정상적으로 처리되었습니다."); //리다이렉트시 1회성
-		}else { //실패
+		if (result == 1) {
+			ra.addFlashAttribute("msg", "정상적으로 처리되었습니다."); // 리다이렉트시 1회성
+		} else { // 실패
 			ra.addFlashAttribute("msg", "등록에 실패했습니다. 관리자에게 문의하세요. 8282-8282");
 		}
-		
+
 		return "redirect:/command/question";
 	}
-	
+
 	@GetMapping("/qnaDelete")
 	public String qnaDelete(@RequestParam("qna_no") int qna_no) {
 		System.out.println("삭제 기능 :: " + qna_no);

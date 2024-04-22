@@ -7,7 +7,7 @@ const cartMessages = document.querySelectorAll('#cartMessage');
 const paidMessages = document.querySelectorAll('#paidMessage');
 const inCartMessages = document.querySelectorAll('#inCartMessage');
 
-const content__baskets = document.querySelectorAll(".tbody__item #content__basket");
+const content__baskets = document.querySelectorAll("#myBtn .content__basket");
 
 for (let i = 0; i < content__baskets.length; i++) {
     content__baskets[i].onclick = function() {

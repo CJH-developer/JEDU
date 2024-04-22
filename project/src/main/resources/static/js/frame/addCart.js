@@ -73,4 +73,3 @@ for (let i = 0; i < content__baskets.length; i++) {
 		   });
     }
 }
-

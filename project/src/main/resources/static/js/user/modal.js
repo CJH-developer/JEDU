@@ -1,29 +1,44 @@
-var modal = document.getElementById("myModal");
+var modals9 = document.getElementById("myModal10");
+var btn9 = document.querySelectorAll(".myBtns8"); // 여러 버튼을 선택
+var spans = document.getElementsByClassName("closes")[0]; // 닫기 버튼
 
-// Get the button that opens the modal
-var btn = document.querySelectorAll("#myBtn");
-
-// Get the <span> element that closes the modal
-var span = document.getElementsByClassName("material-symbols-outlined")[0];
-
-// When the user clicks the button, open the modal 
-for(var i=0; i<btn.length; i++){
-
-  btn[i].addEventListener("click", function(){
-    modal.style.display = "block";
+// 버튼에 클릭 이벤트 리스너를 추가
+btn9.forEach(function(btn) {
+  btn.addEventListener("click", function() {
+    modals9.style.display = "block";
+    updateModalContent(); // 각각의 값을 기반으로 모달 컨텐츠 업데이트
   });
+});
 
+function updateModalContent() {
+  // 각각의 값을 찾아서 업데이트
+  var spanText1 = document.querySelector(".class01").textContent;
+  document.querySelector('.gameContentInfo__wrap__mainTitle2').textContent = spanText1;
+
+  var spanText2 = document.querySelector(".class03").textContent;
+  document.querySelector(".content__price1").textContent = "정가: " + spanText2;
+
+  var spanText3 = document.querySelector(".class03").textContent;
+  document.querySelector(".content__price").textContent = "할인가: " + spanText3;
+
+  var spanText4 = document.querySelector(".class02").textContent;
+  document.getElementById("content__info").textContent = "난이도: " + spanText4;
+
+  var game = document.querySelector(".class04").value;
+  var games = document.querySelector(".class05").value;
+  document.querySelector(".content__price2").textContent = "학습기간: " + game + " ~ " + games;
 }
 
-// When the user clicks on <span> (x), close the modal
-span.onclick = function(e) {
-	e.preventDefault();
-  modal.style.display = "none";
+// 닫기 버튼에 클릭 이벤트 리스너를 추가
+spans.onclick = function(e) {
+  e.preventDefault();
+  modals9.style.display = "none";
 }
 
-// When the user clicks anywhere outside of the modal, close it
+// 모달 바깥 클릭 시 모달 닫기
 window.onclick = function(event) {
-  if (event.target == modal) {
-    modal.style.display = "none";
+  if (event.target == modals9) {
+    modals9.style.display = "none";
   }
 }
+
