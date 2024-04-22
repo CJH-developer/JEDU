@@ -35,7 +35,9 @@ import com.geomin.project.gameContentService.GameContentService;
 import com.geomin.project.student.service.StudentMapper;
 import com.geomin.project.student.service.StudentService;
 import com.geomin.project.teacher.service.TeacherService;
+import com.geomin.project.user.service.UserService;
 import com.geomin.project.util.Criteria;
+import com.geomin.project.util.CriteriaMember;
 import com.geomin.project.util.StudyGroupCriteria;
 
 @Controller
@@ -50,6 +52,9 @@ public class StudentController {
 
 	@Autowired
 	BoardService boardService;
+	
+	@Autowired
+	UserService userService;
 
 	@Autowired
 	GameContentService gameContentService;
@@ -280,7 +285,7 @@ public class StudentController {
 	}
 
 	@GetMapping("/myGroupDetail")
-	public String myGroupDetail(Model model, HttpServletRequest request, @RequestParam("sg_no") int sg_no) {
+	public String myGroupDetail(Model model, HttpServletRequest request, @RequestParam("sg_no") int sg_no, CriteriaMember cri) {
 
 		HttpSession session = request.getSession();
 		UserVO Uservo = (UserVO) session.getAttribute("vo");
@@ -292,6 +297,7 @@ public class StudentController {
 		int classProgress = studentService.getClassProgress(sg_no);
 		model.addAttribute("classProgress", classProgress);
 		
+
 		learnGroupVO vo = teacherService.groupDetail(sg_no);
 		model.addAttribute("group", vo);
 		
@@ -304,8 +310,8 @@ public class StudentController {
 			//System.out.println(auth);
 			model.addAttribute("auth", auth);
 			model.addAttribute("list", list);
-			
-			 List<ProgressVO> updatedProgressList = new ArrayList<>(); // Create a new list to hold updated ProgressVO objects
+
+			 List<ProgressVO> updatedProgressList = new ArrayList<>();
 			    
 			    for (ProgressVO progress : progressList) {
 			        int total_point = progress.getHomework_total_point();
