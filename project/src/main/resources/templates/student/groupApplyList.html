@@ -16,7 +16,7 @@
           <button type="submit" id="groupApply" th:if="${auth == '0'}">가입신청</button>
           <button type="submit" id="groupApply" th:if="${auth == null}">가입신청</button>
           <button type="submit" id="groupApply" th:if="${auth == '2'}">가입신청</button>
-          <div id="approvedMes" class="approved-mege" th:if="${auth == '1'}">이미 가입을 완료 하셨습니다.</div>
+          <div id="approvedMes" class="approved-mege" th:if="${auth == '1'}">가입 완료</div>
         </div>
         <div id="applyMessage" class="apply-message">그룹 스터디에 신청되었습니다.</div>
 		<div id="processMessage" class="process-message">승인 절차가 진행 중입니다.</div>

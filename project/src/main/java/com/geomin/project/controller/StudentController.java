@@ -245,12 +245,13 @@ public class StudentController {
 			Integer teachGrade = hw.getTeach_grade();
 			int homework_no = Integer.parseInt(hw.getHomework_no());
 			Integer homework_point = hw.getHomework_point();
+			System.out.println(homework_point);
 			Integer sg_no = Integer.parseInt(hw.getSg_no());
-			
+
 			if(teachGrade != null && teachGrade >=2 && homework_point == null) {
 				studentService.addPoint(user_no, homework_no);
+				System.out.println(sg_no + "~~~~~~~~~~~~~~~~~~~~~~~~");
 				studentService.insertClassProgress(user_no, sg_no, homework_no);
-				
 			}else if(teachGrade != null && teachGrade >= 2) {
 		    	int sumPoint = studentService.sumPoint(user_no, sg_no);
 		    	
