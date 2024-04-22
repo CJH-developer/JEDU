@@ -61,6 +61,5 @@ $(".action-button").click(function() {
 search_btn.click(function(){
 	$.get("/group/search", )
 })
-                 	
-                    	
+               
                 
