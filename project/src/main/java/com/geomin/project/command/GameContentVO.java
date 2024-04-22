@@ -24,9 +24,10 @@ public class GameContentVO {
 	private Integer game_discount_price;
 	private String game_content;
 	private Integer game_count;
+	
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date game_sub_regDate;
-
+	private String game_sub_startDate;
 	private String game_sub_endDate;
 	private String game_regdate;
 	private String del_check;
