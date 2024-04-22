@@ -23,5 +23,9 @@ public class PurchaseVO {
 	private String filepath;
 	private String uuid;
 	
+	//매출 상세 조회
+	private String user_name;
+	private Integer game_discount_price;
+	
 	
 }

@@ -11,7 +11,7 @@ canvas {
 h1{margin:0 auto;}
 h4{margin:0 auto; margin-top: 80px;}
 h5{margin:0 auto; margin-top: 85px;}
-.grade-btn{width: 100px; height:}
+/* .grade-btn{width: 100px; height:} */
 
 .animate{transition: all 0.1s; -webkit-transition: all 0.1s;}
 
@@ -93,9 +93,44 @@ h5{margin:0 auto; margin-top: 85px;}
   animation: set-shaddow 0s 1.13s ease-in-out forwards;
   z-index: -1;
 }
+       progress {
+            width: 100%;
+            height: 10px; 
+            border: 1px solid #ccc; 
+            border-radius: 10px; 
+            background: #f0f0f0; 
+            position: relative;
+            overflow: hidden; 
+        }
 
+        /* Style for the filled portion of the progress bar */
+        progress::-webkit-progress-value {
+            background: linear-gradient(to right, #76c7c0, #5a9f9e); /* Vibrant gradient */
+            border-radius: 10px; /* Rounded corners */
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+            animation: fill-animation 1s ease-in-out; /* Smooth animation when filling */
+        }
 
+        /* Customizing the progress value (unfilled portion) */
+        progress::-webkit-progress-bar {
+            background-color: transparent; /* Transparent for the gradient effect */
+        }
 
+        /* Animation for smooth progress changes */
+        @keyframes fill-animation {
+            0% {
+                width: 0%; /* Start from zero */
+            }
+            100% {
+                width: 100%; /* Fill to the defined progress */
+            }
+        }
+        .progress-text {
+            color: #333; /* Dark text color for contrast */
+            font-size: 14px; /* Appropriate font size */
+            font-weight: bold; /* Bold text */
+        }
+    
 
 
 

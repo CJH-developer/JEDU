@@ -7,52 +7,6 @@
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="/css/student/homeworkTable.css">
     <link rel="stylesheet" href="/css/frame/groupRegistLook.css">
-    <style>
-        progress {
-            width: 100%; /* Full width */
-            height: 20px; /* Height of the progress bar */
-            border: 1px solid #ccc; /* Border style */
-            border-radius: 10px; /* Rounded corners */
-            background: #f0f0f0; /* Light gray background */
-            position: relative; /* To position the text within the progress bar */
-            overflow: hidden; /* To ensure the filled portion doesn't overflow */
-        }
-
-        /* Style for the filled portion of the progress bar */
-        progress::-webkit-progress-value {
-            background: linear-gradient(to right, #76c7c0, #5a9f9e); /* Vibrant gradient */
-            border-radius: 10px; /* Rounded corners */
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
-            animation: fill-animation 1s ease-in-out; /* Smooth animation when filling */
-        }
-
-        /* Customizing the progress value (unfilled portion) */
-        progress::-webkit-progress-bar {
-            background-color: transparent; /* Transparent for the gradient effect */
-        }
-
-        /* Animation for smooth progress changes */
-        @keyframes fill-animation {
-            0% {
-                width: 0%; /* Start from zero */
-            }
-            100% {
-                width: 100%; /* Fill to the defined progress */
-            }
-        }
-
-        /* Text overlay for displaying the progress percentage */
-        .progress-text {
-            position: absolute; /* Positioned on top of the progress bar */
-            top: 45%; 
-            left: 80%; 
-            transform: translate(-50%, -50%); /* Centered text */
-            color: #333; /* Dark text color for contrast */
-            font-size: 14px; /* Appropriate font size */
-            font-weight: bold; /* Bold text */
-        }
-    
-    </style>
 </head>
 <body>
     <th:block th:replace="~{./baseLayout/base_f :: setContent( ~{ :: .wrap} ) }">
@@ -66,18 +20,21 @@
                             <th>학습 그룹명</th>
                             <th>내용</th>
                             <th>진도율</th>
+                            <th></th>
                         </tr>
                     </thead>
                     <tbody th:each="sgList : ${sgList}" th:if="${sgList.sgj_auth == '1'}">
                         <tr>
                             <tr th:data-url="@{/student/myGroupDetail(sg_no=${sgList.sg_no})}">
-                            <td th:text=${sgList.sg_name}></td>
-                            <td th:text=${sgList.sg_plus}></td>
-                            <td>
-                                   <progress th:value=${sgList.class_progress} max="100"></progress>
-                                   <div class="progress-text" th:text=${sgList.class_progress}></div> 
-                            </td>
-                        </tr>
+	                            <td th:text=${sgList.sg_name}></td>
+	                            <td th:text=${sgList.sg_plus}></td>
+	                            <td class="progress-box">
+	                                   <progress th:value=${sgList.class_progress} max="100"></progress>
+	                            </td>
+	                            <td>
+									<div class="progress-text" th:text="${#strings.concat(sgList.class_progress, '%')}"></div>
+	                            </td>
+                        	</tr>
                         </tr>
                     </tbody>
                 </table>

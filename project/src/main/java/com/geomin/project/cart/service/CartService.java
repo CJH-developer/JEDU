@@ -10,7 +10,7 @@ import com.geomin.project.command.PurchaseVO;
 public interface CartService {
 	
 	//장바구니 추가
-	public int addtoCart(int user_no, int game_no);
+	public int addtoCart(@Param("user_no") int user_no, int game_no);
 	
 	//장바구니 중복 조회
 	public int checkCart(int user_no, int game_no);

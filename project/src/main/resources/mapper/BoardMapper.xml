@@ -72,7 +72,7 @@
   
   <!-- qna 조회-->
   <select id="getQna" resultType="QnaVO">
-  	SELECT * FROM QNA WHERE QNA_DEL_CHECK = "Y"
+  	SELECT * FROM QNA WHERE QNA_DEL_CHECK = "Y" AND QNA_CONTENT IS NULL
   </select>
   
   <!-- 공지사항 삭제 -->	
@@ -85,7 +85,7 @@
   	UPDATE FAQ SET FAQ_DEL_CHECK = "N" WHERE FAQ_NO = #{faq_no}
   </update>
   
-  <!-- faq 삭제 -->	
+  <!-- Q&A 삭제 -->	
   <update id="qnaDelete">
   	UPDATE QNA SET QNA_DEL_CHECK = "N" WHERE QNA_NO = #{qna_no}
   </update>

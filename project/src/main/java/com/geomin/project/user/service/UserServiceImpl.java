@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.geomin.project.command.GameContentVO;
+import com.geomin.project.command.PurchaseVO;
 import com.geomin.project.command.QnaVO;
 import com.geomin.project.command.UserVO;
 import com.geomin.project.util.Criteria;
@@ -120,6 +121,13 @@ public class UserServiceImpl implements UserService {
 	public int getPriceTotal() {
 		// TODO Auto-generated method stub
 		return userMapper.getPriceTotal();
+	}
+
+	// 매출 조회
+	@Override
+	public ArrayList<PurchaseVO> getPurchaseDetail(String purchase_date) {
+
+		return userMapper.getPurchaseDetail(purchase_date);
 	}
 
 }

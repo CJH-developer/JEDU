@@ -2,9 +2,10 @@
 <html xmlns:th="http://www.thymeleaf.org">
 
 <th:block th:fragment="pageNation(pageVOquestion)">
+	<link rel="stylesheet" href="/css/baseLayout/page.css">
 	
 <div class="page">
-	<link rel="stylesheet" href="/css/baseLayout/page.css">
+	
 	<ul>
 		<li th:if="${pageVO.total != 0}">
 			<a th:href="@{question(page=1, 
