@@ -3,6 +3,7 @@ package com.geomin.project.controller;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -17,11 +18,13 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.geomin.project.command.PurchaseVO;
 import com.geomin.project.document.service.DocumentService;
 import com.geomin.project.gameContentService.GameContentService;
+import com.geomin.project.user.service.UserService;
 
 @RestController
 public class AjaxController {
@@ -33,6 +36,9 @@ public class AjaxController {
 	@Autowired
 	@Qualifier("DocumentService")
 	private DocumentService documentService;
+	
+	@Autowired
+	private UserService userService;
 	
 	// 파일 업로드 경로
 	@Value("${project.upload.path}")
@@ -82,4 +88,14 @@ public class AjaxController {
         return new ResponseEntity<>("선택된 게임 삭제 완료", HttpStatus.OK);
     }
 	
+	
+	
+	@GetMapping("/priceLookDetail")
+	public ArrayList<PurchaseVO> priceLookDetail(@RequestParam("purchase_date") String purchase_date) {
+		
+		System.out.println(purchase_date);
+		ArrayList<PurchaseVO> list = userService.getPurchaseDetail(purchase_date);
+		
+		return list;
+	}
 }

@@ -225,5 +225,18 @@
 		FROM 
 			GAME_CONTENT
     </select>
+    
+    <select id="getPurchaseDetail" resultType="PurchaseVO">
+    	SELECT GP.PURCHASE_DATE, U.USER_NAME, G.GAME_TITLE, G.GAME_DISCOUNT_PRICE
+		FROM 
+			GAME_PURCHASE GP
+		LEFT JOIN
+			USER U
+		ON GP.USER_NO = U.USER_NO
+		LEFT JOIN
+			GAME_CONTENT G
+		ON GP.GAME_NO = G.GAME_NO
+		WHERE DATE(GP.PURCHASE_DATE) = #{purchase_date};
+    </select>
   	
   </mapper>
