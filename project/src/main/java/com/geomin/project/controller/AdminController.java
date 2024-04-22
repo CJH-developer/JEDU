@@ -18,9 +18,11 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.geomin.project.board.service.BoardRepository;
 import com.geomin.project.board.service.BoardService;
 import com.geomin.project.command.DocumentVO;
@@ -32,6 +34,7 @@ import com.geomin.project.command.PageVOinqury;
 import com.geomin.project.command.PageVOmember;
 import com.geomin.project.command.PageVOprice;
 import com.geomin.project.command.PageVOsleep;
+import com.geomin.project.command.PurchaseVO;
 import com.geomin.project.command.QnaVO;
 import com.geomin.project.command.UserVO;
 import com.geomin.project.document.service.DocumentService;
@@ -528,5 +531,8 @@ public class AdminController {
 		
 		return "admin/priceLook";
 	}
+	
+	
+	
 	
 }
