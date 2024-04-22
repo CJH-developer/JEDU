@@ -3,6 +3,7 @@
 
 <link rel="stylesheet" href="/css/frame/groupRegistLook.css">
 <link rel="stylesheet" href="/css/student/groupRegistList.css">
+<link rel="stylesheet" href="/css/student/groupProgress.css">
 <th:block th:replace="~{./baseLayout/base_f :: setContent( ~{ :: .wrap} ) }">
 
 <div class="wrap">
@@ -34,21 +35,22 @@
           </div>
 
         </div>
-		
-		<h4>오늘의 학습</h4>	
-			<div>
-				[[${group.sg_plus}]]
+		<div class="group-progress">
+			<div class="progress-info">
+				<h4>그룹 학습의 목표:</h4>	
+					<div>
+						[[${group.sg_plus}]]
+					</div>
+			</div>	
+			<div class="progress-list">
+				<div>다른 학생들의 학습 진도율을 확인하고 더 나은 성과를 위해 노력하세요.</div>
+				<div th:each="list : ${progressList}" class="user-progress">
+				    <div th:text="${#strings.concat(listStat.count, '번 유저: ')}"></div>
+					<progress th:value=${list.progress_percentage} max="100"></progress>
+		    		<div>[[${list.progress_percentage}]] %</div>	
+				</div>
 			</div>
-			
-		<div>각 학생별 진도율: </div>
-		
-		<div th:each="list : ${progressList}">
-		    <div>user = [[${list.user_no}]]</div>
-    		<div>[[${list.progress_percentage}]]</div>
-			<progress th:value=${list.progress_percentage} max="100"></progress>
-    		
-		</div>
-				
+		</div>		
 			
       </div>
     </div>
