@@ -9,8 +9,25 @@ canvas {
   text-align:center;
 }
 h1{margin:0 auto;}
-h4{margin:0 auto; margin-top: 100px;}
-h5{margin:0 auto; margin-top: 105px;}
+h4{margin:0 auto; margin-top: 80px;}
+h5{margin:0 auto; margin-top: 85px;}
+/* .grade-btn{width: 100px; height:} */
+
+.animate{transition: all 0.1s; -webkit-transition: all 0.1s;}
+
+.action-button
+{
+	padding: 10px 25px;
+  margin: 0px 10px 10px 0px;
+  float: left;
+	border-radius: 5px;
+	font-family: 'Lato', sans-serif;
+	font-size: 14px;
+	color: #FFF;
+	text-decoration: none;	
+}
+.blue{background-color: #3498db; border-bottom: 5px solid #2980B9; border-top: 1px solid white; border-left: 1px solid white; border-right:1px solid white; text-shadow: 0px -2px #2980B9;}
+.action-button:active{transform: translate(0px,5px); -webkit-transform: translate(0px,5px); border-bottom: 1px solid;}
 .table{position:absolute; top:120px; left:0;}
 .thead-color {background-color: #88ABE3; color: white;}
 .modal-button-fail{width:60px; height:20px; border-radius:5px; border:none; font-weight:bold; text-align:center;  color:white; background-color:black; padding:0; margin:0 auto; font-size:12px}
@@ -76,9 +93,44 @@ h5{margin:0 auto; margin-top: 105px;}
   animation: set-shaddow 0s 1.13s ease-in-out forwards;
   z-index: -1;
 }
+       progress {
+            width: 100%;
+            height: 10px; 
+            border: 1px solid #ccc; 
+            border-radius: 10px; 
+            background: #f0f0f0; 
+            position: relative;
+            overflow: hidden; 
+        }
 
+        /* Style for the filled portion of the progress bar */
+        progress::-webkit-progress-value {
+            background: linear-gradient(to right, #76c7c0, #5a9f9e); /* Vibrant gradient */
+            border-radius: 10px; /* Rounded corners */
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+            animation: fill-animation 1s ease-in-out; /* Smooth animation when filling */
+        }
 
+        /* Customizing the progress value (unfilled portion) */
+        progress::-webkit-progress-bar {
+            background-color: transparent; /* Transparent for the gradient effect */
+        }
 
+        /* Animation for smooth progress changes */
+        @keyframes fill-animation {
+            0% {
+                width: 0%; /* Start from zero */
+            }
+            100% {
+                width: 100%; /* Fill to the defined progress */
+            }
+        }
+        .progress-text {
+            color: #333; /* Dark text color for contrast */
+            font-size: 14px; /* Appropriate font size */
+            font-weight: bold; /* Bold text */
+        }
+    
 
 
 

@@ -127,8 +127,8 @@
   	
   	<!-- 숙제 전송 -->
   	<insert id="homeworkSend" parameterType="map">
-		INSERT INTO HOMEWORK_HISTORY (HOMEWORK_NO, USER_NO, TEACH_ASSIGNDATE)
-		VALUES (#{homework_no}, #{user_no}, NOW() )
+		INSERT INTO HOMEWORK_HISTORY (HOMEWORK_NO, USER_NO, SG_NO, TEACH_ASSIGNDATE)
+		VALUES (#{homework_no}, #{user_no}, #{sg_no}, NOW() )
   	</insert>
   	
   	<!-- 숙제 제출 내역 -->

@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.geomin.project.command.HomeWorkVO;
+import com.geomin.project.command.ProgressVO;
 import com.geomin.project.command.StudyGroupVO;
 import com.geomin.project.command.learnGroupVO;
 import com.geomin.project.util.StudyGroupCriteria;
@@ -92,13 +93,44 @@ public class StudentServiceImpl implements StudentService{
 	
 	//숙제 포인트 등록
 	@Override
-	public void addPoint(int user_no, int sg_no) {}
+	public int addPoint(int user_no, int homework_no) {
+		return studentMapper.addPoint(user_no, homework_no);
+	}
 
+    //남은 날짜 계산하기
+	@Override
+	public void leftDate(long homework_leftdate, int user_no, int homework_no) {
+		studentMapper.leftDate(homework_leftdate, user_no, homework_no);
+	}
 
+	@Override
+	public int sumPoint(int user_no, int sg_no) {
+		return studentMapper.sumPoint(user_no, sg_no);
+	}
 
+	@Override
+	public int getClassProgress(int sg_no) {
+		return studentMapper.getClassProgress(sg_no);
+	}
 	
+	//진도율 넣기
+	@Override
+	public void insertClassProgress(int user_no, int sg_no, int homework_point) {
+		studentMapper.insertClassProgress(user_no, sg_no, homework_point);
+	}
 	
-
+	//전체 학생 진도율 불러오기
+	@Override
+	public ArrayList<ProgressVO> allStudentPointList(int sg_no) {
+		return studentMapper.allStudentPointList(sg_no);
+	}
+	
+	//진도율 불러오기
+	@Override
+	public int totalHomeworkPoint(int user_no, int sg_no) {
+		return studentMapper.totalHomeworkPoint(user_no, sg_no);
+	}
+	
 	
 
 

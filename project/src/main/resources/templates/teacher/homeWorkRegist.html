@@ -40,10 +40,10 @@
           <!-- 구분 선택 -->
           <div class="homework__regist__below__item">
             <span>숙제 레벨 선택</span>
-            <select name="item__select" id="homework__type__select">
+            <select name="homework_level" id="homework__type__select">
               <option value="none">레벨을 선택해주세요.</option>
               <th:block th:each="level : ${#numbers.sequence(1, 30)}">
-                <option th:value="${level}" th:text="${level} + '레벨'" th:name="${level}"></option>
+                <option th:value="${level}" th:text="${level} + '레벨'"></option>
               </th:block>
           </select>
           </div>

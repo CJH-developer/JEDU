@@ -6,7 +6,7 @@
 <link rel="stylesheet" href="/css/frame/priceLook.css">
 <script src="/js/frame/priceLook.js" defer></script>
   <div class="wrap__content">
-    <form action="priceLook" name="priceLook" method="get" class="price__wrap">
+    <form action="priceLook" name="priceLook" method="get" id="priceForm" class="price__wrap">
 
 	  <input type="hidden" name="page" value="1">
   	  <input type="hidden" name="amount" th:value="${pageVO.amount}">
@@ -78,7 +78,7 @@
             <div class="pb__tbody__three" th:text="${list.cnt}+ 건" th:data-value="${list.cnt}">건수</div>
             <div class="pb__tbody__four" th:text="${list.price_sum}+ 원" th:data-value="${list.price_sum}"></div>
             <div class="pb__tbody__five">
-              <button>상세보기</button>
+              <button id="priceModalBtn" th:value="${list.purchase_date}">상세보기</button>
             </div>
           </div>
           </th:block>
@@ -86,6 +86,34 @@
 
       </div>
 
+      <div id="priceModal" class="priceModal">
+
+        <!-- Modal content -->
+        <div class="price-modal-content">
+          <span class="priceClose">&times;</span>
+          <p>구매 정보 상세조회</p>
+          <div class="pm__thead">
+            <div class="pm__thead__one">번호</div>
+            <div class="pm__thead__two">구매자</div>
+            <div class="pm__thead__three">게임 컨텐츠</div>
+            <div class="pm__thead__four">금액</div>
+            <div class="pm__thead__five">구매일</div>
+          </div>
+          <div class="pm__tbody" id="pm__tbody">
+
+            <!-- <div class="pm__tbody__container">
+              <div class="pm__tbody__one" id="pm__tbody__one">번호</div>
+              <div class="pm__tbody__two" id="pm__tbody__two">구매자</div>
+              <div class="pm__tbody__three" id="pm__tbody__three">게임 컨텐츠</div>
+              <div class="pm__tbody__four" id="pm__tbody__four">금액</div>
+              <div class="pm__tbody__five" id="pm__tbody__five">구매일</div>
+            </div> -->
+
+          </div>
+     
+        </div>
+      
+      </div>
 
       <div class="price__page">
       	<th:block th:replace="~{./baseLayout/page_price :: pageNation(${pageVOprice})}"></th:block>

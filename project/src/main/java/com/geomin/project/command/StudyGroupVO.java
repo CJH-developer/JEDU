@@ -19,6 +19,7 @@ public class StudyGroupVO {
 	public String sg_enddate;
 	public String sg_plus;
 	public String sg_grouplimit;
+	public Integer sg_class;
 	
 	//스터디 그룹 승인 절차
 	public String sgj_auth;
@@ -27,4 +28,6 @@ public class StudyGroupVO {
 	//GAME_CONTENT 내용
 	public String game_title;
 	
+	//최종 진도율
+	public Integer class_progress;
 }

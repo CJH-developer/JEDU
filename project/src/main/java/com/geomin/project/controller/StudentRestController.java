@@ -36,7 +36,6 @@ public class StudentRestController {
 						  @RequestParam("sg_no") int sg_no) {
 		
 		
-		
 		int inGroup = studentService.groupCheck(user_no, sg_no);
 		  if (inGroup > 0) {
 	            return true;
@@ -45,33 +44,20 @@ public class StudentRestController {
 	        }
 	}
 	@GetMapping("reject/group")
-	public ResponseEntity<Boolean> rejectCheck(@RequestParam("user_no") int user_no, @RequestParam("sg_no") int sg_no) {
-	    try {
-	        
-	        ArrayList<StudyGroupVO> list = studentService.rejectCheck(user_no, sg_no);
-	        
-	        if (!list.isEmpty()) {
-	            int sgj_auth;
-	            try {
-	                sgj_auth = Integer.parseInt(list.get(0).getSgj_auth()); 
-	            } catch (NumberFormatException e) {
-	                System.err.println("Failed to parse sgj_auth: " + e.getMessage());
-	                return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(false); 
-	            }
-	            
-	            if (sgj_auth == 2) {
-	                return ResponseEntity.ok(true);
-	            } else {
-	                return ResponseEntity.ok(false);
-	            }
-	        } else {
-	            System.err.println("No entries found for user_no=" + user_no + ", sg_no=" + sg_no);
-	            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(false); 
-	        }
-	    } catch (Exception e) {
-	        System.err.println("Error during reject check: " + e.getMessage());
-	        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null); 
-	    }
+	public Boolean rejectCheck(@RequestParam("user_no") int user_no, @RequestParam("sg_no") int sg_no) {
+	   
+		ArrayList<StudyGroupVO> list = studentService.rejectCheck(user_no, sg_no);
+		if(!list.isEmpty()) {
+			int auth = Integer.parseInt(list.get(0).getSgj_auth());
+			if(auth == 2) {
+				return true;
+			}else {
+				return false;
+			}
+		}
+		
+		return false;
+	
 	}
 	
 	@GetMapping("approve/group")
@@ -115,4 +101,9 @@ public class StudentRestController {
 		return studentService.aiList(user_no, user_level);
 	}
 
+	/*
+	 * @GetMapping("/group/search") 
+	 * public
+	 */
+	
 }
