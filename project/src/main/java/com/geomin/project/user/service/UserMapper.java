@@ -61,4 +61,7 @@ public interface UserMapper {
 	
 	// 매출 상세 조회
 	public ArrayList<PurchaseVO> getPurchaseDetail(String purchase_date);
+	
+	// 계정 잠금
+	public int lock(String user_id);
 }
