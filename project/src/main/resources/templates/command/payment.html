@@ -6,6 +6,7 @@
 <script src="/js/frame/lookup.js" defer></script>
   <div class="wrap__content">
 
+
 <html lang="ko">
   <head>
     <meta charset="utf-8" />
@@ -21,6 +22,7 @@
   </head>
 
   <body>
+  
     <!-- 주문서 영역 -->
     <div class="wrapper">
       <div class="box_section" style="padding: 40px 30px 50px 30px; margin-top: 30px; margin-bottom: 50px">
@@ -93,7 +95,7 @@
         paymentWidget.requestPayment({
           orderId: generateRandomString(),
           orderName: "토스 티셔츠 외 2건",
-          successUrl:"http://localhost:9494/order/success",
+          successUrl:"http://54.180.39.249:9494/order/success",
           failUrl: "http://54.180.39.249:9494/order/fail",
           customerEmail: "customer123@gmail.com",
           customerName: "김토스",

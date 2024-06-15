@@ -130,25 +130,17 @@
           <!-- 메인 game -->
           <div class="wrap__below__game">
             <div class="below__game__content">
-
+            
               <div class="below__game__header">
                 <div class="game__header__title"><span>현재 진행중인 그룹</span></div>
                 <a href="" class="game__header__more">더 보기</a>
               </div>
               <div class="below__game__body">
-
                 <div class="swiper">
                   <div class="swiper-wrapper">
-                    <div class="swiper-slide">현재 학습 중인 그룹</div>
-                    <div class="swiper-slide">현재 학습 중인 그룹</div>
-                    <div class="swiper-slide">현재 학습 중인 그룹</div>
-                    <div class="swiper-slide">현재 학습 중인 그룹</div>
-                    <div class="swiper-slide">현재 학습 중인 그룹</div>
-                    <div class="swiper-slide">현재 학습 중인 그룹</div>
-                    <div class="swiper-slide">현재 학습 중인 그룹</div>
-                    <div class="swiper-slide">현재 학습 중인 그룹</div>
-                    <div class="swiper-slide">현재 학습 중인 그룹</div>
-                    <div class="swiper-slide">현재 학습 중인 그룹</div>
+				    <div th:each="group : ${groupList}" class="swiper-slide">
+				      <a th:href="@{'groupRegistLook?sg_no=' + ${group.sg_no}}" th:text="${group.sg_name}"></a>
+				    </div>
                   </div>
                   <div class="swiper-button-next"></div>
                   <div class="swiper-button-prev"></div>

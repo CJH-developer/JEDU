@@ -239,4 +239,9 @@
 		WHERE DATE(GP.PURCHASE_DATE) = #{purchase_date};
     </select>
   	
+  	<!-- 계정 잠금 -->
+  	<update id="lock">
+  		UPDATE user SET lockyn = "N" WHERE user_id= #{user_id} 
+  	</update>
+  	
   </mapper>

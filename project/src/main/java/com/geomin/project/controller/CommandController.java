@@ -1,6 +1,5 @@
 package com.geomin.project.controller;
 
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -20,7 +19,6 @@ import com.geomin.project.cart.service.CartService;
 import com.geomin.project.command.CartVO;
 import com.geomin.project.command.GameContentVO;
 import com.geomin.project.command.PageVO;
-import com.geomin.project.command.PageVOmember;
 import com.geomin.project.command.PageVOquestion;
 import com.geomin.project.command.PurchaseVO;
 import com.geomin.project.command.QnaVO;
@@ -38,17 +36,18 @@ import com.geomin.project.util.JPageVO;
 public class CommandController {
 
 	@Autowired
+
 	private CartService cartService;
 
 	@Autowired
 	private GameContentService gameContentService;
-	
+
 	@Autowired
 	private CommandService commandService;
-	
+
 	@Autowired
 	private UserService userService;
-	
+
 	private HttpSession httpSession;
 
 	// 회원 정보 수정
@@ -59,20 +58,31 @@ public class CommandController {
 
 	// 게임 컨텐츠 목록 - 일반 사용자 / 선생님
 	@GetMapping("/gameList")
-	public String gameList(Model model, JCriteria JCri) {
+	public String gameList(HttpServletRequest request, Model model,
+			JCriteria JCri /* @RequestParam("user_no") int user_no, @RequestParam("game_no") int game_no */) {
 		ArrayList<GameContentVO> list = commandService.getList(JCri);
-		List<GameContentVO> pagesubList = safeList(list, 0, 5);
+//		cartService.addtoCart(user_no, game_no);
 
+		List<GameContentVO> pagesubList = safeList(list, 0, 10);
+		
 		List<GameContentVO> pagesubListTwo = safeList(list, 5, 10);
+	
 		int total = commandService.getTotal(JCri);
 		JPageVO JPageVO = new JPageVO(JCri, total);
 
 		model.addAttribute("JPageVO", JPageVO);
 		model.addAttribute("pagesubList", pagesubList);
 		model.addAttribute("pagesubListTwo", pagesubListTwo);
-	
+		
+		System.out.println("여기까지 전달이 되나?");
+		System.out.println(JPageVO);
+		System.out.println(pagesubList);
+		System.out.println(pagesubListTwo);
+		
+
 		return "command/gameList";
 	}
+
 	public static List<GameContentVO> safeList(List<GameContentVO> list, int fromIndex, int toIndex) {
 		int actualToIndex = Math.min(list.size(), toIndex);
 		if (fromIndex >= list.size()) {
@@ -105,20 +115,18 @@ public class CommandController {
 	// 나의 구독 조회
 	@GetMapping("/myproduct")
 	public String myproduct(HttpServletRequest request, Model model) {
-		
+
 		HttpSession session = request.getSession();
-		UserVO vo =(UserVO) session.getAttribute("vo");
+		UserVO vo = (UserVO) session.getAttribute("vo");
 		int user_no = Integer.parseInt(vo.user_no);
-		
+
 		ArrayList<PurchaseVO> purList = cartService.purchaseHistory(user_no);
 		model.addAttribute("purList", purList);
-		
+
 		// 이미지 포함
 		ArrayList<PurchaseVO> purListWithImg = cartService.purchaseHistoryWithImg(user_no);
-		model.addAttribute("listWithImg" , purListWithImg);
-		
+		model.addAttribute("listWithImg", purListWithImg);
 
-		
 		return "command/myproduct";
 	}
 
@@ -175,40 +183,38 @@ public class CommandController {
 
 		return "command/payment";
 	}
-	
+
 	@GetMapping("/question")
 	public String question(Model model, CriteriaQuestion criteria, HttpServletRequest request) {
-		
+
 		HttpSession session = request.getSession();
 		UserVO userVO = (UserVO) session.getAttribute("vo");
 		int user_no = Integer.parseInt(userVO.getUser_no());
 		model.addAttribute("userVO", userVO);
-		
-		
+
 		ArrayList<QnaVO> list = userService.getQnaList(user_no, criteria);
 		int total = userService.getQnaTotal(user_no);
 		PageVOquestion vo = new PageVOquestion(criteria, total);
-		
-		
+
 		model.addAttribute("Qnalist", list);
 		model.addAttribute("pageVO", vo);
-		
+
 		return "command/question";
 	}
-	
+
 	@GetMapping("/qnaRegist")
 	public String qnaRegist(QnaVO vo, RedirectAttributes ra) {
-		
+
 		int result = userService.qnaRegist(vo);
-		if(result == 1) {
-			ra.addFlashAttribute("msg", "정상적으로 처리되었습니다."); //리다이렉트시 1회성
-		}else { //실패
+		if (result == 1) {
+			ra.addFlashAttribute("msg", "정상적으로 처리되었습니다."); // 리다이렉트시 1회성
+		} else { // 실패
 			ra.addFlashAttribute("msg", "등록에 실패했습니다. 관리자에게 문의하세요. 8282-8282");
 		}
-		
+
 		return "redirect:/command/question";
 	}
-	
+
 	@GetMapping("/qnaDelete")
 	public String qnaDelete(@RequestParam("qna_no") int qna_no) {
 		System.out.println("삭제 기능 :: " + qna_no);

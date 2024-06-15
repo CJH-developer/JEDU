@@ -19,17 +19,17 @@ public class SecurityConfig {
 
 	@Autowired
 	private MyUserDetailsService myUserDetailsService;
-	
-	@Bean
-	public BCryptPasswordEncoder encode() {
+
+    @Bean
+    BCryptPasswordEncoder encode() {
 		return new BCryptPasswordEncoder();
 	}
-	
-	
-	@Bean
-	public SecurityFilterChain securityFilterChain (HttpSecurity http) throws Exception {
 
-		http.csrf().disable();
+
+    @Bean
+    SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+
+        http.csrf(csrf -> csrf.disable());
 		
 		//권한별 페이지 진입
 		http.authorizeRequests( (a) -> a.antMatchers("/main/**").permitAll()
@@ -38,20 +38,19 @@ public class SecurityConfig {
 										.antMatchers("/teacher/**").hasAnyRole("TEA")
 										.antMatchers("/admin/**").hasRole("ADMIN")
 										.anyRequest().permitAll());
-		
-		//로그인&로그아웃 세팅 
-		http
-		.formLogin()
-		.loginPage("/member/login")
-		.loginProcessingUrl("/member/loginForm")
-		.usernameParameter("user_id")
-		.passwordParameter("user_pw")
-		.failureHandler(customLoginFailureHandler())
-		.successHandler(customLoginSuccessHandler())
-		.and()
-		.logout()
-		.logoutUrl("/logout")
-		.logoutSuccessUrl("/main");
+
+        //·Î±×ÀÎ&·Î±×¾Æ¿ô ¼¼ÆÃ 
+        http
+                .formLogin(login -> login
+                        .loginPage("/member/login")
+                        .loginProcessingUrl("/member/loginForm")
+                        .usernameParameter("user_id")
+                        .passwordParameter("user_pw")
+                        .failureHandler(customLoginFailureHandler())
+                        .successHandler(customLoginSuccessHandler()))
+                .logout(logout -> logout
+                        .logoutUrl("/logout")
+                        .logoutSuccessUrl("/main"));
 
 		//.successHandler(customLoginSuccessHandler());
 
@@ -59,19 +58,19 @@ public class SecurityConfig {
 		
 		return http.build();
 	}
-	
-	
-	@Bean
-	public CustomLoginFailureHandler customLoginFailureHandler () {
+
+
+    @Bean
+    CustomLoginFailureHandler customLoginFailureHandler() {
 		
 		CustomLoginFailureHandler custom = new CustomLoginFailureHandler();
 		custom.setRedirectURL("/member/login?err=true");
 		
 		return custom;
 	}
-	
-	@Bean
-    public CustomLoginSuccessHandler customLoginSuccessHandler() {
+
+    @Bean
+    CustomLoginSuccessHandler customLoginSuccessHandler() {
 		
 		CustomLoginSuccessHandler custom = new CustomLoginSuccessHandler();
 		custom.setRedirectURL("");
